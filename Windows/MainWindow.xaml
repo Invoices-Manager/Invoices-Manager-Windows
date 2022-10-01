@@ -7,8 +7,40 @@
         xmlns:local="clr-namespace:InvoicesManager"
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" 
+        Height="450" Width="800">
+    <Grid Background="#FF4A4A4A">
+        <Grid >
+            <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="35">
+                <Button x:Name="Bttn_InvoiceAdd" Content="Rechung hinzufügen" Foreground="White" Margin="5,0,5,0" Click="Bttn_InvoiceAdd_Click"/>
+                <Button x:Name="Bttn_InvoiceEdit" Content="Rechung bearbeiten" Foreground="White" Margin="5,0,5,0" Click="Bttn_InvoiceEdit_Click"/>
+                <Button x:Name="Bttn_InvoiceRemove"  Content="Rechung entfernen" Foreground="White" Margin="5,0,5,0" Click="Bttn_InvoiceRemove_Click"/>
+                <Separator Margin="10,0,10,0"/>
+                <Button x:Name="Bttn_Settings" Content="Einstellungen" Foreground="White" Margin="5,0,5,0" Click="Bttn_Settings_Click"/>
+                <Separator Margin="10,0,10,0"/>
+                <Button x:Name="Bttn_About" Content="Über" Foreground="White" Margin="5,0,5,0" Click="Bttn_About_Click"/>
+            </ToolBarPanel>
+        </Grid>
+        <Grid Margin="0,35,250,0" Background="#FF232323">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid Name="DG_Invoices" 
+                          ItemsSource="{Binding}" 
+                          AutoGenerateColumns="False" 
+                          CanUserReorderColumns="False" 
+                          CanUserDeleteRows="False" 
+                          CanUserAddRows="False" 
+                           IsReadOnly="True"
+                          MouseDoubleClick="DG_Invoices_MouseDoubleClick">
+                    <DataGrid.Columns>
+                        <DataGridHyperlinkColumn Header="Öffnen"  Binding="{Binding OpenInvoiceText}" />
+                        <DataGridTextColumn Header="Ausstellungsdatum"  Binding="{Binding ExhibitionDate}"/>
+                        <DataGridTextColumn Header="Organisation"  Binding="{Binding Organization}"/>
+                        <DataGridTextColumn Header="Rechnungs Nr."  Binding="{Binding InvoiceNumber}"/>
+                        <DataGridTextColumn Header="Betreff"  Binding="{Binding Reference}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
 
     </Grid>
 </Window>
