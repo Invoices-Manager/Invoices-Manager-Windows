@@ -72,7 +72,7 @@ namespace InvoicesManager
 
         private void InitInvoices()
         {
-            Thread _initInvoicesThread = new Thread(ThreadTaskGenerateDebugDataRecords);
+            Thread _initInvoicesThread = new Thread(ThreadTaskInitInvoices);
             _initInvoicesThread.Priority = ThreadPriority.Highest;
             _initInvoicesThread.Start();
         }
@@ -125,7 +125,7 @@ namespace InvoicesManager
         
         private void ThreadTaskInitOrganization()
         {
-                Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(()
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                      => { Comb_Search_Organization.Items.Clear(); }));
 
                 foreach (var organization in allInvoices.Select(x => x.Organization).Distinct())
@@ -148,8 +148,14 @@ namespace InvoicesManager
         }
 
         private void DG_Invoices_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-            => Process.Start(pathPDFBrowser, ((InvoiceModel)Dg_Invoices.SelectedItem).Path);
+        {
+            if (Dg_Invoices.SelectedItem == null)
+                return;
 
+            InvoiceModel invoice = (InvoiceModel)Dg_Invoices.SelectedItem;
+            Process.Start(pathPDFBrowser, invoice.Path);
+        }
+        
         private void Bttn_InvoiceAdd_Click(object sender, RoutedEventArgs e)
         {
             InvoiceAddWindow _invoiceAddWindow = new InvoiceAddWindow();
