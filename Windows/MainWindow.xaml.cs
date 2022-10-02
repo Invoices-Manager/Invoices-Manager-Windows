@@ -3,6 +3,7 @@ using InvoicesManager.Models;
 using InvoicesManager.Windows;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,8 @@ namespace InvoicesManager
         private string filterInvoiceNumber = String.Empty;
         private string filterOrganization = "-1";
         private DateTime filterExhibitionDate = default;
+
+        private const string pathPDFBrowser = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
 
 
         public MainWindow()
@@ -71,8 +74,8 @@ namespace InvoicesManager
                 invoice.InvoiceNumber = "INV" + r.Next(1000, 9999);
                 invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
                 invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(0, 100));
-                invoice.Path = "C:\\Invoices\\" + invoice.Reference + ".pdf";
-                
+                invoice.Path = "C:\\Users\\Schecher_1\\Desktop\\Test.pdf";
+
                 Dg_Invoices.Items.Add(invoice);
             }
         }
@@ -90,7 +93,7 @@ namespace InvoicesManager
                 invoice.InvoiceNumber = "INV" + r.Next(1000, 9999);
                 invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
                 invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(0, 100));
-                invoice.Path = "C:\\Invoices\\" + invoice.Reference + ".pdf";
+                invoice.Path = "C:\\Users\\Schecher_1\\Desktop\\Test.pdf";
 
                 allInvoices.Add(invoice);
             }
@@ -98,8 +101,7 @@ namespace InvoicesManager
         
         private void DG_Invoices_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            throw new Exception("Not implemented yet");
-            object sad = Dg_Invoices.SelectedItem;
+            Process.Start(pathPDFBrowser, ((InvoiceModel)Dg_Invoices.SelectedItem).Path);
         }
         
         private void RefreshDataGrid()
