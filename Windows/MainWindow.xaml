@@ -8,7 +8,7 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="450" Width="800">
+        Height="500" Width="850">
     <Grid Background="#FF4A4A4A">
         <Grid >
             <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="35">
@@ -21,15 +21,44 @@
                 <Button x:Name="Bttn_About" Content="Über" Foreground="White" Margin="5,0,5,0" Click="Bttn_About_Click"/>
             </ToolBarPanel>
         </Grid>
-        <Grid Margin="0,35,250,0" Background="#FF232323">
+
+        <Grid HorizontalAlignment="Right" Width="350" Margin="0,35,0,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+                    <GroupBox Header="Suchen Nach: Betreff" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black">
+                        <Grid>
+                            <TextBox x:Name="Tb_Search_String" Margin="5,5,5,5" VerticalAlignment="Center" TextChanged="Tb_Search_String_TextChanged"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Suchen Nach: Rechnungs NR" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black">
+                        <Grid>
+                            <TextBox x:Name="Tb_Search_InvoiceNumber" Margin="5,5,5,5" VerticalAlignment="Center" TextChanged="Tb_Search_InvoiceNumber_TextChanged"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Suchen Nach: Organisation" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black">
+                        <Grid>
+                            <ComboBox x:Name="Comb_Search_Organization" Margin="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_Organization_SelectionChanged"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Suchen Nach: Datum" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black">
+                        <Grid>
+                            <DatePicker x:Name="Dp_Search_ExhibitionDate" IsTodayHighlighted="True" FirstDayOfWeek="Monday" SelectedDateFormat="Long"  Margin="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedDateChanged="Dp_Search_ExhibitionDate_SelectedDateChanged"/>
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid Margin="0,35,350,0" Background="#FF232323">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <DataGrid Name="DG_Invoices" 
+                <DataGrid Name="Dg_Invoices" 
                           ItemsSource="{Binding}" 
                           AutoGenerateColumns="False" 
                           CanUserReorderColumns="False" 
                           CanUserDeleteRows="False" 
                           CanUserAddRows="False" 
-                           IsReadOnly="True"
+                          ClipboardCopyMode="IncludeHeader"
+                          IsReadOnly="True"
                           MouseDoubleClick="DG_Invoices_MouseDoubleClick">
                     <DataGrid.Columns>
                         <DataGridHyperlinkColumn Header="Öffnen"  Binding="{Binding OpenInvoiceText}" />
@@ -41,6 +70,5 @@
                 </DataGrid>
             </ScrollViewer>
         </Grid>
-
     </Grid>
 </Window>
