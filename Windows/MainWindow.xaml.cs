@@ -37,15 +37,30 @@ namespace InvoicesManager
 
         private const string pathPDFBrowser = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
 
-
         public MainWindow()
         {
             InitializeComponent();
             GenerateAllWindows();
 #if DEBUG
-            GenerateDebugDataRecords();
+          //  GenerateDebugDataRecords();
 #endif
-            InitInvoices();
+            InitThreads();
+        }
+
+        private void InitThreads()
+        {
+            Thread _initInvoicesThread = new Thread(ThreadTaskGenerateDebugDataRecords);
+            Thread _initOrganizationsThread = new Thread(ThreadTaskInitOrganization);
+            Thread _refreshDataGridThread = new Thread(ThreadTaskRefreshDataGrid);
+
+            _initInvoicesThread.Start();
+            _initInvoicesThread.Join();
+
+            _initOrganizationsThread.Start();
+            _initOrganizationsThread.Join();
+
+            _refreshDataGridThread.Start();
+            _refreshDataGridThread.Join();
         }
 
         private void GenerateAllWindows()
@@ -59,73 +74,89 @@ namespace InvoicesManager
 
         private void GenerateDebugDataRecords()
         {
-            Random r = new Random();
-            string[] sampleOrganization = { "UPS", "MCDonalds", "Telekom", "DHL", "Amazon", "Apple", "Microsoft", "Google", "Facebook", "Twitter" };
-
-            //Organization debug records
-            Comb_Search_Organization.Items.Clear();
-            foreach (var organization in sampleOrganization)
-                Comb_Search_Organization.Items.Add(organization);
-
-            //Invoices debug records
-            Dg_Invoices.Items.Clear();
-            for (int i = 0; i < 100; i++)
-            {
-                InvoiceModel invoice = new InvoiceModel();
-                invoice.Reference = "REF" + r.Next(1000, 9999);
-                invoice.InvoiceNumber = "INV" + r.Next(1000, 9999);
-                invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
-                invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(0, 100));
-                invoice.Path = "C:\\Users\\Schecher_1\\Desktop\\Test.pdf";
-
-                Dg_Invoices.Items.Add(invoice);
-            }
+            Thread _initInvoicesThread = new Thread(ThreadTaskGenerateDebugDataRecords);
+            _initInvoicesThread.Priority = ThreadPriority.AboveNormal;
+            _initInvoicesThread.Start();
         }
 
         private void InitInvoices()
         {
+            Thread _initInvoicesThread = new Thread(ThreadTaskGenerateDebugDataRecords);
+            _initInvoicesThread.Priority = ThreadPriority.AboveNormal;
+            _initInvoicesThread.Start();
+        }
+
+        private void InitOrganization()
+        {
+            Thread _initOrganizationsThread = new Thread(ThreadTaskInitOrganization);
+            _initOrganizationsThread.Priority = ThreadPriority.Normal;
+            _initOrganizationsThread.Start();
+        }
+
+        private void RefreshDataGrid()
+        {
+            Thread _refreshDataGridThread = new Thread(ThreadTaskRefreshDataGrid);
+            _refreshDataGridThread.Priority = ThreadPriority.Normal;
+            _refreshDataGridThread.Start();
+        }
+
+        private void ThreadTaskGenerateDebugDataRecords()
+        {
             Random r = new Random();
             string[] sampleOrganization = { "UPS", "MCDonalds", "Telekom", "DHL", "Amazon", "Apple", "Microsoft", "Google", "Facebook", "Twitter" };
 
-            //Invoices debug records
-            for (int i = 0; i < 100; i++)
-            {
-                InvoiceModel invoice = new InvoiceModel();
-                invoice.Reference = "REF" + r.Next(1000, 9999);
-                invoice.InvoiceNumber = "INV" + r.Next(1000, 9999);
-                invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
-                invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(0, 100));
-                invoice.Path = "C:\\Users\\Schecher_1\\Desktop\\Test.pdf";
+                //Invoices debug records
+                Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(()
+                    => { Dg_Invoices.Items.Clear(); }));
 
-                allInvoices.Add(invoice);
-            }
+                for (int i = 0; i < 5; i++)
+                {
+                    InvoiceModel invoice = new InvoiceModel();
+                    invoice.Reference = "REF" + r.Next(1000, 9999);
+                    invoice.InvoiceNumber = "INV" + r.Next(1000, 9999);
+                    invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
+                    invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(0, 100));
+                    invoice.Path = "C:\\Users\\Schecher_1\\Desktop\\Test.pdf";
+
+                    //Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                        //=> { Dg_Invoices.Items.Add(invoice); }));
+                    allInvoices.Add(invoice);
+                }
+        }
+
+        private void ThreadTaskInitInvoices()
+        {
+            
+        }
+        
+        private void ThreadTaskInitOrganization()
+        {
+                Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(()
+                     => { Comb_Search_Organization.Items.Clear(); }));
+
+                foreach (var organization in allInvoices.Select(x => x.Organization).Distinct())
+                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                        => { Comb_Search_Organization.Items.Add(organization); }));
+        }
+
+        private void ThreadTaskRefreshDataGrid()
+        {
+            //run this as task, because the sorting can take a while
+            SortSystem sortSys = new SortSystem(allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterExhibitionDate);
+
+            List<InvoiceModel> filteredInvoices = sortSys.Sort();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                => { Dg_Invoices.Items.Clear(); }));
+
+            foreach (var invoice in filteredInvoices)
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                    => { Dg_Invoices.Items.Add(invoice); }));
+
         }
 
         private void DG_Invoices_MouseDoubleClick(object sender, MouseButtonEventArgs e)
             => Process.Start(pathPDFBrowser, ((InvoiceModel)Dg_Invoices.SelectedItem).Path);
-
-        private void RefreshDataGrid()
-        {
-            //TODO MAKE THIS SHIT BETTER ?!?!?
-            //run this as task, because the sorting can take a while
-            Task.Run(() =>
-            {
-                SortSystem sortSys = new SortSystem(allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterExhibitionDate);
-
-                List<InvoiceModel> filteredInvoices = sortSys.Sort();
-
-                Dg_Invoices.Dispatcher.BeginInvoke(() =>
-                {
-                    Dg_Invoices.Items.Clear();
-                });
-
-                foreach (var invoice in filteredInvoices)
-                    Dg_Invoices.Dispatcher.BeginInvoke(() =>
-                    {
-                        Dg_Invoices.Items.Add(invoice);
-                    });
-            });
-         }
 
         private void Bttn_InvoiceAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -175,5 +206,8 @@ namespace InvoicesManager
             filterExhibitionDate = (DateTime)(Dp_Search_ExhibitionDate.SelectedDate == null ? default(DateTime) : Dp_Search_ExhibitionDate.SelectedDate);
             RefreshDataGrid();
         }
+
+        private void Comb_Search_Organization_Clear_Click(object sender, RoutedEventArgs e)
+            => Comb_Search_Organization.SelectedIndex = -1;
     }
 }

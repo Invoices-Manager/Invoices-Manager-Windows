@@ -8,7 +8,7 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="Invoices Manager | Made by Schecher | Vers 1.0.0.0 | https://github.com/Schecher1" 
-        Height="500" Width="850"
+        Height="1000" Width="1000"
         WindowState="Maximized">
     <Grid Background="#FF4A4A4A">
         <Grid >
@@ -38,7 +38,8 @@
                     </GroupBox>
                     <GroupBox Header="Suchen Nach: Organisation" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black">
                         <Grid>
-                            <ComboBox x:Name="Comb_Search_Organization" Margin="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_Organization_SelectionChanged"/>
+                            <ComboBox x:Name="Comb_Search_Organization" Margin="5,5,55,5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_Organization_SelectionChanged"/>
+                            <Button x:Name="Comb_Search_Organization_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="{x:Null}" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Comb_Search_Organization_Clear_Click"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Suchen Nach: Datum" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black">
