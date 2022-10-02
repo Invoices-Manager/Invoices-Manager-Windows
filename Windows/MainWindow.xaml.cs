@@ -160,24 +160,40 @@ namespace InvoicesManager
         {
             InvoiceAddWindow _invoiceAddWindow = new InvoiceAddWindow();
             _invoiceAddWindow.ShowDialog();
+
+            throw new NotImplementedException();
+
+            RefreshDataGridWithInit();
         }
 
         private void Bttn_InvoiceEdit_Click(object sender, RoutedEventArgs e)
         {
             InvoiceEditWindow _invoiceEditWindow = new InvoiceEditWindow();
             _invoiceEditWindow.ShowDialog();
+
+            throw new NotImplementedException();
+
+            RefreshDataGridWithInit();
         }
 
         private void Bttn_InvoiceRemove_Click(object sender, RoutedEventArgs e)
         {
             InvoiceRemoveWindow _invoiceRemoveWindow = new InvoiceRemoveWindow();
             _invoiceRemoveWindow.ShowDialog();
+
+            throw new NotImplementedException();
+
+            RefreshDataGridWithInit();
         }
 
         private void Bttn_Settings_Click(object sender, RoutedEventArgs e)
         {
             SettingWindow _settingWindow = new SettingWindow();
             _settingWindow.ShowDialog();
+
+            throw new NotImplementedException();
+
+            RefreshDataGridWithInit();
         }
 
         private void Bttn_About_Click(object sender, RoutedEventArgs e)
@@ -189,25 +205,25 @@ namespace InvoicesManager
         private void Tb_Search_String_TextChanged(object sender, TextChangedEventArgs e)
         {
             filterReference = Tb_Search_String.Text == String.Empty ? String.Empty : Tb_Search_String.Text;
-            RefreshDataGridWithInit();
+            RefreshDataGrid();
         }
 
         private void Tb_Search_InvoiceNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
             filterInvoiceNumber = Tb_Search_InvoiceNumber.Text == String.Empty ? String.Empty : Tb_Search_InvoiceNumber.Text;
-            RefreshDataGridWithInit();
+            RefreshDataGrid();
         }
 
         private void Comb_Search_Organization_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             filterOrganization = Comb_Search_Organization.SelectedIndex.ToString() == "-1" ? "-1" : Comb_Search_Organization.SelectedItem.ToString();
-            RefreshDataGridWithInit();
+            RefreshDataGrid();
         }
 
         private void Dp_Search_ExhibitionDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             filterExhibitionDate = (DateTime)(Dp_Search_ExhibitionDate.SelectedDate == null ? default(DateTime) : Dp_Search_ExhibitionDate.SelectedDate);
-            RefreshDataGridWithInit();
+            RefreshDataGrid();
         }
 
         private void Comb_Search_Organization_Clear_Click(object sender, RoutedEventArgs e)
@@ -215,12 +231,12 @@ namespace InvoicesManager
 
         private void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
         {
-
+            throw new NotImplementedException();
         }
 
         private void Bttn_BackUpRestore_Click(object sender, RoutedEventArgs e)
         {
-
+            throw new NotImplementedException();
         }
     }
 }
