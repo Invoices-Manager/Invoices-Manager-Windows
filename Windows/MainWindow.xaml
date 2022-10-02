@@ -31,23 +31,23 @@
                 <StackPanel>
                     <GroupBox Header="Suchen Nach: Betreff" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black">
                         <Grid>
-                            <TextBox x:Name="Tb_Search_String" Margin="5,5,5,5" VerticalAlignment="Center" TextChanged="Tb_Search_String_TextChanged"/>
+                            <TextBox x:Name="Tb_Search_String" Margin="5,5,5,5" Foreground="White" VerticalAlignment="Center" TextChanged="Tb_Search_String_TextChanged"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Suchen Nach: Rechnungs NR" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black">
                         <Grid>
-                            <TextBox x:Name="Tb_Search_InvoiceNumber" Margin="5,5,5,5" VerticalAlignment="Center" TextChanged="Tb_Search_InvoiceNumber_TextChanged"/>
+                            <TextBox x:Name="Tb_Search_InvoiceNumber" Margin="5,5,5,5" Foreground="White" VerticalAlignment="Center" TextChanged="Tb_Search_InvoiceNumber_TextChanged"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Suchen Nach: Organisation" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black">
+                    <GroupBox Header="Suchen Nach: Organisation" Margin="10,10,10,10"  BorderThickness="1,1,1,1" BorderBrush="Black">
                         <Grid>
-                            <ComboBox x:Name="Comb_Search_Organization" Margin="5,5,55,5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_Organization_SelectionChanged"/>
+                            <ComboBox x:Name="Comb_Search_Organization" Margin="5,5,55,5" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_Organization_SelectionChanged"/>
                             <Button x:Name="Comb_Search_Organization_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="{x:Null}" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Comb_Search_Organization_Clear_Click"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Suchen Nach: Datum" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black">
                         <Grid>
-                            <DatePicker x:Name="Dp_Search_ExhibitionDate" IsTodayHighlighted="True" FirstDayOfWeek="Monday" SelectedDateFormat="Long"  Margin="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedDateChanged="Dp_Search_ExhibitionDate_SelectedDateChanged"/>
+                            <DatePicker x:Name="Dp_Search_ExhibitionDate" IsTodayHighlighted="True" Foreground="White" FirstDayOfWeek="Monday" SelectedDateFormat="Long"  Margin="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedDateChanged="Dp_Search_ExhibitionDate_SelectedDateChanged"/>
                         </Grid>
                     </GroupBox>
                 </StackPanel>
