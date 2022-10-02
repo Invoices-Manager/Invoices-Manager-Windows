@@ -23,12 +23,6 @@ namespace InvoicesManager
 {
     public partial class MainWindow : Window
     {
-        AboutWindow _aboutWindow;
-        SettingWindow _settingWindow;
-        InvoiceAddWindow _invoiceAddWindow;
-        InvoiceEditWindow _invoiceEditWindow;
-        InvoiceRemoveWindow _invoiceRemoveWindow;
-
         List<InvoiceModel> allInvoices = new List<InvoiceModel>();
         private string filterReference = String.Empty;
         private string filterInvoiceNumber = String.Empty;
@@ -40,7 +34,6 @@ namespace InvoicesManager
         public MainWindow()
         {
             InitializeComponent();
-            GenerateAllWindows();
 #if DEBUG
           //  GenerateDebugDataRecords();
 #endif
@@ -63,15 +56,6 @@ namespace InvoicesManager
             _refreshDataGridThread.Join();
         }
 
-        private void GenerateAllWindows()
-        {
-            _aboutWindow = new AboutWindow();
-            _settingWindow = new SettingWindow();
-            _invoiceAddWindow = new InvoiceAddWindow();
-            _invoiceEditWindow = new InvoiceEditWindow();
-            _invoiceRemoveWindow = new InvoiceRemoveWindow();
-        }
-
         private void GenerateDebugDataRecords()
         {
             Thread _initInvoicesThread = new Thread(ThreadTaskGenerateDebugDataRecords);
@@ -82,7 +66,7 @@ namespace InvoicesManager
         private void InitInvoices()
         {
             Thread _initInvoicesThread = new Thread(ThreadTaskGenerateDebugDataRecords);
-            _initInvoicesThread.Priority = ThreadPriority.AboveNormal;
+            _initInvoicesThread.Priority = ThreadPriority.Highest;
             _initInvoicesThread.Start();
         }
 
@@ -105,15 +89,18 @@ namespace InvoicesManager
             Random r = new Random();
             string[] sampleOrganization = { "UPS", "MCDonalds", "Telekom", "DHL", "Amazon", "Apple", "Microsoft", "Google", "Facebook", "Twitter" };
 
-                //Invoices debug records
-                Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(()
+            //clear all Invoices
+            allInvoices.Clear();
+
+            //Invoices debug records
+            Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(()
                     => { Dg_Invoices.Items.Clear(); }));
 
                 for (int i = 0; i < 5; i++)
                 {
                     InvoiceModel invoice = new InvoiceModel();
-                    invoice.Reference = "REF" + r.Next(1000, 9999);
-                    invoice.InvoiceNumber = "INV" + r.Next(1000, 9999);
+                    invoice.Reference = "REF " + r.Next(1000, 9999) + r.Next(1000, 9999) + r.Next(1000, 9999) + r.Next(1000, 9999);
+                    invoice.InvoiceNumber = "INV" + r.Next(10000000, 999999999);
                     invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
                     invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(0, 100));
                     invoice.Path = "C:\\Users\\Schecher_1\\Desktop\\Test.pdf";
@@ -141,7 +128,6 @@ namespace InvoicesManager
 
         private void ThreadTaskRefreshDataGrid()
         {
-            //run this as task, because the sorting can take a while
             SortSystem sortSys = new SortSystem(allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterExhibitionDate);
 
             List<InvoiceModel> filteredInvoices = sortSys.Sort();
@@ -152,7 +138,6 @@ namespace InvoicesManager
             foreach (var invoice in filteredInvoices)
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                     => { Dg_Invoices.Items.Add(invoice); }));
-
         }
 
         private void DG_Invoices_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -160,26 +145,31 @@ namespace InvoicesManager
 
         private void Bttn_InvoiceAdd_Click(object sender, RoutedEventArgs e)
         {
+            InvoiceAddWindow _invoiceAddWindow = new InvoiceAddWindow();
             _invoiceAddWindow.ShowDialog();
         }
 
         private void Bttn_InvoiceEdit_Click(object sender, RoutedEventArgs e)
         {
+            InvoiceEditWindow _invoiceEditWindow = new InvoiceEditWindow();
             _invoiceEditWindow.ShowDialog();
         }
 
         private void Bttn_InvoiceRemove_Click(object sender, RoutedEventArgs e)
         {
+            InvoiceRemoveWindow _invoiceRemoveWindow = new InvoiceRemoveWindow();
             _invoiceRemoveWindow.ShowDialog();
         }
 
         private void Bttn_Settings_Click(object sender, RoutedEventArgs e)
         {
+            SettingWindow _settingWindow = new SettingWindow();
             _settingWindow.ShowDialog();
         }
 
         private void Bttn_About_Click(object sender, RoutedEventArgs e)
         {
+            AboutWindow _aboutWindow = new AboutWindow();
             _aboutWindow.ShowDialog();
         }
 
