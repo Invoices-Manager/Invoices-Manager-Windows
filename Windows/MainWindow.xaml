@@ -51,7 +51,7 @@
             </ScrollViewer>
         </Grid>
 
-        <Grid Margin="0,35,350,0" Background="#FF232323">
+        <Grid Margin="0,40,350,0" Background="#FF232323">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <DataGrid Name="Dg_Invoices" 
                           ItemsSource="{Binding}" 

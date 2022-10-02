@@ -49,7 +49,7 @@ namespace InvoicesManager
 
         private void InitThreads()
         {
-            Thread _initInvoicesThread = new Thread(ThreadTaskGenerateDebugDataRecords);
+            Thread _initInvoicesThread = new Thread(ThreadTaskInitInvoices);
             Thread _initOrganizationsThread = new Thread(ThreadTaskInitOrganization);
             Thread _refreshDataGridThread = new Thread(ThreadTaskRefreshDataGrid);
 

@@ -11,10 +11,10 @@ namespace InvoicesManager.Classes
         List<InvoiceModel> allInvoices = new List<InvoiceModel>();
         List<InvoiceModel> sortInvoices = new List<InvoiceModel>();
 
-        private string filterReference = String.Empty;
-        private string filterInvoiceNumber = String.Empty;
-        private string filterOrganization = "-1";
-        private DateTime filterExhibitionDate = default;
+        private readonly string filterReference = String.Empty;
+        private readonly string filterInvoiceNumber = String.Empty;
+        private readonly string filterOrganization = "-1";
+        private readonly DateTime filterExhibitionDate = default;
         public SortSystem(List<InvoiceModel> allInvoices, string filterReference, string filterInvoiceNumber, string filterOrganization, DateTime filterExhibitionDate)
         {
             this.allInvoices = allInvoices;
