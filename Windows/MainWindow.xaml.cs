@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace InvoicesManager
 {
@@ -98,24 +100,32 @@ namespace InvoicesManager
                 allInvoices.Add(invoice);
             }
         }
-        
+
         private void DG_Invoices_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Process.Start(pathPDFBrowser, ((InvoiceModel)Dg_Invoices.SelectedItem).Path);
-        }
-        
+            => Process.Start(pathPDFBrowser, ((InvoiceModel)Dg_Invoices.SelectedItem).Path);
+
         private void RefreshDataGrid()
         {
-            SortSystem sortSys = new SortSystem(allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterExhibitionDate);
-            List<InvoiceModel> filteredInvoices = new List<InvoiceModel>();
-
+            //TODO MAKE THIS SHIT BETTER ?!?!?
             //run this as task, because the sorting can take a while
-            Task.Run(() => filteredInvoices = sortSys.Sort());
+            Task.Run(() =>
+            {
+                SortSystem sortSys = new SortSystem(allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterExhibitionDate);
 
-            Dg_Invoices.Items.Clear();
-            foreach (var invoice in filteredInvoices)
-                Dg_Invoices.Items.Add(invoice);
-        }
+                List<InvoiceModel> filteredInvoices = sortSys.Sort();
+
+                Dg_Invoices.Dispatcher.BeginInvoke(() =>
+                {
+                    Dg_Invoices.Items.Clear();
+                });
+
+                foreach (var invoice in filteredInvoices)
+                    Dg_Invoices.Dispatcher.BeginInvoke(() =>
+                    {
+                        Dg_Invoices.Items.Add(invoice);
+                    });
+            });
+         }
 
         private void Bttn_InvoiceAdd_Click(object sender, RoutedEventArgs e)
         {
