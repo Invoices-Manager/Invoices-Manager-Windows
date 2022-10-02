@@ -105,7 +105,10 @@ namespace InvoicesManager
         private void RefreshDataGrid()
         {
             SortSystem sortSys = new SortSystem(allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterExhibitionDate);
-            List<InvoiceModel> filteredInvoices = sortSys.Sort();
+            List<InvoiceModel> filteredInvoices = new List<InvoiceModel>();
+
+            //run this as task, because the sorting can take a while
+            Task.Run(() => filteredInvoices = sortSys.Sort());
 
             Dg_Invoices.Items.Clear();
             foreach (var invoice in filteredInvoices)
