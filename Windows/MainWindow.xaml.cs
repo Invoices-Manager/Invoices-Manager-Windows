@@ -35,7 +35,7 @@ namespace InvoicesManager
         {
             InitializeComponent();
 #if DEBUG
-          //  GenerateDebugDataRecords();
+           GenerateDebugDataRecords();
 #endif
             InitThreads();
         }
@@ -103,7 +103,7 @@ namespace InvoicesManager
             Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(()
                     => { Dg_Invoices.Items.Clear(); }));
 
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 50; i++)
                 {
                     InvoiceModel invoice = new InvoiceModel();
                     invoice.Reference = "REF " + r.Next(1000, 9999) + r.Next(1000, 9999) + r.Next(1000, 9999) + r.Next(1000, 9999);
@@ -112,8 +112,8 @@ namespace InvoicesManager
                     invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(0, 100));
                     invoice.Path = "C:\\Users\\Schecher_1\\Desktop\\Test.pdf";
 
-                    //Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
-                        //=> { Dg_Invoices.Items.Add(invoice); }));
+                   // Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                      //  => { Dg_Invoices.Items.Add(invoice); }));
                     allInvoices.Add(invoice);
                 }
         }
@@ -212,5 +212,15 @@ namespace InvoicesManager
 
         private void Comb_Search_Organization_Clear_Click(object sender, RoutedEventArgs e)
             => Comb_Search_Organization.SelectedIndex = -1;
+
+        private void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Bttn_BackUpRestore_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
