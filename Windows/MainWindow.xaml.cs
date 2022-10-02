@@ -40,6 +40,13 @@ namespace InvoicesManager
             InitThreads();
         }
 
+        private void RefreshDataGridWithInit()
+        {
+            InitInvoices();
+            InitOrganization();
+            RefreshDataGrid();
+        }
+
         private void InitThreads()
         {
             Thread _initInvoicesThread = new Thread(ThreadTaskGenerateDebugDataRecords);
@@ -176,25 +183,25 @@ namespace InvoicesManager
         private void Tb_Search_String_TextChanged(object sender, TextChangedEventArgs e)
         {
             filterReference = Tb_Search_String.Text == String.Empty ? String.Empty : Tb_Search_String.Text;
-            RefreshDataGrid();
+            RefreshDataGridWithInit();
         }
 
         private void Tb_Search_InvoiceNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
             filterInvoiceNumber = Tb_Search_InvoiceNumber.Text == String.Empty ? String.Empty : Tb_Search_InvoiceNumber.Text;
-            RefreshDataGrid();
+            RefreshDataGridWithInit();
         }
 
         private void Comb_Search_Organization_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             filterOrganization = Comb_Search_Organization.SelectedIndex.ToString() == "-1" ? "-1" : Comb_Search_Organization.SelectedItem.ToString();
-            RefreshDataGrid();
+            RefreshDataGridWithInit();
         }
 
         private void Dp_Search_ExhibitionDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             filterExhibitionDate = (DateTime)(Dp_Search_ExhibitionDate.SelectedDate == null ? default(DateTime) : Dp_Search_ExhibitionDate.SelectedDate);
-            RefreshDataGrid();
+            RefreshDataGridWithInit();
         }
 
         private void Comb_Search_Organization_Clear_Click(object sender, RoutedEventArgs e)
