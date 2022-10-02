@@ -4,9 +4,40 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InvoicesManager.Windows"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
-        Title="AboutWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Invoices Manager | About" 
+        Height="450" Width="450"
+        MinHeight="450" MinWidth="450"
+        MaxHeight="450" MaxWidth="450">
+    <Grid Background="#FF4A4A4A">
+        <Label 
+            Content="Invoices Manager" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Top" 
+            Margin="0,50,0,0"
+            FontSize="35"/>
+        <Label 
+            Content="©2022" 
+            HorizontalAlignment="Right" 
+            VerticalAlignment="Bottom" 
+            Margin="0,0,5,5"
+            FontSize="20"/>
+        <TextBlock 
+            Text="Invoices Manager is an open source tool that you can use for free. You can even view the source code on GitHub and develop it further if you want." 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Top" 
+            Margin="15,150,15,0"
+            FontSize="25" 
+            TextAlignment="Center" TextWrapping="Wrap"
+           />
+        <Label 
+            Content="Version 1.0.0.0" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Bottom" 
+            Margin="5,0,10,5"
+            FontSize="20"/>
+
     </Grid>
 </Window>
