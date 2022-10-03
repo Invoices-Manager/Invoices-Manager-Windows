@@ -93,6 +93,7 @@ namespace InvoicesManager.Windows
             };
 
             InvoiceSystem.AddInvoice(newInvoice, filePath, newPath);
+            InvoiceSystem.Init();
         }
     }
 }
