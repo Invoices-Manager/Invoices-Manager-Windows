@@ -56,6 +56,8 @@ namespace InvoicesManager.Classes
             }
             EnvironmentsVariable.allInvoices.Remove(oldInvoice);
 
+            File.Delete(oldInvoice.Path);
+
             SaveIntoJsonFile();
         }
 

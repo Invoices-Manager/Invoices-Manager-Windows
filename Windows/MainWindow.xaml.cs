@@ -34,10 +34,10 @@ namespace InvoicesManager
         {
             InitializeComponent();
 #if DEBUG
-           //GenerateDebugDataRecords();
+            //GenerateDebugDataRecords();
 #endif
-            InitThreads();
             InitWorkPath();
+            InitThreads();
         }
 
 
@@ -60,7 +60,7 @@ namespace InvoicesManager
         
         private void InitThreads()
         {
-            Thread _initInvoicesThread = new Thread(ThreadTaskInitInvoices);
+            Thread _initInvoicesThread = new Thread(InvoiceSystem.Init);
             Thread _initOrganizationsThread = new Thread(ThreadTaskInitOrganization);
             Thread _initDocumentType = new Thread(ThreadTaskInitDocumentType);
             Thread _refreshDataGridThread = new Thread(ThreadTaskRefreshDataGrid);
@@ -80,7 +80,7 @@ namespace InvoicesManager
 
         private void InitInvoices()
         {
-            Thread _initInvoicesThread = new Thread(ThreadTaskInitInvoices);
+            Thread _initInvoicesThread = new Thread(InvoiceSystem.Init);
             _initInvoicesThread.Priority = ThreadPriority.Highest;
             _initInvoicesThread.Start();
         }
@@ -143,11 +143,6 @@ namespace InvoicesManager
                 }
         }
 
-        private void ThreadTaskInitInvoices()
-        {
-            InvoiceSystem.Init();
-        }
-        
         private void ThreadTaskInitOrganization()
         {
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
@@ -214,11 +209,12 @@ namespace InvoicesManager
 
         private void Bttn_InvoiceRemove_Click(object sender, RoutedEventArgs e)
         {
-            InvoiceRemoveWindow _invoiceRemoveWindow = new InvoiceRemoveWindow();
+            if (Dg_Invoices.SelectedItem == null)
+                return;
+            
+            InvoiceRemoveWindow _invoiceRemoveWindow = new InvoiceRemoveWindow((InvoiceModel)Dg_Invoices.SelectedItem);
             _invoiceRemoveWindow.ShowDialog();
-
-            throw new NotImplementedException();
-
+            
             RefreshDataGridWithInit();
         }
 
