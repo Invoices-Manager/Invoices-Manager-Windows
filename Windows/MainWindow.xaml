@@ -45,6 +45,12 @@
                             <Button x:Name="Comb_Search_Organization_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="{x:Null}" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Comb_Search_Organization_Clear_Click"/>
                         </Grid>
                     </GroupBox>
+                    <GroupBox Header="Suchen Nach: Dokument Typ" Margin="10,10,10,10"  BorderThickness="1,1,1,1" BorderBrush="Black">
+                        <Grid>
+                            <ComboBox x:Name="Comb_Search_DocumentType" Margin="5,5,55,5" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_DocumentType_SelectionChanged"/>
+                            <Button x:Name="Comb_Search_DocumentType_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="{x:Null}" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Comb_Search_DocumentType_Clear_Click"/>
+                        </Grid>
+                    </GroupBox>
                     <GroupBox Header="Suchen Nach: Datum" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black">
                         <Grid>
                             <DatePicker x:Name="Dp_Search_ExhibitionDate" IsTodayHighlighted="True" Foreground="White" FirstDayOfWeek="Monday" SelectedDateFormat="Long"  Margin="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedDateChanged="Dp_Search_ExhibitionDate_SelectedDateChanged"/>
@@ -62,13 +68,14 @@
                           CanUserReorderColumns="False" 
                           CanUserDeleteRows="False" 
                           CanUserAddRows="False" 
-                          ClipboardCopyMode="IncludeHeader"
+                          ClipboardCopyMode="ExcludeHeader"
                           IsReadOnly="True"
                           MouseDoubleClick="DG_Invoices_MouseDoubleClick">
                     <DataGrid.Columns>
                         <DataGridHyperlinkColumn Header="Öffnen"  Binding="{Binding OpenInvoiceText}" />
                         <DataGridTextColumn Header="Ausstellungsdatum"  Binding="{Binding ExhibitionDate}"/>
                         <DataGridTextColumn Header="Organisation"  Binding="{Binding Organization}"/>
+                        <DataGridTextColumn Header="Dokument Typ"  Binding="{Binding DocumentType}"/>
                         <DataGridTextColumn Header="Rechnungs Nr."  Binding="{Binding InvoiceNumber}"/>
                         <DataGridTextColumn Header="Betreff"  Binding="{Binding Reference}"/>
                     </DataGrid.Columns>

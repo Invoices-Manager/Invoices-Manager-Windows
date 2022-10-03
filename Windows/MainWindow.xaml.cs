@@ -27,9 +27,8 @@ namespace InvoicesManager
         private string filterReference = String.Empty;
         private string filterInvoiceNumber = String.Empty;
         private string filterOrganization = "-1";
+        private string filterDocumentType = "-1";
         private DateTime filterExhibitionDate = default;
-
-        private const string pathPDFBrowser = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
 
         public MainWindow()
         {
@@ -44,6 +43,7 @@ namespace InvoicesManager
         {
             InitInvoices();
             InitOrganization();
+            InitDocumentType();
             RefreshDataGrid();
         }
 
@@ -51,6 +51,7 @@ namespace InvoicesManager
         {
             Thread _initInvoicesThread = new Thread(ThreadTaskInitInvoices);
             Thread _initOrganizationsThread = new Thread(ThreadTaskInitOrganization);
+            Thread _initDocumentType = new Thread(ThreadTaskInitDocumentType);
             Thread _refreshDataGridThread = new Thread(ThreadTaskRefreshDataGrid);
 
             _initInvoicesThread.Start();
@@ -58,6 +59,9 @@ namespace InvoicesManager
 
             _initOrganizationsThread.Start();
             _initOrganizationsThread.Join();
+
+            _initDocumentType.Start();
+            _initDocumentType.Join();
 
             _refreshDataGridThread.Start();
             _refreshDataGridThread.Join();
@@ -82,6 +86,13 @@ namespace InvoicesManager
             Thread _initOrganizationsThread = new Thread(ThreadTaskInitOrganization);
             _initOrganizationsThread.Priority = ThreadPriority.Normal;
             _initOrganizationsThread.Start();
+        }
+
+        private void InitDocumentType()
+        {
+            Thread _initDocumentType = new Thread(ThreadTaskInitDocumentType);
+            _initDocumentType.Priority = ThreadPriority.Normal;
+            _initDocumentType.Start();
         }
 
         private void RefreshDataGrid()
@@ -109,6 +120,7 @@ namespace InvoicesManager
                     invoice.Reference = "REF " + r.Next(1000, 9999) + r.Next(1000, 9999) + r.Next(1000, 9999) + r.Next(1000, 9999);
                     invoice.InvoiceNumber = "INV" + r.Next(10000000, 999999999);
                     invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
+                    invoice.DocumentType = r.Next(0, 2) == 0 ? "Invoice" : "Credit Note";
                     invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(0, 100));
                     invoice.Path = "C:\\Users\\Schecher_1\\Desktop\\Test.pdf";
 
@@ -120,7 +132,9 @@ namespace InvoicesManager
 
         private void ThreadTaskInitInvoices()
         {
-            
+            //throw new NotImplementedException();
+            //only as marker
+            //RefreshDataGridWithInit();
         }
         
         private void ThreadTaskInitOrganization()
@@ -133,9 +147,19 @@ namespace InvoicesManager
                         => { Comb_Search_Organization.Items.Add(organization); }));
         }
 
+        private void ThreadTaskInitDocumentType()
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                => { Comb_Search_DocumentType.Items.Clear(); }));
+
+            foreach (var documenttype in allInvoices.Select(x => x.DocumentType).Distinct())
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                    => { Comb_Search_DocumentType.Items.Add(documenttype); }));
+        }
+
         private void ThreadTaskRefreshDataGrid()
         {
-            SortSystem sortSys = new SortSystem(allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterExhibitionDate);
+            SortSystem sortSys = new SortSystem(allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType , filterExhibitionDate);
 
             List<InvoiceModel> filteredInvoices = sortSys.Sort();
 
@@ -153,7 +177,7 @@ namespace InvoicesManager
                 return;
 
             InvoiceModel invoice = (InvoiceModel)Dg_Invoices.SelectedItem;
-            Process.Start(pathPDFBrowser, invoice.Path);
+            Process.Start(EnvironmentsVariable.PathPDFBrowser, invoice.Path);
         }
         
         private void Bttn_InvoiceAdd_Click(object sender, RoutedEventArgs e)
@@ -220,14 +244,23 @@ namespace InvoicesManager
             RefreshDataGrid();
         }
 
+        private void Comb_Search_Organization_Clear_Click(object sender, RoutedEventArgs e)
+            => Comb_Search_Organization.SelectedIndex = -1;
+
+        private void Comb_Search_DocumentType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            filterDocumentType = Comb_Search_DocumentType.SelectedIndex.ToString() == "-1" ? "-1" : Comb_Search_DocumentType.SelectedItem.ToString();
+            RefreshDataGrid();
+        }
+
+        private void Comb_Search_DocumentType_Clear_Click(object sender, RoutedEventArgs e)
+             => Comb_Search_DocumentType.SelectedIndex = -1;
+
         private void Dp_Search_ExhibitionDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             filterExhibitionDate = (DateTime)(Dp_Search_ExhibitionDate.SelectedDate == null ? default(DateTime) : Dp_Search_ExhibitionDate.SelectedDate);
             RefreshDataGrid();
         }
-
-        private void Comb_Search_Organization_Clear_Click(object sender, RoutedEventArgs e)
-            => Comb_Search_Organization.SelectedIndex = -1;
 
         private void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
         {

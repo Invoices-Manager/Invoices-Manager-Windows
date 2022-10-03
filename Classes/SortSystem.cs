@@ -14,13 +14,16 @@ namespace InvoicesManager.Classes
         private readonly string filterReference = String.Empty;
         private readonly string filterInvoiceNumber = String.Empty;
         private readonly string filterOrganization = "-1";
+        private readonly string filterDocumentType = "-1";
         private readonly DateTime filterExhibitionDate = default;
-        public SortSystem(List<InvoiceModel> allInvoices, string filterReference, string filterInvoiceNumber, string filterOrganization, DateTime filterExhibitionDate)
+        
+        public SortSystem(List<InvoiceModel> allInvoices, string filterReference, string filterInvoiceNumber, string filterOrganization, string filterDocumentType, DateTime filterExhibitionDate)
         {
             this.allInvoices = allInvoices;
             this.filterReference = filterReference;
             this.filterInvoiceNumber = filterInvoiceNumber;
             this.filterOrganization = filterOrganization;
+            this.filterDocumentType = filterDocumentType;
             this.filterExhibitionDate = filterExhibitionDate;
         }
 
@@ -33,6 +36,8 @@ namespace InvoicesManager.Classes
                 if (!(invoice.InvoiceNumber.Contains(filterInvoiceNumber) || filterInvoiceNumber == String.Empty))
                     continue;
                 if (!(invoice.Organization == filterOrganization || filterOrganization == "-1"))
+                    continue;
+                if (!(invoice.DocumentType == filterDocumentType || filterDocumentType == "-1"))
                     continue;
                 if (!(invoice.ExhibitionDate.Date == filterExhibitionDate.Date || filterExhibitionDate == default))
                     continue;

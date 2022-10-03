@@ -9,6 +9,6 @@
         mc:Ignorable="d"
         Title="InvoiceAddWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button x:Name="Bttn_InvoiceAdd" Content="Rechnung Hinzufügen" Click="Bttn_InvoiceAdd_Click"/>
     </Grid>
 </Window>
