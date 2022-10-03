@@ -66,6 +66,7 @@ namespace InvoicesManager
             _refreshDataGridThread.Start();
             _refreshDataGridThread.Join();
         }
+        
 
         private void GenerateDebugDataRecords()
         {
@@ -101,6 +102,7 @@ namespace InvoicesManager
             _refreshDataGridThread.Priority = ThreadPriority.Normal;
             _refreshDataGridThread.Start();
         }
+        
 
         private void ThreadTaskGenerateDebugDataRecords()
         {
@@ -170,6 +172,7 @@ namespace InvoicesManager
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                     => { Dg_Invoices.Items.Add(invoice); }));
         }
+        
 
         private void DG_Invoices_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -180,12 +183,11 @@ namespace InvoicesManager
             Process.Start(EnvironmentsVariable.PathPDFBrowser, invoice.Path);
         }
         
+        
         private void Bttn_InvoiceAdd_Click(object sender, RoutedEventArgs e)
         {
             InvoiceAddWindow _invoiceAddWindow = new InvoiceAddWindow();
             _invoiceAddWindow.ShowDialog();
-
-            throw new NotImplementedException();
 
             RefreshDataGridWithInit();
         }
@@ -226,6 +228,7 @@ namespace InvoicesManager
             _aboutWindow.ShowDialog();
         }
 
+        
         private void Tb_Search_String_TextChanged(object sender, TextChangedEventArgs e)
         {
             filterReference = Tb_Search_String.Text == String.Empty ? String.Empty : Tb_Search_String.Text;
@@ -262,6 +265,7 @@ namespace InvoicesManager
             RefreshDataGrid();
         }
 
+        
         private void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();

@@ -7,8 +7,42 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
-        Title="InvoiceAddWindow" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="Bttn_InvoiceAdd" Content="Rechnung Hinzufügen" Click="Bttn_InvoiceAdd_Click"/>
+        Title="Invoice Add | Made by Schecher | https://github.com/Schecher1" 
+        Height="500" Width="800"
+        MinHeight="500" MinWidth="800"
+        MaxHeight="500" MaxWidth="800">
+    <Grid Background="#FF4A4A4A">
+        <Button x:Name="Bttn_InvoiceAdd" Content="Rechnung Hinzufügen" Click="Bttn_InvoiceAdd_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White" Margin="0,1,0,20" FontSize="20"/>
+        <Grid Margin="0,0,0,100">
+            <StackPanel>
+                <Grid>
+                    <Label Margin="100,50,0,0" Content="Ausstellungsdatum:" FontSize="25" Foreground="White" HorizontalAlignment="Left" />
+                    <DatePicker x:Name="Dp_ExhibitionDate" Margin="350,50,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="White"/>
+                </Grid>
+                <Grid>
+                    <Label Margin="100,15,0,0" Content="Organisation:" FontSize="25" Foreground="White" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_Organization" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="White"/>
+                </Grid>
+                <Grid>
+                    <Label Margin="100,15,0,0" Content="Dokument Typ:" FontSize="25" Foreground="White" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_DocumentType" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="White"/>
+                </Grid>
+                <Grid>
+                    <Label Margin="100,15,0,0" Content="Rechungs Nr.:" FontSize="25" Foreground="White" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_InvoiceNumber" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="White"/>
+                </Grid>
+                <Grid>
+                    <Label Margin="100,15,0,0" Content="Betreff:" FontSize="25" Foreground="White" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_Reference" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="White"/>
+                </Grid>
+                <Grid>
+                    <Label Margin="100,15,0,0" Content="Datei:" FontSize="25" Foreground="White" HorizontalAlignment="Left" />
+                    <Button x:Name="Bttn_InvoiceFileAdd" Margin="350,15,0,0" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="32" Width="350" Content="Datei bitte Auswählen!" FontSize="15" Foreground="White" Click="Bttn_InvoiceFileAdd_Click"/>
+                </Grid>
+                <Grid>
+                 <TextBlock x:Name="Tb_FilePath" Margin="0,15,0,50" Text="Datei:" FontSize="20" Foreground="White" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                </Grid>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

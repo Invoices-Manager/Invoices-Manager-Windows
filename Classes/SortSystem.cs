@@ -42,6 +42,8 @@ namespace InvoicesManager.Classes
                 if (!(invoice.ExhibitionDate.Date == filterExhibitionDate.Date || filterExhibitionDate == default))
                     continue;
 
+                //remove the time from the date stamp
+                invoice.ExhibitionDate = new DateTime(invoice.ExhibitionDate.Year, invoice.ExhibitionDate.Month, invoice.ExhibitionDate.Day);
                 sortInvoices.Add(invoice);
             }
 
