@@ -16,6 +16,7 @@
                 <Button x:Name="Bttn_InvoiceAdd" Content="Rechung hinzufügen" Foreground="White" Margin="5,0,5,0" Click="Bttn_InvoiceAdd_Click"/>
                 <Button x:Name="Bttn_InvoiceEdit" Content="Rechung bearbeiten" Foreground="White" Margin="5,0,5,0" Click="Bttn_InvoiceEdit_Click"/>
                 <Button x:Name="Bttn_InvoiceRemove"  Content="Rechung entfernen" Foreground="White" Margin="5,0,5,0" Click="Bttn_InvoiceRemove_Click"/>
+                <Button x:Name="Bttn_InvoiceSaveAs"  Content="Rechung speichern unter" Foreground="White" Margin="5,0,5,0" Click="Bttn_InvoiceSaveAs_Click"/>
                 <Separator Margin="10,0,10,0"/>
                 <Button x:Name="Bttn_BackUpCreate" Content="BackUp erstellen" Foreground="White" Margin="5,0,5,0" Click="Bttn_BackUpCreate_Click"/>
                 <Button x:Name="Bttn_BackUpRestore"  Content="BackUp einlesen" Foreground="White" Margin="5,0,5,0" Click="Bttn_BackUpRestore_Click"/>

@@ -210,6 +210,15 @@ namespace InvoicesManager
             RefreshDataGridWithInit();
         }
 
+        private void Bttn_InvoiceSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            if (Dg_Invoices.SelectedItem == null)
+                return;
+
+            InvoiceSaveAsWindow _invoiceSaveAsWindow = new InvoiceSaveAsWindow((InvoiceModel)Dg_Invoices.SelectedItem);
+            _invoiceSaveAsWindow.ShowDialog();
+        }
+
         private void Bttn_Settings_Click(object sender, RoutedEventArgs e)
         {
             SettingWindow _settingWindow = new SettingWindow();
@@ -273,5 +282,7 @@ namespace InvoicesManager
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

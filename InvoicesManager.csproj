@@ -7,6 +7,7 @@
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <StartupObject>InvoicesManager.App</StartupObject>
     <NoWin32Manifest>true</NoWin32Manifest>
+    <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

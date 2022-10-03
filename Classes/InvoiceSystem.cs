@@ -61,6 +61,11 @@ namespace InvoicesManager.Classes
             SaveIntoJsonFile();
         }
 
+        public static void SaveAs(InvoiceModel invoice, string path)
+        {
+            File.Copy(invoice.Path, path);
+        }
+
         public static bool CheckIfInvoiceExist(string filePath)
         {
             string hashID = HashManager.GetMD5HashFromFile(filePath);
