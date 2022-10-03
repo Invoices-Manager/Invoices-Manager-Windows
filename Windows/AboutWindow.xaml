@@ -28,7 +28,7 @@
             Text="Invoices Manager is an open source tool that you can use for free. You can even view the source code on GitHub and develop it further if you want." 
             HorizontalAlignment="Center" 
             VerticalAlignment="Top" 
-            Margin="15,150,15,0"
+            Margin="15,135,15,0"
             FontSize="25" 
             TextAlignment="Center" TextWrapping="Wrap"
            />
@@ -38,6 +38,11 @@
             VerticalAlignment="Bottom" 
             Margin="5,0,10,5"
             FontSize="20"/>
-
+        <TextBlock 
+            Text="Invoices Manager uses the ModernWpf extension for the UI" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Bottom"
+            FontSize="25" 
+            TextAlignment="Center" TextWrapping="Wrap" Height="63" Width="418" Margin="0,0,0,75"/>
     </Grid>
 </Window>
