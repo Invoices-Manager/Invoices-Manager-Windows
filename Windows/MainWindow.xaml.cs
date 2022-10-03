@@ -23,7 +23,6 @@ namespace InvoicesManager
 {
     public partial class MainWindow : Window
     {
-        List<InvoiceModel> allInvoices = new List<InvoiceModel>();
         private string filterReference = String.Empty;
         private string filterInvoiceNumber = String.Empty;
         private string filterOrganization = "-1";
@@ -34,7 +33,7 @@ namespace InvoicesManager
         {
             InitializeComponent();
 #if DEBUG
-           GenerateDebugDataRecords();
+           //GenerateDebugDataRecords();
 #endif
             InitThreads();
         }
@@ -110,7 +109,7 @@ namespace InvoicesManager
             string[] sampleOrganization = { "UPS", "MCDonalds", "Telekom", "DHL", "Amazon", "Apple", "Microsoft", "Google", "Facebook", "Twitter" };
 
             //clear all Invoices
-            allInvoices.Clear();
+            EnvironmentsVariable.allInvoices.Clear();
 
             //Invoices debug records
             Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(()
@@ -128,15 +127,13 @@ namespace InvoicesManager
 
                    // Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                       //  => { Dg_Invoices.Items.Add(invoice); }));
-                    allInvoices.Add(invoice);
+                    EnvironmentsVariable.allInvoices.Add(invoice);
                 }
         }
 
         private void ThreadTaskInitInvoices()
         {
-            //throw new NotImplementedException();
-            //only as marker
-            //RefreshDataGridWithInit();
+            InvoiceSystem.Init();
         }
         
         private void ThreadTaskInitOrganization()
@@ -144,7 +141,7 @@ namespace InvoicesManager
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                      => { Comb_Search_Organization.Items.Clear(); }));
 
-                foreach (var organization in allInvoices.Select(x => x.Organization).Distinct())
+                foreach (var organization in EnvironmentsVariable.allInvoices.Select(x => x.Organization).Distinct())
                     Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                         => { Comb_Search_Organization.Items.Add(organization); }));
         }
@@ -154,14 +151,14 @@ namespace InvoicesManager
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                 => { Comb_Search_DocumentType.Items.Clear(); }));
 
-            foreach (var documenttype in allInvoices.Select(x => x.DocumentType).Distinct())
+            foreach (var documenttype in EnvironmentsVariable.allInvoices.Select(x => x.DocumentType).Distinct())
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                     => { Comb_Search_DocumentType.Items.Add(documenttype); }));
         }
 
         private void ThreadTaskRefreshDataGrid()
         {
-            SortSystem sortSys = new SortSystem(allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType , filterExhibitionDate);
+            SortSystem sortSys = new SortSystem(EnvironmentsVariable.allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType , filterExhibitionDate);
 
             List<InvoiceModel> filteredInvoices = sortSys.Sort();
 
@@ -180,7 +177,7 @@ namespace InvoicesManager
                 return;
 
             InvoiceModel invoice = (InvoiceModel)Dg_Invoices.SelectedItem;
-            Process.Start(EnvironmentsVariable.PathPDFBrowser, invoice.Path);
+            Process.Start(EnvironmentsVariable.PathPDFBrowser, $"\"{invoice.Path}\"");
         }
         
         

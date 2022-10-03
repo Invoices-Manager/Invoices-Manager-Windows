@@ -20,7 +20,6 @@ namespace InvoicesManager.Windows
 {
     public partial class InvoiceAddWindow : Window
     {
-        List<InvoiceModel> allInvoices = new List<InvoiceModel>();
         private string filePath = String.Empty;
 
         public InvoiceAddWindow()
@@ -41,12 +40,31 @@ namespace InvoicesManager.Windows
                 MessageBox.Show("Please Check you data input", "Error", MessageBoxButton.OK);
                 return;
             }
-            
-            ReadInvoicesFile();
+
             AddNewInvoice();
-            WriteInvoicesFile();
+            ClearAllInputs();
+        }
+        private void Bttn_InvoiceFileAdd_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "PDF Files (*.pdf)|*.pdf";
+
+            if (ofd.ShowDialog() == true)
+            {
+                filePath = ofd.FileName;
+                Tb_FilePath.Text = filePath;
+            }
         }
 
+        private void ClearAllInputs()
+        {
+            Tb_FilePath.Text = String.Empty;
+            Tb_Organization.Text = String.Empty;
+            Tb_Reference.Text = String.Empty;
+            Tb_InvoiceNumber.Text = String.Empty;
+            Tb_DocumentType.Text = String.Empty;
+            filePath = String.Empty;
+        }
         private bool CheckIfAllIsValide()
         {
             if (String.IsNullOrWhiteSpace(Tb_Reference.Text))
@@ -64,29 +82,12 @@ namespace InvoicesManager.Windows
 
             return true;
         }
-
-        private void ReadInvoicesFile()
-        {
-            string json = File.ReadAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName);
-            
-            if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
-                allInvoices = JsonConvert.DeserializeObject<List<InvoiceModel>>(json);
-        }
-
         private void AddNewInvoice()
         {
             string hashID = HashManager.GetMD5HashFromFile(filePath);
             string newPath = @$"{EnvironmentsVariable.PathInvoices}{hashID}.pdf";
 
-            if (CheckIfFileAlreadyExist(hashID))
-            {
-                MessageBox.Show("Das Dokument gibt es bereits!");
-                return;
-            }
-
-            File.Copy(filePath, newPath);
-
-            InvoiceModel invoice = new InvoiceModel()
+            InvoiceModel newInvoice = new InvoiceModel()
             {
                 InvoiceNumber = Tb_InvoiceNumber.Text,
                 Reference = Tb_Reference.Text,
@@ -96,35 +97,7 @@ namespace InvoicesManager.Windows
                 Path = newPath
             };
 
-            allInvoices.Add(invoice);
-        }
-
-        private bool CheckIfFileAlreadyExist(string hashID)
-        {
-            bool existAlready = false;
-            foreach (var invoice in allInvoices)
-            {
-                if (invoice.Path.Split("\\")[^1] == $"{hashID}.pdf")
-                    existAlready = true;
-            }
-            return existAlready;
-        }
-
-        private void WriteInvoicesFile()
-        {
-            File.WriteAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(allInvoices));
-        }
-
-        private void Bttn_InvoiceFileAdd_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "PDF Files (*.pdf)|*.pdf";
-
-            if (ofd.ShowDialog() == true)
-            {
-                filePath = ofd.FileName;
-                Tb_FilePath.Text = filePath;
-            }
+            InvoiceSystem.AddInvoice(newInvoice, filePath, newPath);
         }
     }
 }
