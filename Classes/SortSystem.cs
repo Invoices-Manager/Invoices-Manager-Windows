@@ -20,10 +20,10 @@ namespace InvoicesManager.Classes
         public SortSystem(List<InvoiceModel> allInvoices, string filterReference, string filterInvoiceNumber, string filterOrganization, string filterDocumentType, DateTime filterExhibitionDate)
         {
             this.allInvoices = allInvoices;
-            this.filterReference = filterReference;
-            this.filterInvoiceNumber = filterInvoiceNumber;
-            this.filterOrganization = filterOrganization;
-            this.filterDocumentType = filterDocumentType;
+            this.filterReference = filterReference.ToLower();
+            this.filterInvoiceNumber = filterInvoiceNumber.ToLower();
+            this.filterOrganization = filterOrganization.ToLower();
+            this.filterDocumentType = filterDocumentType.ToLower();
             this.filterExhibitionDate = filterExhibitionDate;
         }
 
@@ -31,13 +31,13 @@ namespace InvoicesManager.Classes
         {
             foreach (var invoice in allInvoices)
             {
-                if (!(invoice.Reference.Contains(filterReference) || filterReference == String.Empty))
+                if (!(invoice.Reference.ToLower().Contains(filterReference) || filterReference == String.Empty))
                     continue;
-                if (!(invoice.InvoiceNumber.Contains(filterInvoiceNumber) || filterInvoiceNumber == String.Empty))
+                if (!(invoice.InvoiceNumber.ToLower().Contains(filterInvoiceNumber) || filterInvoiceNumber == String.Empty))
                     continue;
-                if (!(invoice.Organization == filterOrganization || filterOrganization == "-1"))
+                if (!(invoice.Organization.ToLower() == filterOrganization || filterOrganization == "-1"))
                     continue;
-                if (!(invoice.DocumentType == filterDocumentType || filterDocumentType == "-1"))
+                if (!(invoice.DocumentType.ToLower() == filterDocumentType || filterDocumentType == "-1"))
                     continue;
                 if (!(invoice.ExhibitionDate.Date == filterExhibitionDate.Date || filterExhibitionDate == default))
                     continue;

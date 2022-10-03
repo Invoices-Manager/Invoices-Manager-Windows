@@ -4,6 +4,7 @@ using InvoicesManager.Windows;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -36,16 +37,27 @@ namespace InvoicesManager
            //GenerateDebugDataRecords();
 #endif
             InitThreads();
+            InitWorkPath();
         }
 
-        private void RefreshDataGridWithInit()
+
+        private void GenerateDebugDataRecords()
         {
-            InitInvoices();
-            InitOrganization();
-            InitDocumentType();
-            RefreshDataGrid();
+            Thread _initInvoicesThread = new Thread(ThreadTaskGenerateDebugDataRecords);
+            _initInvoicesThread.Priority = ThreadPriority.AboveNormal;
+            _initInvoicesThread.Start();
         }
 
+        
+        private void InitWorkPath()
+        {
+            //create/check the need folders and files
+            Directory.CreateDirectory(EnvironmentsVariable.PathInvoices);
+            Directory.CreateDirectory(EnvironmentsVariable.PathData);
+            if (!File.Exists(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName))
+                File.WriteAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName, "[]");
+        }
+        
         private void InitThreads()
         {
             Thread _initInvoicesThread = new Thread(ThreadTaskInitInvoices);
@@ -64,14 +76,6 @@ namespace InvoicesManager
 
             _refreshDataGridThread.Start();
             _refreshDataGridThread.Join();
-        }
-        
-
-        private void GenerateDebugDataRecords()
-        {
-            Thread _initInvoicesThread = new Thread(ThreadTaskGenerateDebugDataRecords);
-            _initInvoicesThread.Priority = ThreadPriority.AboveNormal;
-            _initInvoicesThread.Start();
         }
 
         private void InitInvoices()
@@ -101,8 +105,16 @@ namespace InvoicesManager
             _refreshDataGridThread.Priority = ThreadPriority.Normal;
             _refreshDataGridThread.Start();
         }
-        
 
+        private void RefreshDataGridWithInit()
+        {
+            InitInvoices();
+            InitOrganization();
+            InitDocumentType();
+            RefreshDataGrid();
+        }
+
+        
         private void ThreadTaskGenerateDebugDataRecords()
         {
             Random r = new Random();
@@ -185,16 +197,17 @@ namespace InvoicesManager
         {
             InvoiceAddWindow _invoiceAddWindow = new InvoiceAddWindow();
             _invoiceAddWindow.ShowDialog();
-
+            
             RefreshDataGridWithInit();
         }
 
         private void Bttn_InvoiceEdit_Click(object sender, RoutedEventArgs e)
         {
-            InvoiceEditWindow _invoiceEditWindow = new InvoiceEditWindow();
-            _invoiceEditWindow.ShowDialog();
+            if (Dg_Invoices.SelectedItem == null)
+                return;
 
-            throw new NotImplementedException();
+            InvoiceEditWindow _invoiceEditWindow = new InvoiceEditWindow((InvoiceModel)Dg_Invoices.SelectedItem);
+            _invoiceEditWindow.ShowDialog();
 
             RefreshDataGridWithInit();
         }

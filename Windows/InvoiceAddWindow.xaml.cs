@@ -25,12 +25,6 @@ namespace InvoicesManager.Windows
         public InvoiceAddWindow()
         {
             InitializeComponent();
-
-            //create/check the need folders and files
-            Directory.CreateDirectory(EnvironmentsVariable.PathInvoices);
-            Directory.CreateDirectory(EnvironmentsVariable.PathData);
-            if (!File.Exists(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName))
-                    File.WriteAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName, "[]");
         }
 
         private void Bttn_InvoiceAdd_Click(object sender, RoutedEventArgs e)
@@ -63,6 +57,7 @@ namespace InvoicesManager.Windows
             Tb_Reference.Text = String.Empty;
             Tb_InvoiceNumber.Text = String.Empty;
             Tb_DocumentType.Text = String.Empty;
+            Dp_ExhibitionDate.SelectedDate = default;
             filePath = String.Empty;
         }
         private bool CheckIfAllIsValide()
