@@ -46,8 +46,6 @@ Or [press here](LINK) to download if you want the latest one
 
 
 
-
-
 # CHANGELOG
 
 ## v1.0.0.0
@@ -55,4 +53,3 @@ Or [press here](LINK) to download if you want the latest one
 - You have 5 filter types to choose 
 - You can add, edit, remove and save as an invoice
 - Program is ONLY in German (for now)
-
