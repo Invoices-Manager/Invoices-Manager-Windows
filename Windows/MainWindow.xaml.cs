@@ -26,7 +26,7 @@ namespace InvoicesManager
         {
             InitializeComponent();
 #if DEBUG
-            //GenerateDebugDataRecords();
+           GenerateDebugDataRecords();
 #endif
             InitWorkPath();
             InitThreads();
@@ -131,6 +131,7 @@ namespace InvoicesManager
 
                    // Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                       //  => { Dg_Invoices.Items.Add(invoice); }));
+                
                     EnvironmentsVariable.allInvoices.Add(invoice);
                 }
         }
@@ -221,6 +222,10 @@ namespace InvoicesManager
 
         private void Bttn_Settings_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Not implemented yet");
+            return;
+
+            
             SettingWindow _settingWindow = new SettingWindow();
             _settingWindow.ShowDialog();
 
@@ -272,17 +277,20 @@ namespace InvoicesManager
             RefreshDataGrid();
         }
 
-        
         private void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Not implemented yet");
+            return;
             throw new NotImplementedException();
+            return;
         }
 
         private void Bttn_BackUpRestore_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Not implemented yet");
+            return;
             throw new NotImplementedException();
+            return;
         }
-
-
     }
 }

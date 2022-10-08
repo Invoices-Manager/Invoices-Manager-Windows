@@ -44,7 +44,8 @@ namespace InvoicesManager.Windows
             };
 
             InvoiceSystem.EditInvoice(invoice, editInvoice);
-
+            InvoiceSystem.Init();
+            
             this.Close();
         }
 

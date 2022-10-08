@@ -12,6 +12,9 @@ namespace InvoicesManager.Classes
     {
         public static void Init()
         {
+#if DEBUG
+            return;
+#endif
             EnvironmentsVariable.allInvoices.Clear();
 
             string json = File.ReadAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName);

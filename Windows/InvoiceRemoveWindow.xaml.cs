@@ -27,7 +27,10 @@ namespace InvoicesManager.Windows
         {
             MessageBoxResult result =  MessageBox.Show("Are you sure you want to remove this invoice?", "Remove Invoice", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
+            {
                 InvoiceSystem.RemoveInvoice(invoice);
+                InvoiceSystem.Init();
+            }
 
             this.Close();
         }
