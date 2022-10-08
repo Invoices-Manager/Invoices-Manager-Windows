@@ -1,4 +1,4 @@
-#Invoices Manager (written in WPF C#   DOTNET3.1)
+# Invoices Manager (written in WPF C#   DOTNET3.1)
 
 ## Important Info!
 The program may contain errors, if any are found, please report them, 
@@ -26,23 +26,24 @@ Or [press here](LINK) to download if you want the latest one
 
 ## Images:
 ### Main-Screen:                                                  
-![Main-Screen](IMAGES/Version%201.0.0.0/MainScreen.PNG)
+![Main-Screen](IMAGES/Version%201.0.0.0/MainScreen.png)
 
 ### Invoice-Add-Screen:                                           
-![Invoice-Add-Screen](IMAGES/Version%201.0.0.0/InvoiceAddScreen.PNG)
+![Invoice-Add-Screen](IMAGES/Version%201.0.0.0/InvoiceAddScreen.png)
 
 ### Invoice-Edit-Screen:                                              
-![Invoice-Edit-Screen](IMAGES/Version%201.0.0.0/InvoiceEditScreen.PNG)
+![Invoice-Edit-Screen](IMAGES/Version%201.0.0.0/InvoiceEditScreen.png)
 
 ### Invoice-Remove-Screen:                                               
-![Invoice-Remove-Screen](IMAGES/Version%201.0.0.0/InvoiceRemoveScreen.PNG)
+![Invoice-Remove-Screen](IMAGES/Version%201.0.0.0/InvoiceRemoveScreen.png)
 
 ### SaveAs-Screen:
 -You can choose in which format the file should be saved (the name), or you can save it as you wish                   <br/>
-![SaveAs-Screen](IMAGES/Version%201.0.0.0/InvoiceSaveAsScreen.PNG)
+![SaveAs-Screen](IMAGES/Version%201.0.0.0/InvoiceSaveAsScreen.png)
 
 ### About-Screen:                                         
-![About-Screen](IMAGES/Version%201.0.0.0/AboutScreen.PNG)
+![About-Screen](IMAGES/Version%201.0.0.0/AboutScreen.png)
+
 
 
 
