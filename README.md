@@ -43,3 +43,16 @@ Or [press here](LINK) to download if you want the latest one
 
 ### About-Screen:                                         
 ![About-Screen](IMAGES/Version%201.0.0.0/AboutScreen.PNG)
+
+
+
+
+
+# CHANGELOG
+
+## v1.0.0.0
+- The program use ModernWPF as Design
+- You have 5 filter types to choose 
+- You can add, edit, remove and save as an invoice
+- Program is ONLY in German (for now)
+
