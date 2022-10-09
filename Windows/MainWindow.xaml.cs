@@ -1,12 +1,14 @@
 ﻿using InvoicesManager.Classes;
 using InvoicesManager.Models;
 using InvoicesManager.Windows;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -26,7 +28,7 @@ namespace InvoicesManager
         {
             InitializeComponent();
 #if DEBUG
-           GenerateDebugDataRecords();
+         //  GenerateDebugDataRecords();
 #endif
             InitWorkPath();
             InitThreads();
@@ -179,8 +181,14 @@ namespace InvoicesManager
             InvoiceModel invoice = (InvoiceModel)Dg_Invoices.SelectedItem;
             Process.Start(EnvironmentsVariable.PathPDFBrowser, $"\"{invoice.Path}\"");
         }
-        
-        
+
+
+        private void Bttn_BoardRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            InitWorkPath();
+            RefreshDataGridWithInit();
+        }
+
         private void Bttn_InvoiceAdd_Click(object sender, RoutedEventArgs e)
         {
             InvoiceAddWindow _invoiceAddWindow = new InvoiceAddWindow();
@@ -220,12 +228,50 @@ namespace InvoicesManager
             _invoiceSaveAsWindow.ShowDialog();
         }
 
+        private async void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfg = new SaveFileDialog()
+            {
+                Title = "Bitte wählen Sie ein Speicherort für ihrer BackUp-Datei",
+                Filter = "BackUp-Datei (*.bkup)|*.bkup",
+                RestoreDirectory = true
+            };
+
+            if (sfg.ShowDialog() == true)
+            {
+                await Task.Run(() =>
+                {
+                    if (BackUpSystem.BackUp(sfg.FileName))
+                        MessageBox.Show("BackUp erfolgreich erstellt");
+                    else
+                        MessageBox.Show("BackUp konnte nicht erstellt werden");
+                });
+            }
+        }
+
+        private async void Bttn_BackUpRestore_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                Title = "Bitte wählen Sie den Speicherort für ihrer BackUp-Datei",
+                Filter = "BackUp-Datei (*.bkup)|*.bkup"
+            };
+
+            if (ofd.ShowDialog() == true)
+            {
+                await Task.Run(() =>
+                {
+                    if (!BackUpSystem.Restore(ofd.FileName))
+                        MessageBox.Show("BackUp konnte nicht wiederhergestellt werden (Die Datei ist möglicherweise beschädigt)");
+                });
+            }
+        }
+
         private void Bttn_Settings_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Not implemented yet");
             return;
 
-            
             SettingWindow _settingWindow = new SettingWindow();
             _settingWindow.ShowDialog();
 
@@ -275,22 +321,6 @@ namespace InvoicesManager
         {
             filterExhibitionDate = (DateTime)(Dp_Search_ExhibitionDate.SelectedDate == null ? default(DateTime) : Dp_Search_ExhibitionDate.SelectedDate);
             RefreshDataGrid();
-        }
-
-        private void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Not implemented yet");
-            return;
-            throw new NotImplementedException();
-            return;
-        }
-
-        private void Bttn_BackUpRestore_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Not implemented yet");
-            return;
-            throw new NotImplementedException();
-            return;
         }
     }
 }

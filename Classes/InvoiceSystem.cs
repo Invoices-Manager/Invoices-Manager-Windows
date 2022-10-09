@@ -13,7 +13,7 @@ namespace InvoicesManager.Classes
         public static void Init()
         {
 #if DEBUG
-            return;
+           // return;
 #endif
             EnvironmentsVariable.allInvoices.Clear();
 

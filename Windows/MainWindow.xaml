@@ -13,6 +13,8 @@
     <Grid Background="#FF4A4A4A">
         <Grid >
             <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="35">
+                <Button x:Name="Bttn_BoardRefresh"  Content="Board Aktualisieren" Foreground="White" Margin="5,0,5,0" Click="Bttn_BoardRefresh_Click"/>
+                <Separator Margin="10,0,10,0"/>
                 <Button x:Name="Bttn_InvoiceAdd" Content="Rechung hinzufügen" Foreground="White" Margin="5,0,5,0" Click="Bttn_InvoiceAdd_Click"/>
                 <Button x:Name="Bttn_InvoiceEdit" Content="Rechung bearbeiten" Foreground="White" Margin="5,0,5,0" Click="Bttn_InvoiceEdit_Click"/>
                 <Button x:Name="Bttn_InvoiceRemove"  Content="Rechung entfernen" Foreground="White" Margin="5,0,5,0" Click="Bttn_InvoiceRemove_Click"/>
