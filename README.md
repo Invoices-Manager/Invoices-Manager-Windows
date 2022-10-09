@@ -12,6 +12,7 @@ in one folder and then having to search for them? <br/>
 Now it has an end, with this you can import and manage them. 
 It's simple, there are enough ways to filter your documents.
 
+
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one). 
 Or [press here](LINK) to download if you want the latest one
@@ -26,7 +27,7 @@ Or [press here](LINK) to download if you want the latest one
 
 ## Images:
 ### Main-Screen:                                                  
-![Main-Screen](IMAGES/Version%201.0.0.0/MainScreen.png)
+![Main-Screen](IMAGES/Version%201.0.1.0/MainScreen.png)
 
 ### Invoice-Add-Screen:                                           
 ![Invoice-Add-Screen](IMAGES/Version%201.0.0.0/InvoiceAddScreen.png)
@@ -45,9 +46,12 @@ Or [press here](LINK) to download if you want the latest one
 ![About-Screen](IMAGES/Version%201.0.0.0/AboutScreen.png)
 
 
-
-
 # CHANGELOG
+
+## v1.0.1.0
+- You can now BackUp you Invoices
+- You can now Restore your Invoices
+- You can Refresh you Board, if the board is not updated (known bug)
 
 ## v1.0.0.0
 - The program use ModernWPF as Design

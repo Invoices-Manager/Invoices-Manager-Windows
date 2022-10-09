@@ -28,7 +28,7 @@ namespace InvoicesManager
         {
             InitializeComponent();
 #if DEBUG
-         //  GenerateDebugDataRecords();
+         // GenerateDebugDataRecords();
 #endif
             InitWorkPath();
             InitThreads();
