@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Resources;
-using System.Runtime.CompilerServices;
-using System.Text.Json.Serialization;
 using System.Windows;
 
 namespace InvoicesManager.Models

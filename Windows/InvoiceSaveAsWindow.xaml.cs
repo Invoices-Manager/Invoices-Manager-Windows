@@ -1,9 +1,9 @@
-﻿using InvoicesManager.Models;
+﻿using InvoicesManager.Core;
+using InvoicesManager.Models;
 using System;
 using System.Windows;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
-using InvoicesManager.Classes;
 using RadioButton = System.Windows.Controls.RadioButton;
 
 namespace InvoicesManager.Windows

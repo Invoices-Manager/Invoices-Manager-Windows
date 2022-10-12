@@ -4,7 +4,6 @@ using InvoicesManager.Models;
 using InvoicesManager.Windows;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;

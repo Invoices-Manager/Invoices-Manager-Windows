@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
-using Windows.Devices.Geolocation;
 
 namespace InvoicesManager.Core
 {
