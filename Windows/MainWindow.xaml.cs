@@ -26,6 +26,9 @@ namespace InvoicesManager
 
         public MainWindow()
         {
+            //load the window UI language
+            InitUiLanguage();
+            //load the window 
             InitializeComponent();
 #if DEBUG
          // GenerateDebugDataRecords();
@@ -34,14 +37,22 @@ namespace InvoicesManager
             InitThreads();
         }
 
-
-        private void GenerateDebugDataRecords()
+        private void InitUiLanguage()
         {
-            Thread _initInvoicesThread = new Thread(ThreadTaskGenerateDebugDataRecords);
-            _initInvoicesThread.Priority = ThreadPriority.AboveNormal;
-            _initInvoicesThread.Start();
-        }
+            ResourceDictionary dict = new ResourceDictionary();
 
+            switch (Thread.CurrentThread.CurrentCulture.ToString())
+            {
+                case "en-US":
+                    dict.Source = new Uri("..\\Resources\\Languages\\Language_en-US.xaml", UriKind.Relative);
+                    break;
+                default:
+                    dict.Source = new Uri("..\\Resources\\Languages\\Language_en-US.xaml", UriKind.Relative);
+                    break;
+            }
+
+            this.Resources.MergedDictionaries.Add(dict);
+        }
         
         private void InitWorkPath()
         {
@@ -184,8 +195,12 @@ namespace InvoicesManager
                     => { Dg_Invoices.Items.Add(invoice); }));
 
             //set bottom status bar
-            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
-                => { MsgBox_InvoiceCounter.Content = $"Rechungen: {EnvironmentsVariable.filteredInvoices.Count} von {EnvironmentsVariable.allInvoices.Count}"; }));
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                string wordInvoice = this.Resources["invoices"] as string;
+                var wordFrom = this.Resources["from"] as string;
+                MsgBox_InvoiceCounter.Content = $"{wordInvoice}:  {EnvironmentsVariable.filteredInvoices.Count} {wordFrom} {EnvironmentsVariable.allInvoices.Count}";
+            }));
         }
         
         private void DG_Invoices_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -246,7 +261,6 @@ namespace InvoicesManager
         {
             SaveFileDialog sfg = new SaveFileDialog()
             {
-                Title = "Bitte wählen Sie ein Speicherort für ihrer BackUp-Datei",
                 Filter = "BackUp-Datei (*.bkup)|*.bkup",
                 RestoreDirectory = true
             };
@@ -256,9 +270,9 @@ namespace InvoicesManager
                 await Task.Run(() =>
                 {
                     if (BackUpSystem.BackUp(sfg.FileName))
-                        MessageBox.Show("BackUp erfolgreich erstellt");
+                        MessageBox.Show(this.Resources["backUpSuccessfully"] as string);
                     else
-                        MessageBox.Show("BackUp konnte nicht erstellt werden");
+                        MessageBox.Show(this.Resources["backUpFailed"] as string);
                 });
             }
         }
@@ -267,7 +281,6 @@ namespace InvoicesManager
         {
             OpenFileDialog ofd = new OpenFileDialog()
             {
-                Title = "Bitte wählen Sie den Speicherort für ihrer BackUp-Datei",
                 Filter = "BackUp-Datei (*.bkup)|*.bkup"
             };
 
@@ -276,7 +289,7 @@ namespace InvoicesManager
                 await Task.Run(() =>
                 {
                     if (!BackUpSystem.Restore(ofd.FileName))
-                        MessageBox.Show("BackUp konnte nicht wiederhergestellt werden (Die Datei ist möglicherweise beschädigt)");
+                        MessageBox.Show(this.Resources["backUpFailedRestored"] as string);
 
                     RefreshDataGridWithInit();
                 });

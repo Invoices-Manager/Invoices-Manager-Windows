@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Windows;
 
-namespace InvoicesManager.Classes
+namespace InvoicesManager.Core
 {
     public class BackUpSystem
     {
@@ -96,7 +96,7 @@ namespace InvoicesManager.Classes
             //check if the file is empty
             if (backUp.EntityCount == 0)
             {
-                MessageBox.Show("Die Sicherung ist leer!", "Fehler", MessageBoxButton.OK);
+                MessageBox.Show("The backup is empty!", "Error", MessageBoxButton.OK);
                 return false;
             }
 
@@ -150,10 +150,10 @@ namespace InvoicesManager.Classes
                 WasPerformedCorrectly = false;
             }
             
-            MessageBox.Show($"Es wurden {backUp.EntityCount - alreadyExistCounter} Rechnungen wiederhergestellt. " + Environment.NewLine +
-                                          $"{alreadyExistCounter} Rechnungen wurden übersprungen, da sie bereits existieren. " + Environment.NewLine +
-                                          $"Von insgesammten {backUp.EntityCount} Rechnungen", 
-                                          "Wiederherstellung abgeschlossen", MessageBoxButton.OK);
+            MessageBox.Show($"{backUp.EntityCount - alreadyExistCounter} {Application.Current.Resources["invoicesWereRestored"] as string}" + Environment.NewLine +
+                                          $"{alreadyExistCounter} {Application.Current.Resources["invoicesWereSkipped"] as string}" + Environment.NewLine +
+                                          $"{Application.Current.Resources["fromTotal"] as string} {backUp.EntityCount} {Application.Current.Resources["invoices"] as string}",
+                                          Application.Current.Resources["recoveryCompleted"] as string, MessageBoxButton.OK);
 
             return WasPerformedCorrectly;
         }

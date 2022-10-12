@@ -19,7 +19,7 @@ namespace InvoicesManager.Windows
         {
             if (!CheckIfAllIsValide())
             {
-                MessageBox.Show("Please Check you data input", "Error", MessageBoxButton.OK);
+                MessageBox.Show(Application.Current.Resources["checkYouInput"] as string, Application.Current.Resources["error"] as string, MessageBoxButton.OK);
                 return;
             }
 

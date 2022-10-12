@@ -6,7 +6,7 @@ using System.IO;
 using System.Windows;
 using Windows.Devices.Geolocation;
 
-namespace InvoicesManager.Classes
+namespace InvoicesManager.Core
 {
     public class InvoiceSystem
     {

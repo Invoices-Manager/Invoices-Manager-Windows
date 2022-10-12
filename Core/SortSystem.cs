@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace InvoicesManager.Classes
+namespace InvoicesManager.Core
 {
     public class SortSystem
     {

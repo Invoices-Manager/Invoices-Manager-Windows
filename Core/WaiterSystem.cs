@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace InvoicesManager.Classes
+namespace InvoicesManager.Core
 {
     public class WaiterSystem
     {
