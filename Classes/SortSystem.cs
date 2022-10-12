@@ -26,8 +26,8 @@ namespace InvoicesManager.Classes
             this.filterDocumentType = filterDocumentType.ToLower();
             this.filterExhibitionDate = filterExhibitionDate;
         }
-
-        public List<InvoiceModel> Sort()
+        
+        public void Sort()
         {
             
             foreach (var invoice in allInvoices)
@@ -48,7 +48,7 @@ namespace InvoicesManager.Classes
                 sortInvoices.Add(invoice);
             }
 
-            return sortInvoices;
+            EnvironmentsVariable.filteredInvoices = sortInvoices;
         }
     }
 }

@@ -172,18 +172,20 @@ namespace InvoicesManager
             if (EnvironmentsVariable.allInvoices.Count is 0)
                 return;
 
-  
-
             SortSystem sortSys = new SortSystem(EnvironmentsVariable.allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType , filterExhibitionDate);
 
-            List<InvoiceModel> filteredInvoices = sortSys.Sort();
+            sortSys.Sort();
 
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                 => { Dg_Invoices.Items.Clear(); }));
-
-            foreach (var invoice in filteredInvoices)
+            
+            foreach (var invoice in EnvironmentsVariable.filteredInvoices)
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                     => { Dg_Invoices.Items.Add(invoice); }));
+
+            //set bottom status bar
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                => { MsgBox_InvoiceCounter.Content = $"Rechungen: {EnvironmentsVariable.filteredInvoices.Count} von {EnvironmentsVariable.allInvoices.Count}"; }));
         }
         
         private void DG_Invoices_MouseDoubleClick(object sender, MouseButtonEventArgs e)

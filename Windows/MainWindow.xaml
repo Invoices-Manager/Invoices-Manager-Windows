@@ -11,7 +11,7 @@
         Height="1000" Width="1000"
         WindowState="Maximized">
     <Grid Background="#FF4A4A4A">
-        <Grid >
+        <Grid>
             <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="35">
                 <Button x:Name="Bttn_BoardRefresh"  Content="Board Aktualisieren" Foreground="White" Margin="5,0,5,0" Click="Bttn_BoardRefresh_Click"/>
                 <Separator Margin="10,0,10,0"/>
@@ -63,7 +63,7 @@
             </ScrollViewer>
         </Grid>
 
-        <Grid Margin="0,40,350,0" Background="#FF232323">
+        <Grid Margin="0,40,350,25" Background="#FF232323">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <DataGrid Name="Dg_Invoices" 
                           ItemsSource="{Binding}" 
@@ -84,6 +84,10 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
+        </Grid>
+
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="25">
+            <Label x:Name="MsgBox_InvoiceCounter" Content="Rechungen: CounterIs von CounterMax" FontSize="15" Margin="10,2,2,0"/>
         </Grid>
     </Grid>
 </Window>
