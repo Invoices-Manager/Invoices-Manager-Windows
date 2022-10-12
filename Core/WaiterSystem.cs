@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using InvoicesManager.Classes;
+using System.Threading;
 
 namespace InvoicesManager.Core
 {

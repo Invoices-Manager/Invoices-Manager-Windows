@@ -1,4 +1,5 @@
 ﻿using InvoicesManager.Classes;
+using InvoicesManager.Core;
 using InvoicesManager.Models;
 using InvoicesManager.Windows;
 using Microsoft.Win32;

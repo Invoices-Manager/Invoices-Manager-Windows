@@ -1,4 +1,5 @@
 ﻿using InvoicesManager.Classes;
+using InvoicesManager.Core;
 using System;
 using System.Windows;
 

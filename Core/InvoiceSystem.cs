@@ -1,4 +1,5 @@
-﻿using InvoicesManager.Models;
+﻿using InvoicesManager.Classes;
+using InvoicesManager.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
