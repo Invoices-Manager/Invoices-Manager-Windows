@@ -15,8 +15,8 @@ It's simple, there are enough ways to filter your documents.
 
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one).  <br/>
-Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.0.1.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
-Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.0.1.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
+Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.0.2.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
+Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.0.2.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
 
 
 ## Features:
@@ -48,6 +48,9 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 
 # CHANGELOG
+
+## v1.0.2.0
+- The known refresh and combox glitch has been fixed.
 
 ## v1.0.1.0
 - You can now BackUp you Invoices
