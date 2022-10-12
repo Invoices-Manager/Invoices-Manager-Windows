@@ -11,7 +11,7 @@
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
 
-                
+                <ResourceDictionary Source="Resources/Languages/Language_de-DE.xaml"/>
                 <ResourceDictionary Source="Resources/Languages/Language_en-US.xaml"/>
                 
             </ResourceDictionary.MergedDictionaries>

@@ -1,0 +1,48 @@
+﻿<ResourceDictionary 
+      xmlns ="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+      xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="open">Öffen</system:String>
+    <system:String x:Key="dateOfExhibition">Datum der Ausstellung</system:String>
+    <system:String x:Key="organisation">Organisation</system:String>
+    <system:String x:Key="documentType">Dokumententyp</system:String>
+    <system:String x:Key="invoiceNo">Rechnungs Nr.</system:String>
+    <system:String x:Key="Referenz">Referenz</system:String>
+    <system:String x:Key="Datei">Datei</system:String>
+    <system:String x:Key="pleaseSelectFile">Bitte Datei auswählen!</system:String>
+    <system:String x:Key="searchByReference">Suche nach: Referenz</system:String>
+    <system:String x:Key="searchByInvoiceNo">Suche nach: Rechnungs Nr.</system:String>
+    <system:String x:Key="searchByOrganization">Suche nach: Organisation</system:String>
+    <system:String x:Key="searchByDocumentType">Suche nach: Dokumenttyp</system:String>
+    <system:String x:Key="searchByDate">Suche nach: Datum</system:String>
+    <system:String x:Key="refreshBoard">Board aktualisieren</system:String>
+    <system:String x:Key="addInvoice">Rechnung hinzufügen</system:String>
+    <system:String x:Key="editInvoice">Rechnung bearbeiten</system:String>
+    <system:String x:Key="removeInvoice">Rechnung entfernen</system:String>
+    <system:String x:Key="saveInvoiceAs">Rechnung speichern als</system:String>
+    <system:String x:Key="createBackUp">Sicherung erstellen</system:String>
+    <system:String x:Key="importBackUp">Sicherung importieren</system:String>
+    <system:String x:Key="settings">Einstellungen</system:String>
+    <system:String x:Key="about">Über uns</system:String>
+    <system:String x:Key="invoices">Rechnungen</system:String>
+    <system:String x:Key="from">von</system:String>
+    <system:String x:Key="whatShouldTheFileBeCalled">Wie soll die Datei heißen?</system:String>
+    <system:String x:Key="saveAs">Speichern unter</system:String>
+    <system:String x:Key="pleaseChooseALocationForYourBackUpFile">Bitte wählen Sie einen Speicherort für Ihre Sicherungsdatei</system:String>
+    <system:String x:Key="uiLanguage">Benutzersprache</system:String>
+    <system:String x:Key="pdfProgramm">PDF-Programm</system:String>
+    <system:String x:Key="dataPath">Datenpfad</system:String>
+    <system:String x:Key="invoicesManagerIsAnOpenSourceTool">invoices Manager ist ein Open-Source-Tool, das Sie kostenlos nutzen können. Sie können sich sogar den Quellcode auf GitHub ansehen und ihn weiterentwickeln, wenn Sie möchten.</system:String>
+    <system:String x:Key="modernWpfExtension">invoices Manager verwendet die ModernWpf-Erweiterung für die Benutzeroberfläche</system:String>
+    <system:String x:Key="saveSettings">Einstellungen speichern</system:String>
+    <system:String x:Key="invoicesWereRestored">Rechnungen wurden wiederhergestellt.</system:String>
+    <system:String x:Key="invoicesWereSkipped">Rechnungen wurden übersprungen, weil sie bereits existieren.</system:String>
+    <system:String x:Key="fromTotal">Vom Gesamtbetrag</system:String>
+    <system:String x:Key="recoveryCompleted">Wiederherstellung abgeschlossen</system:String>
+    <system:String x:Key="backUpFailedRestored">BackUp konnte nicht wiederhergestellt werden (Die Datei ist möglicherweise beschädigt)</system:String>
+    <system:String x:Key="backUpSuccessfully">BackUp erfolgreich erstellt</system:String>
+    <system:String x:Key="backUpFailed">BackUp konnte nicht erstellt werden</system:String>
+    <system:String x:Key="error">Fehler</system:String>
+    <system:String x:Key="checkYouInput">Bitte überprüfen Sie Ihre Dateneingabe</system:String>
+</ResourceDictionary>

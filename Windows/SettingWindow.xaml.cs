@@ -36,6 +36,7 @@ namespace InvoicesManager.Windows
             EnvironmentsVariable.UILanguage = Comb_UILanguage.Text;
 
             SettingSystem.Save();
+            LanguageManager.Init();
         }
     }
 }

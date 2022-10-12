@@ -6,7 +6,7 @@ namespace InvoicesManager.Core
     {
         internal static void Save()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

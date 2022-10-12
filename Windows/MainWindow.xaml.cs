@@ -27,7 +27,7 @@ namespace InvoicesManager
         public MainWindow()
         {
             //load the window UI language
-            InitUiLanguage();
+            LanguageManager.Init();
             //load the window 
             InitializeComponent();
 #if DEBUG
@@ -35,23 +35,6 @@ namespace InvoicesManager
 #endif
             InitWorkPath();
             InitThreads();
-        }
-
-        private void InitUiLanguage()
-        {
-            ResourceDictionary dict = new ResourceDictionary();
-
-            switch (Thread.CurrentThread.CurrentCulture.ToString())
-            {
-                case "en-US":
-                    dict.Source = new Uri("..\\Resources\\Languages\\Language_en-US.xaml", UriKind.Relative);
-                    break;
-                default:
-                    dict.Source = new Uri("..\\Resources\\Languages\\Language_en-US.xaml", UriKind.Relative);
-                    break;
-            }
-
-            this.Resources.MergedDictionaries.Add(dict);
         }
         
         private void InitWorkPath()
@@ -197,8 +180,8 @@ namespace InvoicesManager
             //set bottom status bar
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                string wordInvoice = this.Resources["invoices"] as string;
-                var wordFrom = this.Resources["from"] as string;
+                string wordInvoice = Application.Current.Resources["invoices"] as string;
+                var wordFrom = Application.Current.Resources["from"] as string;
                 MsgBox_InvoiceCounter.Content = $"{wordInvoice}:  {EnvironmentsVariable.filteredInvoices.Count} {wordFrom} {EnvironmentsVariable.allInvoices.Count}";
             }));
         }
