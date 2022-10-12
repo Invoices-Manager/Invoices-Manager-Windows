@@ -140,7 +140,10 @@ namespace InvoicesManager
 
         private void ThreadTaskInitOrganization()
         {
-                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+            //sleep to wait for the init thread
+            WaiterSystem.WaitUntilInvoiceInitFinish();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                      => { Comb_Search_Organization.Items.Clear(); }));
 
                 foreach (var organization in EnvironmentsVariable.allInvoices.Select(x => x.Organization).Distinct())
@@ -150,6 +153,9 @@ namespace InvoicesManager
 
         private void ThreadTaskInitDocumentType()
         {
+            //sleep to wait for the init thread
+            WaiterSystem.WaitUntilInvoiceInitFinish();
+
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                 => { Comb_Search_DocumentType.Items.Clear(); }));
 
@@ -160,6 +166,14 @@ namespace InvoicesManager
 
         private void ThreadTaskRefreshDataGrid()
         {
+            //sleep to wait for the init thread
+            WaiterSystem.WaitUntilInvoiceInitFinish();
+
+            if (EnvironmentsVariable.allInvoices.Count is 0)
+                return;
+
+  
+
             SortSystem sortSys = new SortSystem(EnvironmentsVariable.allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType , filterExhibitionDate);
 
             List<InvoiceModel> filteredInvoices = sortSys.Sort();
@@ -172,7 +186,6 @@ namespace InvoicesManager
                     => { Dg_Invoices.Items.Add(invoice); }));
         }
         
-
         private void DG_Invoices_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (Dg_Invoices.SelectedItem == null)
@@ -181,7 +194,6 @@ namespace InvoicesManager
             InvoiceModel invoice = (InvoiceModel)Dg_Invoices.SelectedItem;
             Process.Start(EnvironmentsVariable.PathPDFBrowser, $"\"{invoice.Path}\"");
         }
-
 
         private void Bttn_BoardRefresh_Click(object sender, RoutedEventArgs e)
         {
@@ -263,6 +275,8 @@ namespace InvoicesManager
                 {
                     if (!BackUpSystem.Restore(ofd.FileName))
                         MessageBox.Show("BackUp konnte nicht wiederhergestellt werden (Die Datei ist möglicherweise beschädigt)");
+
+                    RefreshDataGridWithInit();
                 });
             }
         }

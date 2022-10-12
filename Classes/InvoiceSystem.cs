@@ -15,12 +15,18 @@ namespace InvoicesManager.Classes
 #if DEBUG
             //return;
 #endif
+            //set the flag to false
+            EnvironmentsVariable.isInvoiceInitFinish = false;
+
             EnvironmentsVariable.allInvoices.Clear();
 
             string json = File.ReadAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName);
 
             if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
                 EnvironmentsVariable.allInvoices = JsonConvert.DeserializeObject<List<InvoiceModel>>(json);
+
+            //set the flag to true
+            EnvironmentsVariable.isInvoiceInitFinish = true;
         }
 
         public static void AddInvoice(InvoiceModel newInvoice, string filePath,  string newPath)

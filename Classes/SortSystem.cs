@@ -29,6 +29,7 @@ namespace InvoicesManager.Classes
 
         public List<InvoiceModel> Sort()
         {
+            
             foreach (var invoice in allInvoices)
             {
                 if (!(invoice.Reference.ToLower().Contains(filterReference) || filterReference == String.Empty))
