@@ -10,6 +10,7 @@
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
             </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="GridBackground" Color="#FF4A4A4A"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

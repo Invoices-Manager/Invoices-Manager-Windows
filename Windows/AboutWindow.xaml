@@ -11,7 +11,7 @@
         Height="450" Width="450"
         MinHeight="450" MinWidth="450"
         MaxHeight="450" MaxWidth="450">
-    <Grid Background="#FF4A4A4A">
+    <Grid Background="{DynamicResource GridBackground}">
         <Label 
             Content="Invoices Manager" 
             HorizontalAlignment="Center" 

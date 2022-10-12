@@ -7,8 +7,11 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
-        Title="SettingWindow" Height="450" Width="800">
-    <Grid>
+        Title="Invoice Settings | Made by Schecher | https://github.com/Schecher1" 
+        Height="500" Width="800"
+        MinHeight="500" MinWidth="800"
+        MaxHeight="500" MaxWidth="800">
+    <Grid Background="{DynamicResource GridBackground}">
         
     </Grid>
 </Window>

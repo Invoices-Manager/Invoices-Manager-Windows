@@ -285,13 +285,8 @@ namespace InvoicesManager
 
         private void Bttn_Settings_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not implemented yet");
-            return;
-
             SettingWindow _settingWindow = new SettingWindow();
             _settingWindow.ShowDialog();
-
-            throw new NotImplementedException();
 
             RefreshDataGridWithInit();
         }
