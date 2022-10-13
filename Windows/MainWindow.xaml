@@ -57,7 +57,8 @@
                     </GroupBox>
                     <GroupBox Header="{DynamicResource searchByDate}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black">
                         <Grid>
-                            <DatePicker x:Name="Dp_Search_ExhibitionDate" IsTodayHighlighted="True" Foreground="White" FirstDayOfWeek="Monday" SelectedDateFormat="Long"  Margin="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedDateChanged="Dp_Search_ExhibitionDate_SelectedDateChanged"/>
+                            <DatePicker x:Name="Dp_Search_ExhibitionDate" IsTodayHighlighted="True" Foreground="White" FirstDayOfWeek="Monday" SelectedDateFormat="Long"  Margin="5,5,55,5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedDateChanged="Dp_Search_ExhibitionDate_SelectedDateChanged"/>
+                            <Button x:Name="Dp_Search_ExhibitionDate_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="{x:Null}" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Dp_Search_ExhibitionDate_Clear_Click"/>
                         </Grid>
                     </GroupBox>
                 </StackPanel>

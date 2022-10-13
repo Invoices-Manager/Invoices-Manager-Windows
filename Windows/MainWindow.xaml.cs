@@ -247,9 +247,9 @@ namespace InvoicesManager
                 await Task.Run(() =>
                 {
                     if (BackUpSystem.BackUp(sfg.FileName))
-                        MessageBox.Show(this.Resources["backUpSuccessfully"] as string);
+                        MessageBox.Show(Application.Current.Resources["backUpSuccessfully"] as string);
                     else
-                        MessageBox.Show(this.Resources["backUpFailed"] as string);
+                        MessageBox.Show(Application.Current.Resources["backUpFailed"] as string);
                 });
             }
         }
@@ -317,6 +317,9 @@ namespace InvoicesManager
 
         private void Comb_Search_DocumentType_Clear_Click(object sender, RoutedEventArgs e)
              => Comb_Search_DocumentType.SelectedIndex = -1;
+
+        private void Dp_Search_ExhibitionDate_Clear_Click(object sender, RoutedEventArgs e)
+           => Dp_Search_ExhibitionDate.SelectedDate = null;
 
         private void Dp_Search_ExhibitionDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -7,17 +7,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                
-                <ui:ThemeResources />
-                <ui:XamlControlsResources />
-
+                <ui:ThemeResources/>
+                <ui:XamlControlsResources/>
                 <ResourceDictionary Source="Resources/Languages/Language_de-DE.xaml"/>
                 <ResourceDictionary Source="Resources/Languages/Language_en-US.xaml"/>
-                
             </ResourceDictionary.MergedDictionaries>
-            
             <SolidColorBrush x:Key="GridBackground" Color="#FF4A4A4A"/>
-            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
