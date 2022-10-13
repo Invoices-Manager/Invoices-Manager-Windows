@@ -157,9 +157,6 @@ namespace InvoicesManager
             //sleep to wait for the init thread
             WaiterSystem.WaitUntilInvoiceInitFinish();
 
-            if (EnvironmentsVariable.allInvoices.Count is 0)
-                return;
-
             SortSystem sortSys = new SortSystem(EnvironmentsVariable.allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType , filterExhibitionDate);
 
             sortSys.Sort();
