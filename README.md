@@ -28,23 +28,26 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 ## Images:
 ### Main-Screen:                                                  
-![Main-Screen](IMAGES/Version%201.0.1.0/MainScreen.png)
+![Main-Screen](IMAGES/Version%201.1.0.0/MainScreen.png)
 
 ### Invoice-Add-Screen:                                           
-![Invoice-Add-Screen](IMAGES/Version%201.0.0.0/InvoiceAddScreen.png)
+![Invoice-Add-Screen](IMAGES/Version%201.1.0.0/InvoiceAddScreen.png)
 
 ### Invoice-Edit-Screen:                                              
-![Invoice-Edit-Screen](IMAGES/Version%201.0.0.0/InvoiceEditScreen.png)
+![Invoice-Edit-Screen](IMAGES/Version%201.1.0.0/InvoiceEditScreen.png)
 
 ### Invoice-Remove-Screen:                                               
-![Invoice-Remove-Screen](IMAGES/Version%201.0.0.0/InvoiceRemoveScreen.png)
+![Invoice-Remove-Screen](IMAGES/Version%201.1.0.0/InvoiceRemoveScreen.png)
 
 ### SaveAs-Screen:
 -You can choose in which format the file should be saved (the name), or you can save it as you wish                   <br/>
-![SaveAs-Screen](IMAGES/Version%201.0.0.0/InvoiceSaveAsScreen.png)
+![SaveAs-Screen](IMAGES/Version%201.1.0.0/InvoiceSaveAsScreen.png)
+
+### Setting-Screen:                                         
+![About-Screen](IMAGES/Version%201.1.0.0/SettingScreen.png)
 
 ### About-Screen:                                         
-![About-Screen](IMAGES/Version%201.0.0.0/AboutScreen.png)
+![About-Screen](IMAGES/Version%201.1.0.0/AboutScreen.png)
 
 
 # CHANGELOG

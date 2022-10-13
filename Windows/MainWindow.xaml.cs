@@ -3,6 +3,7 @@ using InvoicesManager.Core;
 using InvoicesManager.Models;
 using InvoicesManager.Windows;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -34,12 +35,37 @@ namespace InvoicesManager
             LanguageManager.Init();
             //load the window 
             InitializeComponent();
-#if DEBUG
-            // GenerateDebugDataRecords();
-#endif
+
             InitThreads();
-        }
         
+#if DEBUG
+            GenerateDebugDataRecords();
+#endif
+        }
+
+        private void GenerateDebugDataRecords()
+        {
+            Random r = new Random();
+            string[] sampleOrganization = { "UPS", "MCDonalds", "Telekom", "DHL", "Amazon", "Apple", "Microsoft", "Google", "Facebook", "Twitter" };
+            string[] sampleDocumenttype = { "Invoice", "Bill" };
+
+            for (int i = 0; i < 100; i++)
+            {
+                InvoiceModel invoice = new InvoiceModel();
+                invoice.Reference = "REF" + r.Next(1000, 9999);
+                invoice.InvoiceNumber = "INV" + r.Next(1000, 9999);
+                invoice.DocumentType = sampleDocumenttype[r.Next(0, sampleDocumenttype.Length)];
+                invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
+                invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(0, 100));
+                invoice.Path = "C:\\Invoices\\" + invoice.Reference + ".pdf";
+
+
+                EnvironmentsVariable.allInvoices.Add(invoice);
+            }
+
+            File.WriteAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.allInvoices));
+        }
+
         private void InitThreads()
         {
             Thread _initInvoicesThread = new Thread(InvoiceSystem.Init);

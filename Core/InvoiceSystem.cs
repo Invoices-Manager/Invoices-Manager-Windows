@@ -12,9 +12,6 @@ namespace InvoicesManager.Core
     {
         public static void Init()
         {
-#if DEBUG
-            //return;
-#endif
             //set the flag to false
             EnvironmentsVariable.isInvoiceInitFinish = false;
 
