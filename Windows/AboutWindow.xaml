@@ -33,7 +33,7 @@
             TextAlignment="Center" TextWrapping="Wrap"
            />
         <Label 
-            Content="Version 1.1.0.0" 
+            Content="Version 1.1.1.0" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Bottom" 
             Margin="5,0,10,5"
