@@ -52,6 +52,9 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 # CHANGELOG
 
+## v1.1.1.0
+- Removed a few typos
+
 ## v1.1.0.0
 - The program is more dynamic now, you can now modify the configurations
 - You can change your PDF browser
