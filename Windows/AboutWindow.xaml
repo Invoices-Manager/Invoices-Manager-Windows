@@ -8,9 +8,9 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="Invoices Manager | About" 
-        Height="450" Width="450"
-        MinHeight="450" MinWidth="450"
-        MaxHeight="450" MaxWidth="450">
+        Height="550" Width="550"
+        MinHeight="550" MinWidth="550"
+        MaxHeight="550" MaxWidth="550">
     <Grid Background="{DynamicResource GridBackground}">
         <Label 
             Content="Invoices Manager" 
@@ -43,6 +43,6 @@
             HorizontalAlignment="Center" 
             VerticalAlignment="Bottom"
             FontSize="25" 
-            TextAlignment="Center" TextWrapping="Wrap" Height="63" Width="418" Margin="0,0,0,75"/>
+            TextAlignment="Center" TextWrapping="Wrap" Height="63" Width="418" Margin="0,0,0,100"/>
     </Grid>
 </Window>

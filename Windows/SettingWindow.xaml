@@ -25,10 +25,6 @@
                     <TextBox x:Name="Tb_PathProgram" FontSize="20" Foreground="White" HorizontalAlignment="Left" Width="500" Margin="150,0,0,0"/>
                 </Grid>
                 <Separator Margin="25"/>
-                <Grid>
-                    <Label Content="{DynamicResource dataPath}"  FontSize="20" Foreground="White" />
-                    <TextBox x:Name="Tb_PathData" FontSize="20" Foreground="White" HorizontalAlignment="Left" Width="500" Margin="150,0,0,0"/>
-                </Grid>
             </StackPanel>
         </Grid>
         <Button x:Name="Bttn_SaveSettings" Content="{DynamicResource saveSettings}" FontSize="20" VerticalAlignment="Bottom"  HorizontalAlignment="Center" Margin="0,0,0,25" Click="Bttn_SaveSettings_Click"/>
