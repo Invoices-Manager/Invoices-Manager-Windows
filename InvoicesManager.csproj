@@ -34,8 +34,4 @@
     </Page>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="IMAGES\Version 1.1.0.0\" />
-  </ItemGroup>
-
 </Project>

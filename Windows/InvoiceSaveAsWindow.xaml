@@ -21,6 +21,6 @@
             <RadioButton x:Name="Rb_Custom" Checked="Rb_Vers_Click"/>
             <TextBox x:Name="Tb_CustomName"/>
         </StackPanel>
-        <Button x:Name="Bttn_SaveAs" Content="Speichern Unter" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White" Height="57" Width="210" Margin="0,0,0,25" FontSize="25" Click="Bttn_SaveAs_Click"/>
+        <Button x:Name="Bttn_SaveAs" Content="{DynamicResource saveAs}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White" Height="57" Width="210" Margin="0,0,0,25" FontSize="25" Click="Bttn_SaveAs_Click"/>
     </Grid>
 </Window>
