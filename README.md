@@ -50,11 +50,12 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 # CHANGELOG
 
 ## v1.1.0.0
+- The program is more dynamic now, you can now modify the configurations
+- You can change your PDF browser
+- The program has "English" as default language
 - The program is now multi-language capable
 - The program is now available in English
 - The program is now available in German
-- The program has "English" as default language
-- The program is more dynamic now, you can now modify the configurations
 
 ## v1.0.2.0
 - The known refresh and combox glitch has been fixed.
