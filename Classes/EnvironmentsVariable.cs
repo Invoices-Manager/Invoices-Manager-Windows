@@ -1,7 +1,7 @@
 ﻿using InvoicesManager.Models;
 using System;
 using System.Collections.Generic;
-
+using System.IO;
 
 namespace InvoicesManager.Classes
 {
@@ -14,7 +14,20 @@ namespace InvoicesManager.Classes
         public static string PathInvoices = @$"{PathData}\invoices\";
         public static string PathData = @$"{Environment.CurrentDirectory}\data\";
         public static string InvoicesJsonFileName = "Invoices.json";
+        public static string ConfigJsonFileName = "Config.json";
         public static string UILanguage = "English";
         public static string[] UILanguages = { "English", "German" };
+
+        
+        public static void InitWorkPath()
+        {
+            //create/check the need folders and files
+            Directory.CreateDirectory(EnvironmentsVariable.PathData);
+            Directory.CreateDirectory(EnvironmentsVariable.PathInvoices);
+            if (!File.Exists(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName))
+                File.WriteAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName, "[]");
+            if (!File.Exists(EnvironmentsVariable.PathData + EnvironmentsVariable.ConfigJsonFileName))
+                File.WriteAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.ConfigJsonFileName, "[]");
+        }
     }
 }

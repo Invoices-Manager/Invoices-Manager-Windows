@@ -26,24 +26,18 @@ namespace InvoicesManager
 
         public MainWindow()
         {
+            //init work path
+            EnvironmentsVariable.InitWorkPath();
+            //load the settings
+            SettingSystem.Init();
             //load the window UI language
             LanguageManager.Init();
             //load the window 
             InitializeComponent();
 #if DEBUG
-         // GenerateDebugDataRecords();
+            // GenerateDebugDataRecords();
 #endif
-            InitWorkPath();
             InitThreads();
-        }
-        
-        private void InitWorkPath()
-        {
-            //create/check the need folders and files
-            Directory.CreateDirectory(EnvironmentsVariable.PathInvoices);
-            Directory.CreateDirectory(EnvironmentsVariable.PathData);
-            if (!File.Exists(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName))
-                File.WriteAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName, "[]");
         }
         
         private void InitThreads()
@@ -197,7 +191,7 @@ namespace InvoicesManager
 
         private void Bttn_BoardRefresh_Click(object sender, RoutedEventArgs e)
         {
-            InitWorkPath();
+            EnvironmentsVariable.InitWorkPath();
             RefreshDataGridWithInit();
         }
 
