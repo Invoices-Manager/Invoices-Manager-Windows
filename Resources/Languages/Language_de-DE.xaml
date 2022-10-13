@@ -3,14 +3,14 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
       xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <system:String x:Key="open">Öffen</system:String>
+    <system:String x:Key="open">Öffnen</system:String>
     <system:String x:Key="dateOfExhibition">Datum der Ausstellung</system:String>
-    <system:String x:Key="organisation">Organisation</system:String>
+    <system:String x:Key="organization">Organisation</system:String>
     <system:String x:Key="documentType">Dokumententyp</system:String>
     <system:String x:Key="invoiceNo">Rechnungs Nr.</system:String>
-    <system:String x:Key="Referenz">Referenz</system:String>
-    <system:String x:Key="Datei">Datei</system:String>
-    <system:String x:Key="pleaseSelectFile">Bitte Datei auswählen!</system:String>
+    <system:String x:Key="reference">Referenz</system:String>
+    <system:String x:Key="file">Datei</system:String>
+    <system:String x:Key="pleaseSelectFile">Bitte eine Datei auswählen!</system:String>
     <system:String x:Key="searchByReference">Suche nach: Referenz</system:String>
     <system:String x:Key="searchByInvoiceNo">Suche nach: Rechnungs Nr.</system:String>
     <system:String x:Key="searchByOrganization">Suche nach: Organisation</system:String>
@@ -24,21 +24,21 @@
     <system:String x:Key="createBackUp">Sicherung erstellen</system:String>
     <system:String x:Key="importBackUp">Sicherung importieren</system:String>
     <system:String x:Key="settings">Einstellungen</system:String>
-    <system:String x:Key="about">Über uns</system:String>
+    <system:String x:Key="about">Über das Programm</system:String>
     <system:String x:Key="invoices">Rechnungen</system:String>
     <system:String x:Key="from">von</system:String>
     <system:String x:Key="whatShouldTheFileBeCalled">Wie soll die Datei heißen?</system:String>
     <system:String x:Key="saveAs">Speichern unter</system:String>
     <system:String x:Key="pleaseChooseALocationForYourBackUpFile">Bitte wählen Sie einen Speicherort für Ihre Sicherungsdatei</system:String>
     <system:String x:Key="uiLanguage">Benutzersprache</system:String>
-    <system:String x:Key="pdfProgramm">PDF-Programm</system:String>
+    <system:String x:Key="pdfProgram">PDF-Programm</system:String>
     <system:String x:Key="dataPath">Datenpfad</system:String>
-    <system:String x:Key="invoicesManagerIsAnOpenSourceTool">invoices Manager ist ein Open-Source-Tool, das Sie kostenlos nutzen können. Sie können sich sogar den Quellcode auf GitHub ansehen und ihn weiterentwickeln, wenn Sie möchten.</system:String>
-    <system:String x:Key="modernWpfExtension">invoices Manager verwendet die ModernWpf-Erweiterung für die Benutzeroberfläche</system:String>
+    <system:String x:Key="invoicesManagerIsAnOpenSourceTool">Invoices Manager ist ein Open-Source-Tool, das Sie kostenlos nutzen können. Sie können sich sogar den Quellcode auf GitHub einsehen und ihn weiterentwickeln, wenn Sie möchten.</system:String>
+    <system:String x:Key="modernWpfExtension">Invoices Manager verwendet die ModernWpf-Erweiterung für die Benutzeroberfläche</system:String>
     <system:String x:Key="saveSettings">Einstellungen speichern</system:String>
     <system:String x:Key="invoicesWereRestored">Rechnungen wurden wiederhergestellt.</system:String>
     <system:String x:Key="invoicesWereSkipped">Rechnungen wurden übersprungen, weil sie bereits existieren.</system:String>
-    <system:String x:Key="fromTotal">Vom Gesamtbetrag</system:String>
+    <system:String x:Key="fromTotal">Vom Ingesammt</system:String>
     <system:String x:Key="recoveryCompleted">Wiederherstellung abgeschlossen</system:String>
     <system:String x:Key="backUpFailedRestored">BackUp konnte nicht wiederhergestellt werden (Die Datei ist möglicherweise beschädigt)</system:String>
     <system:String x:Key="backUpSuccessfully">BackUp erfolgreich erstellt</system:String>
