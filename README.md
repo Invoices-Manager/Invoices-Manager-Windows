@@ -52,6 +52,9 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 # CHANGELOG
 
+## v1.1.2.0
+- About Window glitch fixed
+
 ## v1.1.1.0
 - Removed a few typos
 

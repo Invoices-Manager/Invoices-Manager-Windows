@@ -33,7 +33,7 @@
             TextAlignment="Center" TextWrapping="Wrap"
            />
         <Label 
-            Content="Version 1.1.1.0" 
+            Content="Version 1.1.2.0" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Bottom" 
             Margin="5,0,10,5"
@@ -43,6 +43,10 @@
             HorizontalAlignment="Center" 
             VerticalAlignment="Bottom"
             FontSize="25" 
-            TextAlignment="Center" TextWrapping="Wrap" Height="63" Width="418" Margin="0,0,0,100"/>
+            TextAlignment="Center" 
+            TextWrapping="Wrap" 
+            Height="100" 
+            Width="500" 
+            Margin="0,0,0,100"/>
     </Grid>
 </Window>
