@@ -31,7 +31,7 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 ![Main-Screen](IMAGES/Version%201.1.3.0/MainScreen.png)
 
 ### Invoice-Add-Screen:                                           
-![Invoice-Add-Screen](IMAGES/Version%201.1.0.0/InvoiceAddScreen.png)
+![Invoice-Add-Screen](IMAGES/Version%201.1.3.0/InvoiceAddScreen.png)
 
 ### Invoice-Edit-Screen:                                              
 ![Invoice-Edit-Screen](IMAGES/Version%201.1.0.0/InvoiceEditScreen.png)
