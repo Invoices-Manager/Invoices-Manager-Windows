@@ -52,6 +52,9 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 # CHANGELOG
 
+## v1.1.3.0
+- Fixed a bug where a time was displayed at the date of the exhibition (12:00:00 AM)
+
 ## v1.1.2.0
 - About Window glitch fixed
 
