@@ -12,7 +12,7 @@
         MinHeight="500" MinWidth="500"
         MaxHeight="500" MaxWidth="500">
     <Grid Background="{DynamicResource GridBackground}">
-        <Label Content="{DynamicResource whatShouldTheFileBeCalled}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" Margin="0,50,0,0" Foreground="White"/>
+        <Label Content="{DynamicResource whatShouldTheFileBeCalled}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" Margin="0,50,0,0" Foreground="{DynamicResource FontForeground}"/>
         <StackPanel Margin="50,100,50,165">
             <RadioButton x:Name="Rb_Vers01" Checked="Rb_Vers_Click"/>
             <RadioButton x:Name="Rb_Vers02" Checked="Rb_Vers_Click"/>
@@ -21,6 +21,6 @@
             <RadioButton x:Name="Rb_Custom" Checked="Rb_Vers_Click"/>
             <TextBox x:Name="Tb_CustomName"/>
         </StackPanel>
-        <Button x:Name="Bttn_SaveAs" Content="{DynamicResource saveAs}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White" Height="57" Width="210" Margin="0,0,0,25" FontSize="25" Click="Bttn_SaveAs_Click"/>
+        <Button x:Name="Bttn_SaveAs" Content="{DynamicResource saveAs}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="{DynamicResource FontForeground}" Height="57" Width="210" Margin="0,0,0,25" FontSize="25" Click="Bttn_SaveAs_Click"/>
     </Grid>
 </Window>

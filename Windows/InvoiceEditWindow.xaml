@@ -12,32 +12,32 @@
         MinHeight="500" MinWidth="800"
         MaxHeight="500" MaxWidth="800">
     <Grid Background="{DynamicResource GridBackground}">
-        <Button x:Name="Bttn_InvoiceEdit" Content="{DynamicResource editInvoice}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White" Margin="0,1,0,20" FontSize="20" Click="Bttn_InvoiceEdit_Click"/>
+        <Button x:Name="Bttn_InvoiceEdit" Content="{DynamicResource editInvoice}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="{DynamicResource FontForeground}" Margin="0,1,0,20" FontSize="20" Click="Bttn_InvoiceEdit_Click"/>
         <Grid Margin="0,0,0,100">
             <StackPanel>
                 <Grid>
-                    <Label Margin="100,50,0,0" Content="{DynamicResource dateOfExhibition}" FontSize="25" Foreground="White" HorizontalAlignment="Left" />
-                    <DatePicker x:Name="Dp_ExhibitionDate" Margin="350,50,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="White"/>
+                    <Label Margin="100,50,0,0" Content="{DynamicResource dateOfExhibition}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <DatePicker x:Name="Dp_ExhibitionDate" Margin="350,50,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="100,15,0,0" Content="{DynamicResource organization}" FontSize="25" Foreground="White" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_Organization" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="White"/>
+                    <Label Margin="100,15,0,0" Content="{DynamicResource organization}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_Organization" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="100,15,0,0" Content="{DynamicResource documentType}" FontSize="25" Foreground="White" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_DocumentType" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="White"/>
+                    <Label Margin="100,15,0,0" Content="{DynamicResource documentType}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_DocumentType" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="100,15,0,0" Content="{DynamicResource invoiceNo}" FontSize="25" Foreground="White" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_InvoiceNumber" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="White"/>
+                    <Label Margin="100,15,0,0" Content="{DynamicResource invoiceNo}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_InvoiceNumber" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="100,15,0,0" Content="{DynamicResource reference}" FontSize="25" Foreground="White" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_Reference" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="White"/>
+                    <Label Margin="100,15,0,0" Content="{DynamicResource reference}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_Reference" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid/>
                 <Grid>
-                    <TextBlock x:Name="Tb_FilePath" Margin="0,25,0,50" Text="{DynamicResource file}" FontSize="20" Foreground="White" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                    <TextBlock x:Name="Tb_FilePath" Margin="0,25,0,50" Text="{DynamicResource file}" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Center" TextWrapping="Wrap" />
                 </Grid>
             </StackPanel>
         </Grid>

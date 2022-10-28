@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Resources/Languages/Language_en-US.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <SolidColorBrush x:Key="GridBackground" Color="#FF4A4A4A"/>
+            <SolidColorBrush x:Key="FontForeground" Color="#F2F2F2"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
