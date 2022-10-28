@@ -41,7 +41,7 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 ### SaveAs-Screen:
 -You can choose in which format the file should be saved (the name), or you can save it as you wish                   <br/>
-![SaveAs-Screen](IMAGES/Version%201.1.0.0/InvoiceSaveAsScreen.png)
+![SaveAs-Screen](IMAGES/Version%201.1.3.1/InvoiceSaveAsScreen.png)
 
 ### Setting-Screen:                                         
 ![About-Screen](IMAGES/Version%201.1.0.0/SettingScreen.png)
@@ -51,6 +51,10 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 
 # CHANGELOG
+
+## v1.1.3.1
+- From SaveAs Window made the font size bigger so you can see everything better
+- Font color was adjusted (Windows LightMode users still see everything a bit strange, will be fixed soon)
 
 ## v1.1.3.0
 - Fixed a bug where a time was displayed at the date of the exhibition (12:00:00 AM)

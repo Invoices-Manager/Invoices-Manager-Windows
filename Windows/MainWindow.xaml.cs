@@ -27,7 +27,7 @@ namespace InvoicesManager
 
         public MainWindow()
         {
-#if DEBUG_WITHDEBUGRECORDS || DEBUG
+#if DEBUG
             try { File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName); } catch  {}
 #endif
 

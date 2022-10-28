@@ -8,9 +8,9 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="Invoice Save As | Made by Schecher | https://github.com/Schecher1" 
-        Height="500" Width="500"
-        MinHeight="500" MinWidth="500"
-        MaxHeight="500" MaxWidth="500">
+        Height="600" Width="500"
+        MinHeight="600" MinWidth="500"
+        MaxHeight="600" MaxWidth="500">
     <Grid Background="{DynamicResource GridBackground}">
         <Label Content="{DynamicResource whatShouldTheFileBeCalled}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" Margin="0,50,0,0" Foreground="{DynamicResource FontForeground}"/>
         <StackPanel Margin="50,100,50,165">
