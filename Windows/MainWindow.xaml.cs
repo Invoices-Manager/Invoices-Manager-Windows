@@ -27,6 +27,10 @@ namespace InvoicesManager
 
         public MainWindow()
         {
+#if DEBUG
+            File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName);
+#endif
+            
             //init work path
             EnvironmentsVariable.InitWorkPath();
             //load the settings
@@ -35,11 +39,12 @@ namespace InvoicesManager
             LanguageManager.Init();
             //load the window 
             InitializeComponent();
-
+            //init threads
             InitThreads();
         
 #if DEBUG
             GenerateDebugDataRecords();
+            RefreshDataGridWithInit();
 #endif
         }
 
@@ -49,7 +54,7 @@ namespace InvoicesManager
             string[] sampleOrganization = { "UPS", "MCDonalds", "Telekom", "DHL", "Amazon", "Apple", "Microsoft", "Google", "Facebook", "Twitter" };
             string[] sampleDocumenttype = { "Invoice", "Bill" };
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < r.Next(35, 125); i++)
             {
                 InvoiceModel invoice = new InvoiceModel();
                 invoice.Reference = "REF" + r.Next(1000, 9999);
@@ -58,7 +63,6 @@ namespace InvoicesManager
                 invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
                 invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(0, 100));
                 invoice.Path = "C:\\Invoices\\" + invoice.Reference + ".pdf";
-
 
                 EnvironmentsVariable.allInvoices.Add(invoice);
             }
