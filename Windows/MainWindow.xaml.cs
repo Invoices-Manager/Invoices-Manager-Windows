@@ -126,36 +126,6 @@ namespace InvoicesManager
             RefreshDataGrid();
         }
 
-        
-        private void ThreadTaskGenerateDebugDataRecords()
-        {
-            Random r = new Random();
-            string[] sampleOrganization = { "UPS", "MCDonalds", "Telekom", "DHL", "Amazon", "Apple", "Microsoft", "Google", "Facebook", "Twitter" };
-
-            //clear all Invoices
-            EnvironmentsVariable.allInvoices.Clear();
-
-            //Invoices debug records
-            Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(()
-                    => { Dg_Invoices.Items.Clear(); }));
-
-                for (int i = 0; i < 50; i++)
-                {
-                    InvoiceModel invoice = new InvoiceModel();
-                    invoice.Reference = "REF " + r.Next(1000, 9999) + r.Next(1000, 9999) + r.Next(1000, 9999) + r.Next(1000, 9999);
-                    invoice.InvoiceNumber = "INV" + r.Next(10000000, 999999999);
-                    invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
-                    invoice.DocumentType = r.Next(0, 2) == 0 ? "Invoice" : "Credit Note";
-                    invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(0, 100));
-                    invoice.Path = "C:\\Users\\Schecher_1\\Desktop\\Test.pdf";
-
-                   // Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
-                      //  => { Dg_Invoices.Items.Add(invoice); }));
-                
-                    EnvironmentsVariable.allInvoices.Add(invoice);
-                }
-        }
-
         private void ThreadTaskInitOrganization()
         {
             //sleep to wait for the init thread
