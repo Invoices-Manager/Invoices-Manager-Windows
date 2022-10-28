@@ -27,10 +27,10 @@ namespace InvoicesManager
 
         public MainWindow()
         {
-#if DEBUG
-            File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName);
+#if DEBUG_WITHDEBUGRECORDS || DEBUG
+            try { File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName); } catch  {}
 #endif
-            
+
             //init work path
             EnvironmentsVariable.InitWorkPath();
             //load the settings
@@ -41,8 +41,8 @@ namespace InvoicesManager
             InitializeComponent();
             //init threads
             InitThreads();
-        
-#if DEBUG
+
+#if DEBUG_WITHDEBUGRECORDS
             GenerateDebugDataRecords();
             RefreshDataGridWithInit();
 #endif
