@@ -12,14 +12,10 @@
     <FileVersion>1.1.3.0</FileVersion>
     <Company>GermanNightmare</Company>
     <Authors>Schecher_1</Authors>
-    <Configurations>Debug;Release;Debug_WithDebugRecords</Configurations>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>embedded</DebugType>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WithDebugRecords|AnyCPU'">
     <DebugType>embedded</DebugType>
   </PropertyGroup>
 

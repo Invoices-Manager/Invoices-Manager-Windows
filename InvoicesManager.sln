@@ -7,15 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoicesManager", "Invoices
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug_WithDebugRecords|Any CPU = Debug_WithDebugRecords|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1D2D718F-E75B-4AFB-A35D-EB80026F744F}.Debug_WithDebugRecords|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D2D718F-E75B-4AFB-A35D-EB80026F744F}.Debug_WithDebugRecords|Any CPU.Build.0 = Debug|Any CPU
-		{1D2D718F-E75B-4AFB-A35D-EB80026F744F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D2D718F-E75B-4AFB-A35D-EB80026F744F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D2D718F-E75B-4AFB-A35D-EB80026F744F}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{1D2D718F-E75B-4AFB-A35D-EB80026F744F}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{1D2D718F-E75B-4AFB-A35D-EB80026F744F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D2D718F-E75B-4AFB-A35D-EB80026F744F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

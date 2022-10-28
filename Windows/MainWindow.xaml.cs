@@ -41,8 +41,8 @@ namespace InvoicesManager
             InitializeComponent();
             //init threads
             InitThreads();
-
-#if DEBUG_WITHDEBUGRECORDS
+            
+#if DEBUG
             GenerateDebugDataRecords();
             RefreshDataGridWithInit();
 #endif
