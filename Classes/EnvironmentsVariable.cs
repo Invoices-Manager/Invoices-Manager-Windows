@@ -17,8 +17,10 @@ namespace InvoicesManager.Classes
         public static string ConfigJsonFileName = "Config.json";
         public static string UILanguage = "English";
         public static string[] UILanguages = { "English", "German" };
+        public const string PROGRAM_VERSION = "1.1.3.1";
 
-        
+
+
         public static void InitWorkPath()
         {
             //create/check the need folders and files

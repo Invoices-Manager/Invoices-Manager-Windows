@@ -3,14 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:InvoicesManager.Windows"
+        xmlns:local="clr-namespace:InvoicesManager.Classes"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="Invoices Manager | About" 
         Height="550" Width="550"
         MinHeight="550" MinWidth="550"
-        MaxHeight="550" MaxWidth="550">
+        MaxHeight="550" MaxWidth="550"
+        Loaded="Window_Loaded">
+    
     <Grid Background="{DynamicResource GridBackground}">
         <Label 
             Content="Invoices Manager" 
@@ -35,7 +37,8 @@
             FontSize="25" 
             TextAlignment="Center" TextWrapping="Wrap"/>
         <Label 
-            Content="Version 1.1.3.1" 
+            x:Name="Msg_PVersion"
+            Content="PROGRAM_VERSION"
             Foreground="{DynamicResource FontForeground}"
             HorizontalAlignment="Left" 
             VerticalAlignment="Bottom" 
