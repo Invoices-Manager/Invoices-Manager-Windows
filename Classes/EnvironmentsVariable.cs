@@ -18,7 +18,8 @@ namespace InvoicesManager.Classes
         public static string UILanguage = "English";
         public static string[] UILanguages = { "English", "German" };
         public const string PROGRAM_VERSION = "1.1.3.1";
-
+        //0 = dark mode  | 1 = white mode
+        public static int REGSystemUsesLightTheme = 1;
 
 
         public static void InitWorkPath()

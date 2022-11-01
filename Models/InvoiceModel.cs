@@ -10,7 +10,7 @@ namespace InvoicesManager.Models
 
         public string OpenInvoiceText { get; } = Application.Current.Resources["open"] as string;
         public DateTime ExhibitionDate { get; set; }
-        public string StringExhibitionDate { get { return ExhibitionDate.ToShortDateString(); } }
+        public string StringExhibitionDate { get { return ExhibitionDate.ToString("yyyy.MM.dd"); } }
         public string Organization { get; set; }
         public string DocumentType { get; set; }
         public string InvoiceNumber { get; set; }

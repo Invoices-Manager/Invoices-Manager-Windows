@@ -14,6 +14,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 namespace InvoicesManager
 {
@@ -30,7 +32,8 @@ namespace InvoicesManager
 #if DEBUG
             try { File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName); } catch  {}
 #endif
-
+            //scan windows theme and set the app theme
+            InitWindowsTheme();
             //init work path
             EnvironmentsVariable.InitWorkPath();
             //load the settings
@@ -48,6 +51,22 @@ namespace InvoicesManager
 #endif
         }
 
+        private void InitWindowsTheme()
+        {
+            //read the registry key
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
+            //get the value
+            object value = key.GetValue("SystemUsesLightTheme");
+            //set the theme
+            if (Convert.ToInt32(value) == 0)
+            {
+                EnvironmentsVariable.REGSystemUsesLightTheme = 0;
+            }
+            else
+            {
+                EnvironmentsVariable.REGSystemUsesLightTheme = 1;
+            }
+        }
         private void GenerateDebugDataRecords()
         {
             Random r = new Random();
