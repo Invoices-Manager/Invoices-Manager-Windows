@@ -52,6 +52,9 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 # CHANGELOG
 
+## v1.1.3.2
+- Now you can sort the date (from new to old or old to new)
+
 ## v1.1.3.1
 - From SaveAs Window made the font size bigger so you can see everything better
 - Font color was adjusted (Windows LightMode users still see everything a bit strange, will be fixed soon)
