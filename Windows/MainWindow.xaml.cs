@@ -37,7 +37,7 @@ namespace InvoicesManager
             //init work path
             EnvironmentsVariable.InitWorkPath();
             //load the settings
-            SettingSystem.Init();
+            SettingSystem.Init();            
             //load the window UI language
             LanguageManager.Init();
             //load the window 
