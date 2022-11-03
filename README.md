@@ -52,6 +52,9 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 # CHANGELOG
 
+## v1.1.3.3
+- The program now has an icon/logo
+
 ## v1.1.3.2
 - Now you can sort the date (from new to old or old to new)
 
