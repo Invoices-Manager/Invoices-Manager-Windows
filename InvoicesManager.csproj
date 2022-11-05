@@ -25,9 +25,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Resources\LargeIcon.ico" />
 		<None Remove="Resources\SmallIcon.png" />
-		<None Remove="Resources\LargeIcon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -35,7 +33,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Resources\LargeIcon.ico" />
 		<EmbeddedResource Include="Resources\SmallIcon.png" />
 	</ItemGroup>
 
