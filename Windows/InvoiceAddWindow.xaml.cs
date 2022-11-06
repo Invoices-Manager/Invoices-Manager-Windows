@@ -14,6 +14,8 @@ namespace InvoicesManager.Windows
         public InvoiceAddWindow()
         {
             InitializeComponent();
+            //The date of the exhibition is now by default today's date
+            Dp_ExhibitionDate.SelectedDate = DateTime.Now;
         }
 
         private void Bttn_InvoiceAdd_Click(object sender, RoutedEventArgs e)
