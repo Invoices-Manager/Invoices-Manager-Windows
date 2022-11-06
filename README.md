@@ -54,6 +54,7 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 ## v1.1.3.4
 - Code cleaned up, optimized and improved
+- The Width of the SaveAsWindow increases
 
 ## v1.1.3.3
 - The program now has an icon/logo
