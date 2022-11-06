@@ -26,6 +26,7 @@
     <system:String x:Key="settings">Einstellungen</system:String>
     <system:String x:Key="about">Über das Programm</system:String>
     <system:String x:Key="invoices">Rechnungen</system:String>
+    <system:String x:Key="invoice">Rechnung</system:String>
     <system:String x:Key="from">von</system:String>
     <system:String x:Key="whatShouldTheFileBeCalled">Wie soll die Datei heißen?</system:String>
     <system:String x:Key="saveAs">Speichern unter</system:String>
@@ -45,4 +46,7 @@
     <system:String x:Key="backUpFailed">BackUp konnte nicht erstellt werden</system:String>
     <system:String x:Key="error">Fehler</system:String>
     <system:String x:Key="checkYouInput">Bitte überprüfen Sie Ihre Dateneingabe</system:String>
+    <system:String x:Key="add">hinzufügen</system:String>
+    <system:String x:Key="edit">bearbeiten</system:String>
+    <system:String x:Key="delete">löschen</system:String>
 </ResourceDictionary>

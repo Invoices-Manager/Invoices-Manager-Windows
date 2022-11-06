@@ -18,3 +18,18 @@ namespace InvoicesManager.Models
         public string Path { get; set; }
     }
 }
+
+
+/*
+FileID
+CaptureDate
+ExhibitionDate
+Reference
+InvoiceNumber
+DocumentType
+Organization
+Tags
+MoneyState { Paid , Received,  NoInvoice }
+MoneyTotal
+
+ */

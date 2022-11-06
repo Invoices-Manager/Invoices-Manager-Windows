@@ -67,6 +67,7 @@ namespace InvoicesManager
                 EnvironmentsVariable.REGSystemUsesLightTheme = 1;
             }
         }
+        
         private void GenerateDebugDataRecords()
         {
             Random r = new Random();
@@ -213,9 +214,8 @@ namespace InvoicesManager
 
         private void Bttn_InvoiceAdd_Click(object sender, RoutedEventArgs e)
         {
-            InvoiceAddWindow _invoiceAddWindow = new InvoiceAddWindow();
-            _invoiceAddWindow.ShowDialog();
-            
+            OpenInvoiceView(InvoiceViewModeEnum.InvoiceAdd);
+
             RefreshDataGridWithInit();
         }
 
@@ -224,8 +224,7 @@ namespace InvoicesManager
             if (Dg_Invoices.SelectedItem == null)
                 return;
 
-            InvoiceEditWindow _invoiceEditWindow = new InvoiceEditWindow((InvoiceModel)Dg_Invoices.SelectedItem);
-            _invoiceEditWindow.ShowDialog();
+            OpenInvoiceView(InvoiceViewModeEnum.InvoiceEdit);
 
             RefreshDataGridWithInit();
         }
@@ -234,11 +233,16 @@ namespace InvoicesManager
         {
             if (Dg_Invoices.SelectedItem == null)
                 return;
-            
-            InvoiceRemoveWindow _invoiceRemoveWindow = new InvoiceRemoveWindow((InvoiceModel)Dg_Invoices.SelectedItem);
-            _invoiceRemoveWindow.ShowDialog();
-            
+
+            OpenInvoiceView(InvoiceViewModeEnum.InvoiceDelete);
+
             RefreshDataGridWithInit();
+        }
+
+        private void OpenInvoiceView(InvoiceViewModeEnum invoiceViewModeEnum)
+        {
+            InvoiceViewWindow invoiceViewWindow = new InvoiceViewWindow(invoiceViewModeEnum, (InvoiceModel)Dg_Invoices.SelectedItem);
+            invoiceViewWindow.ShowDialog();
         }
 
         private void Bttn_InvoiceSaveAs_Click(object sender, RoutedEventArgs e)
