@@ -285,7 +285,7 @@ namespace InvoicesManager
             {
                 await Task.Run(() =>
                 {
-                    if (!BackUpSystem.Restore(ofd.FileName))
+                    if (!BackUpSystem.Restore(ofd.FileName, this))
                         MessageBox.Show(this.Resources["backUpFailedRestored"] as string);
 
                     RefreshDataGridWithInit();
