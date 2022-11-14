@@ -266,7 +266,7 @@ namespace InvoicesManager
             {
                 await Task.Run(() =>
                 {
-                    if (BackUpSystem.BackUp(sfg.FileName))
+                    if (BackUpSystem.BackUp(sfg.FileName, this))
                         MessageBox.Show(Application.Current.Resources["backUpSuccessfully"] as string);
                     else
                         MessageBox.Show(Application.Current.Resources["backUpFailed"] as string);
@@ -345,6 +345,30 @@ namespace InvoicesManager
         {
             filterExhibitionDate = (DateTime)(Dp_Search_ExhibitionDate.SelectedDate == null ? default(DateTime) : Dp_Search_ExhibitionDate.SelectedDate);
             RefreshDataGrid();
+        }
+
+        public void ClearInfoProgressBar()
+        {
+            PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
+            {
+                PB_InfoProgressBar.Value = 0;
+            }));
+        }
+        
+        public  void SetInfoProgressBarValue(int value)
+        {
+            PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
+            {
+                PB_InfoProgressBar.Value += value;
+            }));
+        }
+        
+        public void SetInfoProgressMaxValue(int value)
+        {
+            PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
+            {
+                PB_InfoProgressBar.Maximum = value;
+             }));
         }
     }
 }

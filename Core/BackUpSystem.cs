@@ -10,8 +10,13 @@ namespace InvoicesManager.Core
 {
     public class BackUpSystem
     {
-        public static bool BackUp(string backupFilePath)
+        private static MainWindow _mainWindow;
+
+        public static bool BackUp(string backupFilePath, MainWindow mainWindow)
         {
+            //set the main window for the progress bar
+            _mainWindow = mainWindow;
+
             //refresh all invoices
             InvoiceSystem.Init();
             
@@ -20,7 +25,13 @@ namespace InvoicesManager.Core
             List<InvoiceModel> allInvoices = EnvironmentsVariable.allInvoices;
             List<InvoiceBackUpModel> invoices = new List<InvoiceBackUpModel>();
 
-            
+            //clear the progress bar
+            _mainWindow.ClearInfoProgressBar();
+
+            //set the progress bar max value 
+            //2 => SerializeObject & WriteAllText 
+            _mainWindow.SetInfoProgressMaxValue(allInvoices.Count + 2);
+
             //create all InvoiceBackUpModel and add them into the list
             foreach (InvoiceModel invoice in allInvoices)
             {
@@ -38,6 +49,7 @@ namespace InvoicesManager.Core
                 };
 
                 invoices.Add(tmpBackUp);
+                _mainWindow.SetInfoProgressBarValue(1);
             }
 
             //set the creation date
@@ -51,9 +63,11 @@ namespace InvoicesManager.Core
 
             //serialize the backup into the json object
             string json = JsonConvert.SerializeObject(backUp);
+            _mainWindow.SetInfoProgressBarValue(1);
 
             //write the json into the file
             File.WriteAllText(backupFilePath, json);
+            _mainWindow.SetInfoProgressBarValue(1);
 
             //check if the file was created
             if (File.Exists(backupFilePath))
@@ -63,11 +77,17 @@ namespace InvoicesManager.Core
             if (String.IsNullOrEmpty(json))
                 WasPerformedCorrectly = false;
 
+            //clear the progress bar
+            _mainWindow.ClearInfoProgressBar();
+
             return WasPerformedCorrectly;
         }
 
-        public static bool Restore(string backupFilePath)
+        public static bool Restore(string backupFilePath, MainWindow mainWindow)
         {
+            //set the main window for the progress bar
+            _mainWindow = mainWindow;
+
             bool WasPerformedCorrectly = true;
             int alreadyExistCounter = 0;
             List<string> allTempFiles = new List<string>();
@@ -82,6 +102,12 @@ namespace InvoicesManager.Core
             {
                 WasPerformedCorrectly = false;
             }
+
+            //clear the progress bar
+            _mainWindow.ClearInfoProgressBar();
+
+            //set the progress bar max value 
+            _mainWindow.SetInfoProgressMaxValue(backUp.EntityCount);
 
             //check if the backup is valid
             if (!WasPerformedCorrectly)
@@ -141,13 +167,21 @@ namespace InvoicesManager.Core
                     };
 
                     InvoiceSystem.AddInvoice(tmpInvoice, path, newPath);
+                    _mainWindow.SetInfoProgressBarValue(1);
                 }
             }
             catch
             {
                 WasPerformedCorrectly = false;
             }
-            
+
+            //clear the progress bar
+            _mainWindow.ClearInfoProgressBar();
+
+            //delete all temp files
+            foreach (string file in allTempFiles)
+                try { File.Delete(file); } catch { }
+
             MessageBox.Show($"{backUp.EntityCount - alreadyExistCounter} {Application.Current.Resources["invoicesWereRestored"] as string}" + Environment.NewLine +
                                           $"{alreadyExistCounter} {Application.Current.Resources["invoicesWereSkipped"] as string}" + Environment.NewLine +
                                           $"{Application.Current.Resources["fromTotal"] as string} {backUp.EntityCount} {Application.Current.Resources["invoices"] as string}",
