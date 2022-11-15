@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace InvoicesManager.Models
+﻿namespace InvoicesManager.Models
 {
     public class ConfigModel
     {
+        public string ConfigVersion { get; set; }
         public string  PathPDFBrowser { get; set; }
         public string UILanguage { get; set; }
     }

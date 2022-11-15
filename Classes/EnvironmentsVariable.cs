@@ -18,6 +18,7 @@ namespace InvoicesManager.Classes
         public static string UILanguage = "English";
         public static string[] UILanguages = { "English", "German" };
         public const string PROGRAM_VERSION = "1.1.4.0";
+        public static string ConfigVersion { get; set; }
         public const string PROGRAM_SUPPORTEDFORMAT = ".pdf";
         //0 = dark mode  | 1 = white mode
         public static int REGSystemUsesLightTheme = 1;
