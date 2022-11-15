@@ -211,7 +211,18 @@ namespace InvoicesManager
                 return;
 
             InvoiceModel invoice = (InvoiceModel)Dg_Invoices.SelectedItem;
-           Process.Start(EnvironmentsVariable.PathPDFBrowser, Path.Combine(EnvironmentsVariable.PathInvoices, invoice.FileID, EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT));
+
+            //copy file to temp folder and open it then delete it
+            string tempPath = Path.Combine(Path.GetTempPath(), invoice.FileID + ".pdf");
+            string sourcePath = Path.Combine(EnvironmentsVariable.PathInvoices, invoice.FileID + ".pdf");
+            File.Copy(sourcePath, tempPath, true);
+            Process.Start(EnvironmentsVariable.PathPDFBrowser, tempPath);
+
+            //this program has to wait, so the pdf browser can open it
+            //otherwise he is faster with delete than the document can be displayed
+            Thread.Sleep(1000);
+
+            File.Delete(tempPath);
         }
 
         private void Bttn_BoardRefresh_Click(object sender, RoutedEventArgs e)
