@@ -47,6 +47,7 @@ namespace InvoicesManager.Windows
                     Bttn_InvoiceAction.Content = Application.Current.Resources["editInvoice"] as string;
                     Msg_file.Visibility = Visibility.Hidden;
                     Bttn_InvoiceFileAdd.Visibility = Visibility.Hidden;
+                    LoadTheEnumComBoxes();
                     LoadInvoiceData();
                     break;
 
@@ -55,6 +56,7 @@ namespace InvoicesManager.Windows
                     Bttn_InvoiceAction.Content = Application.Current.Resources["removeInvoice"] as string;
                     Msg_file.Visibility = Visibility.Hidden;
                     Bttn_InvoiceFileAdd.Visibility = Visibility.Hidden;
+                    LoadTheEnumComBoxes();
                     DoEverythingDisable();
                     LoadInvoiceData();
                     break;
@@ -107,12 +109,16 @@ namespace InvoicesManager.Windows
 
         private void LoadInvoiceData()
         {
-            //Tb_FilePath.Text = invoice.Path;
+            Dp_ExhibitionDate.SelectedDate = invoice.ExhibitionDate;
             Tb_Organization.Text = invoice.Organization;
-            Tb_Reference.Text = invoice.Reference;
-            Tb_InvoiceNumber.Text = invoice.InvoiceNumber;
             Tb_DocumentType.Text = invoice.DocumentType;
-            Dp_ExhibitionDate.Text = invoice.ExhibitionDate.ToShortDateString();
+            Tb_InvoiceNumber.Text = invoice.InvoiceNumber;
+            Tb_Reference.Text = invoice.Reference;
+            Tb_MoneyTotal.Text = invoice.MoneyTotal.ToString();
+            Tb_Tags.Text = String.Join(";", invoice.Tags);
+            Comb_ImportanceState.SelectedIndex = (int)invoice.ImportanceState;
+            Comb_MoneyState.SelectedIndex = (int)invoice.MoneyState;
+            Comb_PaidState.SelectedIndex = (int)invoice.PaidState;
         }
 
         private bool CheckIfAllIsValide()
