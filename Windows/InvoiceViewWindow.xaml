@@ -8,9 +8,9 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="Invoice {MODE} | Made by Schecher | https://github.com/Schecher1" 
-        Height="500" Width="800"
-        MinHeight="500" MinWidth="800"
-        MaxHeight="500" MaxWidth="800">
+        Height="750" Width="800"
+        MinHeight="750" MinWidth="800"
+        MaxHeight="750" MaxWidth="800">
     <Grid Background="{DynamicResource GridBackground}">
         <Grid Margin="0,0,0,70">
             <StackPanel>
@@ -35,6 +35,26 @@
                     <TextBox x:Name="Tb_Reference" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
+                    <Label Margin="100,15,0,0" Content="{DynamicResource moneytotal}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_MoneyTotal" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                </Grid>
+                <Grid>
+                    <Label Margin="100,15,0,0" Content="{DynamicResource tags}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_Tags" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                </Grid>
+                <Grid>
+                    <Label Margin="100,15,0,0" Content="{DynamicResource importancestate}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <ComboBox x:Name="Comb_ImportanceState" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                </Grid>
+                <Grid>
+                    <Label Margin="100,15,0,0" Content="{DynamicResource moneystate}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <ComboBox x:Name="Comb_MoneyState" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                </Grid>
+                <Grid>
+                    <Label Margin="100,15,0,0" Content="{DynamicResource paidstate}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <ComboBox x:Name="Comb_PaidStateEnum" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                </Grid>
+                <Grid>
                     <Label x:Name="Msg_file" Margin="100,15,0,0" Content="{DynamicResource file}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <Button x:Name="Bttn_InvoiceFileAdd" Margin="350,15,0,0" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="32" Width="350" Content="{DynamicResource pleaseSelectFile}" FontSize="15" Foreground="{DynamicResource FontForeground}" Click="Bttn_InvoiceFileAdd_Click"/>
                 </Grid>
@@ -43,6 +63,6 @@
                 </Grid>
             </StackPanel>
         </Grid>
-        <Button x:Name="Bttn_InvoiceAction" Content="{DynamicResource addInvoice}" Click="Bttn_InvoiceAction_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="{DynamicResource FontForeground}" Margin="0,1,0,20" FontSize="20"/>
+        <Button x:Name="Bttn_InvoiceAction" Content="{DynamicResource addInvoice}" Click="Bttn_InvoiceAction_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="{DynamicResource FontForeground}" Margin="0,1,0,20" FontSize="20" IsDefault="True"/>
     </Grid>
 </Window>

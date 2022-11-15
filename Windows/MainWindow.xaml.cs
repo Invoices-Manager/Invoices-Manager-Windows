@@ -1,4 +1,5 @@
 ﻿using InvoicesManager.Classes;
+using InvoicesManager.Classes.Enums;
 using InvoicesManager.Core;
 using InvoicesManager.Models;
 using InvoicesManager.Windows;
@@ -82,7 +83,7 @@ namespace InvoicesManager
                 invoice.DocumentType = sampleDocumenttype[r.Next(0, sampleDocumenttype.Length)];
                 invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
                 invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(0, 100));
-                invoice.Path = "C:\\Invoices\\" + invoice.Reference + ".pdf";
+                //invoice.Path = "C:\\Invoices\\" + invoice.Reference + ".pdf";
 
                 EnvironmentsVariable.allInvoices.Add(invoice);
             }
@@ -203,7 +204,7 @@ namespace InvoicesManager
                 return;
 
             InvoiceModel invoice = (InvoiceModel)Dg_Invoices.SelectedItem;
-            Process.Start(EnvironmentsVariable.PathPDFBrowser, $"\"{invoice.Path}\"");
+           // Process.Start(EnvironmentsVariable.PathPDFBrowser, $"\"{invoice.Path}\"");
         }
 
         private void Bttn_BoardRefresh_Click(object sender, RoutedEventArgs e)

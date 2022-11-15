@@ -37,7 +37,7 @@ namespace InvoicesManager.Core
             {
                 InvoiceBackUpModel tmpBackUp = new InvoiceBackUpModel()
                 {
-                    Base64 = Convert.ToBase64String(File.ReadAllBytes(invoice.Path)),
+                    //Base64 = Convert.ToBase64String(File.ReadAllBytes(invoice.Path)),
                     Invoice = new SubInvoiceBackUpModel()
                     {
                         ExhibitionDate = invoice.ExhibitionDate,
@@ -163,7 +163,7 @@ namespace InvoicesManager.Core
                         DocumentType = invoice.Invoice.DocumentType,
                         InvoiceNumber = invoice.Invoice.InvoiceNumber,
                         Reference = invoice.Invoice.Reference,
-                        Path = newPath
+                       // Path = newPath
                     };
 
                     InvoiceSystem.AddInvoice(tmpInvoice, path, newPath);

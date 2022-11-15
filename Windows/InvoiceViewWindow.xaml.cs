@@ -1,8 +1,10 @@
 ﻿using InvoicesManager.Classes;
+using InvoicesManager.Classes.Enums;
 using InvoicesManager.Core;
 using InvoicesManager.Models;
 using Microsoft.Win32;
 using System;
+using System.Linq.Expressions;
 using System.Windows;
 
 namespace InvoicesManager.Windows
@@ -65,7 +67,7 @@ namespace InvoicesManager.Windows
 
         private void LoadInvoiceData()
         {
-            Tb_FilePath.Text = invoice.Path;
+            //Tb_FilePath.Text = invoice.Path;
             Tb_Organization.Text = invoice.Organization;
             Tb_Reference.Text = invoice.Reference;
             Tb_InvoiceNumber.Text = invoice.InvoiceNumber;
@@ -146,7 +148,7 @@ namespace InvoicesManager.Windows
 
             InvoiceModel editInvoice = new InvoiceModel()
             {
-                Path = Tb_FilePath.Text,
+                //Path = Tb_FilePath.Text,
                 Organization = Tb_Organization.Text,
                 Reference = Tb_Reference.Text,
                 InvoiceNumber = Tb_InvoiceNumber.Text,
@@ -197,7 +199,7 @@ namespace InvoicesManager.Windows
                 Organization = Tb_Organization.Text,
                 DocumentType = Tb_DocumentType.Text,
                 ExhibitionDate = Dp_ExhibitionDate.SelectedDate.Value,
-                Path = newPath
+                //Path = newPath
             };
 
             InvoiceSystem.AddInvoice(newInvoice, filePath, newPath);

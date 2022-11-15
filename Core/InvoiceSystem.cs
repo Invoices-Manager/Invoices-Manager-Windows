@@ -41,7 +41,7 @@ namespace InvoicesManager.Core
 
         public static void EditInvoice(InvoiceModel oldInvoice, InvoiceModel newInvoice)
         {
-            if (!CheckIfInvoiceExist(oldInvoice.Path))
+            if (!CheckIfInvoiceExist("oldInvoice.Path"))
             {
                 MessageBox.Show("Die Datei existiert nicht im System!");
                 return;
@@ -55,21 +55,21 @@ namespace InvoicesManager.Core
 
         public static void RemoveInvoice(InvoiceModel oldInvoice)
         {
-            if (!CheckIfInvoiceExist(oldInvoice.Path))
+            if (!CheckIfInvoiceExist("oldInvoice.Path"))
             {
                 MessageBox.Show("Die Datei existiert nicht im System!");
                 return;
             }
             EnvironmentsVariable.allInvoices.Remove(oldInvoice);
 
-            File.Delete(oldInvoice.Path);
+            File.Delete("oldInvoice.Path");
 
             SaveIntoJsonFile();
         }
 
         public static void SaveAs(InvoiceModel invoice, string path)
         {
-            File.Copy(invoice.Path, path);
+            File.Copy("invoice.Path", path);
         }
 
         public static bool CheckIfInvoiceExist(string filePath)
@@ -79,7 +79,7 @@ namespace InvoicesManager.Core
             
             foreach (var invoice in EnvironmentsVariable.allInvoices)
             {
-                if (invoice.Path.Split("\\")[^1] == $"{hashID}.pdf")
+               // if (invoice.Path.Split("\\")[^1] == $"{hashID}.pdf")
                     existAlready = true;
             }
             

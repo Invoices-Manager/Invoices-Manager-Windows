@@ -49,4 +49,9 @@
     <system:String x:Key="add">add</system:String>
     <system:String x:Key="edit">edit</system:String>
     <system:String x:Key="delete">remove</system:String>
+    <system:String x:Key="moneytotal">money total</system:String>
+    <system:String x:Key="tags">tags</system:String>
+    <system:String x:Key="importancestate">importance state</system:String>
+    <system:String x:Key="moneystate">money state</system:String>
+    <system:String x:Key="paidstate">paid state</system:String>
 </ResourceDictionary>
