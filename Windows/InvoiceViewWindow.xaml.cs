@@ -27,6 +27,12 @@ namespace InvoicesManager.Windows
 
             //The date of the exhibition is now by default today's date
             Dp_ExhibitionDate.SelectedDate = DateTime.Now;
+
+            LoadTheEnumComBoxes();
+            //Set the default value of the comboboxes
+            Comb_ImportanceState.SelectedIndex = 2;
+            Comb_MoneyState.SelectedIndex = 2;
+            Comb_PaidState.SelectedIndex = 2;
         }
 
         private void LoadInvoiceViewWindow()
@@ -36,10 +42,6 @@ namespace InvoicesManager.Windows
                 case InvoiceViewModeEnum.InvoiceAdd:
                     Title = $"{Application.Current.Resources["invoice"] as string} {Application.Current.Resources["add"] as string} | Made by Schecher | https://github.com/Schecher1";
                     Bttn_InvoiceAction.Content = Application.Current.Resources["addInvoice"] as string;
-                    LoadTheEnumComBoxes();
-                    Comb_ImportanceState.SelectedIndex = 2;
-                    Comb_MoneyState.SelectedIndex = 2;
-                    Comb_PaidState.SelectedIndex = 2;
                     break;
 
                 case InvoiceViewModeEnum.InvoiceEdit:
@@ -47,7 +49,6 @@ namespace InvoicesManager.Windows
                     Bttn_InvoiceAction.Content = Application.Current.Resources["editInvoice"] as string;
                     Msg_file.Visibility = Visibility.Hidden;
                     Bttn_InvoiceFileAdd.Visibility = Visibility.Hidden;
-                    LoadTheEnumComBoxes();
                     LoadInvoiceData();
                     break;
 
@@ -56,7 +57,6 @@ namespace InvoicesManager.Windows
                     Bttn_InvoiceAction.Content = Application.Current.Resources["removeInvoice"] as string;
                     Msg_file.Visibility = Visibility.Hidden;
                     Bttn_InvoiceFileAdd.Visibility = Visibility.Hidden;
-                    LoadTheEnumComBoxes();
                     DoEverythingDisable();
                     LoadInvoiceData();
                     break;
