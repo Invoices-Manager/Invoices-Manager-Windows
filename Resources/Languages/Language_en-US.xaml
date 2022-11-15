@@ -63,4 +63,5 @@
     <system:String x:Key="unpaid">unpaid</system:String>
     <system:String x:Key="noInvoice">no invoice</system:String>
     <system:String x:Key="invoicePath">invoice path</system:String>
+    <system:String x:Key="tagInfo">(seperate with =>   ;  )</system:String>
 </ResourceDictionary>

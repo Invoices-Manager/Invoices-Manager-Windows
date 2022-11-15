@@ -40,6 +40,7 @@
                 </Grid>
                 <Grid>
                     <Label Margin="100,15,0,0" Content="{DynamicResource tags}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <Label Margin="164,20,0,-6" Content="{DynamicResource tagInfo}" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <TextBox x:Name="Tb_Tags" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
