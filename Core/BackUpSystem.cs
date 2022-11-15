@@ -40,11 +40,18 @@ namespace InvoicesManager.Core
                     //Base64 = Convert.ToBase64String(File.ReadAllBytes(invoice.Path)),
                     Invoice = new SubInvoiceBackUpModel()
                     {
+                        FileID = invoice.FileID,
+                        CaptureDate = invoice.CaptureDate,
                         ExhibitionDate = invoice.ExhibitionDate,
-                        Organization = invoice.Organization,
+                        Reference = invoice.Reference,
                         DocumentType = invoice.DocumentType,
+                        Organization = invoice.Organization,
                         InvoiceNumber = invoice.InvoiceNumber,
-                        Reference = invoice.Reference
+                        Tags = invoice.Tags,
+                        ImportanceState = invoice.ImportanceState,
+                        MoneyState = invoice.MoneyState,
+                        PaidState = invoice.PaidState,
+                        MoneyTotal = invoice.MoneyTotal
                     }
                 };
 
@@ -158,12 +165,18 @@ namespace InvoicesManager.Core
 
                     InvoiceModel tmpInvoice = new InvoiceModel()
                     {
+                        FileID = invoice.Invoice.FileID,
+                        CaptureDate = invoice.Invoice.CaptureDate,
                         ExhibitionDate = invoice.Invoice.ExhibitionDate,
-                        Organization = invoice.Invoice.Organization,
-                        DocumentType = invoice.Invoice.DocumentType,
-                        InvoiceNumber = invoice.Invoice.InvoiceNumber,
                         Reference = invoice.Invoice.Reference,
-                       // Path = newPath
+                        DocumentType = invoice.Invoice.DocumentType,
+                        Organization = invoice.Invoice.Organization,
+                        InvoiceNumber = invoice.Invoice.InvoiceNumber,
+                        Tags = invoice.Invoice.Tags,
+                        ImportanceState = invoice.Invoice.ImportanceState,
+                        MoneyState = invoice.Invoice.MoneyState,
+                        PaidState = invoice.Invoice.PaidState,
+                        MoneyTotal = invoice.Invoice.MoneyTotal
                     };
 
                     InvoiceSystem.AddInvoice(tmpInvoice, path, newPath);
