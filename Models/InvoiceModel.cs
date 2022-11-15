@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using InvoicesManager.Classes.Enums;
 
 namespace InvoicesManager.Models
 {
