@@ -10,13 +10,14 @@ namespace InvoicesManager.Core
     {
         public static void Init()
         {
-            string json = File.ReadAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.ConfigJsonFileName);
+            string json = File.ReadAllText(EnvironmentsVariable.ConfigJsonFileName);
 
             ConfigModel config = new ConfigModel()
             {
                 PathPDFBrowser = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
                 UILanguage = "English",
-                ConfigVersion = EnvironmentsVariable.PROGRAM_VERSION
+                ConfigVersion = EnvironmentsVariable.PROGRAM_VERSION,
+                PathInvoice = EnvironmentsVariable.PathInvoices
             };
         
             if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
@@ -25,6 +26,7 @@ namespace InvoicesManager.Core
             EnvironmentsVariable.PathPDFBrowser = config.PathPDFBrowser;
             EnvironmentsVariable.UILanguage = config.UILanguage;
             EnvironmentsVariable.ConfigVersion = config.ConfigVersion;
+            EnvironmentsVariable.PathInvoices = config.PathInvoice;
 
             Save();
         }
@@ -35,10 +37,11 @@ namespace InvoicesManager.Core
             {
                 PathPDFBrowser = EnvironmentsVariable.PathPDFBrowser,
                 UILanguage = EnvironmentsVariable.UILanguage,
-                ConfigVersion = EnvironmentsVariable.PROGRAM_VERSION
+                ConfigVersion = EnvironmentsVariable.PROGRAM_VERSION,
+                PathInvoice = EnvironmentsVariable.PathInvoices
             };
             
-            File.WriteAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.ConfigJsonFileName, JsonConvert.SerializeObject(config));
+            File.WriteAllText( EnvironmentsVariable.ConfigJsonFileName, JsonConvert.SerializeObject(config));
         }
     }
 }

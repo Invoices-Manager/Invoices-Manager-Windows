@@ -263,7 +263,7 @@ namespace InvoicesManager.Windows
         private void AddNewInvoice()
         {
             string hashID = HashManager.GetMD5HashFromFile(filePath);
-            string newPath = @$"{EnvironmentsVariable.PathInvoices}{hashID}.pdf";
+            string newPath = @$"{EnvironmentsVariable.PathInvoices}\{hashID}.pdf";
 
             InvoiceModel newInvoice = new InvoiceModel()
             {

@@ -21,6 +21,7 @@ namespace InvoicesManager.Windows
 
             Tb_PathProgram.Text = EnvironmentsVariable.PathPDFBrowser;
             Comb_UILanguage.Text = EnvironmentsVariable.UILanguage;
+            Tb_InvoicePath.Text = EnvironmentsVariable.PathInvoices;
         }
 
         private void Bttn_SaveSettings_Click(object sender, RoutedEventArgs e)
@@ -33,6 +34,7 @@ namespace InvoicesManager.Windows
 
             EnvironmentsVariable.PathPDFBrowser = Tb_PathProgram.Text;
             EnvironmentsVariable.UILanguage = Comb_UILanguage.Text;
+            EnvironmentsVariable.PathInvoices = Tb_InvoicePath.Text;
 
             EnvironmentsVariable.InitWorkPath();
             ConfigSystem.Save();

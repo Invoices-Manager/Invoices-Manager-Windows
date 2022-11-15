@@ -11,7 +11,6 @@ namespace InvoicesManager.Classes
         public static List<InvoiceModel> filteredInvoices = new List<InvoiceModel>();
         public static volatile bool isInvoiceInitFinish = false;
         public static string PathPDFBrowser = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
-        public static string PathData = @$"{Environment.CurrentDirectory}\data\";
         public static string PathInvoices = @$"{Environment.CurrentDirectory}\data\invoices\";
         public static string InvoicesJsonFileName = "Invoices.json";
         public static string ConfigJsonFileName = "Config.json";
@@ -27,12 +26,11 @@ namespace InvoicesManager.Classes
         public static void InitWorkPath()
         {
             //create/check the need folders and files
-            Directory.CreateDirectory(EnvironmentsVariable.PathData);
             Directory.CreateDirectory(EnvironmentsVariable.PathInvoices);
-            if (!File.Exists(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName))
-                File.WriteAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName, "[]");
-            if (!File.Exists(EnvironmentsVariable.PathData + EnvironmentsVariable.ConfigJsonFileName))
-                File.WriteAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.ConfigJsonFileName, "[]");
+            if (!File.Exists(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName))
+                File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, "[]");
+            if (!File.Exists(EnvironmentsVariable.ConfigJsonFileName))
+                File.WriteAllText(EnvironmentsVariable.ConfigJsonFileName, "[]");
         }
     }
 }

@@ -62,4 +62,5 @@
     <system:String x:Key="received">Erhalten</system:String>
     <system:String x:Key="unpaid">Unbezahlt</system:String>
     <system:String x:Key="noInvoice">Keine Rechnung</system:String>
+    <system:String x:Key="invoicePath">Rechnungs Pfad</system:String>
 </ResourceDictionary>

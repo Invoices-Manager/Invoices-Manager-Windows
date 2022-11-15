@@ -95,7 +95,7 @@ namespace InvoicesManager
                 EnvironmentsVariable.allInvoices.Add(invoice);
             }
 
-            File.WriteAllText(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.allInvoices));
+            File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.allInvoices));
         }
 
         private void InitThreads()
