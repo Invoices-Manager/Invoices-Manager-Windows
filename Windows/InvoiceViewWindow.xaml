@@ -52,7 +52,7 @@
                 </Grid>
                 <Grid>
                     <Label Margin="100,15,0,0" Content="{DynamicResource paidstate}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <ComboBox x:Name="Comb_PaidStateEnum" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                    <ComboBox x:Name="Comb_PaidState" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
                     <Label x:Name="Msg_file" Margin="100,15,0,0" Content="{DynamicResource file}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />

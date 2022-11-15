@@ -54,4 +54,12 @@
     <system:String x:Key="importancestate">Wichtigkeits Status</system:String>
     <system:String x:Key="moneystate">Geld Status</system:String>
     <system:String x:Key="paidstate">Bezahlt Status</system:String>
+    <system:String x:Key="veryImportant">Sehr Wichtig</system:String>
+    <system:String x:Key="important">Wichtig</system:String>
+    <system:String x:Key="neutral">Neutral</system:String>
+    <system:String x:Key="unimportant">Unwichtig</system:String>
+    <system:String x:Key="paid">Bezahlt</system:String>
+    <system:String x:Key="received">Erhalten</system:String>
+    <system:String x:Key="unpaid">Unbezahlt</system:String>
+    <system:String x:Key="noInvoice">Keine Rechnung</system:String>
 </ResourceDictionary>

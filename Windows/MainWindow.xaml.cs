@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.Xml.Linq;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 
@@ -78,12 +79,17 @@ namespace InvoicesManager
             for (int i = 0; i < r.Next(35, 125); i++)
             {
                 InvoiceModel invoice = new InvoiceModel();
-                invoice.Reference = "REF" + r.Next(1000, 9999);
-                invoice.InvoiceNumber = "INV" + r.Next(1000, 9999);
+                invoice.FileID = Guid.NewGuid().ToString();
+                invoice.CaptureDate = DateTime.Now.AddDays(r.Next(-100, 100));
+                invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(-100, 100));
+                invoice.Reference = "REF-" + r.Next(100000, 999999).ToString();
                 invoice.DocumentType = sampleDocumenttype[r.Next(0, sampleDocumenttype.Length)];
                 invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
-                invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(0, 100));
-                //invoice.Path = "C:\\Invoices\\" + invoice.Reference + ".pdf";
+                invoice.InvoiceNumber = "INV-NR" + r.Next(100000, 999999).ToString();
+                invoice.Tags = new string[] { "Tag1", "Tag2", "Tag3" };
+                invoice.ImportanceState = (ImportanceStateEnum)r.Next(0, 3);
+                invoice.MoneyState = (MoneyStateEnum)r.Next(0, 2);
+                invoice.PaidState = (PaidStateEnum)r.Next(0, 2);
 
                 EnvironmentsVariable.allInvoices.Add(invoice);
             }

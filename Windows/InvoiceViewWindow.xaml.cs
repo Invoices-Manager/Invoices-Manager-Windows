@@ -6,6 +6,7 @@ using Microsoft.Win32;
 using System;
 using System.Linq.Expressions;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace InvoicesManager.Windows
 {
@@ -35,6 +36,10 @@ namespace InvoicesManager.Windows
                 case InvoiceViewModeEnum.InvoiceAdd:
                     Title = $"{Application.Current.Resources["invoice"] as string} {Application.Current.Resources["add"] as string} | Made by Schecher | https://github.com/Schecher1";
                     Bttn_InvoiceAction.Content = Application.Current.Resources["addInvoice"] as string;
+                    LoadTheEnumComBoxes();
+                    Comb_ImportanceState.SelectedIndex = 2;
+                    Comb_MoneyState.SelectedIndex = 2;
+                    Comb_PaidState.SelectedIndex = 2;
                     break;
 
                 case InvoiceViewModeEnum.InvoiceEdit:
@@ -53,6 +58,41 @@ namespace InvoicesManager.Windows
                     DoEverythingDisable();
                     LoadInvoiceData();
                     break;
+            }
+        }
+
+        private void LoadTheEnumComBoxes()
+        {
+            Comb_ImportanceState.Items.Clear();
+            Comb_MoneyState.Items.Clear();
+            Comb_PaidState.Items.Clear();
+
+            ComboBox[] comboBoxes = new ComboBox[] { Comb_ImportanceState, Comb_MoneyState, Comb_PaidState };
+            String[] keyWords = new String[] { "veryImportant", "important", "neutral", "unimportant", "paid", "received", "noInvoice", "paid", "unpaid", "noInvoice" };
+
+            for (int i = 0; i <= 9; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        comboBoxes[0].Items.Add(Application.Current.Resources[keyWords[i]] as string);
+                        break;
+
+                    case 4:
+                    case 5:
+                    case 6:
+                        comboBoxes[1].Items.Add(Application.Current.Resources[keyWords[i]] as string);
+                        break;
+
+                    case 7:
+                    case 8:
+                    case 9:
+                        comboBoxes[2].Items.Add(Application.Current.Resources[keyWords[i]] as string);
+                        break;
+                }
             }
         }
 
