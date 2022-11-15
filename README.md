@@ -15,8 +15,8 @@ It's simple, there are enough ways to filter your documents.
 
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one).  <br/>
-Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.0.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
-Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.0.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
+Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.0.1/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
+Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.0.1/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
 
 
 ## Features:
@@ -45,6 +45,11 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 
 # CHANGELOG
+
+## v1.2.0.1 (HotFix for v1.2.0.0)
+- Edit and Delete did not update the states, this has been fixed.
+- When adding an invoice the date was cleared, this was also fixed
+
 
 ## v1.2.0.0 (!!! VERSION 1.1.4.0 AND BELOW ARE NOT COMPATIBLE WITH VERSION 1.2.0.0 AND HIGHER !!!)
 - The config file now has a version (Later for the Program Updater(not yet implemented))

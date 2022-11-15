@@ -23,8 +23,6 @@ namespace InvoicesManager.Windows
             this.invoiceViewModeEnum = invoiceViewModeEnum;
             this.invoice = invoice;
 
-            LoadInvoiceViewWindow();
-
             //The date of the exhibition is now by default today's date
             Dp_ExhibitionDate.SelectedDate = DateTime.Now;
 
@@ -33,6 +31,8 @@ namespace InvoicesManager.Windows
             Comb_ImportanceState.SelectedIndex = 2;
             Comb_MoneyState.SelectedIndex = 2;
             Comb_PaidState.SelectedIndex = 2;
+
+            LoadInvoiceViewWindow();
         }
 
         private void LoadInvoiceViewWindow()
@@ -168,7 +168,6 @@ namespace InvoicesManager.Windows
             Comb_ImportanceState.SelectedIndex = 2;
             Comb_MoneyState.SelectedIndex = 2;
             Comb_PaidState.SelectedIndex = 2;
-            Dp_ExhibitionDate.SelectedDate = default;
             filePath = String.Empty;
         }
 
