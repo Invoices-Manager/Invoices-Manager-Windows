@@ -54,12 +54,12 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 ## v1.2.0.0 (!!! VERSION 1.1.4.0 AND BELOW ARE NOT COMPATIBLE WITH VERSION 1.2.0.0 AND HIGHER !!!)
 - The config file now has a version (Later for the Program Updater(not yet implemented))
 - The Invoice Model (Input) has been extended to the following (for the later updates and functions):
-    -Tags
-    -Importance State
-    -Money State
-    -Paid State
-    -Money Total
-    -Capture Date
+  -Tags<br/>
+  -Importance State<br/>
+  -Money State<br/>
+  -Paid State<br/>
+  -Money Total<br/>
+  -Capture Date<br/>
 - When a document is opened, it is started in the temp folder and not in the main directory (of course, they are deleted directly).
 - Your root directory is no longer statically bound to a path, it is now dynamic
 - You can now change your path (where the invoices are stored)
