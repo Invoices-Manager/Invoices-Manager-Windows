@@ -21,15 +21,22 @@ namespace InvoicesManager.Models
 
 
 /*
-FileID
-CaptureDate
-ExhibitionDate
-Reference
-InvoiceNumber
-DocumentType
-Organization
-Tags
-MoneyState { Paid , Received,  NoInvoice }
-MoneyTotal
+public string FileID { get; set; } // (NN)
+public DateTime CaptureDate { get; set; } // (NN)
+public DateTime ExhibitionDate { get; set; } // (NN)
+public string Reference { get; set; } // (NN)
+public string DocumentType { get; set; } // (NN)
+public string Organization { get; set; } // (NN)
+public string InvoiceNumber { get; set; } 
+public string[] Tags { get; set; }
+public ImportanceStateEnum ImportanceState { get; set; } // { VeryImportant, Important, Neutral, Unimportant }
+public MoneyStateEnum MoneyState { get; set; } // { Paid , Received,  NoInvoice }
+public PaidStateEnum PaidState { get; set; } // { Paid , Unpaid,  NoInvoice }
+public double MoneyTotal { get; set; }
+
+
 
  */
+
+
+
