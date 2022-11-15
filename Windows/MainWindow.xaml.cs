@@ -32,7 +32,7 @@ namespace InvoicesManager
         public MainWindow()
         {
 #if DEBUG
-            try { File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName); } catch  {}
+            //try { File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName); } catch  {}
 #endif
             //scan windows theme and set the app theme
             InitWindowsTheme();
@@ -48,7 +48,7 @@ namespace InvoicesManager
             InitThreads();
             
 #if DEBUG
-            GenerateDebugDataRecords();
+           // GenerateDebugDataRecords();
             RefreshDataGridWithInit();
 #endif
         }
@@ -79,7 +79,7 @@ namespace InvoicesManager
             for (int i = 0; i < r.Next(35, 125); i++)
             {
                 InvoiceModel invoice = new InvoiceModel();
-                invoice.FileID = Guid.NewGuid().ToString();
+                invoice.FileID = "test";
                 invoice.CaptureDate = DateTime.Now.AddDays(r.Next(-100, 100));
                 invoice.ExhibitionDate = DateTime.Now.AddDays(r.Next(-100, 100));
                 invoice.Reference = "REF-" + r.Next(100000, 999999).ToString();
@@ -211,7 +211,7 @@ namespace InvoicesManager
                 return;
 
             InvoiceModel invoice = (InvoiceModel)Dg_Invoices.SelectedItem;
-           // Process.Start(EnvironmentsVariable.PathPDFBrowser, $"\"{invoice.Path}\"");
+           Process.Start(EnvironmentsVariable.PathPDFBrowser, Path.Combine(EnvironmentsVariable.PathInvoices, invoice.FileID, EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT));
         }
 
         private void Bttn_BoardRefresh_Click(object sender, RoutedEventArgs e)

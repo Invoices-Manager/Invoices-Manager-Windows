@@ -49,6 +49,7 @@ namespace InvoicesManager.Windows
                     Bttn_InvoiceAction.Content = Application.Current.Resources["editInvoice"] as string;
                     Msg_file.Visibility = Visibility.Hidden;
                     Bttn_InvoiceFileAdd.Visibility = Visibility.Hidden;
+                    Tb_FilePath.Visibility = Visibility.Hidden;
                     LoadInvoiceData();
                     break;
 
@@ -57,6 +58,7 @@ namespace InvoicesManager.Windows
                     Bttn_InvoiceAction.Content = Application.Current.Resources["removeInvoice"] as string;
                     Msg_file.Visibility = Visibility.Hidden;
                     Bttn_InvoiceFileAdd.Visibility = Visibility.Hidden;
+                    Tb_FilePath.Visibility = Visibility.Hidden;
                     DoEverythingDisable();
                     LoadInvoiceData();
                     break;
@@ -100,11 +102,17 @@ namespace InvoicesManager.Windows
 
         private void DoEverythingDisable()
         {
-            Dp_ExhibitionDate.IsEnabled = false;
+            Tb_FilePath.IsEnabled = false;
             Tb_Organization.IsEnabled = false;
-            Tb_DocumentType.IsEnabled = false;
-            Tb_InvoiceNumber.IsEnabled = false;
             Tb_Reference.IsEnabled = false;
+            Tb_InvoiceNumber.IsEnabled = false;
+            Tb_DocumentType.IsEnabled = false;
+            Tb_MoneyTotal.IsEnabled = false;
+            Tb_Tags.IsEnabled = false;
+            Comb_ImportanceState.IsEnabled = false;
+            Comb_MoneyState.IsEnabled = false;
+            Comb_PaidState.IsEnabled = false;
+            Dp_ExhibitionDate.IsEnabled = false;
         }
 
         private void LoadInvoiceData()
@@ -114,7 +122,7 @@ namespace InvoicesManager.Windows
             Tb_DocumentType.Text = invoice.DocumentType;
             Tb_InvoiceNumber.Text = invoice.InvoiceNumber;
             Tb_Reference.Text = invoice.Reference;
-            Tb_MoneyTotal.Text = invoice.MoneyTotal.ToString();
+            Tb_MoneyTotal.Text = invoice.MoneyTotal == -1 ? "" : invoice.MoneyTotal.ToString();
             Tb_Tags.Text = String.Join(";", invoice.Tags);
             Comb_ImportanceState.SelectedIndex = (int)invoice.ImportanceState;
             Comb_MoneyState.SelectedIndex = (int)invoice.MoneyState;
@@ -123,6 +131,7 @@ namespace InvoicesManager.Windows
 
         private bool CheckIfAllIsValide()
         {
+            
             if (String.IsNullOrWhiteSpace(Tb_Reference.Text))
                 return false;
             if (String.IsNullOrWhiteSpace(Tb_InvoiceNumber.Text))
@@ -135,6 +144,14 @@ namespace InvoicesManager.Windows
                 return false;
             if (filePath == String.Empty && invoiceViewModeEnum == InvoiceViewModeEnum.InvoiceAdd)
                 return false;
+            if (Comb_ImportanceState.SelectedIndex == -1)
+                return false;
+            if (Comb_MoneyState.SelectedIndex == -1)
+                return false;
+            if (Comb_PaidState.SelectedIndex == -1)
+                return false;
+            if (!double.TryParse(Tb_MoneyTotal.Text, out double moneyTotal) && !String.IsNullOrEmpty(Tb_MoneyTotal.Text))
+                return false;
 
             return true;
         }
@@ -146,6 +163,11 @@ namespace InvoicesManager.Windows
             Tb_Reference.Text = String.Empty;
             Tb_InvoiceNumber.Text = String.Empty;
             Tb_DocumentType.Text = String.Empty;
+            Tb_MoneyTotal.Text = String.Empty;
+            Tb_Tags.Text = String.Empty;
+            Comb_ImportanceState.SelectedIndex = 2;
+            Comb_MoneyState.SelectedIndex = 2;
+            Comb_PaidState.SelectedIndex = 2;
             Dp_ExhibitionDate.SelectedDate = default;
             filePath = String.Empty;
         }
@@ -194,12 +216,17 @@ namespace InvoicesManager.Windows
 
             InvoiceModel editInvoice = new InvoiceModel()
             {
-                //Path = Tb_FilePath.Text,
+                FileID = invoice.FileID,
+                ExhibitionDate = Dp_ExhibitionDate.SelectedDate.Value,
                 Organization = Tb_Organization.Text,
-                Reference = Tb_Reference.Text,
-                InvoiceNumber = Tb_InvoiceNumber.Text,
                 DocumentType = Tb_DocumentType.Text,
-                ExhibitionDate = Dp_ExhibitionDate.SelectedDate.Value
+                InvoiceNumber = Tb_InvoiceNumber.Text,
+                Reference = Tb_Reference.Text,
+                MoneyTotal = String.IsNullOrEmpty(Tb_MoneyTotal.Text) ? -1 : Convert.ToDouble(Tb_MoneyTotal.Text),
+                Tags = Tb_Tags.Text.Split(';'),
+                ImportanceState = (ImportanceStateEnum)Comb_ImportanceState.SelectedIndex,
+                MoneyState = (MoneyStateEnum)Comb_MoneyState.SelectedIndex,
+                PaidState = (PaidStateEnum)Comb_PaidState.SelectedIndex
             };
 
             InvoiceSystem.EditInvoice(invoice, editInvoice);
@@ -240,12 +267,18 @@ namespace InvoicesManager.Windows
 
             InvoiceModel newInvoice = new InvoiceModel()
             {
-                InvoiceNumber = Tb_InvoiceNumber.Text,
-                Reference = Tb_Reference.Text,
+                FileID = hashID,
+                CaptureDate = DateTime.Now.Date,
+                ExhibitionDate = Dp_ExhibitionDate.SelectedDate.Value,
                 Organization = Tb_Organization.Text,
                 DocumentType = Tb_DocumentType.Text,
-                ExhibitionDate = Dp_ExhibitionDate.SelectedDate.Value,
-                //Path = newPath
+                InvoiceNumber = Tb_InvoiceNumber.Text,
+                Reference = Tb_Reference.Text,
+                MoneyTotal = String.IsNullOrEmpty(Tb_MoneyTotal.Text) ? -1 : Convert.ToDouble(Tb_MoneyTotal.Text),
+                Tags = Tb_Tags.Text.Split(';'),
+                ImportanceState = (ImportanceStateEnum)Comb_ImportanceState.SelectedIndex,
+                MoneyState = (MoneyStateEnum)Comb_MoneyState.SelectedIndex,
+                PaidState = (PaidStateEnum)Comb_PaidState.SelectedIndex
             };
 
             InvoiceSystem.AddInvoice(newInvoice, filePath, newPath);

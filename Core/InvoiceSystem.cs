@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Policy;
 using System.Windows;
 
 namespace InvoicesManager.Core
@@ -41,7 +42,7 @@ namespace InvoicesManager.Core
 
         public static void EditInvoice(InvoiceModel oldInvoice, InvoiceModel newInvoice)
         {
-            if (!CheckIfInvoiceExist("oldInvoice.Path"))
+            if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
             {
                 MessageBox.Show("Die Datei existiert nicht im System!");
                 return;
@@ -55,21 +56,21 @@ namespace InvoicesManager.Core
 
         public static void RemoveInvoice(InvoiceModel oldInvoice)
         {
-            if (!CheckIfInvoiceExist("oldInvoice.Path"))
+            if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
             {
                 MessageBox.Show("Die Datei existiert nicht im System!");
                 return;
             }
             EnvironmentsVariable.allInvoices.Remove(oldInvoice);
 
-            File.Delete("oldInvoice.Path");
+            File.Delete(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT);
 
             SaveIntoJsonFile();
         }
 
         public static void SaveAs(InvoiceModel invoice, string path)
         {
-            File.Copy("invoice.Path", path);
+            File.Copy(EnvironmentsVariable.PathInvoices + invoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT, path);
         }
 
         public static bool CheckIfInvoiceExist(string filePath)
@@ -79,7 +80,7 @@ namespace InvoicesManager.Core
             
             foreach (var invoice in EnvironmentsVariable.allInvoices)
             {
-               // if (invoice.Path.Split("\\")[^1] == $"{hashID}.pdf")
+                if (invoice.FileID.Equals(hashID))
                     existAlready = true;
             }
             
