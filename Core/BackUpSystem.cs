@@ -37,7 +37,7 @@ namespace InvoicesManager.Core
             {
                 InvoiceBackUpModel tmpBackUp = new InvoiceBackUpModel()
                 {
-                    //Base64 = Convert.ToBase64String(File.ReadAllBytes(invoice.Path)),
+                    Base64 = Convert.ToBase64String(File.ReadAllBytes(EnvironmentsVariable.PathInvoices + invoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT)),
                     Invoice = new SubInvoiceBackUpModel()
                     {
                         FileID = invoice.FileID,
