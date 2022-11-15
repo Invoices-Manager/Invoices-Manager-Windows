@@ -15,8 +15,8 @@ It's simple, there are enough ways to filter your documents.
 
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one).  <br/>
-Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.1.4.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
-Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.1.4.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
+Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.0.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
+Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.0.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
 
 
 ## Features:
@@ -51,6 +51,19 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 
 # CHANGELOG
+
+## v1.2.0.0 (!!! VERSION 1.1.4.0 AND BELOW ARE NOT COMPATIBLE WITH VERSION 1.2.0.0 AND HIGHER !!!)
+- The config file now has a version (Later for the Program Updater(not yet implemented))
+- The Invoice Model (Input) has been extended to the following (for the later updates and functions):
+    -Tags
+    -Importance State
+    -Money State
+    -Paid State
+    -Money Total
+    -Capture Date
+- When a document is opened, it is started in the temp folder and not in the main directory (of course, they are deleted directly).
+- Your root directory is no longer statically bound to a path, it is now dynamic
+- You can now change your path (where the invoices are stored)
 
 ## v1.1.4.0
 - Add a Progress Bar when loading the data (Import & Export)
