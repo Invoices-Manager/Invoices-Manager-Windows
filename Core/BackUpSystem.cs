@@ -15,8 +15,18 @@ namespace InvoicesManager.Core
         
         public static void CheckBackUpCount()
         {
-          
+            //get all files in the backup folder
+            //the files are named by the date and time and the array is sorted by old to new
+            //that means the first file is the oldest and the last file is the newest
+            string[] files = Directory.GetFiles(EnvironmentsVariable.PathBackUps);
 
+            //if its zero or negativ => no files to delete
+            int hasToDeleteCounter = files.Length - EnvironmentsVariable.MaxCountBackUp;
+
+            if (hasToDeleteCounter > 0)
+                //delete the oldest files
+                for (int i = 0; i < hasToDeleteCounter; i++)
+                    try { File.Delete(files[i]); } catch { }
         }
 
         public static bool BackUp(string backupFilePath, MainWindow mainWindow)
