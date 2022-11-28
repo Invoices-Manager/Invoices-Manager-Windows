@@ -46,7 +46,7 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 # CHANGELOG
 
-## v1.2.0.2
+## v1.2.1.0
 - Auto Backup function added, at each program start a backup is made and stored in a user defined folder. (can be managed in the settings)
 - Auto Backup also has versions, so you can set that only MAX 10 versions of the backups can be exited, and the 11 will be deleted automatically. (can be managed in the settings) 
 
