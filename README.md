@@ -15,8 +15,8 @@ It's simple, there are enough ways to filter your documents.
 
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one).  <br/>
-Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.0.1/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
-Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.0.1/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
+Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.0.2/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
+Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.0.2/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
 
 
 ## Features:
@@ -38,7 +38,7 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 ![SaveAs-Screen](IMAGES/Version%201.1.3.1/InvoiceSaveAsScreen.png)
 
 ### Setting-Screen:                                         
-![Setting-Screen](IMAGES/Version%201.2.0.0/SettingScreen.png)
+![Setting-Screen](IMAGES/Version%201.2.0.2/SettingScreen.png)
 
 ### About-Screen:                                         
 ![About-Screen](IMAGES/Version%201.1.3.0/AboutScreen.png)
