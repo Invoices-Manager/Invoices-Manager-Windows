@@ -19,7 +19,8 @@ namespace InvoicesManager.Core
                 ConfigVersion = EnvironmentsVariable.PROGRAM_VERSION,
                 PathInvoice = EnvironmentsVariable.PathInvoices,
                 PathBackUp = EnvironmentsVariable.PathBackUps,
-                CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts
+                CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
+                MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp
             };
         
             if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
@@ -31,6 +32,7 @@ namespace InvoicesManager.Core
             EnvironmentsVariable.PathInvoices = config.PathInvoice;
             EnvironmentsVariable.PathBackUps = config.PathBackUp;
             EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = config.CreateABackupEveryTimeTheProgramStarts;
+            EnvironmentsVariable.MaxCountBackUp = config.MaxCountBackUp;
 
             Save();
         }
@@ -44,7 +46,8 @@ namespace InvoicesManager.Core
                 ConfigVersion = EnvironmentsVariable.PROGRAM_VERSION,
                 PathInvoice = EnvironmentsVariable.PathInvoices,
                 PathBackUp = EnvironmentsVariable.PathBackUps,
-                CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts
+                CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
+                MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp
             };
             
             File.WriteAllText( EnvironmentsVariable.ConfigJsonFileName, JsonConvert.SerializeObject(config));

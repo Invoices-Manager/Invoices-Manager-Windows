@@ -12,6 +12,13 @@ namespace InvoicesManager.Core
     {
         private static MainWindow _mainWindow;
 
+        
+        public static void CheckBackUpCount()
+        {
+          
+
+        }
+
         public static bool BackUp(string backupFilePath, MainWindow mainWindow)
         {
             //set the main window for the progress bar

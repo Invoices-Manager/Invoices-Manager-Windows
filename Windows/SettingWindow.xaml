@@ -37,6 +37,11 @@
                     </Grid>
                     <Separator Margin="25"/>
                     <Grid>
+                        <Label Content="{DynamicResource backupMaxCount}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
+                        <TextBox x:Name="Tb_MaxCountBackUp" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Right" Width="350" Margin="0,0,50,0" TextChanged="Tb_MaxCountBackUp_TextChanged"/>
+                    </Grid>
+                    <Separator Margin="25"/>
+                    <Grid>
                         <Label Content="{DynamicResource everyStartUpBackUp}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
                         <CheckBox x:Name="Cb_EveryStartUpBackUp" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Right" Width="250" Margin="0,0,0,0"/>
                     </Grid>

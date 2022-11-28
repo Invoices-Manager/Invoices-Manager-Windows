@@ -24,6 +24,7 @@ namespace InvoicesManager.Windows
             Tb_InvoicePath.Text = EnvironmentsVariable.PathInvoices;
             Tb_BackUpPath.Text = EnvironmentsVariable.PathBackUps;
             Cb_EveryStartUpBackUp.IsChecked = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts;
+            Tb_MaxCountBackUp.Text = EnvironmentsVariable.MaxCountBackUp.ToString();
         }
 
         private void Bttn_SaveSettings_Click(object sender, RoutedEventArgs e)
@@ -39,10 +40,33 @@ namespace InvoicesManager.Windows
             EnvironmentsVariable.PathInvoices = Tb_InvoicePath.Text;
             EnvironmentsVariable.PathBackUps = Tb_BackUpPath.Text;
             EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = Cb_EveryStartUpBackUp.IsChecked.Value;
+            EnvironmentsVariable.MaxCountBackUp = Convert.ToInt32(Tb_MaxCountBackUp.Text);
 
             EnvironmentsVariable.InitWorkPath();
             ConfigSystem.Save();
             LanguageManager.Init();
+        }
+
+        private void Tb_MaxCountBackUp_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            //check if its a number
+            //check if its not above int32 max value
+            //check if its not below 1
+            try
+            {
+                Convert.ToInt32(Tb_MaxCountBackUp.Text);
+
+              if (Convert.ToInt32(Tb_MaxCountBackUp.Text) < 1)
+                    Tb_MaxCountBackUp.Text = "1";
+            }
+            catch (System.OverflowException)
+            {
+                Tb_MaxCountBackUp.Text = Int32.MaxValue.ToString();
+            }
+            catch (System.FormatException)
+            {
+                Tb_MaxCountBackUp.Text = "1";
+            }
         }
     }
 }
