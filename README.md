@@ -46,6 +46,11 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 # CHANGELOG
 
+## v1.2.0.2
+- Auto Backup function added, at each program start a backup is made and stored in a user defined folder. (can be managed in the settings)
+- Auto Backup also has versions, so you can set that only MAX 10 versions of the backups can be exited, and the 11 will be deleted automatically. (can be managed in the settings) 
+
+
 ## v1.2.0.1 (HotFix for v1.2.0.0)
 - Edit and Delete did not update the states, this has been fixed.
 - When adding an invoice the date was cleared, this was also fixed
