@@ -46,6 +46,9 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 # CHANGELOG
 
+## v1.2.1.1 (HotFix for v1.2.1.0)
+- The autobackup stopped the whole program until it was finished (window did not show up) The tasks have now been moved to the other thread so that the program can start directly and does not have to wait
+
 ## v1.2.1.0
 - Auto Backup function added, at each program start a backup is made and stored in a user defined folder. (can be managed in the settings)
 - Auto Backup also has versions, so you can set that only MAX 10 versions of the backups can be exited, and the 11 will be deleted automatically. (can be managed in the settings) 
