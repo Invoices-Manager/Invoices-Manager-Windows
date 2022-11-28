@@ -46,9 +46,12 @@ namespace InvoicesManager
             InitializeComponent();
             //init threads
             InitThreads();
-            
+            //check for auto backup
+            if (EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts)
+                BackUpSystem.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"), this);
+
 #if DEBUG
-           // GenerateDebugDataRecords();
+            // GenerateDebugDataRecords();
             RefreshDataGridWithInit();
 #endif
         }

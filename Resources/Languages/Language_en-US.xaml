@@ -63,5 +63,7 @@
     <system:String x:Key="unpaid">unpaid</system:String>
     <system:String x:Key="noInvoice">no invoice</system:String>
     <system:String x:Key="invoicePath">invoice path</system:String>
+    <system:String x:Key="backupPath">backup path</system:String>
     <system:String x:Key="tagInfo">(seperate with =>   ;  )</system:String>
+    <system:String x:Key="everyStartUpBackUp">create a BackUp every program start?</system:String>
 </ResourceDictionary>

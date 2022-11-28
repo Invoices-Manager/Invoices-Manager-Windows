@@ -17,7 +17,9 @@ namespace InvoicesManager.Core
                 PathPDFBrowser = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
                 UILanguage = "English",
                 ConfigVersion = EnvironmentsVariable.PROGRAM_VERSION,
-                PathInvoice = EnvironmentsVariable.PathInvoices
+                PathInvoice = EnvironmentsVariable.PathInvoices,
+                PathBackUp = EnvironmentsVariable.PathBackUps,
+                CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts
             };
         
             if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
@@ -27,6 +29,8 @@ namespace InvoicesManager.Core
             EnvironmentsVariable.UILanguage = config.UILanguage;
             EnvironmentsVariable.ConfigVersion = config.ConfigVersion;
             EnvironmentsVariable.PathInvoices = config.PathInvoice;
+            EnvironmentsVariable.PathBackUps = config.PathBackUp;
+            EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = config.CreateABackupEveryTimeTheProgramStarts;
 
             Save();
         }
@@ -38,7 +42,9 @@ namespace InvoicesManager.Core
                 PathPDFBrowser = EnvironmentsVariable.PathPDFBrowser,
                 UILanguage = EnvironmentsVariable.UILanguage,
                 ConfigVersion = EnvironmentsVariable.PROGRAM_VERSION,
-                PathInvoice = EnvironmentsVariable.PathInvoices
+                PathInvoice = EnvironmentsVariable.PathInvoices,
+                PathBackUp = EnvironmentsVariable.PathBackUps,
+                CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts
             };
             
             File.WriteAllText( EnvironmentsVariable.ConfigJsonFileName, JsonConvert.SerializeObject(config));

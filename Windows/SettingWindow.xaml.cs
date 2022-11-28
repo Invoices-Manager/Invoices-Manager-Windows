@@ -22,6 +22,8 @@ namespace InvoicesManager.Windows
             Tb_PathProgram.Text = EnvironmentsVariable.PathPDFBrowser;
             Comb_UILanguage.Text = EnvironmentsVariable.UILanguage;
             Tb_InvoicePath.Text = EnvironmentsVariable.PathInvoices;
+            Tb_BackUpPath.Text = EnvironmentsVariable.PathBackUps;
+            Cb_EveryStartUpBackUp.IsChecked = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts;
         }
 
         private void Bttn_SaveSettings_Click(object sender, RoutedEventArgs e)
@@ -35,6 +37,8 @@ namespace InvoicesManager.Windows
             EnvironmentsVariable.PathPDFBrowser = Tb_PathProgram.Text;
             EnvironmentsVariable.UILanguage = Comb_UILanguage.Text;
             EnvironmentsVariable.PathInvoices = Tb_InvoicePath.Text;
+            EnvironmentsVariable.PathBackUps = Tb_BackUpPath.Text;
+            EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = Cb_EveryStartUpBackUp.IsChecked.Value;
 
             EnvironmentsVariable.InitWorkPath();
             ConfigSystem.Save();

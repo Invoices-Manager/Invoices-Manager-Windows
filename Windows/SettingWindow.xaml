@@ -14,23 +14,35 @@
         Loaded="Window_Loaded">
     <Grid Background="{DynamicResource GridBackground}">
         <Grid Margin="50,25,50,75">
-            <StackPanel>
-                <Grid>
-                    <Label Content="{DynamicResource uiLanguage}"  FontSize="20" Foreground="{DynamicResource FontForeground}" />
-                    <ComboBox x:Name="Comb_UILanguage" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="500" Margin="150,0,0,0"/>
-                </Grid>
-                <Separator Margin="25"/>
-                <Grid>
-                    <Label Content="{DynamicResource pdfProgram}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
-                    <TextBox x:Name="Tb_PathProgram" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="500" Margin="150,0,0,0"/>
-                </Grid>
-                <Separator Margin="25"/>
-                <Grid>
-                    <Label Content="{DynamicResource invoicePath}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
-                    <TextBox x:Name="Tb_InvoicePath" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="500" Margin="150,0,0,0"/>
-                </Grid>
-                <Separator Margin="25"/>
-            </StackPanel>
+            <ScrollViewer>
+                <StackPanel>
+                    <Grid>
+                        <Label Content="{DynamicResource uiLanguage}"  FontSize="20" Foreground="{DynamicResource FontForeground}" />
+                        <ComboBox x:Name="Comb_UILanguage" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="500" Margin="150,0,0,0"/>
+                    </Grid>
+                    <Separator Margin="25"/>
+                    <Grid>
+                        <Label Content="{DynamicResource pdfProgram}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
+                        <TextBox x:Name="Tb_PathProgram" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="500" Margin="150,0,0,0"/>
+                    </Grid>
+                    <Separator Margin="25"/>
+                    <Grid>
+                        <Label Content="{DynamicResource invoicePath}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
+                        <TextBox x:Name="Tb_InvoicePath" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="500" Margin="150,0,0,0"/>
+                    </Grid>
+                    <Separator Margin="25"/>
+                    <Grid>
+                        <Label Content="{DynamicResource backupPath}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
+                        <TextBox x:Name="Tb_BackUpPath" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="500" Margin="150,0,0,0"/>
+                    </Grid>
+                    <Separator Margin="25"/>
+                    <Grid>
+                        <Label Content="{DynamicResource everyStartUpBackUp}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
+                        <CheckBox x:Name="Cb_EveryStartUpBackUp" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Right" Width="250" Margin="0,0,0,0"/>
+                    </Grid>
+                    <Separator Margin="25"/>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
         <Button x:Name="Bttn_SaveSettings" Foreground="{DynamicResource FontForeground}" Content="{DynamicResource saveSettings}" FontSize="20" VerticalAlignment="Bottom"  HorizontalAlignment="Center" Margin="0,0,0,25" Click="Bttn_SaveSettings_Click"/>
     </Grid>
