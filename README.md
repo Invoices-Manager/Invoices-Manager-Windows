@@ -48,7 +48,7 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 ## Version structure (X.Y.Z.W)
 ### X = Major version
 ### Y = Minor version (big updates)
-### Z = Build version (small updates)
+### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
 
 ## v1.2.2.1
