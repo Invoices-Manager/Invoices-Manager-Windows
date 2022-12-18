@@ -45,10 +45,16 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 
 
 # CHANGELOG
+## Version structure (X.Y.Z.W)
+### X = Major version
+### Y = Minor version (big updates)
+### Z = Build version (small updates)
+### W = Revision version (bug fixes)
 
 ## v1.2.2.1
 - The invoice number can now also just be left blank (it is no longer a required field).
 - FIX: Program "crashed" (the backup task) during BackUp when refreshing the list. 
+- Dialogs have been added to settings so that you no longer have to awkwardly insert the path
 
 ## v1.2.1.1 (HotFix for v1.2.1.0)
 - The autobackup stopped the whole program until it was finished (window did not show up) The tasks have now been moved to the other thread so that the program can start directly and does not have to wait
