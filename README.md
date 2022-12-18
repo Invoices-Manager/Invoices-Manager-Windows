@@ -38,7 +38,7 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 ![SaveAs-Screen](IMAGES/Version%201.1.3.1/InvoiceSaveAsScreen.png)
 
 ### Setting-Screen:                                         
-![Setting-Screen](IMAGES/Version%201.2.1.0/SettingScreen.PNG) 
+![Setting-Screen](IMAGES/Version%201.2.2.1/SettingScreen.PNG) 
 
 ### About-Screen:                                         
 ![About-Screen](IMAGES/Version%201.1.3.0/AboutScreen.png)
