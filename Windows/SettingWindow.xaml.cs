@@ -2,6 +2,9 @@
 using InvoicesManager.Core;
 using System;
 using System.Windows;
+using System.Windows.Forms;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace InvoicesManager.Windows
 {
@@ -19,7 +22,7 @@ namespace InvoicesManager.Windows
             foreach (string uiL in EnvironmentsVariable.UILanguages)
                 Comb_UILanguage.Items.Add(uiL);
 
-            Tb_PathProgram.Text = EnvironmentsVariable.PathPDFBrowser;
+            Tb_PDFProgramPath.Text = EnvironmentsVariable.PathPDFBrowser;
             Comb_UILanguage.Text = EnvironmentsVariable.UILanguage;
             Tb_InvoicePath.Text = EnvironmentsVariable.PathInvoices;
             Tb_BackUpPath.Text = EnvironmentsVariable.PathBackUps;
@@ -29,13 +32,13 @@ namespace InvoicesManager.Windows
 
         private void Bttn_SaveSettings_Click(object sender, RoutedEventArgs e)
         {
-            if (Comb_UILanguage.SelectedIndex == -1 || String.IsNullOrWhiteSpace(Tb_PathProgram.Text))
+            if (Comb_UILanguage.SelectedIndex == -1 || String.IsNullOrWhiteSpace(Tb_PDFProgramPath.Text))
             {
                 MessageBox.Show(Application.Current.Resources["checkYouInput"] as string, Application.Current.Resources["error"] as string);
                 return;
             }
 
-            EnvironmentsVariable.PathPDFBrowser = Tb_PathProgram.Text;
+            EnvironmentsVariable.PathPDFBrowser = Tb_PDFProgramPath.Text;
             EnvironmentsVariable.UILanguage = Comb_UILanguage.Text;
             EnvironmentsVariable.PathInvoices = Tb_InvoicePath.Text;
             EnvironmentsVariable.PathBackUps = Tb_BackUpPath.Text;
@@ -67,6 +70,31 @@ namespace InvoicesManager.Windows
             {
                 Tb_MaxCountBackUp.Text = "1";
             }
+        }
+
+        private void Bttn_Select_BackUpPath_Click(object sender, RoutedEventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+
+            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                Tb_BackUpPath.Text = fbd.SelectedPath + "\\";
+        }
+
+        private void Bttn_Select_InvoicePath_Click(object sender, RoutedEventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+
+            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                Tb_InvoicePath.Text = fbd.SelectedPath + "\\";
+        }
+
+        private void Bttn_Select_PDFProgramPath_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog fd = new OpenFileDialog();
+            fd.Filter = "(*.exe)|*.exe";
+
+            if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                Tb_PDFProgramPath.Text = fd.FileName;
         }
     }
 }

@@ -26,19 +26,21 @@
 
 	<ItemGroup>
 		<None Remove="Resources\SmallIcon.png" />
+		<None Remove="Resources\folder100x100.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="Resources\LargeIcon.ico" />
+		<Content Include="Resources\LargeIcon.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\SmallIcon.png" />
+		<EmbeddedResource Include="Resources\folder100x100.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Resource Include="Resources\SmallIcon.png" />
-	</ItemGroup>
+		<Resource Include="Resources\folder100x100.png" />	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
