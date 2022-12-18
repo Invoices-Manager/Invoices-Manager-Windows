@@ -70,13 +70,9 @@ namespace InvoicesManager
             object value = key.GetValue("SystemUsesLightTheme");
             //set the theme
             if (Convert.ToInt32(value) == 0)
-            {
                 EnvironmentsVariable.REGSystemUsesLightTheme = 0;
-            }
             else
-            {
                 EnvironmentsVariable.REGSystemUsesLightTheme = 1;
-            }
         }
         
         private void GenerateDebugDataRecords()
