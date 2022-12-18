@@ -39,8 +39,11 @@ namespace InvoicesManager.Core
             
             bool WasPerformedCorrectly = false;
             BackUpModel backUp = new BackUpModel();
-            List<InvoiceModel> allInvoices = EnvironmentsVariable.allInvoices;
+            //copy the list without the refs, otherwise happens "Collection was changed; enumeration operation must not be executed."
+            List<InvoiceModel> allInvoices = new List<InvoiceModel>(EnvironmentsVariable.allInvoices);
             List<InvoiceBackUpModel> invoices = new List<InvoiceBackUpModel>();
+
+           
 
             //clear the progress bar
             _mainWindow.ClearInfoProgressBar();
