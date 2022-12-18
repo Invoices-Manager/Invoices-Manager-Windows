@@ -9,7 +9,7 @@
     <NoWin32Manifest>true</NoWin32Manifest>
     <UseWindowsForms>True</UseWindowsForms>
     <AssemblyVersion>1.2.2.0</AssemblyVersion>
-    <FileVersion>1.2.2.0</FileVersion>
+    <FileVersion>1.2.2.1</FileVersion>
     <Company>GermanNightmare</Company>
     <Authors>Schecher_1</Authors>
     <Configurations>Debug;Release</Configurations>

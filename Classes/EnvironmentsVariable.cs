@@ -18,7 +18,7 @@ namespace InvoicesManager.Classes
         public static string ConfigJsonFileName = "Config.json";
         public static string UILanguage = "English";
         public static string[] UILanguages = { "English", "German" };
-        public const string PROGRAM_VERSION = "1.2.2.1";
+        public const string PROGRAM_VERSION = "1.2.2.0";
         public static string ConfigVersion { get; set; }
         public const string PROGRAM_SUPPORTEDFORMAT = ".pdf";
         //0 = dark mode  | 1 = white mode

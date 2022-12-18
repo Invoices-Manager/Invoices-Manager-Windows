@@ -15,8 +15,8 @@ It's simple, there are enough ways to filter your documents.
 
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one).  <br/>
-Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.2.1/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
-Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.2.1/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
+Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.2.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
+Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/InvoicesManager-Vers-1.2.2.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
 
 
 ## Features:
@@ -38,7 +38,7 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 ![SaveAs-Screen](IMAGES/Version%201.1.3.1/InvoiceSaveAsScreen.png)
 
 ### Setting-Screen:                                         
-![Setting-Screen](IMAGES/Version%201.2.2.1/SettingScreen.png) 
+![Setting-Screen](IMAGES/Version%201.2.2.0/SettingScreen.png) 
 
 ### About-Screen:                                         
 ![About-Screen](IMAGES/Version%201.1.3.0/AboutScreen.png)
@@ -51,7 +51,7 @@ Or [press here](https://github.com/Schecher1/InvoicesManager/releases/download/I
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
 
-## v1.2.2.1
+## v1.2.2.0
 - The invoice number can now also just be left blank (it is no longer a required field).
 - FIX: Program "crashed" (the backup task) during BackUp when refreshing the list. 
 - Dialogs have been added to settings so that you no longer have to awkwardly insert the path
