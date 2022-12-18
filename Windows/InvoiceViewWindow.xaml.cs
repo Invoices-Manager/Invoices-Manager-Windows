@@ -120,7 +120,7 @@ namespace InvoicesManager.Windows
             Dp_ExhibitionDate.SelectedDate = invoice.ExhibitionDate;
             Tb_Organization.Text = invoice.Organization;
             Tb_DocumentType.Text = invoice.DocumentType;
-            Tb_InvoiceNumber.Text = invoice.InvoiceNumber;
+            Tb_InvoiceNumber.Text = invoice.InvoiceNumber == "" ? "" : invoice.InvoiceNumber;
             Tb_Reference.Text = invoice.Reference;
             Tb_MoneyTotal.Text = invoice.MoneyTotal == -1 ? "" : invoice.MoneyTotal.ToString();
             Tb_Tags.Text = String.Join(";", invoice.Tags);
@@ -134,8 +134,9 @@ namespace InvoicesManager.Windows
             
             if (String.IsNullOrWhiteSpace(Tb_Reference.Text))
                 return false;
-            if (String.IsNullOrWhiteSpace(Tb_InvoiceNumber.Text))
-                return false;
+            // Empty Tb_InvoiceNumber inputs are allowed 
+            //if (String.IsNullOrWhiteSpace(Tb_InvoiceNumber.Text))
+            //    return false;
             if (String.IsNullOrWhiteSpace(Tb_Organization.Text))
                 return false;
             if (String.IsNullOrWhiteSpace(Tb_DocumentType.Text))
