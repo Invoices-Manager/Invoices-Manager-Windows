@@ -11,7 +11,8 @@
         Height="550" Width="550"
         MinHeight="550" MinWidth="550"
         MaxHeight="550" MaxWidth="550"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded" 
+        Icon="/Resources/SmallIcon.png">
     
     <Grid Background="{DynamicResource GridBackground}">
         <Label 

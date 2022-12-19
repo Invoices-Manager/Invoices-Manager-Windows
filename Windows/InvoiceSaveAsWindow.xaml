@@ -10,7 +10,8 @@
         Title="Invoice Save As | Made by Schecher | https://github.com/Schecher1" 
         Height="600" Width="650"
         MinHeight="600" MinWidth="650"
-        MaxHeight="600" MaxWidth="650">
+        MaxHeight="600" MaxWidth="650"
+        Icon="/Resources/SmallIcon.png">
     <Grid Background="{DynamicResource GridBackground}">
         <Label Content="{DynamicResource whatShouldTheFileBeCalled}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" Margin="0,50,0,0" Foreground="{DynamicResource FontForeground}"/>
         <StackPanel Margin="50,100,50,165">
