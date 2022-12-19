@@ -4,6 +4,7 @@ using InvoicesManager.Core;
 using InvoicesManager.Models;
 using Microsoft.Win32;
 using System;
+using System.IO;
 using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -256,6 +257,13 @@ namespace InvoicesManager.Windows
 
             if (ofd.ShowDialog() == true)
             {
+                //check if the file is a pdf
+                if (Path.GetExtension(ofd.FileName).ToLower() != ".pdf")
+                {
+                    MessageBox.Show("Please select a pdf file", "Error", MessageBoxButton.OK);
+                    return;
+                }
+
                 filePath = ofd.FileName;
                 Tb_FilePath.Text = filePath;
             }
