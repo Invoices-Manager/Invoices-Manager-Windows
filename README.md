@@ -23,7 +23,9 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ✔️ Clean and modern UI<br/>
 ✔️ User friendly / beginner friendly<br/>
 ✔️ BackUp function<br/>
+✔️ Auto BackUp function<br/>
 ✔️ Many filter methods<br/>
+✔️ File database is optimal so that other programs can also use it<br/>
                                                                                                              
 
 ## Images:
