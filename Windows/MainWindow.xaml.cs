@@ -47,6 +47,8 @@ namespace InvoicesManager
             InitializeComponent();
             //init threads
             InitThreads();
+            //init notebooks
+            InitNotebooks();
             //check for auto backup
             if (EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts)
             {
@@ -62,7 +64,7 @@ namespace InvoicesManager
             RefreshDataGridWithInit();
 #endif
         }
-
+        
         private void InitWindowsTheme()
         {
             //read the registry key
@@ -110,6 +112,7 @@ namespace InvoicesManager
             Thread _initOrganizationsThread = new Thread(ThreadTaskInitOrganization);
             Thread _initDocumentType = new Thread(ThreadTaskInitDocumentType);
             Thread _refreshDataGridThread = new Thread(ThreadTaskRefreshDataGrid);
+            Thread _initNotebooks = new Thread(ThreadTaskInitNotebooks);
 
             _initInvoicesThread.Start();
             _initInvoicesThread.Join();
@@ -122,6 +125,9 @@ namespace InvoicesManager
 
             _refreshDataGridThread.Start();
             _refreshDataGridThread.Join();
+
+            _initNotebooks.Start();
+            _initNotebooks.Join();
         }
 
         private void InitInvoices()
@@ -150,6 +156,13 @@ namespace InvoicesManager
             Thread _refreshDataGridThread = new Thread(ThreadTaskRefreshDataGrid);
             _refreshDataGridThread.Priority = ThreadPriority.Normal;
             _refreshDataGridThread.Start();
+        }
+
+        private void InitNotebooks()
+        {
+            Thread _initNotebooks = new Thread(ThreadTaskInitNotebooks);
+            _initNotebooks.Priority = ThreadPriority.Normal;
+            _initNotebooks.Start();
         }
 
         private void RefreshDataGridWithInit()
@@ -186,7 +199,12 @@ namespace InvoicesManager
                     => { Comb_Search_DocumentType.Items.Add(documenttype); }));
         }
 
-        private void ThreadTaskRefreshDataGrid()
+        private void ThreadTaskInitNotebooks()
+        {
+            NotebookSystem.Init();
+        }
+
+            private void ThreadTaskRefreshDataGrid()
         {
             //sleep to wait for the init thread
             WaiterSystem.WaitUntilInvoiceInitFinish();

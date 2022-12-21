@@ -20,14 +20,14 @@ namespace InvoicesManager.Core
                 EnvironmentsVariable.Notebook = JsonConvert.DeserializeObject<NotebookModel>(json);
         }
 
-        public static void AddNotebook(NoteModel newNote)
+        public static void AddNote(NoteModel newNote)
         {
             EnvironmentsVariable.Notebook.Notebooks.Add(newNote);
 
             SaveIntoJsonFile();
         }
 
-        public static void EditNotebook(NoteModel oldNote, NoteModel newNote)
+        public static void EditNote(NoteModel oldNote, NoteModel newNote)
         {
             EnvironmentsVariable.Notebook.Notebooks.Remove(oldNote);
             EnvironmentsVariable.Notebook.Notebooks.Add(newNote);
@@ -35,7 +35,7 @@ namespace InvoicesManager.Core
             SaveIntoJsonFile();
         }
 
-        public static void RemoveNotebook(NoteModel oldNote)
+        public static void RemoveNote(NoteModel oldNote)
         {
             EnvironmentsVariable.Notebook.Notebooks.Remove(oldNote);
 

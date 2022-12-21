@@ -1,4 +1,5 @@
 ﻿using InvoicesManager.Classes;
+using InvoicesManager.Core;
 using InvoicesManager.Models;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace InvoicesManager.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            GenerateDebugNotebooks();
+           // GenerateDebugNotebooks();
             LoadNotebooks();
         }
 
@@ -49,13 +50,39 @@ namespace InvoicesManager.Windows
 
         private void LoadNotebooks()
         {
+            sP_NoteBooks.Items.Clear();
             foreach (NoteModel note in EnvironmentsVariable.Notebook.Notebooks)
                 sP_NoteBooks.Items.Add(note);
         }
         
         private void Bttn_LoadNote_Click(object sender, RoutedEventArgs e)
         {
-            Tb_Note.Text = ((NoteModel)((FrameworkElement)sender).DataContext).NotebookValue;
+            Tb_Note_Title.Text = ((NoteModel)((FrameworkElement)sender).DataContext).NotebookName;
+            Tb_Note_Value.Text = ((NoteModel)((FrameworkElement)sender).DataContext).NotebookValue;
+        }
+
+        private void Bttn_DeleteNote_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Bttn_SaveNote_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Bttn_CreateNote_Click(object sender, RoutedEventArgs e)
+        {
+            NoteModel note = new NoteModel()
+            {
+                NotebookName = $"Notebook {EnvironmentsVariable.Notebook.Notebooks.Count}",
+                NotebookValue = $"",
+                NotebookCreationDate = DateTime.Now,
+                NotebookLastEditDate = DateTime.Now
+            };
+
+            NotebookSystem.AddNote(note);
+            LoadNotebooks();
         }
     }
 }
