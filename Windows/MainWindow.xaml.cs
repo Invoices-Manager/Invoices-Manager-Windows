@@ -5,6 +5,7 @@ using InvoicesManager.Models;
 using InvoicesManager.Windows;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -97,10 +98,10 @@ namespace InvoicesManager
                 invoice.MoneyState = (MoneyStateEnum)r.Next(0, 2);
                 invoice.PaidState = (PaidStateEnum)r.Next(0, 2);
 
-                EnvironmentsVariable.allInvoices.Add(invoice);
+                EnvironmentsVariable.AllInvoices.Add(invoice);
             }
 
-            File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.allInvoices));
+            File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices));
         }
 
         private void InitThreads()
@@ -167,7 +168,7 @@ namespace InvoicesManager
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                      => { Comb_Search_Organization.Items.Clear(); }));
 
-                foreach (var organization in EnvironmentsVariable.allInvoices.Select(x => x.Organization).Distinct())
+                foreach (var organization in EnvironmentsVariable.AllInvoices.Select(x => x.Organization).Distinct())
                     Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                         => { Comb_Search_Organization.Items.Add(organization); }));
         }
@@ -180,7 +181,7 @@ namespace InvoicesManager
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                 => { Comb_Search_DocumentType.Items.Clear(); }));
 
-            foreach (var documenttype in EnvironmentsVariable.allInvoices.Select(x => x.DocumentType).Distinct())
+            foreach (var documenttype in EnvironmentsVariable.AllInvoices.Select(x => x.DocumentType).Distinct())
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                     => { Comb_Search_DocumentType.Items.Add(documenttype); }));
         }
@@ -190,14 +191,14 @@ namespace InvoicesManager
             //sleep to wait for the init thread
             WaiterSystem.WaitUntilInvoiceInitFinish();
 
-            SortSystem sortSys = new SortSystem(EnvironmentsVariable.allInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType , filterExhibitionDate);
+            SortSystem sortSys = new SortSystem(EnvironmentsVariable.AllInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType , filterExhibitionDate);
 
             sortSys.Sort();
 
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                 => { Dg_Invoices.Items.Clear(); }));
             
-            foreach (var invoice in EnvironmentsVariable.filteredInvoices)
+            foreach (var invoice in EnvironmentsVariable.FilteredInvoices)
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                     => { Dg_Invoices.Items.Add(invoice); }));
 
@@ -206,7 +207,7 @@ namespace InvoicesManager
             {
                 string wordInvoice = Application.Current.Resources["invoices"] as string;
                 var wordFrom = Application.Current.Resources["from"] as string;
-                MsgBox_InvoiceCounter.Content = $"{wordInvoice}:  {EnvironmentsVariable.filteredInvoices.Count} {wordFrom} {EnvironmentsVariable.allInvoices.Count}";
+                MsgBox_InvoiceCounter.Content = $"{wordInvoice}:  {EnvironmentsVariable.FilteredInvoices.Count} {wordFrom} {EnvironmentsVariable.AllInvoices.Count}";
             }));
         }
         
@@ -331,7 +332,14 @@ namespace InvoicesManager
             _aboutWindow.ShowDialog();
         }
 
-        
+        private void Bttn_OpenNotebook_Click(object sender, RoutedEventArgs e)
+        {
+            NotebookWindow _notebookWindow = new NotebookWindow();
+            _notebookWindow.Topmost = true;  
+            _notebookWindow.Show();
+        }
+
+
         private void Tb_Search_String_TextChanged(object sender, TextChangedEventArgs e)
         {
             filterReference = Tb_Search_String.Text == String.Empty ? String.Empty : Tb_Search_String.Text;
@@ -373,26 +381,38 @@ namespace InvoicesManager
 
         public void ClearInfoProgressBar()
         {
-            PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
+            try
             {
-                PB_InfoProgressBar.Value = 0;
-            }));
+                PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
+                {
+                    PB_InfoProgressBar.Value = 0;
+                }));
+            }
+            catch { }
         }
         
         public  void SetInfoProgressBarValue(int value)
         {
-            PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
+            try
             {
-                PB_InfoProgressBar.Value += value;
-            }));
+                PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
+                {
+                    PB_InfoProgressBar.Value += value;
+                }));
+            }
+            catch {}
         }
         
         public void SetInfoProgressMaxValue(int value)
         {
-            PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
+            try
             {
-                PB_InfoProgressBar.Maximum = value;
-             }));
+                PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
+                {
+                    PB_InfoProgressBar.Maximum = value;
+                }));
+            }
+            catch { }
         }
     }
 }

@@ -40,7 +40,7 @@ namespace InvoicesManager.Core
             bool WasPerformedCorrectly = false;
             BackUpModel backUp = new BackUpModel();
             //copy the list without the refs, otherwise happens "Collection was changed; enumeration operation must not be executed."
-            List<InvoiceModel> allInvoices = new List<InvoiceModel>(EnvironmentsVariable.allInvoices);
+            List<InvoiceModel> allInvoices = new List<InvoiceModel>(EnvironmentsVariable.AllInvoices);
             List<InvoiceBackUpModel> invoices = new List<InvoiceBackUpModel>();
 
            

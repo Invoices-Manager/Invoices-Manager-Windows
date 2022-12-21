@@ -7,9 +7,10 @@ namespace InvoicesManager.Classes
 {
     public class EnvironmentsVariable
     {
-        public static List<InvoiceModel> allInvoices = new List<InvoiceModel>();
-        public static List<InvoiceModel> filteredInvoices = new List<InvoiceModel>();
-        public static volatile bool isInvoiceInitFinish = false;
+        public static List<InvoiceModel> AllInvoices = new List<InvoiceModel>();
+        public static List<InvoiceModel> FilteredInvoices = new List<InvoiceModel>();
+        public static NotebookModel Notebook = new NotebookModel();
+        public static volatile bool IsInvoiceInitFinish = false;
         public static string PathPDFBrowser = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
         public static string PathInvoices = @$"{Environment.CurrentDirectory}\data\invoices\";
         public static string PathBackUps = @$"{Environment.CurrentDirectory}\data\backups\";

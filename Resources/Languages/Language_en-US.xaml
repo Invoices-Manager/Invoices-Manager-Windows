@@ -67,4 +67,5 @@
     <system:String x:Key="tagInfo">(seperate with =>   ;  )</system:String>
     <system:String x:Key="everyStartUpBackUp">create a BackUp every program start?</system:String>
     <system:String x:Key="backupMaxCount">maximum number of backups</system:String>
+    <system:String x:Key="openNotebook">open notebook</system:String>
 </ResourceDictionary>

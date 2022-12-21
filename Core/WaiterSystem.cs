@@ -7,7 +7,7 @@ namespace InvoicesManager.Core
     {
         public static void WaitUntilInvoiceInitFinish()
         {
-            while (!EnvironmentsVariable.isInvoiceInitFinish)
+            while (!EnvironmentsVariable.IsInvoiceInitFinish)
                 Thread.Sleep(500);
         }
     }

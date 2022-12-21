@@ -47,7 +47,7 @@ namespace InvoicesManager.Core
                 sortInvoices.Add(invoice);
             }
 
-            EnvironmentsVariable.filteredInvoices = sortInvoices;
+            EnvironmentsVariable.FilteredInvoices = sortInvoices;
         }
     }
 }

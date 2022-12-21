@@ -14,17 +14,17 @@ namespace InvoicesManager.Core
         public static void Init()
         {
             //set the flag to false
-            EnvironmentsVariable.isInvoiceInitFinish = false;
+            EnvironmentsVariable.IsInvoiceInitFinish = false;
 
-            EnvironmentsVariable.allInvoices.Clear();
+            EnvironmentsVariable.AllInvoices.Clear();
 
             string json = File.ReadAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName);
 
             if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
-                EnvironmentsVariable.allInvoices = JsonConvert.DeserializeObject<List<InvoiceModel>>(json);
+                EnvironmentsVariable.AllInvoices = JsonConvert.DeserializeObject<List<InvoiceModel>>(json);
 
             //set the flag to true
-            EnvironmentsVariable.isInvoiceInitFinish = true;
+            EnvironmentsVariable.IsInvoiceInitFinish = true;
         }
 
         public static void AddInvoice(InvoiceModel newInvoice, string filePath,  string newPath)
@@ -34,7 +34,7 @@ namespace InvoicesManager.Core
                 MessageBox.Show("Die Datei existiert schon im System!");
                 return;
             }
-            EnvironmentsVariable.allInvoices.Add(newInvoice);
+            EnvironmentsVariable.AllInvoices.Add(newInvoice);
             File.Copy(filePath, newPath);
 
             SaveIntoJsonFile();
@@ -48,8 +48,8 @@ namespace InvoicesManager.Core
                 return;
             }
             
-            EnvironmentsVariable.allInvoices.Remove(oldInvoice);
-            EnvironmentsVariable.allInvoices.Add(newInvoice);
+            EnvironmentsVariable.AllInvoices.Remove(oldInvoice);
+            EnvironmentsVariable.AllInvoices.Add(newInvoice);
 
             SaveIntoJsonFile();
         }
@@ -61,7 +61,7 @@ namespace InvoicesManager.Core
                 MessageBox.Show("Die Datei existiert nicht im System!");
                 return;
             }
-            EnvironmentsVariable.allInvoices.Remove(oldInvoice);
+            EnvironmentsVariable.AllInvoices.Remove(oldInvoice);
 
             File.Delete(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT);
 
@@ -78,7 +78,7 @@ namespace InvoicesManager.Core
             string hashID = HashManager.GetMD5HashFromFile(filePath);
             bool existAlready = false;
             
-            foreach (var invoice in EnvironmentsVariable.allInvoices)
+            foreach (var invoice in EnvironmentsVariable.AllInvoices)
             {
                 if (invoice.FileID.Equals(hashID))
                     existAlready = true;
@@ -89,7 +89,7 @@ namespace InvoicesManager.Core
 
         private static void SaveIntoJsonFile()
         {
-            File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.allInvoices));
+            File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices));
         }
     }
 }
