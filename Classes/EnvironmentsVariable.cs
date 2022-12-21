@@ -14,13 +14,15 @@ namespace InvoicesManager.Classes
         public static string PathPDFBrowser = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
         public static string PathInvoices = @$"{Environment.CurrentDirectory}\data\invoices\";
         public static string PathBackUps = @$"{Environment.CurrentDirectory}\data\backups\";
+        public static string PathNotebooks = @$"{Environment.CurrentDirectory}\data\";
         public static int MaxCountBackUp = 64;
         public static string InvoicesJsonFileName = "Invoices.json";
         public static string ConfigJsonFileName = "Config.json";
+        public static string NotebooksJsonFileName = "Notebook.json";
         public static string UILanguage = "English";
         public static string[] UILanguages = { "English", "German" };
         public const string PROGRAM_VERSION = "1.2.2.1";
-        public static string ConfigVersion { get; set; }
+        public static string ConfigVersion;
         public const string PROGRAM_SUPPORTEDFORMAT = ".pdf";
         //0 = dark mode  | 1 = white mode
         public static int REGSystemUsesLightTheme = 1;
@@ -34,6 +36,8 @@ namespace InvoicesManager.Classes
             Directory.CreateDirectory(EnvironmentsVariable.PathBackUps);
             if (!File.Exists(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName))
                 File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, "[]");
+            if (!File.Exists(EnvironmentsVariable.PathNotebooks + EnvironmentsVariable.NotebooksJsonFileName))
+                File.WriteAllText(EnvironmentsVariable.PathNotebooks + EnvironmentsVariable.NotebooksJsonFileName, "[]");
             if (!File.Exists(EnvironmentsVariable.ConfigJsonFileName))
                 File.WriteAllText(EnvironmentsVariable.ConfigJsonFileName, "[]");
         }
