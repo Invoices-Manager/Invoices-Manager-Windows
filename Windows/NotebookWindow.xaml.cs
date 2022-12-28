@@ -127,7 +127,7 @@ namespace InvoicesManager.Windows
             NoteModel note = new NoteModel()
             {
                 Id = Guid.NewGuid(),
-                Name = $"Notebook {EnvironmentsVariable.Notebook.Notebooks.Count}",
+                Name = $"Note {EnvironmentsVariable.Notebook.Notebooks.Count}",
                 Value = $"",
                 CreationDate = DateTime.Now,
                 LastEditDate = DateTime.Now
