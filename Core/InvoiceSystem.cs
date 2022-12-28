@@ -91,5 +91,65 @@ namespace InvoicesManager.Core
         {
             File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices, Formatting.Indented));
         }
+        
+        public static bool CheckIfInvoicesDataHasChanged(SubInvoiceBackUpModel backupInvoice)
+        {
+            bool hasChanged = false;
+            
+            //go through all invoices and check if the data has changed
+            foreach (var invoice in EnvironmentsVariable.AllInvoices)
+            {
+                //return in a loop is not a nice way to programming
+                //so i used this, i have to change it later to a WHILE loop (TODO)
+                if (hasChanged)
+                    continue;
+
+               if (invoice.Reference != backupInvoice.Reference)
+                    hasChanged = true;
+
+                if (invoice.DocumentType != backupInvoice.DocumentType)
+                    hasChanged = true;
+
+                if (invoice.Organization != backupInvoice.Organization)
+                    hasChanged = true;
+
+                if (invoice.InvoiceNumber != backupInvoice.InvoiceNumber)
+                    hasChanged = true;
+
+                if (invoice.Tags != backupInvoice.Tags)
+                    hasChanged = true;
+
+                if (invoice.ImportanceState != backupInvoice.ImportanceState)
+                    hasChanged = true;
+
+                if (invoice.MoneyState != backupInvoice.MoneyState)
+                    hasChanged = true;
+
+                if (invoice.PaidState != backupInvoice.PaidState)
+                    hasChanged = true;
+
+                if (invoice.MoneyTotal != backupInvoice.MoneyTotal)
+                    hasChanged = true;
+            }
+
+            return hasChanged;
+        }
+
+        public static void OverrideInvoice(SubInvoiceBackUpModel invoice, string path)
+        {
+            //find the invoice in the list
+            InvoiceModel invoiceToOverride = EnvironmentsVariable.AllInvoices.Find(x => x.FileID == invoice.FileID);
+
+            //edit the invoice (override)
+            invoiceToOverride.Reference = invoice.Reference;
+            invoiceToOverride.DocumentType = invoice.DocumentType;
+            invoiceToOverride.Organization = invoice.Organization;
+            invoiceToOverride.InvoiceNumber = invoice.InvoiceNumber;
+            invoiceToOverride.Tags = invoice.Tags;
+            invoiceToOverride.ImportanceState = invoice.ImportanceState;
+            invoiceToOverride.MoneyState = invoice.MoneyState;
+            invoiceToOverride.MoneyTotal = invoice.MoneyTotal;
+            invoiceToOverride.PaidState = invoice.PaidState;
+        }
     }
 }

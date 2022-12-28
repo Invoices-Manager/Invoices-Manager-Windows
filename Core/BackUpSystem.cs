@@ -117,6 +117,7 @@ namespace InvoicesManager.Core
 
             bool WasPerformedCorrectly = true;
             int alreadyExistCounter = 0;
+            int wasOverwrittenCounter = 0;
             List<string> allTempFiles = new List<string>();
             BackUpModel backUp = null;
 
@@ -179,9 +180,22 @@ namespace InvoicesManager.Core
 
                     if (InvoiceSystem.CheckIfInvoiceExist(path))
                     {
+                        //check if the invoices data has changed
+                        //=> if yes, then override the invoice count up and continue
+                        //=> if no, then do nothing (count up and continue)
+
+                        if (InvoiceSystem.CheckIfInvoicesDataHasChanged(invoice.Invoice))
+                        {
+                            InvoiceSystem.OverrideInvoice(invoice.Invoice, path);
+                            wasOverwrittenCounter++;
+                            continue;
+                        }
+
                         alreadyExistCounter++;
                         continue;
                     }
+
+                    
 
                     InvoiceModel tmpInvoice = new InvoiceModel()
                     {
@@ -215,8 +229,9 @@ namespace InvoicesManager.Core
             foreach (string file in allTempFiles)
                 try { File.Delete(file); } catch { }
 
-            MessageBox.Show($"{backUp.EntityCount - alreadyExistCounter} {Application.Current.Resources["invoicesWereRestored"] as string}" + Environment.NewLine +
+            MessageBox.Show($"{backUp.EntityCount - (alreadyExistCounter + wasOverwrittenCounter)} {Application.Current.Resources["invoicesWereRestored"] as string}" + Environment.NewLine +
                                           $"{alreadyExistCounter} {Application.Current.Resources["invoicesWereSkipped"] as string}" + Environment.NewLine +
+                                          $"{wasOverwrittenCounter} {Application.Current.Resources["invoicesWereOverwritten"] as string}" + Environment.NewLine +
                                           $"{Application.Current.Resources["fromTotal"] as string} {backUp.EntityCount} {Application.Current.Resources["invoices"] as string}",
                                           Application.Current.Resources["recoveryCompleted"] as string, MessageBoxButton.OK);
 

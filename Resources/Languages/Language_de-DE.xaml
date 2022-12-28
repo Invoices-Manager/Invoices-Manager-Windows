@@ -38,6 +38,7 @@
     <system:String x:Key="modernWpfExtension">Invoices Manager verwendet die ModernWpf-Erweiterung für die Benutzeroberfläche</system:String>
     <system:String x:Key="saveSettings">Einstellungen speichern</system:String>
     <system:String x:Key="invoicesWereRestored">Rechnungen wurden wiederhergestellt.</system:String>
+    <system:String x:Key="invoicesWereOverwritten">Rechnungen wurden überschrieben.</system:String>
     <system:String x:Key="invoicesWereSkipped">Rechnungen wurden übersprungen, weil sie bereits existieren.</system:String>
     <system:String x:Key="fromTotal">Vom Ingesammt</system:String>
     <system:String x:Key="recoveryCompleted">Wiederherstellung abgeschlossen</system:String>
