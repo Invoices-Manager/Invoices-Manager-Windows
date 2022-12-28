@@ -10,7 +10,12 @@ namespace InvoicesManager.Core
     {
         public static void Init()
         {
-            string json = File.ReadAllText(EnvironmentsVariable.ConfigJsonFileName);
+            string json = String.Empty;
+
+            if (!File.Exists(EnvironmentsVariable.ConfigJsonFileName))
+                json = "[]";
+            else
+                json = File.ReadAllText(EnvironmentsVariable.ConfigJsonFileName);
 
             ConfigModel config = new ConfigModel()
             {
