@@ -10,9 +10,10 @@ namespace InvoicesManager.Models
 
     public class NoteModel
     {
-        public string NotebookName { get; set; }
-        public string NotebookValue { get; set; }
-        public DateTime NotebookCreationDate { get; set; }
-        public DateTime NotebookLastEditDate { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Value { get; set; }
+        public DateTime CreationDate { get; set; }
+        public DateTime LastEditDate { get; set; }
     }
 }

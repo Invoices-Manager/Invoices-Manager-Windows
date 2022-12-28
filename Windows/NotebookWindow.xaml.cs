@@ -22,6 +22,8 @@ namespace InvoicesManager.Windows
             InitializeComponent();
         }
 
+        private NoteModel selectedNote;
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
            // GenerateDebugNotebooks();
@@ -36,10 +38,10 @@ namespace InvoicesManager.Windows
             {
                 NoteModel noteModel = new NoteModel()
                 {
-                    NotebookName = $"Notebook {i}",
-                    NotebookValue = $"Notebook {i} value",
-                    NotebookCreationDate = DateTime.Now - TimeSpan.FromDays(i),
-                    NotebookLastEditDate = DateTime.Now
+                    Name = $"Notebook {i}",
+                    Value = $"Notebook {i} value",
+                    CreationDate = DateTime.Now - TimeSpan.FromDays(i),
+                    LastEditDate = DateTime.Now
                 };
 
                 notebook.Notebooks.Add(noteModel);
@@ -57,28 +59,34 @@ namespace InvoicesManager.Windows
         
         private void Bttn_LoadNote_Click(object sender, RoutedEventArgs e)
         {
-            Tb_Note_Title.Text = ((NoteModel)((FrameworkElement)sender).DataContext).NotebookName;
-            Tb_Note_Value.Text = ((NoteModel)((FrameworkElement)sender).DataContext).NotebookValue;
+            Guid id = ((NoteModel)((FrameworkElement)sender).DataContext).Id;
+            selectedNote = EnvironmentsVariable.Notebook.Notebooks.Find(note => note.Id == id);
+
+            Tb_Note_Title.Text = selectedNote.Name;
+            Tb_Note_Value.Text = selectedNote.Value;
         }
 
         private void Bttn_DeleteNote_Click(object sender, RoutedEventArgs e)
         {
-
+            NotebookSystem.RemoveNote(selectedNote);
         }
 
         private void Bttn_SaveNote_Click(object sender, RoutedEventArgs e)
         {
-
+            selectedNote.Value = Tb_Note_Value.Text;
+            selectedNote.LastEditDate = DateTime.Now;
+            NotebookSystem.EditNote(selectedNote);
         }
 
         private void Bttn_CreateNote_Click(object sender, RoutedEventArgs e)
         {
             NoteModel note = new NoteModel()
             {
-                NotebookName = $"Notebook {EnvironmentsVariable.Notebook.Notebooks.Count}",
-                NotebookValue = $"",
-                NotebookCreationDate = DateTime.Now,
-                NotebookLastEditDate = DateTime.Now
+                Id = Guid.NewGuid(),
+                Name = $"Notebook {EnvironmentsVariable.Notebook.Notebooks.Count}",
+                Value = $"",
+                CreationDate = DateTime.Now,
+                LastEditDate = DateTime.Now
             };
 
             NotebookSystem.AddNote(note);

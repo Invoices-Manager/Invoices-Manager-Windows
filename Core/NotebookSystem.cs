@@ -27,10 +27,12 @@ namespace InvoicesManager.Core
             SaveIntoJsonFile();
         }
 
-        public static void EditNote(NoteModel oldNote, NoteModel newNote)
+        public static void EditNote(NoteModel editNote)
         {
-            EnvironmentsVariable.Notebook.Notebooks.Remove(oldNote);
-            EnvironmentsVariable.Notebook.Notebooks.Add(newNote);
+            NoteModel note = EnvironmentsVariable.Notebook.Notebooks.Find(x => x.Id == editNote.Id);
+            note.Name = editNote.Name;
+            note.Value = editNote.Value;
+            note.LastEditDate = DateTime.Now;
 
             SaveIntoJsonFile();
         }

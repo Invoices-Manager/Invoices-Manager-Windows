@@ -19,7 +19,7 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="15,15,15,10">
-                                    <Button Content="{Binding NotebookName}" 
+                                    <Button Content="{Binding Name}" 
                                             x:Name="Bttn_LoadNote"
                                            FontSize="20" 
                                            Width="250"
@@ -27,7 +27,7 @@
                                            Foreground="White" 
                                            HorizontalContentAlignment="Center" 
                                            VerticalContentAlignment="Center" 
-                                            Click="Bttn_LoadNote_Click"/>
+                                           Click="Bttn_LoadNote_Click"/>
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
