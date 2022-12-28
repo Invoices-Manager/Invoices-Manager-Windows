@@ -59,6 +59,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 
 ## v1.2.3.1 (HotFix for v1.2.3.0)
 - Message box added that warns you that the notebook is not included in the backup. (Pops Up when you click on the Backup button)
+- Program wont start, program needs earlier the conf file than it can be created
 
 ## v1.2.3.0
 - There is now a notebook available, the path can also be changed in the config (!!! The notebook is not included in BackUp !!!)
