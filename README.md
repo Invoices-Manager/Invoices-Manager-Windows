@@ -53,6 +53,9 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
 
+## v1.2.3.0
+- There are now notebooks, the path can also be changed in the config
+
 ## v1.2.2.1
 - Old icons replaced with the new ones that have been forgotten
 - Invoices limited to *.pdf files only (for now)
