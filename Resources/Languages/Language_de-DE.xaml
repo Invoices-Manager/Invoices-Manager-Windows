@@ -70,4 +70,5 @@
     <system:String x:Key="everyStartUpBackUp">Bei jedem Programmstart ein BackUp erstellen?</system:String>
     <system:String x:Key="backupMaxCount">maximale Sicherungsanzahl</system:String>
     <system:String x:Key="openNotebook">Notizbuch öffnen</system:String>
+    <system:String x:Key="fileDoNotExist">Die Datei existiert nicht im System! (404)</system:String>
 </ResourceDictionary>

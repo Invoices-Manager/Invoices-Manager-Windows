@@ -31,7 +31,7 @@ namespace InvoicesManager.Core
         {
             if (CheckIfInvoiceExist(filePath))
             {
-                MessageBox.Show("Die Datei existiert schon im System!");
+                MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
                 return;
             }
             EnvironmentsVariable.AllInvoices.Add(newInvoice);
@@ -44,7 +44,7 @@ namespace InvoicesManager.Core
         {
             if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
             {
-                MessageBox.Show("Die Datei existiert nicht im System!");
+                MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
                 return;
             }
             
@@ -58,7 +58,7 @@ namespace InvoicesManager.Core
         {
             if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
             {
-                MessageBox.Show("Die Datei existiert nicht im System!");
+                MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
                 return;
             }
             EnvironmentsVariable.AllInvoices.Remove(oldInvoice);
