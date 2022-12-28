@@ -21,6 +21,8 @@ namespace InvoicesManager.Windows
         {
            // GenerateDebugNotebooks();
             LoadNotebooks();
+            Bttn_SaveNote.IsEnabled = false;
+            Bttn_DeleteNote.IsEnabled = false;
         }
 
         private void GenerateDebugNotebooks()
@@ -48,6 +50,13 @@ namespace InvoicesManager.Windows
             sP_Notes.Items.Clear();
             foreach (NoteModel note in EnvironmentsVariable.Notebook.Notebooks)
                 sP_Notes.Items.Add(note);
+
+            ClearTbs();
+            
+            Bttn_SaveNote.IsEnabled = false;
+            Bttn_DeleteNote.IsEnabled = false;
+            correspondingButton = null;
+            selectedNote = null;
         }
         
         private void Bttn_LoadNote_Click(object sender, RoutedEventArgs e)
@@ -59,18 +68,53 @@ namespace InvoicesManager.Windows
 
             Tb_Note_Title.Text = selectedNote.Name;
             Tb_Note_Value.Text = selectedNote.Value;
+
+            if (correspondingButton != null)
+            {
+                Bttn_SaveNote.IsEnabled = true;
+                Bttn_DeleteNote.IsEnabled = true;
+            }
         }
 
         private void Bttn_DeleteNote_Click(object sender, RoutedEventArgs e)
         {
+            if (correspondingButton is null)
+                return;
+
+            correspondingButton = null;
             NotebookSystem.RemoveNote(selectedNote);
             Tb_Note_Title.Text = "";
             Tb_Note_Value.Text = "";
             LoadNotebooks();
+            CheckButtonsState();
+        }
+
+        private void CheckButtonsState()
+        {
+            if (EnvironmentsVariable.Notebook.Notebooks.Count == 0 || correspondingButton is null)
+            {
+                Bttn_SaveNote.IsEnabled = false;
+                Bttn_DeleteNote.IsEnabled = false;
+            }
+            else
+            {
+                Bttn_SaveNote.IsEnabled = true;
+                Bttn_DeleteNote.IsEnabled = true;
+            }
+
+        }
+
+        private void ClearTbs()
+        {
+            Tb_Note_Title.Text = "";
+            Tb_Note_Value.Text = "";
         }
 
         private void Bttn_SaveNote_Click(object sender, RoutedEventArgs e)
         {
+            if (correspondingButton is null)
+                return;
+
             correspondingButton.Content = Tb_Note_Title.Text;
             selectedNote.Name = Tb_Note_Title.Text;
             selectedNote.Value = Tb_Note_Value.Text;
