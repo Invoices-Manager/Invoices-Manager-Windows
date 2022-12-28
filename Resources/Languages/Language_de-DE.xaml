@@ -71,4 +71,5 @@
     <system:String x:Key="backupMaxCount">maximale Sicherungsanzahl</system:String>
     <system:String x:Key="openNotebook">Notizbuch öffnen</system:String>
     <system:String x:Key="fileDoNotExist">Die Datei existiert nicht im System! (404)</system:String>
+    <system:String x:Key="warningNotebookNotIncludedInBackUp">Sie erstellen ein BackUp, in dem das Notebook nicht enthalten ist! (Funktion wird eventuell später hinzugefügt)</system:String>
 </ResourceDictionary>

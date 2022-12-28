@@ -71,4 +71,5 @@
     <system:String x:Key="backupMaxCount">maximum number of backups</system:String>
     <system:String x:Key="openNotebook">open notebook</system:String>
     <system:String x:Key="fileDoNotExist">The file does not exist in the system! (404)</system:String>
+    <system:String x:Key="warningNotebookNotIncludedInBackUp">You make a BackUp where the notebook is not included! (function may be added later)</system:String>
 </ResourceDictionary>

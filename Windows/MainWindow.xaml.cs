@@ -300,6 +300,9 @@ namespace InvoicesManager
 
         private async void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
         {
+            //can be removed, if the backup also include the notebook
+            MessageBox.Show(Application.Current.Resources["warningNotebookNotIncludedInBackUp"] as string);
+
             SaveFileDialog sfg = new SaveFileDialog()
             {
                 Filter = "BackUp-Datei (*.bkup)|*.bkup",
