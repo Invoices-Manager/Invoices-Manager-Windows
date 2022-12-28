@@ -195,7 +195,6 @@ namespace InvoicesManager.Core
                         continue;
                     }
 
-                    
 
                     InvoiceModel tmpInvoice = new InvoiceModel()
                     {
