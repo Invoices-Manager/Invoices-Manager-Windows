@@ -53,7 +53,7 @@ namespace InvoicesManager.Core
                 MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp
             };
             
-            File.WriteAllText( EnvironmentsVariable.ConfigJsonFileName, JsonConvert.SerializeObject(config));
+            File.WriteAllText( EnvironmentsVariable.ConfigJsonFileName, JsonConvert.SerializeObject(config, Formatting.Indented));
         }
     }
 }

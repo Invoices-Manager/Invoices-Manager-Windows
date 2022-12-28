@@ -60,6 +60,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ## v1.2.3.0
 - There is now a notebook available, the path can also be changed in the config (!!! The notebook is not included in BackUp !!!)
 - If a BackUp will be restored, then it is NOW also looked whether the invoice data has changed, if so then he overwrites the "old" invoice!
+- Config file ist now human-readable
 
 ## v1.2.2.1
 - Old icons replaced with the new ones that have been forgotten
