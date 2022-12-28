@@ -5,7 +5,6 @@ using InvoicesManager.Models;
 using InvoicesManager.Windows;
 using Microsoft.Win32;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,9 +16,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
-using System.Xml.Linq;
-using Windows.UI;
-using Windows.UI.Xaml.Media;
 
 namespace InvoicesManager
 {

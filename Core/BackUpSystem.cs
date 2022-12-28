@@ -186,7 +186,7 @@ namespace InvoicesManager.Core
 
                         if (InvoiceSystem.CheckIfInvoicesDataHasChanged(invoice.Invoice))
                         {
-                            InvoiceSystem.OverrideInvoice(invoice.Invoice, path);
+                            InvoiceSystem.OverrideInvoice(invoice.Invoice);
                             wasOverwrittenCounter++;
                             continue;
                         }

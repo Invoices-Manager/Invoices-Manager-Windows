@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.Policy;
 using System.Windows;
 
 namespace InvoicesManager.Core
@@ -86,11 +85,6 @@ namespace InvoicesManager.Core
             
             return existAlready;
         }
-
-        private static void SaveIntoJsonFile()
-        {
-            File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices, Formatting.Indented));
-        }
         
         public static bool CheckIfInvoicesDataHasChanged(SubInvoiceBackUpModel backupInvoice)
         {
@@ -128,7 +122,7 @@ namespace InvoicesManager.Core
             return hasChanged;
         }
 
-        public static void OverrideInvoice(SubInvoiceBackUpModel invoice, string path)
+        public static void OverrideInvoice(SubInvoiceBackUpModel invoice)
         {
             //find the invoice in the list
             InvoiceModel invoiceToOverride = EnvironmentsVariable.AllInvoices.Find(x => x.FileID == invoice.FileID);
@@ -145,6 +139,12 @@ namespace InvoicesManager.Core
             invoiceToOverride.PaidState = invoice.PaidState;
 
             SaveIntoJsonFile();
+        }
+
+
+        private static void SaveIntoJsonFile()
+        {
+            File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices, Formatting.Indented));
         }
     }
 }
