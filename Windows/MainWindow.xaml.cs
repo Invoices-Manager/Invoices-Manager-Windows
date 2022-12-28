@@ -30,7 +30,7 @@ namespace InvoicesManager
         public MainWindow()
         {
 #if DEBUG
-            //try { File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName); } catch  {}
+           // try { File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName); } catch  {}
 #endif
             //scan windows theme and set the app theme
             InitWindowsTheme();
@@ -57,8 +57,8 @@ namespace InvoicesManager
             }
 
 #if DEBUG
-            // GenerateDebugDataRecords();
-            RefreshDataGridWithInit();
+             //GenerateDebugDataRecords();
+            //RefreshDataGridWithInit();
 #endif
         }
         
@@ -100,7 +100,7 @@ namespace InvoicesManager
                 EnvironmentsVariable.AllInvoices.Add(invoice);
             }
 
-            File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices));
+            //InvoiceSystem.SaveIntoJsonFile();
         }
 
         private void InitThreads()

@@ -15,14 +15,15 @@ It's simple, there are enough ways to filter your documents.
 
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one).  <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.2.2.1/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.2.2.1/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.2.3.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.2.3.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
 
 
 ## Features:
 ✔️ Clean and modern UI<br/>
 ✔️ User friendly / beginner friendly<br/>
 ✔️ BackUp function<br/>
+✔️ Built in notebook<br/>
 ✔️ Auto BackUp function<br/>
 ✔️ Many filter methods<br/>
 ✔️ File database is optimal so that other programs can also use it<br/>
@@ -30,7 +31,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 
 ## Images:
 ### Main-Screen:                                                  
-![Main-Screen](IMAGES/Version%201.1.3.0/MainScreen.png)
+![Main-Screen](IMAGES/Version%201.2.3.0/MainScreen.png)
 
 ### Invoice-View-Screen:                                           
 ![Invoice-View-Screen](IMAGES/Version%201.2.0.0/InvoiceViewScreen.png)
@@ -38,6 +39,9 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### SaveAs-Screen:
 -You can choose in which format the file should be saved (the name), or you can save it as you wish                   <br/>
 ![SaveAs-Screen](IMAGES/Version%201.1.3.1/InvoiceSaveAsScreen.png)
+
+### Notebook-Screen:                                         
+![Notescreen-Screen](IMAGES/Version%201.2.3.0/NotebookScreen.png) 
 
 ### Setting-Screen:                                         
 ![Setting-Screen](IMAGES/Version%201.2.2.0/SettingScreen.png) 
@@ -54,7 +58,8 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### W = Revision version (bug fixes)
 
 ## v1.2.3.0
-- There are now notebooks, the path can also be changed in the config
+- There is now a notebook available, the path can also be changed in the config (!!! The notebook is not included in BackUp !!!)
+- If a BackUp will be restored, then it is NOW also looked whether the invoice data has changed, if so then he overwrites the "old" invoice!
 
 ## v1.2.2.1
 - Old icons replaced with the new ones that have been forgotten
