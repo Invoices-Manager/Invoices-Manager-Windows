@@ -143,6 +143,8 @@ namespace InvoicesManager.Core
             invoiceToOverride.MoneyState = invoice.MoneyState;
             invoiceToOverride.MoneyTotal = invoice.MoneyTotal;
             invoiceToOverride.PaidState = invoice.PaidState;
+
+            SaveIntoJsonFile();
         }
     }
 }
