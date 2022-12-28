@@ -43,6 +43,16 @@
                     </Grid>
                     <Separator Margin="25"/>
                     <Grid>
+                        <Label Content="{DynamicResource notebookPath}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
+                        <TextBox x:Name="Tb_NotebookPath" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="450" Margin="150,0,0,0"/>
+                        <Button x:Name="Bttn_Select_NotebookPath" Width="50" Height="50" HorizontalAlignment="Right" Margin="0,0,35,0" Click="Bttn_Select_NotebookPath_Click">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/Resources/folder100x100.png"/>
+                            </Button.Background>
+                        </Button>
+                    </Grid>
+                    <Separator Margin="25"/>
+                    <Grid>
                         <Label Content="{DynamicResource backupPath}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
                         <TextBox x:Name="Tb_BackUpPath" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="450" Margin="150,0,0,0"/>
                         <Button x:Name="Bttn_Select_BackUpPath" Width="50" Height="50" HorizontalAlignment="Right" Margin="0,0,35,0" Click="Bttn_Select_BackUpPath_Click">

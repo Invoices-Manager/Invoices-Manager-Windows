@@ -18,6 +18,7 @@ namespace InvoicesManager.Core
                 UILanguage = "English",
                 ConfigVersion = EnvironmentsVariable.PROGRAM_VERSION,
                 PathInvoice = EnvironmentsVariable.PathInvoices,
+                PathNotebook = EnvironmentsVariable.PathNotebook,
                 PathBackUp = EnvironmentsVariable.PathBackUps,
                 CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
                 MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp
@@ -30,6 +31,7 @@ namespace InvoicesManager.Core
             EnvironmentsVariable.UILanguage = config.UILanguage;
             EnvironmentsVariable.ConfigVersion = config.ConfigVersion;
             EnvironmentsVariable.PathInvoices = config.PathInvoice;
+            EnvironmentsVariable.PathNotebook = config.PathNotebook;
             EnvironmentsVariable.PathBackUps = config.PathBackUp;
             EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = config.CreateABackupEveryTimeTheProgramStarts;
             EnvironmentsVariable.MaxCountBackUp = config.MaxCountBackUp;
@@ -45,6 +47,7 @@ namespace InvoicesManager.Core
                 UILanguage = EnvironmentsVariable.UILanguage,
                 ConfigVersion = EnvironmentsVariable.PROGRAM_VERSION,
                 PathInvoice = EnvironmentsVariable.PathInvoices,
+                PathNotebook = EnvironmentsVariable.PathNotebook,
                 PathBackUp = EnvironmentsVariable.PathBackUps,
                 CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
                 MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp

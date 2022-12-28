@@ -96,5 +96,10 @@ namespace InvoicesManager.Windows
             if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 Tb_PDFProgramPath.Text = fd.FileName;
         }
+
+        private void Bttn_Select_NotebookPath_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

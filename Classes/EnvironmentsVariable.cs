@@ -14,7 +14,7 @@ namespace InvoicesManager.Classes
         public static string PathPDFBrowser = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
         public static string PathInvoices = @$"{Environment.CurrentDirectory}\data\invoices\";
         public static string PathBackUps = @$"{Environment.CurrentDirectory}\data\backups\";
-        public static string PathNotebooks = @$"{Environment.CurrentDirectory}\data\";
+        public static string PathNotebook = @$"{Environment.CurrentDirectory}\data\";
         public static int MaxCountBackUp = 64;
         public static string InvoicesJsonFileName = "Invoices.json";
         public static string ConfigJsonFileName = "Config.json";
@@ -28,7 +28,6 @@ namespace InvoicesManager.Classes
         public static int REGSystemUsesLightTheme = 1;
         public static bool CreateABackupEveryTimeTheProgramStarts = true;
 
-
         public static void InitWorkPath()
         {
             //create/check the need folders and files
@@ -36,8 +35,8 @@ namespace InvoicesManager.Classes
             Directory.CreateDirectory(EnvironmentsVariable.PathBackUps);
             if (!File.Exists(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName))
                 File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, "[]");
-            if (!File.Exists(EnvironmentsVariable.PathNotebooks + EnvironmentsVariable.NotebooksJsonFileName))
-                File.WriteAllText(EnvironmentsVariable.PathNotebooks + EnvironmentsVariable.NotebooksJsonFileName, "[]");
+            if (!File.Exists(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName))
+                File.WriteAllText(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName, "[]");
             if (!File.Exists(EnvironmentsVariable.ConfigJsonFileName))
                 File.WriteAllText(EnvironmentsVariable.ConfigJsonFileName, "[]");
         }

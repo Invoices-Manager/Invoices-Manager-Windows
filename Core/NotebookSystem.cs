@@ -14,7 +14,7 @@ namespace InvoicesManager.Core
         {
             EnvironmentsVariable.Notebook.Notebooks.Clear();
 
-            string json = File.ReadAllText(EnvironmentsVariable.PathNotebooks + EnvironmentsVariable.NotebooksJsonFileName);
+            string json = File.ReadAllText(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName);
 
             if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
                 EnvironmentsVariable.Notebook = JsonConvert.DeserializeObject<NotebookModel>(json);
@@ -47,7 +47,7 @@ namespace InvoicesManager.Core
 
         private static void SaveIntoJsonFile()
         {
-            File.WriteAllText(EnvironmentsVariable.PathNotebooks + EnvironmentsVariable.NotebooksJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.Notebook, Formatting.Indented));
+            File.WriteAllText(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.Notebook, Formatting.Indented));
         }
     }
 }
