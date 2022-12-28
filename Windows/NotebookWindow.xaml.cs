@@ -3,6 +3,7 @@ using InvoicesManager.Core;
 using InvoicesManager.Models;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace InvoicesManager.Windows
 {
@@ -14,6 +15,7 @@ namespace InvoicesManager.Windows
         }
 
         private NoteModel selectedNote;
+        private Button correspondingButton;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -43,15 +45,17 @@ namespace InvoicesManager.Windows
 
         private void LoadNotebooks()
         {
-            sP_NoteBooks.Items.Clear();
+            sP_Notes.Items.Clear();
             foreach (NoteModel note in EnvironmentsVariable.Notebook.Notebooks)
-                sP_NoteBooks.Items.Add(note);
+                sP_Notes.Items.Add(note);
         }
         
         private void Bttn_LoadNote_Click(object sender, RoutedEventArgs e)
         {
             Guid id = ((NoteModel)((FrameworkElement)sender).DataContext).Id;
             selectedNote = EnvironmentsVariable.Notebook.Notebooks.Find(note => note.Id == id);
+            if (sender is Button)
+                correspondingButton = (Button)sender;
 
             Tb_Note_Title.Text = selectedNote.Name;
             Tb_Note_Value.Text = selectedNote.Value;
@@ -60,10 +64,15 @@ namespace InvoicesManager.Windows
         private void Bttn_DeleteNote_Click(object sender, RoutedEventArgs e)
         {
             NotebookSystem.RemoveNote(selectedNote);
+            Tb_Note_Title.Text = "";
+            Tb_Note_Value.Text = "";
+            LoadNotebooks();
         }
 
         private void Bttn_SaveNote_Click(object sender, RoutedEventArgs e)
         {
+            correspondingButton.Content = Tb_Note_Title.Text;
+            selectedNote.Name = Tb_Note_Title.Text;
             selectedNote.Value = Tb_Note_Value.Text;
             selectedNote.LastEditDate = DateTime.Now;
             NotebookSystem.EditNote(selectedNote);

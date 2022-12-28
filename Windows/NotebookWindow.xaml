@@ -15,7 +15,7 @@
         <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
             <ScrollViewer>
                 <StackPanel>
-                    <ItemsControl x:Name="sP_NoteBooks" >
+                    <ItemsControl x:Name="sP_Notes" >
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="15,15,15,10">
