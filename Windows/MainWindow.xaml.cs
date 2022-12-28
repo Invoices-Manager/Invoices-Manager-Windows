@@ -7,6 +7,7 @@ using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -181,7 +182,11 @@ namespace InvoicesManager
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                      => { Comb_Search_Organization.Items.Clear(); }));
 
-                foreach (var organization in EnvironmentsVariable.AllInvoices.Select(x => x.Organization).Distinct())
+            //it must be done, otherwise the exception will be thrown (
+            //System.InvalidOperationException: "Collection was modified; enumeration operation may not execute".)
+            List<InvoiceModel> allInvoices = new List<InvoiceModel>(EnvironmentsVariable.AllInvoices);
+
+            foreach (var organization in allInvoices.Select(x => x.Organization).Distinct())
                     Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                         => { Comb_Search_Organization.Items.Add(organization); }));
         }
