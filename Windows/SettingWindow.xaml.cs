@@ -25,6 +25,7 @@ namespace InvoicesManager.Windows
             Tb_PDFProgramPath.Text = EnvironmentsVariable.PathPDFBrowser;
             Comb_UILanguage.Text = EnvironmentsVariable.UILanguage;
             Tb_InvoicePath.Text = EnvironmentsVariable.PathInvoices;
+            Tb_NotebookPath.Text = EnvironmentsVariable.PathNotebook;
             Tb_BackUpPath.Text = EnvironmentsVariable.PathBackUps;
             Cb_EveryStartUpBackUp.IsChecked = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts;
             Tb_MaxCountBackUp.Text = EnvironmentsVariable.MaxCountBackUp.ToString();
@@ -41,6 +42,7 @@ namespace InvoicesManager.Windows
             EnvironmentsVariable.PathPDFBrowser = Tb_PDFProgramPath.Text;
             EnvironmentsVariable.UILanguage = Comb_UILanguage.Text;
             EnvironmentsVariable.PathInvoices = Tb_InvoicePath.Text;
+            EnvironmentsVariable.PathNotebook = Tb_NotebookPath.Text;
             EnvironmentsVariable.PathBackUps = Tb_BackUpPath.Text;
             EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = Cb_EveryStartUpBackUp.IsChecked.Value;
             EnvironmentsVariable.MaxCountBackUp = Convert.ToInt32(Tb_MaxCountBackUp.Text);
@@ -48,6 +50,7 @@ namespace InvoicesManager.Windows
             EnvironmentsVariable.InitWorkPath();
             ConfigSystem.Save();
             LanguageManager.Init();
+            NotebookSystem.Init();
         }
 
         private void Tb_MaxCountBackUp_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -99,7 +102,10 @@ namespace InvoicesManager.Windows
 
         private void Bttn_Select_NotebookPath_Click(object sender, RoutedEventArgs e)
         {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
 
+            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                Tb_NotebookPath.Text = fbd.SelectedPath + "\\";
         }
     }
 }

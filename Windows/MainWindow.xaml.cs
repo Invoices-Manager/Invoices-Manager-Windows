@@ -37,10 +37,10 @@ namespace InvoicesManager
 #endif
             //scan windows theme and set the app theme
             InitWindowsTheme();
+            //load the settings
+            ConfigSystem.Init();
             //init work path
             EnvironmentsVariable.InitWorkPath();
-            //load the settings
-            ConfigSystem.Init();            
             //load the window UI language
             LanguageManager.Init();
             //load the window 
