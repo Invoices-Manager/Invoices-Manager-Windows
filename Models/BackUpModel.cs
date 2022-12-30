@@ -1,5 +1,4 @@
-﻿using InvoicesManager.Classes.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace InvoicesManager.Models

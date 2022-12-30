@@ -5,9 +5,7 @@ namespace InvoicesManager.Windows
     public partial class AboutWindow : Window
     {
         public AboutWindow()
-        {
-            InitializeComponent();
-        }
+            => InitializeComponent();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
             => Msg_PVersion.Content = $"Version: {Classes.EnvironmentsVariable.PROGRAM_VERSION}";
