@@ -86,7 +86,7 @@ namespace InvoicesManager.Core
             return existAlready;
         }
         
-        public static bool CheckIfInvoicesDataHasChanged(SubInvoiceBackUpModel backupInvoice)
+        public static bool CheckIfInvoicesDataHasChanged(InvoiceModel backupInvoice)
         {
             bool hasChanged = false;
 
@@ -122,7 +122,7 @@ namespace InvoicesManager.Core
             return hasChanged;
         }
 
-        public static void OverrideInvoice(SubInvoiceBackUpModel invoice)
+        public static void OverrideInvoice(InvoiceModel invoice)
         {
             //find the invoice in the list
             InvoiceModel invoiceToOverride = EnvironmentsVariable.AllInvoices.Find(x => x.FileID == invoice.FileID);

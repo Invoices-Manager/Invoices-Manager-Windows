@@ -58,7 +58,7 @@ namespace InvoicesManager.Core
                 InvoiceBackUpModel tmpBackUp = new InvoiceBackUpModel()
                 {
                     Base64 = Convert.ToBase64String(File.ReadAllBytes(EnvironmentsVariable.PathInvoices + invoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT)),
-                    Invoice = new SubInvoiceBackUpModel()
+                    Invoice = new InvoiceModel()
                     {
                         FileID = invoice.FileID,
                         CaptureDate = invoice.CaptureDate,
@@ -164,29 +164,33 @@ namespace InvoicesManager.Core
 
             try
             {
-                foreach (InvoiceBackUpModel invoice in backUp.Invoices)
+                foreach (InvoiceBackUpModel backUpPacked in backUp.Invoices)
                 {
-                    byte[] bytes = Convert.FromBase64String(invoice.Base64);
-                    String hashCode = HashManager.GetMD5HashFromByteArray(bytes);
-                    string path = Path.Combine(Path.GetTempPath(), hashCode + ".pdf");
+                    //base64 to byte[] (file / invoice)
+                    byte[] bytes = Convert.FromBase64String(backUpPacked.Base64);
+                    //this md5 hashcode is the new file name
+                    string hashID = HashManager.GetMD5HashFromByteArray(bytes);
+                    //tempInvoicePath is the tempory path where the file will be saved and later deleted 
+                    string tempInvoicePath = Path.Combine(Path.GetTempPath(), hashID + ".pdf");
 
-                    File.WriteAllBytes(path, bytes);
+                    //create the file in the temp folder (will be deleted later)
+                    File.WriteAllBytes(tempInvoicePath, bytes);
 
-                    string hashID = HashManager.GetMD5HashFromFile(path);
+                    //create the new path for the invoice
                     string newPath = @$"{EnvironmentsVariable.PathInvoices}{hashID}.pdf";
 
                     //add the path, so we can delete it later (we know windows doesn't do it for us :))
-                    allTempFiles.Add(path);
+                    allTempFiles.Add(tempInvoicePath);
 
-                    if (InvoiceSystem.CheckIfInvoiceExist(path))
+                    if (InvoiceSystem.CheckIfInvoiceExist(tempInvoicePath))
                     {
                         //check if the invoices data has changed
                         //=> if yes, then override the invoice count up and continue
                         //=> if no, then do nothing (count up and continue)
 
-                        if (InvoiceSystem.CheckIfInvoicesDataHasChanged(invoice.Invoice))
+                        if (InvoiceSystem.CheckIfInvoicesDataHasChanged(backUpPacked.Invoice))
                         {
-                            InvoiceSystem.OverrideInvoice(invoice.Invoice);
+                            InvoiceSystem.OverrideInvoice(backUpPacked.Invoice);
                             wasOverwrittenCounter++;
                             continue;
                         }
@@ -195,24 +199,7 @@ namespace InvoicesManager.Core
                         continue;
                     }
 
-
-                    InvoiceModel tmpInvoice = new InvoiceModel()
-                    {
-                        FileID = invoice.Invoice.FileID,
-                        CaptureDate = invoice.Invoice.CaptureDate,
-                        ExhibitionDate = invoice.Invoice.ExhibitionDate,
-                        Reference = invoice.Invoice.Reference,
-                        DocumentType = invoice.Invoice.DocumentType,
-                        Organization = invoice.Invoice.Organization,
-                        InvoiceNumber = invoice.Invoice.InvoiceNumber,
-                        Tags = invoice.Invoice.Tags,
-                        ImportanceState = invoice.Invoice.ImportanceState,
-                        MoneyState = invoice.Invoice.MoneyState,
-                        PaidState = invoice.Invoice.PaidState,
-                        MoneyTotal = invoice.Invoice.MoneyTotal
-                    };
-
-                    InvoiceSystem.AddInvoice(tmpInvoice, path, newPath);
+                    InvoiceSystem.AddInvoice(backUpPacked.Invoice, tempInvoicePath, newPath);
                     _mainWindow.SetInfoProgressBarValue(1);
                 }
             }

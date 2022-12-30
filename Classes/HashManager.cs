@@ -15,7 +15,7 @@ namespace InvoicesManager.Classes
             }
         }
 
-        internal static string GetMD5HashFromByteArray(byte[] bytes)
+        public static string GetMD5HashFromByteArray(byte[] bytes)
         {
             using (var md5 = System.Security.Cryptography.MD5.Create())
             {
