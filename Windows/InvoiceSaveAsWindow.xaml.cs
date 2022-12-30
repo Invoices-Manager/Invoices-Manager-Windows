@@ -58,21 +58,23 @@ namespace InvoicesManager.Windows
                     break;
                 case "Rb_Custom":
                     Tb_CustomName.Visibility = Visibility.Visible;
-                    fileName = $"";
+                    fileName = $" ";
                     break;
             }
         }
 
         private void Bttn_SaveAs_Click(object sender, RoutedEventArgs e)
         {
-            if (fileName == string.Empty || Tb_CustomName.Text == string.Empty && Rb_Custom.IsChecked == true)
+            // fileName == empty & Tb_CustomName.Text != string.Empty&& Rb_Custom.IsChecked = true   => Custom name
+
+            if (fileName == string.Empty ||  String.IsNullOrWhiteSpace(Tb_CustomName.Text) && Rb_Custom.IsChecked == true)
             {
                 MessageBox.Show("Please select a file name version or write a custom name");
                 return;
             }
 
             if (Rb_Custom.IsChecked == true)
-                fileName = Tb_CustomName.Text;
+                fileName = Tb_CustomName.Text + ".pdf";
 
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             fbd.UseDescriptionForTitle = true;
