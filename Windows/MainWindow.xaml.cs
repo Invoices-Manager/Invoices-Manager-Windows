@@ -4,7 +4,6 @@ using InvoicesManager.Core;
 using InvoicesManager.Models;
 using InvoicesManager.Windows;
 using Microsoft.Win32;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

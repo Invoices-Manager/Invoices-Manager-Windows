@@ -152,7 +152,8 @@ namespace InvoicesManager.Windows
                 return false;
             if (Comb_PaidState.SelectedIndex == -1)
                 return false;
-            if (!double.TryParse(Tb_MoneyTotal.Text, out double moneyTotal) && !String.IsNullOrEmpty(Tb_MoneyTotal.Text))
+            //  out double moneyTotal == out _
+            if (!double.TryParse(Tb_MoneyTotal.Text, out _) && !String.IsNullOrEmpty(Tb_MoneyTotal.Text))
                 return false;
 
             return true;
