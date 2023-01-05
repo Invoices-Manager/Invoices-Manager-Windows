@@ -10,7 +10,7 @@ namespace InvoicesManager.Windows
 {
     public partial class MainWindow : Window
     {
-                InvoiceMainWindow invoiceMainWindow;
+        InvoiceMainWindow invoiceMainWindow;
         NotebookWindow notebookWindow;
         SettingWindow settingWindow;
         AboutWindow aboutWindow;
@@ -99,6 +99,11 @@ namespace InvoicesManager.Windows
             aboutWindow.Show();
             aboutWindow.WindowState = WindowState.Normal;
             aboutWindow.Focus();
+        }
+
+        private void Bttn_Open_BackUp_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

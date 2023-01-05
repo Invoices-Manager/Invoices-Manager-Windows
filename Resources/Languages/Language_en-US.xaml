@@ -76,4 +76,10 @@
     <system:String x:Key="openNotebook">open notebook</system:String>
     <system:String x:Key="fileDoNotExist">The file does not exist in the system! (404)</system:String>
     <system:String x:Key="warningNotebookNotIncludedInBackUp">You make a BackUp where the notebook is not included! (function may be added later)</system:String>
+    <system:String x:Key="Bttn_Dashboard">Dashboard</system:String>
+    <system:String x:Key="Bttn_InvoiceManager">Invoice Manager</system:String>
+    <system:String x:Key="Bttn_Notebook">Notebook</system:String>
+    <system:String x:Key="Bttn_BackUp">BackUp</system:String>
+    <system:String x:Key="Bttn_Settings">Settings</system:String>
+    <system:String x:Key="Bttn_About">About</system:String>
 </ResourceDictionary>

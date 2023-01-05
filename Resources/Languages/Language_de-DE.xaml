@@ -76,4 +76,10 @@
     <system:String x:Key="openNotebook">Notizbuch öffnen</system:String>
     <system:String x:Key="fileDoNotExist">Die Datei existiert nicht im System! (404)</system:String>
     <system:String x:Key="warningNotebookNotIncludedInBackUp">Sie erstellen ein BackUp, in dem das Notebook nicht enthalten ist! (Funktion wird eventuell später hinzugefügt)</system:String>
+    <system:String x:Key="Bttn_Dashboard">Dashboard</system:String>
+    <system:String x:Key="Bttn_InvoiceManager">Rechnungs Manager</system:String>
+    <system:String x:Key="Bttn_Notebook">Notizbuch</system:String>
+    <system:String x:Key="Bttn_BackUp">Sicherungen</system:String>
+    <system:String x:Key="Bttn_Settings">Einstellungen</system:String>
+    <system:String x:Key="Bttn_About">Über das Program</system:String>
 </ResourceDictionary>
