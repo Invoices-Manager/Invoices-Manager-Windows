@@ -43,8 +43,6 @@ namespace InvoicesManager.Core
             List<InvoiceModel> allInvoices = new List<InvoiceModel>(EnvironmentsVariable.AllInvoices);
             List<InvoiceBackUpModel> invoices = new List<InvoiceBackUpModel>();
 
-           
-
             //clear the progress bar
             _invoiceMainWindow.ClearInfoProgressBar();
 
@@ -88,6 +86,9 @@ namespace InvoicesManager.Core
             //link the invoices list to the backUp
             backUp.Invoices = invoices;
 
+            //link the notebook to the backUp
+            backUp.Notebook = EnvironmentsVariable.Notebook;
+
             //serialize the backup into the json object
             string json = JsonConvert.SerializeObject(backUp);
             _invoiceMainWindow.SetInfoProgressBarValue(1);
@@ -116,8 +117,10 @@ namespace InvoicesManager.Core
             _invoiceMainWindow = mainWindow;
 
             bool WasPerformedCorrectly = true;
-            int alreadyExistCounter = 0;
-            int wasOverwrittenCounter = 0;
+            int invoice_AlreadyExistCounter = 0;
+            int invoice_WasOverwrittenCounter = 0;
+            int note_AlreadyExistCounter = 0;
+            int note_WasOverwrittenCounter = 0;
             List<string> allTempFiles = new List<string>();
             BackUpModel backUp = null;
 
@@ -135,7 +138,7 @@ namespace InvoicesManager.Core
             _invoiceMainWindow.ClearInfoProgressBar();
 
             //set the progress bar max value 
-            _invoiceMainWindow.SetInfoProgressMaxValue(backUp.EntityCount);
+            _invoiceMainWindow.SetInfoProgressMaxValue(backUp.EntityCount + backUp.Notebook.Notebooks.Count);
 
             //check if the backup is valid
             if (!WasPerformedCorrectly)
@@ -146,7 +149,7 @@ namespace InvoicesManager.Core
                 return false;
 
             //check if the file is empty
-            if (backUp.EntityCount == 0)
+            if (backUp.EntityCount == 0 && backUp.Notebook.Notebooks.Count == 0)
             {
                 MessageBox.Show("The backup is empty!", "Error", MessageBoxButton.OK);
                 return false;
@@ -156,14 +159,16 @@ namespace InvoicesManager.Core
             if (backUp.Invoices == null)
                 return false;
 
-            //go through all sub models, 
-            //then decode the file from the 64base
-            //check if the file exists and if not create it
-            //then create the invoice
-            //and finally add it to the system
-
             try
             {
+                //restore the invoices
+
+                //go through all sub models, 
+                //then decode the file from the 64base
+                //check if the file exists and if not create it
+                //then create the invoice
+                //and finally add it to the system
+                
                 foreach (InvoiceBackUpModel backUpPacked in backUp.Invoices)
                 {
                     //base64 to byte[] (file / invoice)
@@ -191,11 +196,11 @@ namespace InvoicesManager.Core
                         if (InvoiceSystem.CheckIfInvoicesDataHasChanged(backUpPacked.Invoice))
                         {
                             InvoiceSystem.OverrideInvoice(backUpPacked.Invoice);
-                            wasOverwrittenCounter++;
+                            invoice_WasOverwrittenCounter++;
                             continue;
                         }
 
-                        alreadyExistCounter++;
+                        invoice_AlreadyExistCounter++;
                         continue;
                     }
 
@@ -208,6 +213,42 @@ namespace InvoicesManager.Core
                 WasPerformedCorrectly = false;
             }
 
+            
+            try
+            {
+                //restore the notebook
+
+                //go through all note models, 
+                //check if the note exists and if not add it else do nothing
+                //check if the note that exist whether note is changed and if yes override it else do nothing
+                //and finally add it to the system
+                foreach (NoteModel note in backUp.Notebook.Notebooks)
+                {
+                    _invoiceMainWindow.SetInfoProgressBarValue(1);
+                    
+                    if (!NotebookSystem.CheckIfNoteExist(note))
+                    {
+                        NotebookSystem.AddNote(note);
+                        continue;
+                    }
+                    
+                    if (NotebookSystem.CheckIfNoteHasChanged(note))
+                    {
+                        //override == edit
+                        NotebookSystem.EditNote(note);
+                        note_WasOverwrittenCounter++;
+                        continue;
+                    }
+
+                    note_AlreadyExistCounter++;
+                }
+            }
+            catch
+            {
+                WasPerformedCorrectly = false;
+            }
+
+            
             //clear the progress bar
             _invoiceMainWindow.ClearInfoProgressBar();
 
@@ -215,10 +256,15 @@ namespace InvoicesManager.Core
             foreach (string file in allTempFiles)
                 try { File.Delete(file); } catch { }
 
-            MessageBox.Show($"{backUp.EntityCount - (alreadyExistCounter + wasOverwrittenCounter)} {Application.Current.Resources["invoicesWereRestored"] as string}" + Environment.NewLine +
-                                          $"{alreadyExistCounter} {Application.Current.Resources["invoicesWereSkipped"] as string}" + Environment.NewLine +
-                                          $"{wasOverwrittenCounter} {Application.Current.Resources["invoicesWereOverwritten"] as string}" + Environment.NewLine +
-                                          $"{Application.Current.Resources["fromTotal"] as string} {backUp.EntityCount} {Application.Current.Resources["invoices"] as string}",
+            MessageBox.Show($"{backUp.EntityCount - (invoice_AlreadyExistCounter + invoice_WasOverwrittenCounter)} {Application.Current.Resources["invoicesWereRestored"] as string}" + Environment.NewLine +
+                                          $"{invoice_AlreadyExistCounter} {Application.Current.Resources["invoicesWereSkipped"] as string}" + Environment.NewLine +
+                                          $"{invoice_WasOverwrittenCounter} {Application.Current.Resources["invoicesWereOverwritten"] as string}" + Environment.NewLine +
+                                          $"{Application.Current.Resources["fromTotal"] as string} {backUp.EntityCount} {Application.Current.Resources["invoices"] as string}" + Environment.NewLine + 
+                                          Environment.NewLine +
+                                          $"{backUp.Notebook.Notebooks.Count - (note_AlreadyExistCounter + note_WasOverwrittenCounter)} {Application.Current.Resources["notesWereRestored"] as string}" + Environment.NewLine +
+                                          $"{note_AlreadyExistCounter} {Application.Current.Resources["notesWereSkipped"] as string}" + Environment.NewLine +
+                                          $"{note_WasOverwrittenCounter} {Application.Current.Resources["notesWereOverwritten"] as string}" + Environment.NewLine +
+                                          $"{Application.Current.Resources["fromTotal"] as string} {backUp.Notebook.Notebooks.Count} {Application.Current.Resources["notes"] as string}",
                                           Application.Current.Resources["recoveryCompleted"] as string, MessageBoxButton.OK);
 
             return WasPerformedCorrectly;

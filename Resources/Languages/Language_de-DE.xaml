@@ -40,7 +40,11 @@
     <system:String x:Key="invoicesWereRestored">Rechnungen wurden wiederhergestellt.</system:String>
     <system:String x:Key="invoicesWereOverwritten">Rechnungen wurden überschrieben.</system:String>
     <system:String x:Key="invoicesWereSkipped">Rechnungen wurden übersprungen, weil sie bereits existieren.</system:String>
-    <system:String x:Key="fromTotal">Vom Ingesammt</system:String>
+    <system:String x:Key="notesWereRestored">Notizen wurden wiederhergestellt.</system:String>
+    <system:String x:Key="notesWereOverwritten">Notizen wurden überschrieben.</system:String>
+    <system:String x:Key="notesWereSkipped">Notizen wurden übersprungen, weil sie bereits existieren.</system:String>
+    <system:String x:Key="notes">Notizen</system:String>
+    <system:String x:Key="fromTotal">Von ingesammt</system:String>
     <system:String x:Key="recoveryCompleted">Wiederherstellung abgeschlossen</system:String>
     <system:String x:Key="backUpFailedRestored">BackUp konnte nicht wiederhergestellt werden (Die Datei ist möglicherweise beschädigt)</system:String>
     <system:String x:Key="backUpSuccessfully">BackUp erfolgreich erstellt</system:String>

@@ -40,6 +40,10 @@
     <system:String x:Key="invoicesWereRestored">invoices were restored.</system:String>
     <system:String x:Key="invoicesWereOverwritten">invoices were overwritten.</system:String>
     <system:String x:Key="invoicesWereSkipped">invoices were skipped because they already exist.</system:String>
+    <system:String x:Key="notesWereRestored">notes were restored.</system:String>
+    <system:String x:Key="notesWereOverwritten">notes were overwritten.</system:String>
+    <system:String x:Key="notesWereSkipped">notes were skipped because they already exist.</system:String>
+    <system:String x:Key="notes">notes</system:String>
     <system:String x:Key="fromTotal">From total</system:String>
     <system:String x:Key="recoveryCompleted">Recovery completed</system:String>
     <system:String x:Key="backUpFailedRestored">BackUp could not be restored (The file may be corrupted)</system:String>

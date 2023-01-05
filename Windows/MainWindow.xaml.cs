@@ -1,18 +1,48 @@
 ﻿using InvoicesManager.Classes;
+using InvoicesManager.Core;
+using Microsoft.Win32;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace InvoicesManager.Windows
 {
     public partial class MainWindow : Window
     {
-        public MainWindow()
-            => InitializeComponent();
-
-        InvoiceMainWindow invoiceMainWindow;
+                InvoiceMainWindow invoiceMainWindow;
         NotebookWindow notebookWindow;
         SettingWindow settingWindow;
         AboutWindow aboutWindow;
+        
+        public MainWindow()
+        {
+            InitializeComponent();
+            //scan windows theme and set the app theme
+            InitWindowsTheme();
+            //load the settings
+            ConfigSystem.Init();
+            //init work path
+            EnvironmentsVariable.InitWorkPath();
+            //load the window UI language
+            LanguageManager.Init();
+            //init notebooks
+            NotebookSystem.Init();
+        }
 
+        private void InitWindowsTheme()
+        {
+            //read the registry key
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
+            //get the value
+            object value = key.GetValue("SystemUsesLightTheme");
+            //set the theme
+            if (Convert.ToInt32(value) == 0)
+                EnvironmentsVariable.REGSystemUsesLightTheme = 0;
+            else
+                EnvironmentsVariable.REGSystemUsesLightTheme = 1;
+        }
+        
         private void Bttn_Open_Dashboard_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Will be added in a future version!");

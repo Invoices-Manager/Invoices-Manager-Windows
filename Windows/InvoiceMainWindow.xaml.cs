@@ -33,24 +33,14 @@ namespace InvoicesManager
 #if DEBUG
            // try { File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName); } catch  {}
 #endif
-            //scan windows theme and set the app theme
-            InitWindowsTheme();
-            //load the settings
-            ConfigSystem.Init();
-            //init work path
-            EnvironmentsVariable.InitWorkPath();
-            //load the window UI language
-            LanguageManager.Init();
             //load the window 
             InitializeComponent();
             //init threads
             InitThreads();
-            //init notebooks
-            InitNotebooks();
             //check for auto backup
             if (EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts)
             {
-                Task.Run(() => 
+                Task.Run(() =>
                 {
                     BackUpSystem.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"), this);
                     BackUpSystem.CheckBackUpCount();
