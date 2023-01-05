@@ -14,7 +14,7 @@
     <Grid Background="{DynamicResource GridBackground}">
         <ScrollViewer>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="Bttn_Open_Dashboard" Content="Dashboard" FontSize="35" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_Open_Dashboard_Click"/>
+                <Button ToolTip="Will be added in a future version!" x:Name="Bttn_Open_Dashboard" Content="Dashboard" FontSize="35" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_Open_Dashboard_Click"/>
                 <Button x:Name="Bttn_Open_Invoices" Content="Invoices-Manager" FontSize="35" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_Open_Invoices_Click"/>
                 <Button x:Name="Bttn_Open_Notebook" Content="Notebook" FontSize="35" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_Open_Notebook_Click"/>
                 <Button x:Name="Bttn_Open_Setting" Content="Setting" FontSize="35" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_Open_Setting_Click"/>

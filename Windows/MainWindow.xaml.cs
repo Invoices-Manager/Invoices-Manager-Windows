@@ -15,6 +15,7 @@ namespace InvoicesManager.Windows
 
         private void Bttn_Open_Dashboard_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Will be added in a future version!");
             return;
         }
         
