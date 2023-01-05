@@ -6,6 +6,7 @@ using InvoicesManager.Windows;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -234,10 +236,29 @@ namespace InvoicesManager
         
         private void DG_Invoices_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            //happens sometimes, therefore this catch
             if (Dg_Invoices.SelectedItem == null)
                 return;
 
-            InvoiceModel invoice = (InvoiceModel)Dg_Invoices.SelectedItem;
+            var cellInfo = Dg_Invoices.CurrentCell;
+            var column = cellInfo.Column as DataGridBoundColumn;
+
+            //if the colum is null (for whatever reason) then:
+            //you clicked on a "open" hyperlink colum (it will be open the file)
+            //      else
+            //you copy the column value into you Clipboard
+            if (column != null)
+            {
+                var element = new FrameworkElement() { DataContext = cellInfo.Item };
+                BindingOperations.SetBinding(element, TagProperty, column.Binding);
+                var cellValue = element.Tag;
+                Clipboard.SetText(cellValue.ToString());
+
+                //must, otherwise you save it in your clipboard and open the file
+                return;
+            }
+
+            InvoiceModel invoice = Dg_Invoices.SelectedItem as InvoiceModel;
 
             //copy file to temp folder and open it then delete it
             string tempPath = Path.Combine(Path.GetTempPath(), invoice.FileID + ".pdf");

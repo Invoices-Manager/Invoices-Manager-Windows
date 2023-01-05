@@ -87,7 +87,7 @@
                           IsReadOnly="True"
                           MouseDoubleClick="DG_Invoices_MouseDoubleClick">
                     <DataGrid.Columns>
-                        <DataGridHyperlinkColumn Header="{DynamicResource open}"  Binding="{Binding OpenInvoiceText}"/>
+                        <DataGridHyperlinkColumn  Header="{DynamicResource open}"  Binding="{Binding OpenInvoiceText}"/>
                         <DataGridTextColumn Header="{DynamicResource dateOfExhibition}"  Binding="{Binding StringExhibitionDate}"/>
                         <DataGridTextColumn Header="{DynamicResource organization}"  Binding="{Binding Organization}"/>
                         <DataGridTextColumn Header="{DynamicResource documentType}"  Binding="{Binding DocumentType}"/>
