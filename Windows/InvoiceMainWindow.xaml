@@ -28,10 +28,11 @@
                 <Button x:Name="Bttn_InvoiceRemove"  Content="{DynamicResource removeInvoice}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_InvoiceRemove_Click"/>
                 <Button x:Name="Bttn_InvoiceSaveAs"  Content="{DynamicResource saveInvoiceAs}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_InvoiceSaveAs_Click"/>
                 <Separator Margin="10,0,10,0"/>
+                <!-- 
                 <Button x:Name="Bttn_BackUpCreate" Content="{DynamicResource createBackUp}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_BackUpCreate_Click"/>
                 <Button x:Name="Bttn_BackUpRestore"  Content="{DynamicResource importBackUp}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_BackUpRestore_Click"/>
                 <Separator Margin="10,0,10,0"/>
-                <!-- 
+
                 <Button x:Name="Bttn_Settings" Content="{DynamicResource settings}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_Settings_Click"/>
                 <Separator Margin="10,0,10,0"/>              
                 <Button x:Name="Bttn_About" Content="{DynamicResource about}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_About_Click"/>

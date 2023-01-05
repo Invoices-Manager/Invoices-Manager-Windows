@@ -311,48 +311,6 @@ namespace InvoicesManager
             _invoiceSaveAsWindow.ShowDialog();
         }
 
-        private async void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
-        {
-            //can be removed, if the backup also include the notebook
-            MessageBox.Show(Application.Current.Resources["warningNotebookNotIncludedInBackUp"] as string);
-
-            SaveFileDialog sfg = new SaveFileDialog()
-            {
-                Filter = "BackUp-Datei (*.bkup)|*.bkup",
-                RestoreDirectory = true
-            };
-
-            if (sfg.ShowDialog() == true)
-            {
-                await Task.Run(() =>
-                {
-                    if (BackUpSystem.BackUp(sfg.FileName, this))
-                        MessageBox.Show(Application.Current.Resources["backUpSuccessfully"] as string);
-                    else
-                        MessageBox.Show(Application.Current.Resources["backUpFailed"] as string);
-                });
-            }
-        }
-
-        private async void Bttn_BackUpRestore_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog()
-            {
-                Filter = "BackUp-Datei (*.bkup)|*.bkup"
-            };
-
-            if (ofd.ShowDialog() == true)
-            {
-                await Task.Run(() =>
-                {
-                    if (!BackUpSystem.Restore(ofd.FileName, this))
-                        MessageBox.Show(this.Resources["backUpFailedRestored"] as string);
-
-                    RefreshDataGridWithInit();
-                });
-            }
-        }
-
         private void Bttn_Settings_Click(object sender, RoutedEventArgs e)
         {
             SettingWindow _settingWindow = new SettingWindow();

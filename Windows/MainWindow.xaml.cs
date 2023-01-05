@@ -14,7 +14,8 @@ namespace InvoicesManager.Windows
         NotebookWindow notebookWindow;
         SettingWindow settingWindow;
         AboutWindow aboutWindow;
-        
+        BackUpWindow backUpWindow;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -75,6 +76,19 @@ namespace InvoicesManager.Windows
             notebookWindow.Focus();
         }
         
+        private void Bttn_Open_BackUp_Click(object sender, RoutedEventArgs e)
+        {
+            if (EnvironmentsVariable.Window_BackUp_IsClosed)
+            {
+                backUpWindow = new BackUpWindow();
+                EnvironmentsVariable.Window_BackUp_IsClosed = false;
+            }
+
+            backUpWindow.Show();
+            backUpWindow.WindowState = WindowState.Normal;
+            backUpWindow.Focus();
+        }
+
         private void Bttn_Open_Setting_Click(object sender, RoutedEventArgs e)
         {
             if (EnvironmentsVariable.Window_Setting_IsClosed)
@@ -99,11 +113,6 @@ namespace InvoicesManager.Windows
             aboutWindow.Show();
             aboutWindow.WindowState = WindowState.Normal;
             aboutWindow.Focus();
-        }
-
-        private void Bttn_Open_BackUp_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

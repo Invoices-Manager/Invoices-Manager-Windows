@@ -29,10 +29,11 @@ namespace InvoicesManager.Core
                     try { File.Delete(files[i]); } catch { }
         }
 
-        public static bool BackUp(string backupFilePath, InvoiceMainWindow mainWindow)
+        public static bool BackUp(string backupFilePath, InvoiceMainWindow mainWindow = null)
         {
             //set the main window for the progress bar
-            _invoiceMainWindow = mainWindow;
+            if (mainWindow != null)
+                _invoiceMainWindow = mainWindow;
 
             //refresh all invoices
             InvoiceSystem.Init();
@@ -44,11 +45,13 @@ namespace InvoicesManager.Core
             List<InvoiceBackUpModel> invoices = new List<InvoiceBackUpModel>();
 
             //clear the progress bar
-            _invoiceMainWindow.ClearInfoProgressBar();
+            if (mainWindow != null)
+                _invoiceMainWindow.ClearInfoProgressBar();
 
             //set the progress bar max value 
             //2 => SerializeObject & WriteAllText 
-            _invoiceMainWindow.SetInfoProgressMaxValue(allInvoices.Count + 2);
+            if (mainWindow != null)
+                _invoiceMainWindow.SetInfoProgressMaxValue(allInvoices.Count + 2);
 
             //create all InvoiceBackUpModel and add them into the list
             foreach (InvoiceModel invoice in allInvoices)
@@ -74,7 +77,8 @@ namespace InvoicesManager.Core
                 };
 
                 invoices.Add(tmpBackUp);
-                _invoiceMainWindow.SetInfoProgressBarValue(1);
+                if (mainWindow != null)
+                    _invoiceMainWindow.SetInfoProgressBarValue(1);
             }
 
             //set the creation date
@@ -91,11 +95,13 @@ namespace InvoicesManager.Core
 
             //serialize the backup into the json object
             string json = JsonConvert.SerializeObject(backUp);
-            _invoiceMainWindow.SetInfoProgressBarValue(1);
+            if (mainWindow != null)
+                _invoiceMainWindow.SetInfoProgressBarValue(1);
 
             //write the json into the file
             File.WriteAllText(backupFilePath, json);
-            _invoiceMainWindow.SetInfoProgressBarValue(1);
+            if (mainWindow != null)
+                _invoiceMainWindow.SetInfoProgressBarValue(1);
 
             //check if the file was created
             if (File.Exists(backupFilePath))
@@ -106,15 +112,17 @@ namespace InvoicesManager.Core
                 WasPerformedCorrectly = false;
 
             //clear the progress bar
-            _invoiceMainWindow.ClearInfoProgressBar();
-
+            if (mainWindow != null)
+                _invoiceMainWindow.ClearInfoProgressBar();
+            
             return WasPerformedCorrectly;
         }
 
-        public static bool Restore(string backupFilePath, InvoiceMainWindow mainWindow)
+        public static bool Restore(string backupFilePath, InvoiceMainWindow mainWindow = null)
         {
             //set the main window for the progress bar
-            _invoiceMainWindow = mainWindow;
+            if (mainWindow != null)
+                _invoiceMainWindow = mainWindow;
 
             bool WasPerformedCorrectly = true;
             int invoice_AlreadyExistCounter = 0;
@@ -135,10 +143,12 @@ namespace InvoicesManager.Core
             }
 
             //clear the progress bar
-            _invoiceMainWindow.ClearInfoProgressBar();
+            if (mainWindow != null)
+                _invoiceMainWindow.ClearInfoProgressBar();
 
             //set the progress bar max value 
-            _invoiceMainWindow.SetInfoProgressMaxValue(backUp.EntityCount + backUp.Notebook.Notebooks.Count);
+            if (mainWindow != null)
+                _invoiceMainWindow.SetInfoProgressMaxValue(backUp.EntityCount + backUp.Notebook.Notebooks.Count);
 
             //check if the backup is valid
             if (!WasPerformedCorrectly)
@@ -205,7 +215,8 @@ namespace InvoicesManager.Core
                     }
 
                     InvoiceSystem.AddInvoice(backUpPacked.Invoice, tempInvoicePath, newPath);
-                    _invoiceMainWindow.SetInfoProgressBarValue(1);
+                    if (mainWindow != null)
+                        _invoiceMainWindow.SetInfoProgressBarValue(1);
                 }
             }
             catch
@@ -224,7 +235,8 @@ namespace InvoicesManager.Core
                 //and finally add it to the system
                 foreach (NoteModel note in backUp.Notebook.Notebooks)
                 {
-                    _invoiceMainWindow.SetInfoProgressBarValue(1);
+                    if (mainWindow != null)
+                        _invoiceMainWindow.SetInfoProgressBarValue(1);
                     
                     if (!NotebookSystem.CheckIfNoteExist(note))
                     {
@@ -248,9 +260,10 @@ namespace InvoicesManager.Core
                 WasPerformedCorrectly = false;
             }
 
-            
+
             //clear the progress bar
-            _invoiceMainWindow.ClearInfoProgressBar();
+            if (mainWindow != null)
+                _invoiceMainWindow.ClearInfoProgressBar();
 
             //delete all temp files
             foreach (string file in allTempFiles)
