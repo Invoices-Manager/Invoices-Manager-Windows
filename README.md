@@ -59,6 +59,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 
 ## v1.3.0.0
 - There is now a main menu where you can switch to certain interfaces
+- You can now double-click on a cell to store its content in your clipboard.
 
 ## v1.2.3.2
 - SaveAs had a logical error, you could not select/use a custom filename
