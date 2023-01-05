@@ -10,7 +10,8 @@
         Title="Invoice Notebook | Made by Schecher | https://github.com/Schecher1" 
         Height="600" Width="800"
         Loaded="Window_Loaded"
-        Icon="/Resources/SmallIcon.png">
+        Icon="/Resources/SmallIcon.png"
+        Closed="Window_Closed">
     <Grid Background="{DynamicResource GridBackground}">
         <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
             <ScrollViewer>

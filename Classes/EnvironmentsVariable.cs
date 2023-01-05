@@ -27,12 +27,18 @@ namespace InvoicesManager.Classes
         //0 = dark mode  | 1 = white mode
         public static int REGSystemUsesLightTheme = 1;
         public static bool CreateABackupEveryTimeTheProgramStarts = true;
+        public static bool Window_Invoice_IsClosed = true;
+        public static bool Window_Notebook_IsClosed = true;
+        public static bool Window_Setting_IsClosed = true;
+        public static bool Window_About_IsClosed = true;
+
 
         public static void InitWorkPath()
         {
             //create/check the need folders and files
             Directory.CreateDirectory(EnvironmentsVariable.PathInvoices);
             Directory.CreateDirectory(EnvironmentsVariable.PathBackUps);
+            Directory.CreateDirectory(EnvironmentsVariable.PathNotebook);
             if (!File.Exists(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName))
                 File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, "[]");
             if (!File.Exists(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName))

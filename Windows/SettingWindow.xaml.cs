@@ -31,6 +31,8 @@ namespace InvoicesManager.Windows
             Tb_MaxCountBackUp.Text = EnvironmentsVariable.MaxCountBackUp.ToString();
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+             => EnvironmentsVariable.Window_Setting_IsClosed = true;
         private void Bttn_SaveSettings_Click(object sender, RoutedEventArgs e)
         {
             if (Comb_UILanguage.SelectedIndex == -1 || String.IsNullOrWhiteSpace(Tb_PDFProgramPath.Text))

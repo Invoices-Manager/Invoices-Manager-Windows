@@ -1,0 +1,101 @@
+﻿<Window x:Class="InvoicesManager.InvoiceMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:local="clr-namespace:InvoicesManager"
+        xmlns:language="clr-namespace:InvoicesManager"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        mc:Ignorable="d"
+        Title="Invoices Manager | Made by Schecher | https://github.com/Schecher1" 
+        Height="1000" Width="1000"
+        WindowState="Maximized" 
+        Icon="/Resources/SmallIcon.png"
+        Closed="Window_Closed">
+    <Grid Background="{DynamicResource GridBackground}">
+        <Grid>
+            <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="35">
+                <Button x:Name="Bttn_BoardRefresh"  Content="{DynamicResource refreshBoard}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_BoardRefresh_Click"/>
+                <Separator Margin="10,0,10,0"/>
+                <Button x:Name="Bttn_OpenNotebook" Content="{DynamicResource openNotebook}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_OpenNotebook_Click"/>
+                <Separator Margin="10,0,10,0"/>
+                <Button x:Name="Bttn_InvoiceAdd" Content="{DynamicResource addInvoice}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_InvoiceAdd_Click"/>
+                <Button x:Name="Bttn_InvoiceEdit" Content="{DynamicResource editInvoice}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_InvoiceEdit_Click"/>
+                <Button x:Name="Bttn_InvoiceRemove"  Content="{DynamicResource removeInvoice}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_InvoiceRemove_Click"/>
+                <Button x:Name="Bttn_InvoiceSaveAs"  Content="{DynamicResource saveInvoiceAs}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_InvoiceSaveAs_Click"/>
+                <Separator Margin="10,0,10,0"/>
+                <Button x:Name="Bttn_BackUpCreate" Content="{DynamicResource createBackUp}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_BackUpCreate_Click"/>
+                <Button x:Name="Bttn_BackUpRestore"  Content="{DynamicResource importBackUp}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_BackUpRestore_Click"/>
+                <Separator Margin="10,0,10,0"/>
+                <Button x:Name="Bttn_Settings" Content="{DynamicResource settings}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_Settings_Click"/>
+                <Separator Margin="10,0,10,0"/>
+                <Button x:Name="Bttn_About" Content="{DynamicResource about}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_About_Click"/>
+            </ToolBarPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Right" Width="350" Margin="0,35,0,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,25">
+                <StackPanel>
+                    <GroupBox Header="{DynamicResource searchByReference}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                        <Grid>
+                            <TextBox x:Name="Tb_Search_String" Margin="5,5,5,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" TextChanged="Tb_Search_String_TextChanged"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="{DynamicResource searchByInvoiceNo}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                        <Grid>
+                            <TextBox x:Name="Tb_Search_InvoiceNumber" Margin="5,5,5,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" TextChanged="Tb_Search_InvoiceNumber_TextChanged"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="{DynamicResource searchByOrganization}" Margin="10,10,10,10"  BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                        <Grid>
+                            <ComboBox x:Name="Comb_Search_Organization" Margin="5,5,55,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_Organization_SelectionChanged"/>
+                            <Button x:Name="Comb_Search_Organization_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="{x:Null}" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Comb_Search_Organization_Clear_Click"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="{DynamicResource searchByDocumentType}" Margin="10,10,10,10"  BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                        <Grid>
+                            <ComboBox x:Name="Comb_Search_DocumentType" Margin="5,5,55,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_DocumentType_SelectionChanged"/>
+                            <Button x:Name="Comb_Search_DocumentType_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="{x:Null}" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Comb_Search_DocumentType_Clear_Click"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="{DynamicResource searchByDate}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                        <Grid>
+                            <DatePicker x:Name="Dp_Search_ExhibitionDate" IsTodayHighlighted="True" Foreground="{DynamicResource FontForeground}" FirstDayOfWeek="Monday" SelectedDateFormat="Long"  Margin="5,5,55,5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedDateChanged="Dp_Search_ExhibitionDate_SelectedDateChanged"/>
+                            <Button x:Name="Dp_Search_ExhibitionDate_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="{x:Null}" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Dp_Search_ExhibitionDate_Clear_Click"/>
+                        </Grid> 
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid Margin="0,40,350,25" Background="#FF232323">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid Name="Dg_Invoices" 
+                          ItemsSource="{Binding}" 
+                          Foreground="{DynamicResource FontForeground}"
+                          AutoGenerateColumns="False" 
+                          CanUserReorderColumns="False" 
+                          CanUserDeleteRows="False" 
+                          CanUserAddRows="False" 
+                          ClipboardCopyMode="ExcludeHeader"
+                          IsReadOnly="True"
+                          MouseDoubleClick="DG_Invoices_MouseDoubleClick">
+                    <DataGrid.Columns>
+                        <DataGridHyperlinkColumn Header="{DynamicResource open}"  Binding="{Binding OpenInvoiceText}"/>
+                        <DataGridTextColumn Header="{DynamicResource dateOfExhibition}"  Binding="{Binding StringExhibitionDate}"/>
+                        <DataGridTextColumn Header="{DynamicResource organization}"  Binding="{Binding Organization}"/>
+                        <DataGridTextColumn Header="{DynamicResource documentType}"  Binding="{Binding DocumentType}"/>
+                        <DataGridTextColumn Header="{DynamicResource invoiceNo}"  Binding="{Binding InvoiceNumber}"/>
+                        <DataGridTextColumn Header="{DynamicResource reference}"  Binding="{Binding Reference}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="25">
+            <Label x:Name="MsgBox_InvoiceCounter" Content="Invoice: CounterAre from CounterMax" FontSize="15" Margin="10,2,2,0"/>
+            <ProgressBar x:Name="PB_InfoProgressBar" Background="#33000000" Height="15" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="150,0,10,0" Width="400"/>
+        </Grid>
+    </Grid>
+</Window>

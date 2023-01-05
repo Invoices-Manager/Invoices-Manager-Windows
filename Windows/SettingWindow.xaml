@@ -12,7 +12,8 @@
         MinHeight="700" MinWidth="800"
         MaxHeight="700" MaxWidth="800"
         Loaded="Window_Loaded"
-        Icon="/Resources/SmallIcon.png">
+        Icon="/Resources/SmallIcon.png"
+        Closed="Window_Closed">
     <Grid Background="{DynamicResource GridBackground}">
         <Grid Margin="50,25,50,75">
             <ScrollViewer>

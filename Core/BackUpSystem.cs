@@ -10,7 +10,7 @@ namespace InvoicesManager.Core
 {
     public class BackUpSystem
     {
-        private static MainWindow _mainWindow;
+        private static InvoiceMainWindow _invoiceMainWindow;
 
         
         public static void CheckBackUpCount()
@@ -29,10 +29,10 @@ namespace InvoicesManager.Core
                     try { File.Delete(files[i]); } catch { }
         }
 
-        public static bool BackUp(string backupFilePath, MainWindow mainWindow)
+        public static bool BackUp(string backupFilePath, InvoiceMainWindow mainWindow)
         {
             //set the main window for the progress bar
-            _mainWindow = mainWindow;
+            _invoiceMainWindow = mainWindow;
 
             //refresh all invoices
             InvoiceSystem.Init();
@@ -46,11 +46,11 @@ namespace InvoicesManager.Core
            
 
             //clear the progress bar
-            _mainWindow.ClearInfoProgressBar();
+            _invoiceMainWindow.ClearInfoProgressBar();
 
             //set the progress bar max value 
             //2 => SerializeObject & WriteAllText 
-            _mainWindow.SetInfoProgressMaxValue(allInvoices.Count + 2);
+            _invoiceMainWindow.SetInfoProgressMaxValue(allInvoices.Count + 2);
 
             //create all InvoiceBackUpModel and add them into the list
             foreach (InvoiceModel invoice in allInvoices)
@@ -76,7 +76,7 @@ namespace InvoicesManager.Core
                 };
 
                 invoices.Add(tmpBackUp);
-                _mainWindow.SetInfoProgressBarValue(1);
+                _invoiceMainWindow.SetInfoProgressBarValue(1);
             }
 
             //set the creation date
@@ -90,11 +90,11 @@ namespace InvoicesManager.Core
 
             //serialize the backup into the json object
             string json = JsonConvert.SerializeObject(backUp);
-            _mainWindow.SetInfoProgressBarValue(1);
+            _invoiceMainWindow.SetInfoProgressBarValue(1);
 
             //write the json into the file
             File.WriteAllText(backupFilePath, json);
-            _mainWindow.SetInfoProgressBarValue(1);
+            _invoiceMainWindow.SetInfoProgressBarValue(1);
 
             //check if the file was created
             if (File.Exists(backupFilePath))
@@ -105,15 +105,15 @@ namespace InvoicesManager.Core
                 WasPerformedCorrectly = false;
 
             //clear the progress bar
-            _mainWindow.ClearInfoProgressBar();
+            _invoiceMainWindow.ClearInfoProgressBar();
 
             return WasPerformedCorrectly;
         }
 
-        public static bool Restore(string backupFilePath, MainWindow mainWindow)
+        public static bool Restore(string backupFilePath, InvoiceMainWindow mainWindow)
         {
             //set the main window for the progress bar
-            _mainWindow = mainWindow;
+            _invoiceMainWindow = mainWindow;
 
             bool WasPerformedCorrectly = true;
             int alreadyExistCounter = 0;
@@ -132,10 +132,10 @@ namespace InvoicesManager.Core
             }
 
             //clear the progress bar
-            _mainWindow.ClearInfoProgressBar();
+            _invoiceMainWindow.ClearInfoProgressBar();
 
             //set the progress bar max value 
-            _mainWindow.SetInfoProgressMaxValue(backUp.EntityCount);
+            _invoiceMainWindow.SetInfoProgressMaxValue(backUp.EntityCount);
 
             //check if the backup is valid
             if (!WasPerformedCorrectly)
@@ -200,7 +200,7 @@ namespace InvoicesManager.Core
                     }
 
                     InvoiceSystem.AddInvoice(backUpPacked.Invoice, tempInvoicePath, newPath);
-                    _mainWindow.SetInfoProgressBarValue(1);
+                    _invoiceMainWindow.SetInfoProgressBarValue(1);
                 }
             }
             catch
@@ -209,7 +209,7 @@ namespace InvoicesManager.Core
             }
 
             //clear the progress bar
-            _mainWindow.ClearInfoProgressBar();
+            _invoiceMainWindow.ClearInfoProgressBar();
 
             //delete all temp files
             foreach (string file in allTempFiles)

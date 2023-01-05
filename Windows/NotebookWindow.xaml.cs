@@ -25,6 +25,9 @@ namespace InvoicesManager.Windows
             Bttn_DeleteNote.IsEnabled = false;
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+            => EnvironmentsVariable.Window_Notebook_IsClosed = true;
+
         private void GenerateDebugNotebooks()
         {
             NotebookModel notebook = new NotebookModel();
