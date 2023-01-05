@@ -12,7 +12,8 @@
         Height="1000" Width="1000"
         WindowState="Maximized" 
         Icon="/Resources/SmallIcon.png"
-        Closed="Window_Closed">
+        Closed="Window_Closed"
+        WindowStartupLocation="CenterScreen">
     <Grid Background="{DynamicResource GridBackground}">
         <Grid>
             <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="35">

@@ -56,7 +56,7 @@ namespace InvoicesManager
             }
 
 #if DEBUG
-             //GenerateDebugDataRecords();
+            //GenerateDebugDataRecords();
             //RefreshDataGridWithInit();
 #endif
         }

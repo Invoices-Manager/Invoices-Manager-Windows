@@ -10,7 +10,8 @@
         Title="Invoices Manager Menu | Made by Schecher | https://github.com/Schecher1" 
         Height="750" Width="800"
         MinHeight="250" MinWidth="250"
-        Icon="/Resources/SmallIcon.png">
+        Icon="/Resources/SmallIcon.png"
+        WindowStartupLocation="CenterScreen">
     <Grid Background="{DynamicResource GridBackground}">
         <ScrollViewer>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
