@@ -151,13 +151,6 @@ namespace InvoicesManager
             _refreshDataGridThread.Start();
         }
 
-        private void InitNotebooks()
-        {
-            Thread _initNotebooks = new Thread(ThreadTaskInitNotebooks);
-            _initNotebooks.Priority = ThreadPriority.Normal;
-            _initNotebooks.Start();
-        }
-
         private void RefreshDataGridWithInit()
         {
             InitInvoices();
