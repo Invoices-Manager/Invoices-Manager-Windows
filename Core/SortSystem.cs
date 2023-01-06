@@ -8,8 +8,7 @@ namespace InvoicesManager.Core
 {
     public class SortSystem
     {
-        List<InvoiceModel> allInvoices = new List<InvoiceModel>();
-        
+        private readonly List<InvoiceModel> allInvoices;
         private readonly string filterReference = String.Empty;
         private readonly string filterInvoiceNumber = String.Empty;
         private readonly string filterOrganization = "-1";
