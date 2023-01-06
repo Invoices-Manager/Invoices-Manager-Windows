@@ -61,6 +61,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 - There is now a main menu where you can switch to certain interfaces.
 - You can now double-click on a cell to store its content in your clipboard.
 - The Notebook is now also included in the BackUp. (its works like the Invoice BackUp, see "v1.2.3.0")
+- The BackUp system also works with older BackUp files (up to v1.2.0.0).
 
 ## v1.2.3.2
 - SaveAs had a logical error, you could not select/use a custom filename
