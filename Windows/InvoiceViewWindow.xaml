@@ -16,44 +16,44 @@
         <Grid Margin="0,0,0,70">
             <StackPanel>
                 <Grid>
-                    <Label Margin="100,50,0,0" Content="{DynamicResource dateOfExhibition}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <Label Margin="90,50,0,0" Content="{DynamicResource dateOfExhibition}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <DatePicker x:Name="Dp_ExhibitionDate" Margin="350,50,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="100,15,0,0" Content="{DynamicResource organization}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <Label Margin="90,15,0,0" Content="{DynamicResource organization}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <TextBox x:Name="Tb_Organization" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="100,15,0,0" Content="{DynamicResource documentType}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <Label Margin="90,15,0,0" Content="{DynamicResource documentType}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <TextBox x:Name="Tb_DocumentType" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="100,15,0,0" Content="{DynamicResource invoiceNo}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <Label Margin="90,15,0,0" Content="{DynamicResource invoiceNo}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <TextBox x:Name="Tb_InvoiceNumber" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="100,15,0,0" Content="{DynamicResource reference}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <Label Margin="90,15,0,0" Content="{DynamicResource reference}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <TextBox x:Name="Tb_Reference" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="100,15,0,0" Content="{DynamicResource moneytotal}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <Label Margin="90,15,0,0" Content="{DynamicResource moneytotal}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <TextBox x:Name="Tb_MoneyTotal" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="100,15,0,0" Content="{DynamicResource tags}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <Label Margin="90,15,0,0" Content="{DynamicResource tags}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <Label Margin="164,20,0,-6" Content="{DynamicResource tagInfo}" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <TextBox x:Name="Tb_Tags" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="100,15,0,0" Content="{DynamicResource importancestate}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <Label Margin="90,15,0,0" Content="{DynamicResource importancestate}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <ComboBox x:Name="Comb_ImportanceState" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="100,15,0,0" Content="{DynamicResource moneystate}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <Label Margin="90,15,0,0" Content="{DynamicResource moneystate}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <ComboBox x:Name="Comb_MoneyState" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="100,15,0,0" Content="{DynamicResource paidstate}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <Label Margin="90,15,0,0" Content="{DynamicResource paidstate}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <ComboBox x:Name="Comb_PaidState" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>

@@ -11,7 +11,8 @@
         Height="750" Width="800"
         MinHeight="250" MinWidth="250"
         Icon="/Resources/SmallIcon.png"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Closed="Window_Closed">
     <Grid Background="{DynamicResource GridBackground}">
         <ScrollViewer>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">

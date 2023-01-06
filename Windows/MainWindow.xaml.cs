@@ -114,5 +114,20 @@ namespace InvoicesManager.Windows
             aboutWindow.WindowState = WindowState.Normal;
             aboutWindow.Focus();
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            //kill the child windows, if the main window is closed
+            if (!EnvironmentsVariable.Window_Invoice_IsClosed)
+                invoiceMainWindow.Close();
+            if (!EnvironmentsVariable.Window_Notebook_IsClosed)
+                notebookWindow.Close();
+            if (!EnvironmentsVariable.Window_BackUp_IsClosed)
+                backUpWindow.Close();
+            if (!EnvironmentsVariable.Window_Setting_IsClosed)
+                settingWindow.Close();
+            if (!EnvironmentsVariable.Window_About_IsClosed)
+                aboutWindow.Close();
+        }
     }
 }
