@@ -2,14 +2,14 @@
 using InvoicesManager.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace InvoicesManager.Core
 {
     public class SortSystem
     {
         List<InvoiceModel> allInvoices = new List<InvoiceModel>();
-        List<InvoiceModel> sortInvoices = new List<InvoiceModel>();
-
+        
         private readonly string filterReference = String.Empty;
         private readonly string filterInvoiceNumber = String.Empty;
         private readonly string filterOrganization = "-1";
@@ -28,26 +28,13 @@ namespace InvoicesManager.Core
         
         public void Sort()
         {
-            
-            foreach (var invoice in allInvoices)
-            {
-                if (!(invoice.Reference.ToLower().Contains(filterReference) || filterReference == String.Empty))
-                    continue;
-                if (!(invoice.InvoiceNumber.ToLower().Contains(filterInvoiceNumber) || filterInvoiceNumber == String.Empty))
-                    continue;
-                if (!(invoice.Organization.ToLower() == filterOrganization || filterOrganization == "-1"))
-                    continue;
-                if (!(invoice.DocumentType.ToLower() == filterDocumentType || filterDocumentType == "-1"))
-                    continue;
-                if (!(invoice.ExhibitionDate.Date == filterExhibitionDate.Date || filterExhibitionDate == default))
-                    continue;
-
-                //remove the time from the date stamp
-                invoice.ExhibitionDate = new DateTime(invoice.ExhibitionDate.Year, invoice.ExhibitionDate.Month, invoice.ExhibitionDate.Day);
-                sortInvoices.Add(invoice);
-            }
-
-            EnvironmentsVariable.FilteredInvoices = sortInvoices;
+            EnvironmentsVariable.FilteredInvoices = allInvoices
+                .Where(x => x.Reference.ToLower().Contains(filterReference) || String.IsNullOrEmpty(filterReference))
+                .Where(x => x.InvoiceNumber.ToLower().Contains(filterInvoiceNumber) || String.IsNullOrEmpty(filterInvoiceNumber))
+                .Where(x => x.Organization.ToLower().Equals(filterOrganization) || filterOrganization is "-1")
+                .Where(x => x.DocumentType.ToLower().Equals(filterDocumentType) || filterDocumentType is "-1")
+                .Where(x => x.ExhibitionDate.Date == filterExhibitionDate.Date || filterExhibitionDate == default)
+                .ToList();
         }
     }
 }
