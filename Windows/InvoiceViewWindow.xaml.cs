@@ -277,7 +277,7 @@ namespace InvoicesManager.Windows
             InvoiceModel newInvoice = new InvoiceModel()
             {
                 FileID = hashID,
-                CaptureDate = DateTime.Now.Date,
+                CaptureDate = DateTime.Now,
                 ExhibitionDate = Dp_ExhibitionDate.SelectedDate.Value,
                 Organization = Tb_Organization.Text,
                 DocumentType = Tb_DocumentType.Text,
