@@ -62,6 +62,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 - You can now double-click on a cell to store its content in your clipboard.
 - The Notebook is now also included in the BackUp. (its works like the Invoice BackUp, see "v1.2.3.0")
 - The BackUp system also works with older BackUp files (up to v1.2.0.0).
+- The Capture Date now also includes the time, which was previously formatted as 00:00:00
 
 ## v1.2.3.2
 - SaveAs had a logical error, you could not select/use a custom filename
