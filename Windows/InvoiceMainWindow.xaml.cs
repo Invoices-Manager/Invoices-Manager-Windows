@@ -42,7 +42,9 @@ namespace InvoicesManager
             {
                 Task.Run(() =>
                 {
-                    BackUpSystem.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"), this);
+                    bool wasPerformedCorrectly = BackUpSystem.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"), this);
+                    if (!wasPerformedCorrectly)
+                        MessageBox.Show(this.Resources["backUpFailed"] as string);
                     BackUpSystem.CheckBackUpCount();
                 });
             }

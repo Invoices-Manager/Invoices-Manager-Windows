@@ -31,90 +31,98 @@ namespace InvoicesManager.Core
 
         public static bool BackUp(string backupFilePath, InvoiceMainWindow mainWindow = null)
         {
-            //set the main window for the progress bar
-            if (mainWindow != null)
-                _invoiceMainWindow = mainWindow;
-
-            //refresh all invoices
-            InvoiceSystem.Init();
-            
             bool WasPerformedCorrectly = false;
-            BackUpModel backUp = new BackUpModel();
-            //copy the list without the refs, otherwise happens "Collection was changed; enumeration operation must not be executed."
-            List<InvoiceModel> allInvoices = new List<InvoiceModel>(EnvironmentsVariable.AllInvoices);
-            List<InvoiceBackUpModel> invoices = new List<InvoiceBackUpModel>();
-
-            //clear the progress bar
-            if (mainWindow != null)
-                _invoiceMainWindow.ClearInfoProgressBar();
-
-            //set the progress bar max value 
-            //2 => SerializeObject & WriteAllText 
-            if (mainWindow != null)
-                _invoiceMainWindow.SetInfoProgressMaxValue(allInvoices.Count + 2);
-
-            //create all InvoiceBackUpModel and add them into the list
-            foreach (InvoiceModel invoice in allInvoices)
+            try
             {
-                InvoiceBackUpModel tmpBackUp = new InvoiceBackUpModel()
-                {
-                    Base64 = Convert.ToBase64String(File.ReadAllBytes(EnvironmentsVariable.PathInvoices + invoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT)),
-                    Invoice = new InvoiceModel()
-                    {
-                        FileID = invoice.FileID,
-                        CaptureDate = invoice.CaptureDate,
-                        ExhibitionDate = invoice.ExhibitionDate,
-                        Reference = invoice.Reference,
-                        DocumentType = invoice.DocumentType,
-                        Organization = invoice.Organization,
-                        InvoiceNumber = invoice.InvoiceNumber,
-                        Tags = invoice.Tags,
-                        ImportanceState = invoice.ImportanceState,
-                        MoneyState = invoice.MoneyState,
-                        PaidState = invoice.PaidState,
-                        MoneyTotal = invoice.MoneyTotal
-                    }
-                };
+                //set the main window for the progress bar
+                if (mainWindow != null)
+                    _invoiceMainWindow = mainWindow;
 
-                invoices.Add(tmpBackUp);
+                //refresh all invoices
+                InvoiceSystem.Init();
+
+                WasPerformedCorrectly = false;
+                BackUpModel backUp = new BackUpModel();
+                //copy the list without the refs, otherwise happens "Collection was changed; enumeration operation must not be executed."
+                List<InvoiceModel> allInvoices = new List<InvoiceModel>(EnvironmentsVariable.AllInvoices);
+                List<InvoiceBackUpModel> invoices = new List<InvoiceBackUpModel>();
+
+                //clear the progress bar
+                if (mainWindow != null)
+                    _invoiceMainWindow.ClearInfoProgressBar();
+
+                //set the progress bar max value 
+                //2 => SerializeObject & WriteAllText 
+                if (mainWindow != null)
+                    _invoiceMainWindow.SetInfoProgressMaxValue(allInvoices.Count + 2);
+
+                //create all InvoiceBackUpModel and add them into the list
+                foreach (InvoiceModel invoice in allInvoices)
+                {
+                    InvoiceBackUpModel tmpBackUp = new InvoiceBackUpModel()
+                    {
+                        Base64 = Convert.ToBase64String(File.ReadAllBytes(EnvironmentsVariable.PathInvoices + invoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT)),
+                        Invoice = new InvoiceModel()
+                        {
+                            FileID = invoice.FileID,
+                            CaptureDate = invoice.CaptureDate,
+                            ExhibitionDate = invoice.ExhibitionDate,
+                            Reference = invoice.Reference,
+                            DocumentType = invoice.DocumentType,
+                            Organization = invoice.Organization,
+                            InvoiceNumber = invoice.InvoiceNumber,
+                            Tags = invoice.Tags,
+                            ImportanceState = invoice.ImportanceState,
+                            MoneyState = invoice.MoneyState,
+                            PaidState = invoice.PaidState,
+                            MoneyTotal = invoice.MoneyTotal
+                        }
+                    };
+
+                    invoices.Add(tmpBackUp);
+                    if (mainWindow != null)
+                        _invoiceMainWindow.SetInfoProgressBarValue(1);
+                }
+
+                //set the creation date
+                backUp.DateOfCreation = DateTime.Now;
+
+                //set the entity count
+                backUp.EntityCount = invoices.Count;
+
+                //link the invoices list to the backUp
+                backUp.Invoices = invoices;
+
+                //link the notebook to the backUp
+                backUp.Notebook = EnvironmentsVariable.Notebook;
+
+                //serialize the backup into the json object
+                string json = JsonConvert.SerializeObject(backUp);
                 if (mainWindow != null)
                     _invoiceMainWindow.SetInfoProgressBarValue(1);
+
+                //write the json into the file
+                File.WriteAllText(backupFilePath, json);
+                if (mainWindow != null)
+                    _invoiceMainWindow.SetInfoProgressBarValue(1);
+
+                //check if the file was created
+                if (File.Exists(backupFilePath))
+                    WasPerformedCorrectly = true;
+
+
+                if (String.IsNullOrEmpty(json))
+                    WasPerformedCorrectly = false;
+
+                //clear the progress bar
+                if (mainWindow != null)
+                    _invoiceMainWindow.ClearInfoProgressBar();
+            }
+            catch
+            {
+                return false;
             }
 
-            //set the creation date
-            backUp.DateOfCreation = DateTime.Now;
-
-            //set the entity count
-            backUp.EntityCount = invoices.Count;
-
-            //link the invoices list to the backUp
-            backUp.Invoices = invoices;
-
-            //link the notebook to the backUp
-            backUp.Notebook = EnvironmentsVariable.Notebook;
-
-            //serialize the backup into the json object
-            string json = JsonConvert.SerializeObject(backUp);
-            if (mainWindow != null)
-                _invoiceMainWindow.SetInfoProgressBarValue(1);
-
-            //write the json into the file
-            File.WriteAllText(backupFilePath, json);
-            if (mainWindow != null)
-                _invoiceMainWindow.SetInfoProgressBarValue(1);
-
-            //check if the file was created
-            if (File.Exists(backupFilePath))
-                WasPerformedCorrectly = true;
-
-            
-            if (String.IsNullOrEmpty(json))
-                WasPerformedCorrectly = false;
-
-            //clear the progress bar
-            if (mainWindow != null)
-                _invoiceMainWindow.ClearInfoProgressBar();
-            
             return WasPerformedCorrectly;
         }
 
@@ -148,7 +156,7 @@ namespace InvoicesManager.Core
 
             //set the progress bar max value 
             if (mainWindow != null)
-                _invoiceMainWindow.SetInfoProgressMaxValue(backUp.EntityCount + backUp.Notebook.Notebooks.Count);
+                _invoiceMainWindow.SetInfoProgressMaxValue(backUp.EntityCount + backUp.Notebook.Notebook.Count);
 
             //check if the backup is valid
             if (!WasPerformedCorrectly)
@@ -159,7 +167,7 @@ namespace InvoicesManager.Core
                 return false;
 
             //check if the file is empty
-            if (backUp.EntityCount == 0 && backUp.Notebook.Notebooks.Count == 0)
+            if (backUp.EntityCount == 0 && backUp.Notebook.Notebook.Count == 0)
             {
                 MessageBox.Show("The backup is empty!", "Error", MessageBoxButton.OK);
                 return false;
@@ -233,33 +241,35 @@ namespace InvoicesManager.Core
                 //check if the note exists and if not add it else do nothing
                 //check if the note that exist whether note is changed and if yes override it else do nothing
                 //and finally add it to the system
-                foreach (NoteModel note in backUp.Notebook.Notebooks)
-                {
-                    if (mainWindow != null)
-                        _invoiceMainWindow.SetInfoProgressBarValue(1);
-                    
-                    if (!NotebookSystem.CheckIfNoteExist(note))
-                    {
-                        NotebookSystem.AddNote(note);
-                        continue;
-                    }
-                    
-                    if (NotebookSystem.CheckIfNoteHasChanged(note))
-                    {
-                        //override == edit
-                        NotebookSystem.EditNote(note);
-                        note_WasOverwrittenCounter++;
-                        continue;
-                    }
 
-                    note_AlreadyExistCounter++;
-                }
+                //notebook backup is null when the backup is from a older version (v1.2.3.2 or older)
+                if (backUp.Notebook != null)
+                    foreach (NoteModel note in backUp.Notebook.Notebook)
+                    {
+                        if (mainWindow != null)
+                            _invoiceMainWindow.SetInfoProgressBarValue(1);
+                    
+                        if (!NotebookSystem.CheckIfNoteExist(note))
+                        {
+                            NotebookSystem.AddNote(note);
+                            continue;
+                        }
+                    
+                        if (NotebookSystem.CheckIfNoteHasChanged(note))
+                        {
+                            //override == edit
+                            NotebookSystem.EditNote(note);
+                            note_WasOverwrittenCounter++;
+                            continue;
+                        }
+
+                        note_AlreadyExistCounter++;
+                    }
             }
             catch
             {
                 WasPerformedCorrectly = false;
             }
-
 
             //clear the progress bar
             if (mainWindow != null)
@@ -269,15 +279,23 @@ namespace InvoicesManager.Core
             foreach (string file in allTempFiles)
                 try { File.Delete(file); } catch { }
 
+            //must be, if the backup is from a older version (v1.2.3.2 or older)
+            int noteCount = 0;
+
+            if (backUp.Notebook != null)
+                noteCount = backUp.Notebook.Notebook.Count;
+
+
+            //show the results
             MessageBox.Show($"{backUp.EntityCount - (invoice_AlreadyExistCounter + invoice_WasOverwrittenCounter)} {Application.Current.Resources["invoicesWereRestored"] as string}" + Environment.NewLine +
                                           $"{invoice_AlreadyExistCounter} {Application.Current.Resources["invoicesWereSkipped"] as string}" + Environment.NewLine +
                                           $"{invoice_WasOverwrittenCounter} {Application.Current.Resources["invoicesWereOverwritten"] as string}" + Environment.NewLine +
                                           $"{Application.Current.Resources["fromTotal"] as string} {backUp.EntityCount} {Application.Current.Resources["invoices"] as string}" + Environment.NewLine + 
-                                          Environment.NewLine +
-                                          $"{backUp.Notebook.Notebooks.Count - (note_AlreadyExistCounter + note_WasOverwrittenCounter)} {Application.Current.Resources["notesWereRestored"] as string}" + Environment.NewLine +
+                                             Environment.NewLine +
+                                          $"{noteCount - (note_AlreadyExistCounter + note_WasOverwrittenCounter)} {Application.Current.Resources["notesWereRestored"] as string}" + Environment.NewLine +
                                           $"{note_AlreadyExistCounter} {Application.Current.Resources["notesWereSkipped"] as string}" + Environment.NewLine +
                                           $"{note_WasOverwrittenCounter} {Application.Current.Resources["notesWereOverwritten"] as string}" + Environment.NewLine +
-                                          $"{Application.Current.Resources["fromTotal"] as string} {backUp.Notebook.Notebooks.Count} {Application.Current.Resources["notes"] as string}",
+                                          $"{Application.Current.Resources["fromTotal"] as string} {noteCount} {Application.Current.Resources["notes"] as string}",
                                           Application.Current.Resources["recoveryCompleted"] as string, MessageBoxButton.OK);
 
             return WasPerformedCorrectly;

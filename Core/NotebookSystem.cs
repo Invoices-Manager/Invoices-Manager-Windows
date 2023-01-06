@@ -11,7 +11,7 @@ namespace InvoicesManager.Core
     {
         public static void Init()
         {
-            EnvironmentsVariable.Notebook.Notebooks.Clear();
+            EnvironmentsVariable.Notebook.Notebook.Clear();
 
             string json = File.ReadAllText(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName);
 
@@ -21,14 +21,14 @@ namespace InvoicesManager.Core
 
         public static void AddNote(NoteModel newNote)
         {
-            EnvironmentsVariable.Notebook.Notebooks.Add(newNote);
+            EnvironmentsVariable.Notebook.Notebook.Add(newNote);
 
             SaveIntoJsonFile();
         }
 
         public static void EditNote(NoteModel editNote)
         {
-            NoteModel note = EnvironmentsVariable.Notebook.Notebooks.Find(x => x.Id == editNote.Id);
+            NoteModel note = EnvironmentsVariable.Notebook.Notebook.Find(x => x.Id == editNote.Id);
             note.Name = editNote.Name;
             note.Value = editNote.Value;
             note.LastEditDate = DateTime.Now;
@@ -38,19 +38,19 @@ namespace InvoicesManager.Core
 
         public static void RemoveNote(NoteModel oldNote)
         {
-            EnvironmentsVariable.Notebook.Notebooks.Remove(oldNote);
+            EnvironmentsVariable.Notebook.Notebook.Remove(oldNote);
 
             SaveIntoJsonFile();
         }
 
         public static bool CheckIfNoteExist(NoteModel note)
         {
-            return EnvironmentsVariable.Notebook.Notebooks.Exists(x => x.Id == note.Id);
+            return EnvironmentsVariable.Notebook.Notebook.Exists(x => x.Id == note.Id);
         }
 
         public static bool CheckIfNoteHasChanged(NoteModel note)
         {
-            NoteModel noteFromList = EnvironmentsVariable.Notebook.Notebooks.Find(x => x.Id == note.Id);
+            NoteModel noteFromList = EnvironmentsVariable.Notebook.Notebook.Find(x => x.Id == note.Id);
 
             return noteFromList.Name != note.Name || noteFromList.Value != note.Value;
         }

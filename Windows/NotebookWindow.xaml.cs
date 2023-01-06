@@ -42,7 +42,7 @@ namespace InvoicesManager.Windows
                     LastEditDate = DateTime.Now
                 };
 
-                notebook.Notebooks.Add(noteModel);
+                notebook.Notebook.Add(noteModel);
             }
 
             EnvironmentsVariable.Notebook = notebook;
@@ -51,7 +51,7 @@ namespace InvoicesManager.Windows
         private void LoadNotebooks()
         {
             sP_Notes.Items.Clear();
-            foreach (NoteModel note in EnvironmentsVariable.Notebook.Notebooks)
+            foreach (NoteModel note in EnvironmentsVariable.Notebook.Notebook)
                 sP_Notes.Items.Add(note);
 
             ClearTbs();
@@ -65,7 +65,7 @@ namespace InvoicesManager.Windows
         private void Bttn_LoadNote_Click(object sender, RoutedEventArgs e)
         {
             Guid id = ((NoteModel)((FrameworkElement)sender).DataContext).Id;
-            selectedNote = EnvironmentsVariable.Notebook.Notebooks.Find(note => note.Id == id);
+            selectedNote = EnvironmentsVariable.Notebook.Notebook.Find(note => note.Id == id);
             if (sender is Button)
                 correspondingButton = (Button)sender;
 
@@ -94,7 +94,7 @@ namespace InvoicesManager.Windows
 
         private void CheckButtonsState()
         {
-            if (EnvironmentsVariable.Notebook.Notebooks.Count == 0 || correspondingButton is null)
+            if (EnvironmentsVariable.Notebook.Notebook.Count == 0 || correspondingButton is null)
             {
                 Bttn_SaveNote.IsEnabled = false;
                 Bttn_DeleteNote.IsEnabled = false;
@@ -130,7 +130,7 @@ namespace InvoicesManager.Windows
             NoteModel note = new NoteModel()
             {
                 Id = Guid.NewGuid(),
-                Name = $"Note {EnvironmentsVariable.Notebook.Notebooks.Count}",
+                Name = $"Note {EnvironmentsVariable.Notebook.Notebook.Count}",
                 Value = $"",
                 CreationDate = DateTime.Now,
                 LastEditDate = DateTime.Now

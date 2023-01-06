@@ -5,7 +5,7 @@ namespace InvoicesManager.Models
 {
     public class NotebookModel
     {
-        public List<NoteModel> Notebooks { get; set; } = new List<NoteModel>();
+        public List<NoteModel> Notebook { get; set; } = new List<NoteModel>();
     }
 
     public class NoteModel
