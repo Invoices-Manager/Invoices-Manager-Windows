@@ -20,7 +20,7 @@ namespace InvoicesManager.Classes
         public static string ConfigJsonFileName = "Config.json";
         public static string NotebooksJsonFileName = "Notebook.json";
         public static string UILanguage = "English";
-        public static string[] UILanguages = { "English", "German" };
+        public static string[] PossibleUILanguages = { "English", "German" };
         public const string PROGRAM_VERSION = "1.3.0.0";
         public static string ConfigVersion;
         public const string PROGRAM_SUPPORTEDFORMAT = ".pdf";
@@ -33,6 +33,7 @@ namespace InvoicesManager.Classes
         public static bool Window_About_IsClosed = true;
         public static bool Window_BackUp_IsClosed = true;
         public static char MoneyUnit = '€';
+        public static char[] PossibleMoneyUnits = { '€', '$', '£', '¥' };
 
         public static void InitWorkPath()
         {

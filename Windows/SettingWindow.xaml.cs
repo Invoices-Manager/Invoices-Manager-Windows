@@ -19,7 +19,7 @@ namespace InvoicesManager.Windows
         {
             Comb_UILanguage.Items.Clear();
             
-            foreach (string uiL in EnvironmentsVariable.UILanguages)
+            foreach (string uiL in EnvironmentsVariable.PossibleUILanguages)
                 Comb_UILanguage.Items.Add(uiL);
 
             Tb_PDFProgramPath.Text = EnvironmentsVariable.PathPDFBrowser;
