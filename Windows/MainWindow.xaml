@@ -14,7 +14,7 @@
     <Grid Background="{DynamicResource GridBackground}">
         <ScrollViewer>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button ToolTip="Will be added in a future version!" x:Name="Bttn_Open_Dashboard" Content="{DynamicResource Bttn_Dashboard}" FontSize="{DynamicResource FontSize}" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_Open_Dashboard_Click" Background="#33000000" OpacityMask="Black"/>
+                <Button ToolTip="Will be added in a future version!" x:Name="Bttn_Open_Dashboard" Content="{DynamicResource Bttn_Dashboard}" FontSize="{DynamicResource FontSize}" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_Open_Dashboard_Click" Background="#FFDDDDDD" OpacityMask="Black"/>
                 <Button x:Name="Bttn_Open_Invoices" Content="{DynamicResource Bttn_InvoiceManager}" FontSize="{DynamicResource FontSize}" BorderBrush="Black" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_Open_Invoices_Click"/>
                 <Button x:Name="Bttn_Open_Notebook" Content="{DynamicResource Bttn_Notebook}" FontSize="{DynamicResource FontSize}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_Open_Notebook_Click"/>
                 <Button x:Name="Bttn_Open_BackUp" Content="{DynamicResource Bttn_BackUp}" FontSize="{DynamicResource FontSize}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_Open_BackUp_Click"/>
