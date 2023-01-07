@@ -55,7 +55,6 @@
     <system:String x:Key="edit">bearbeiten</system:String>
     <system:String x:Key="delete">löschen</system:String>
     <system:String x:Key="moneytotal">Geld Summe</system:String>
-    <system:String x:Key="tags">Tags</system:String>
     <system:String x:Key="importancestate">Wichtigkeits Status</system:String>
     <system:String x:Key="moneystate">Geld Status</system:String>
     <system:String x:Key="paidstate">Bezahlt Status</system:String>
@@ -82,4 +81,10 @@
     <system:String x:Key="Bttn_BackUp">Sicherungen</system:String>
     <system:String x:Key="Bttn_Settings">Einstellungen</system:String>
     <system:String x:Key="Bttn_About">Über das Program</system:String>
+    <system:String x:Key="dateOfCapture">Datum der Erfassung</system:String>
+    <system:String x:Key="paidState">Zahlungs Status</system:String>
+    <system:String x:Key="moneyState">Geld Status</system:String>
+    <system:String x:Key="importanceState">Wichtigkeit</system:String>
+    <system:String x:Key="tags">Tags</system:String>
+    <system:String x:Key="moneyTotal">Geldsumme</system:String>
 </ResourceDictionary>

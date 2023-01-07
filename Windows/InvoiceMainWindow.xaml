@@ -92,6 +92,12 @@
                         <DataGridTextColumn Header="{DynamicResource documentType}"  Binding="{Binding DocumentType}"/>
                         <DataGridTextColumn Header="{DynamicResource invoiceNo}"  Binding="{Binding InvoiceNumber}"/>
                         <DataGridTextColumn Header="{DynamicResource reference}"  Binding="{Binding Reference}"/>
+                        <DataGridTextColumn Header="{DynamicResource moneyTotal}"  Binding="{Binding StringMoneyTotal}"/>
+                        <DataGridTextColumn Header="{DynamicResource importanceState}"  Binding="{Binding StringImportanceState}"/>
+                        <DataGridTextColumn Header="{DynamicResource moneyState}"  Binding="{Binding StringMoneyState}"/>
+                        <DataGridTextColumn Header="{DynamicResource paidState}"  Binding="{Binding StringPaidState}"/>
+                        <DataGridTextColumn Header="{DynamicResource tags}"  Binding="{Binding StringTags}"/>
+                        <DataGridTextColumn Header="{DynamicResource dateOfCapture}"  Binding="{Binding StringCaptureDate}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>

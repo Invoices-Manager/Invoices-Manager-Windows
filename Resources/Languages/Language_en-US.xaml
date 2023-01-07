@@ -55,7 +55,6 @@
     <system:String x:Key="edit">edit</system:String>
     <system:String x:Key="delete">remove</system:String>
     <system:String x:Key="moneytotal">money total</system:String>
-    <system:String x:Key="tags">tags</system:String>
     <system:String x:Key="importancestate">importance state</system:String>
     <system:String x:Key="moneystate">money state</system:String>
     <system:String x:Key="paidstate">paid state</system:String>
@@ -82,4 +81,10 @@
     <system:String x:Key="Bttn_BackUp">BackUp</system:String>
     <system:String x:Key="Bttn_Settings">Settings</system:String>
     <system:String x:Key="Bttn_About">About</system:String>
+    <system:String x:Key="dateOfCapture">date of capture</system:String>
+    <system:String x:Key="paidState">paid state</system:String>
+    <system:String x:Key="moneyState">money state</system:String>
+    <system:String x:Key="importanceState">importance State</system:String>
+    <system:String x:Key="tags">tags</system:String>
+    <system:String x:Key="moneyTotal">money total</system:String>
 </ResourceDictionary>
