@@ -21,7 +21,7 @@ namespace InvoicesManager.Classes
         public static string NotebooksJsonFileName = "Notebook.json";
         public static string UILanguage = "English";
         public static string[] UILanguages = { "English", "German" };
-        public const string PROGRAM_VERSION = "1.2.3.2";
+        public const string PROGRAM_VERSION = "1.3.0.0";
         public static string ConfigVersion;
         public const string PROGRAM_SUPPORTEDFORMAT = ".pdf";
         //0 = dark mode  | 1 = white mode
