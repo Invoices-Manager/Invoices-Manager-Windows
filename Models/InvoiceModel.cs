@@ -10,7 +10,13 @@ namespace InvoicesManager.Models
         //Rules
         public bool ShouldSerializeOpenInvoiceText() { return false; }
         public bool ShouldSerializeStringExhibitionDate() { return false; }
-         
+        public bool ShouldSerializeStringCaptureDate() { return false; }
+        public bool ShouldSerializeStringMoneyTotal() { return false; }
+        public bool ShouldSerializeStringTags() { return false; }
+        public bool ShouldSerializeStringPaidState() { return false; }
+        public bool ShouldSerializeStringMoneyState() { return false; }
+        public bool ShouldSerializeStringImportanceState() { return false; }
+
         //Model
         public string FileID { get; set; } // (NN)
         public DateTime CaptureDate { get; set; } // (NN)
