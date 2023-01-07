@@ -4,13 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InvoicesManager.Windows"
-        xmlns:ui="http://schemas.modernwpf.com/2019"
-        ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="Invoice Settings | Made by Schecher | https://github.com/Schecher1" 
-        Height="700" Width="800"
-        MinHeight="700" MinWidth="800"
-        MaxHeight="700" MaxWidth="800"
+        Height="800" Width="900"
+        MinHeight="800" MinWidth="900"
+        MaxHeight="800" MaxWidth="900"
         Loaded="Window_Loaded"
         Icon="/Resources/SmallIcon.png"
         Closed="Window_Closed"
@@ -20,14 +18,14 @@
             <ScrollViewer>
                 <StackPanel>
                     <Grid>
-                        <Label Content="{DynamicResource uiLanguage}"  FontSize="20" Foreground="{DynamicResource FontForeground}" />
-                        <ComboBox x:Name="Comb_UILanguage" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Margin="150,0,0,0" Width="450"/>
+                        <Label Content="{DynamicResource uiLanguage}"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" />
+                        <ComboBox x:Name="Comb_UILanguage" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Margin="175,0,0,0" Width="450"/>
                     </Grid>
                     <Separator Margin="25"/>
                     <Grid>
-                        <Label Content="{DynamicResource pdfProgram}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
-                        <TextBox x:Name="Tb_PDFProgramPath" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="450" Margin="150,0,0,0"/>
-                        <Button x:Name="Bttn_Select_PDFProgramPath" Width="50" Height="50" HorizontalAlignment="Right" Margin="0,0,35,0" Click="Bttn_Select_PDFProgramPath_Click">
+                        <Label Content="{DynamicResource pdfProgram}"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
+                        <TextBox x:Name="Tb_PDFProgramPath" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="450" Margin="175,0,0,0"/>
+                        <Button x:Name="Bttn_Select_PDFProgramPath" Width="45" Height="45" HorizontalAlignment="Right" Margin="0,0,35,0" Click="Bttn_Select_PDFProgramPath_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/Resources/folder100x100.png"/>
                             </Button.Background>
@@ -35,9 +33,9 @@
                     </Grid>
                     <Separator Margin="25"/>
                     <Grid>
-                        <Label Content="{DynamicResource invoicePath}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
-                        <TextBox x:Name="Tb_InvoicePath" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="450" Margin="150,0,0,0"/>
-                        <Button x:Name="Bttn_Select_InvoicePath" Width="50" Height="50" HorizontalAlignment="Right" Margin="0,0,35,0" Click="Bttn_Select_InvoicePath_Click">
+                        <Label Content="{DynamicResource invoicePath}"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
+                        <TextBox x:Name="Tb_InvoicePath" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="450" Margin="175,0,0,0"/>
+                        <Button x:Name="Bttn_Select_InvoicePath" Width="45" Height="45" HorizontalAlignment="Right" Margin="0,0,35,0" Click="Bttn_Select_InvoicePath_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/Resources/folder100x100.png"/>
                             </Button.Background>
@@ -45,9 +43,9 @@
                     </Grid>
                     <Separator Margin="25"/>
                     <Grid>
-                        <Label Content="{DynamicResource notebookPath}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
-                        <TextBox x:Name="Tb_NotebookPath" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="450" Margin="150,0,0,0"/>
-                        <Button x:Name="Bttn_Select_NotebookPath" Width="50" Height="50" HorizontalAlignment="Right" Margin="0,0,35,0" Click="Bttn_Select_NotebookPath_Click">
+                        <Label Content="{DynamicResource notebookPath}"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
+                        <TextBox x:Name="Tb_NotebookPath" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="450" Margin="175,0,0,0"/>
+                        <Button x:Name="Bttn_Select_NotebookPath" Width="45" Height="45" HorizontalAlignment="Right" Margin="0,0,35,0" Click="Bttn_Select_NotebookPath_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/Resources/folder100x100.png"/>
                             </Button.Background>
@@ -55,9 +53,9 @@
                     </Grid>
                     <Separator Margin="25"/>
                     <Grid>
-                        <Label Content="{DynamicResource backupPath}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
-                        <TextBox x:Name="Tb_BackUpPath" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="450" Margin="150,0,0,0"/>
-                        <Button x:Name="Bttn_Select_BackUpPath" Width="50" Height="50" HorizontalAlignment="Right" Margin="0,0,35,0" Click="Bttn_Select_BackUpPath_Click">
+                        <Label Content="{DynamicResource backupPath}"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
+                        <TextBox x:Name="Tb_BackUpPath" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="450" Margin="175,0,0,0"/>
+                        <Button x:Name="Bttn_Select_BackUpPath" Width="45" Height="45" HorizontalAlignment="Right" Margin="0,0,35,0" Click="Bttn_Select_BackUpPath_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/Resources/folder100x100.png"/>
                             </Button.Background>
@@ -65,18 +63,18 @@
                     </Grid>
                     <Separator Margin="25"/>
                     <Grid>
-                        <Label Content="{DynamicResource backupMaxCount}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
-                        <TextBox x:Name="Tb_MaxCountBackUp" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Right" Width="300" Margin="0,0,100,0" TextChanged="Tb_MaxCountBackUp_TextChanged"/>
+                        <Label Content="{DynamicResource backupMaxCount}"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
+                        <TextBox x:Name="Tb_MaxCountBackUp" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Right" Width="300" Margin="0,0,140,0" TextChanged="Tb_MaxCountBackUp_TextChanged"/>
                     </Grid>
                     <Separator Margin="25"/>
                     <Grid>
-                        <Label Content="{DynamicResource everyStartUpBackUp}"  FontSize="20" Foreground="{DynamicResource FontForeground}"/>
-                        <CheckBox x:Name="Cb_EveryStartUpBackUp" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Right" Width="250" Margin="0,0,0,0"/>
+                        <Label Content="{DynamicResource everyStartUpBackUp}"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
+                        <CheckBox x:Name="Cb_EveryStartUpBackUp" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Right" Margin="0,0,300,0" VerticalAlignment="Center"/>
                     </Grid>
                     <Separator Margin="25"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        <Button x:Name="Bttn_SaveSettings" Foreground="{DynamicResource FontForeground}" Content="{DynamicResource saveSettings}" FontSize="20" VerticalAlignment="Bottom"  HorizontalAlignment="Center" Margin="0,0,0,25" Click="Bttn_SaveSettings_Click"/>
+        <Button x:Name="Bttn_SaveSettings" Foreground="{DynamicResource FontForeground}" Content="{DynamicResource saveSettings}" FontSize="35" Padding="10,5,10,5" VerticalAlignment="Bottom"  HorizontalAlignment="Center" Margin="0,0,0,25" Click="Bttn_SaveSettings_Click"/>
     </Grid>
 </Window>

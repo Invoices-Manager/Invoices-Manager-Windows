@@ -3,17 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:InvoicesManager"
              xmlns:ui="http://schemas.modernwpf.com/2019"
-             StartupUri="Windows/MainWindow.xaml">
+             StartupUri="Windows/MainWindow.xaml"
+    xmlns:System="clr-namespace:System;assembly=System.Runtime">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ui:ThemeResources/>
-                <ui:XamlControlsResources/>
                 <ResourceDictionary Source="Resources/Languages/Language_de-DE.xaml"/>
                 <ResourceDictionary Source="Resources/Languages/Language_en-US.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <SolidColorBrush x:Key="GridBackground" Color="#FF4A4A4A"/>
-            <SolidColorBrush x:Key="FontForeground" Color="White"/>
+            <SolidColorBrush x:Key="GridBackground" Color="White"/>
+            <SolidColorBrush x:Key="FontForeground" Color="Black"/>
+            <System:Double x:Key="FontSize">20</System:Double>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

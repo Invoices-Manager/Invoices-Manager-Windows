@@ -4,8 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InvoicesManager.Windows"
-        xmlns:ui="http://schemas.modernwpf.com/2019"
-        ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="Invoice Save As | Made by Schecher | https://github.com/Schecher1" 
         Height="600" Width="650"
@@ -13,15 +11,15 @@
         MaxHeight="600" MaxWidth="650"
         Icon="/Resources/SmallIcon.png">
     <Grid Background="{DynamicResource GridBackground}">
-        <Label Content="{DynamicResource whatShouldTheFileBeCalled}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" Margin="0,50,0,0" Foreground="{DynamicResource FontForeground}"/>
-        <StackPanel Margin="50,100,50,165">
-            <RadioButton x:Name="Rb_Vers01" Checked="Rb_Vers_Click"  Foreground="{DynamicResource FontForeground}" FontSize="25" Margin="0,0,0,5"/>
-            <RadioButton x:Name="Rb_Vers02" Checked="Rb_Vers_Click"  Foreground="{DynamicResource FontForeground}" FontSize="25" Margin="0,0,0,5"/>
-            <RadioButton x:Name="Rb_Vers03" Checked="Rb_Vers_Click"  Foreground="{DynamicResource FontForeground}" FontSize="25" Margin="0,0,0,5"/>
-            <RadioButton x:Name="Rb_Vers04" Checked="Rb_Vers_Click"  Foreground="{DynamicResource FontForeground}" FontSize="25" Margin="0,0,0,5"/>
-            <RadioButton x:Name="Rb_Custom" Checked="Rb_Vers_Click"  Foreground="{DynamicResource FontForeground}" FontSize="25" Margin="0,0,0,5"/>
-            <TextBox x:Name="Tb_CustomName" Margin="0,0,0,5"/>
+        <Label Content="{DynamicResource whatShouldTheFileBeCalled}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="35" Margin="0,50,0,50" Foreground="{DynamicResource FontForeground}"/>
+        <StackPanel Margin="50,150,50,165">
+            <RadioButton x:Name="Rb_Vers01" Padding="10,-8,0,0" Checked="Rb_Vers_Click"  Foreground="{DynamicResource FontForeground}" FontSize="{DynamicResource FontSize}" Margin="0,15,0,5"/>
+            <RadioButton x:Name="Rb_Vers02" Padding="10,-8,0,0" Checked="Rb_Vers_Click"  Foreground="{DynamicResource FontForeground}" FontSize="{DynamicResource FontSize}" Margin="0,15,0,5"/>
+            <RadioButton x:Name="Rb_Vers03" Padding="10,-8,0,0" Checked="Rb_Vers_Click"  Foreground="{DynamicResource FontForeground}" FontSize="{DynamicResource FontSize}" Margin="0,15,0,5"/>
+            <RadioButton x:Name="Rb_Vers04" Padding="10,-8,0,0" Checked="Rb_Vers_Click"  Foreground="{DynamicResource FontForeground}" FontSize="{DynamicResource FontSize}" Margin="0,15,0,5"/>
+            <RadioButton x:Name="Rb_Custom" Padding="10,-8,0,0" Checked="Rb_Vers_Click"  Foreground="{DynamicResource FontForeground}" FontSize="{DynamicResource FontSize}" Margin="0,15,0,5"/>
+            <TextBox x:Name="Tb_CustomName" Margin="0,0,0,5" FontSize="{DynamicResource FontSize}"/>
         </StackPanel>
-        <Button x:Name="Bttn_SaveAs" Content="{DynamicResource saveAs}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="{DynamicResource FontForeground}" Height="57" Width="210" Margin="0,0,0,25" FontSize="25" Click="Bttn_SaveAs_Click"/>
+        <Button x:Name="Bttn_SaveAs" Content="{DynamicResource saveAs}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="{DynamicResource FontForeground}" Height="57" Width="210" Margin="0,0,0,25" FontSize="{DynamicResource FontSize}" Click="Bttn_SaveAs_Click"/>
     </Grid>
 </Window>

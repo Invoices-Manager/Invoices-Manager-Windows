@@ -4,67 +4,65 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InvoicesManager.Windows"
-        xmlns:ui="http://schemas.modernwpf.com/2019"
-        ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="Invoice {MODE} | Made by Schecher | https://github.com/Schecher1" 
-        Height="750" Width="800"
-        MinHeight="750" MinWidth="800"
-        MaxHeight="750" MaxWidth="800"
+        Height="800" Width="800"
+        MinHeight="800" MinWidth="800"
+        MaxHeight="800" MaxWidth="800"
         Icon="/Resources/SmallIcon.png">
     <Grid Background="{DynamicResource GridBackground}">
         <Grid Margin="0,0,0,70">
             <StackPanel>
                 <Grid>
-                    <Label Margin="90,50,0,0" Content="{DynamicResource dateOfExhibition}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <DatePicker x:Name="Dp_ExhibitionDate" Margin="350,50,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                    <Label Margin="90,50,0,0" Content="{DynamicResource dateOfExhibition}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <DatePicker x:Name="Dp_ExhibitionDate" Margin="350,50,0,0" Width="350" HorizontalAlignment="Left" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="90,15,0,0" Content="{DynamicResource organization}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_Organization" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                    <Label Margin="90,15,0,0" Content="{DynamicResource organization}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_Organization" Margin="350,15,0,0" Width="350" FontSize="{DynamicResource FontSize}" HorizontalAlignment="Left" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="90,15,0,0" Content="{DynamicResource documentType}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_DocumentType" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                    <Label Margin="90,15,0,0" Content="{DynamicResource documentType}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_DocumentType" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="90,15,0,0" Content="{DynamicResource invoiceNo}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_InvoiceNumber" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                    <Label Margin="90,15,0,0" Content="{DynamicResource invoiceNo}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_InvoiceNumber" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="90,15,0,0" Content="{DynamicResource reference}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_Reference" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                    <Label Margin="90,15,0,0" Content="{DynamicResource reference}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_Reference" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="90,15,0,0" Content="{DynamicResource moneytotal}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_MoneyTotal" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                    <Label Margin="90,15,0,0" Content="{DynamicResource moneytotal}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_MoneyTotal" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="90,15,0,0" Content="{DynamicResource tags}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <Label Margin="90,15,0,0" Content="{DynamicResource tags}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <Label Margin="164,20,0,-6" Content="{DynamicResource tagInfo}" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_Tags" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                    <TextBox x:Name="Tb_Tags" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="90,15,0,0" Content="{DynamicResource importancestate}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <ComboBox x:Name="Comb_ImportanceState" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                    <Label Margin="90,15,0,0" Content="{DynamicResource importancestate}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <ComboBox x:Name="Comb_ImportanceState" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="90,15,0,0" Content="{DynamicResource moneystate}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <ComboBox x:Name="Comb_MoneyState" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                    <Label Margin="90,15,0,0" Content="{DynamicResource moneystate}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <ComboBox x:Name="Comb_MoneyState" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="90,15,0,0" Content="{DynamicResource paidstate}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <ComboBox x:Name="Comb_PaidState" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="15" Foreground="{DynamicResource FontForeground}"/>
+                    <Label Margin="90,15,0,0" Content="{DynamicResource paidstate}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <ComboBox x:Name="Comb_PaidState" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
-                    <Label x:Name="Msg_file" Margin="100,15,0,0" Content="{DynamicResource file}" FontSize="25" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <Button x:Name="Bttn_InvoiceFileAdd" Margin="350,15,0,0" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="32" Width="350" Content="{DynamicResource pleaseSelectFile}" FontSize="15" Foreground="{DynamicResource FontForeground}" Click="Bttn_InvoiceFileAdd_Click"/>
+                    <Label x:Name="Msg_file" Margin="100,15,0,0" Content="{DynamicResource file}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <Button x:Name="Bttn_InvoiceFileAdd" Margin="350,15,0,0" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="32" Width="350" Content="{DynamicResource pleaseSelectFile}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Click="Bttn_InvoiceFileAdd_Click"/>
                 </Grid>
                 <Grid>
                     <TextBlock x:Name="Tb_FilePath" Margin="0,10,0,50" Text="{DynamicResource file}" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Center" TextWrapping="Wrap" />
                 </Grid>
             </StackPanel>
         </Grid>
-        <Button x:Name="Bttn_InvoiceAction" Content="{DynamicResource addInvoice}" Click="Bttn_InvoiceAction_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="{DynamicResource FontForeground}" Margin="0,1,0,20" FontSize="20" IsDefault="True"/>
+        <Button x:Name="Bttn_InvoiceAction" Content="{DynamicResource addInvoice}" Click="Bttn_InvoiceAction_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="{DynamicResource FontForeground}" Margin="0,1,0,20" Padding="15,5,15,5" FontSize="30" IsDefault="True"/>
     </Grid>
 </Window>

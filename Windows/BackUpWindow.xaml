@@ -4,8 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InvoicesManager.Windows"
-        xmlns:ui="http://schemas.modernwpf.com/2019"
-        ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="BackUp Menu | Made by Schecher | https://github.com/Schecher1" 
         Height="750" Width="800"
@@ -16,8 +14,8 @@
     <Grid Background="{DynamicResource GridBackground}">
         <ScrollViewer>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="Bttn_BackUpCreate" Content="{DynamicResource createBackUp}" Foreground="{DynamicResource FontForeground}" FontSize="35" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_BackUpCreate_Click"/>
-                <Button x:Name="Bttn_BackUpRestore"  Content="{DynamicResource importBackUp}" Foreground="{DynamicResource FontForeground}" FontSize="35" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_BackUpRestore_Click"/>
+                <Button x:Name="Bttn_BackUpCreate" Content="{DynamicResource createBackUp}" Foreground="{DynamicResource FontForeground}" FontSize="{DynamicResource FontSize}" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_BackUpCreate_Click"/>
+                <Button x:Name="Bttn_BackUpRestore"  Content="{DynamicResource importBackUp}" Foreground="{DynamicResource FontForeground}" FontSize="{DynamicResource FontSize}" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_BackUpRestore_Click"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
