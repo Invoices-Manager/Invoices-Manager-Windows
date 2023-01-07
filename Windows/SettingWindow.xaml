@@ -23,6 +23,11 @@
                     </Grid>
                     <Separator Margin="25"/>
                     <Grid>
+                        <Label Content="{DynamicResource moneyUnit}"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" />
+                        <ComboBox x:Name="Comb_MoneyUnit" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Margin="175,0,0,0" Width="450"/>
+                    </Grid>
+                    <Separator Margin="25"/>
+                    <Grid>
                         <Label Content="{DynamicResource pdfProgram}"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
                         <TextBox x:Name="Tb_PDFProgramPath" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" Width="450" Margin="175,0,0,0"/>
                         <Button x:Name="Bttn_Select_PDFProgramPath" Width="45" Height="45" HorizontalAlignment="Right" Margin="0,0,35,0" Click="Bttn_Select_PDFProgramPath_Click">

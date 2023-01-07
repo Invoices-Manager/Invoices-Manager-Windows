@@ -33,7 +33,7 @@ namespace InvoicesManager.Classes
         public static bool Window_About_IsClosed = true;
         public static bool Window_BackUp_IsClosed = true;
         public static char MoneyUnit = '€';
-        public static char[] PossibleMoneyUnits = { '€', '$', '£', '¥' };
+        public static char[] PossibleMoneyUnits = { '€', '$', '£', '¥', '₽', '₹' };
 
         public static void InitWorkPath()
         {

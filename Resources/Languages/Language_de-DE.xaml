@@ -87,4 +87,5 @@
     <system:String x:Key="importanceState">Wichtigkeit</system:String>
     <system:String x:Key="tags">Tags</system:String>
     <system:String x:Key="moneyTotal">Geldsumme</system:String>
+    <system:String x:Key="moneyUnit">Währung</system:String>
 </ResourceDictionary>

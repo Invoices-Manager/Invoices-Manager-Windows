@@ -18,12 +18,17 @@ namespace InvoicesManager.Windows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Comb_UILanguage.Items.Clear();
-            
-            foreach (string uiL in EnvironmentsVariable.PossibleUILanguages)
+            Comb_MoneyUnit.Items.Clear();
+
+            foreach (var uiL in EnvironmentsVariable.PossibleUILanguages)
                 Comb_UILanguage.Items.Add(uiL);
+
+            foreach (var mU in EnvironmentsVariable.PossibleMoneyUnits)
+                Comb_MoneyUnit.Items.Add(mU);
 
             Tb_PDFProgramPath.Text = EnvironmentsVariable.PathPDFBrowser;
             Comb_UILanguage.Text = EnvironmentsVariable.UILanguage;
+            Comb_MoneyUnit.Text = EnvironmentsVariable.MoneyUnit.ToString();
             Tb_InvoicePath.Text = EnvironmentsVariable.PathInvoices;
             Tb_NotebookPath.Text = EnvironmentsVariable.PathNotebook;
             Tb_BackUpPath.Text = EnvironmentsVariable.PathBackUps;
@@ -43,6 +48,7 @@ namespace InvoicesManager.Windows
 
             EnvironmentsVariable.PathPDFBrowser = Tb_PDFProgramPath.Text;
             EnvironmentsVariable.UILanguage = Comb_UILanguage.Text;
+            EnvironmentsVariable.MoneyUnit = Convert.ToChar(Comb_MoneyUnit.Text);
             EnvironmentsVariable.PathInvoices = Tb_InvoicePath.Text;
             EnvironmentsVariable.PathNotebook = Tb_NotebookPath.Text;
             EnvironmentsVariable.PathBackUps = Tb_BackUpPath.Text;
