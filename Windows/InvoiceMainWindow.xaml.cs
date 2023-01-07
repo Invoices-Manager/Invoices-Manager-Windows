@@ -171,8 +171,11 @@ namespace InvoicesManager
             //System.InvalidOperationException: "Collection was modified; enumeration operation may not execute".)
             List<InvoiceModel> allInvoices = new List<InvoiceModel>(EnvironmentsVariable.AllInvoices);
 
+            //otherwise an empty orga will be displayed in the comb
+            allInvoices.RemoveAll(x => x.Organization == String.Empty);
+
             foreach (var organization in allInvoices.Select(x => x.Organization).Distinct())
-                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                         => { Comb_Search_Organization.Items.Add(organization); }));
         }
 

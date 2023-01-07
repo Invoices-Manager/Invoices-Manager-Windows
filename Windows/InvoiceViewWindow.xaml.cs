@@ -138,8 +138,9 @@ namespace InvoicesManager.Windows
             // Empty Tb_InvoiceNumber inputs are allowed 
             //if (String.IsNullOrWhiteSpace(Tb_InvoiceNumber.Text))
             //    return false;
-            if (String.IsNullOrWhiteSpace(Tb_Organization.Text))
-                return false;
+            // Empty Tb_Organization inputs are allowed 
+            //if (String.IsNullOrWhiteSpace(Tb_Organization.Text))
+            //    return false;
             if (String.IsNullOrWhiteSpace(Tb_DocumentType.Text))
                 return false;
             if (Dp_ExhibitionDate.SelectedDate == default)
