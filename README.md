@@ -67,6 +67,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 - The DarkMode was replaced by a LightMode
 - Invoices Manager no longer uses "ModernWPF" (for later developments with own design)
 - The Organization field can now also just be left blank (it is no longer a required field).
+- The other data from the invoice are now also displayed in the DataGrid
 
 ## v1.2.3.2
 - SaveAs had a logical error, you could not select/use a custom filename
