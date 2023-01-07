@@ -87,6 +87,9 @@ namespace InvoicesManager.Core
                 //set the creation date
                 backUp.DateOfCreation = DateTime.Now;
 
+                //set the version of the backup
+                backUp.BackUpVersion = EnvironmentsVariable.PROGRAM_VERSION;
+
                 //set the entity count
                 backUp.EntityCount = invoices.Count;
 

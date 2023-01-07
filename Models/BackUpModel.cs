@@ -7,6 +7,7 @@ namespace InvoicesManager.Models
     {
         public int EntityCount { get; set; }
         public DateTime DateOfCreation { get; set; }
+        public string BackUpVersion { get; set; }
         public List<InvoiceBackUpModel> Invoices { get; set; }
         public NotebookModel Notebook { get; set; }
     }
