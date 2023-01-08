@@ -104,20 +104,36 @@
                           IsReadOnly="True"
                           MouseDoubleClick="DG_Invoices_MouseDoubleClick"
                           FontSize="{DynamicResource FontSize}"
-                          >
+                          MouseRightButtonDown="Dg_Invoices_MouseRightButtonDown">
+                     <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem x:Name="ViewColumnOpen" Click="MenuItem_Click" Header="{DynamicResource open}" IsChecked="True"/>
+                            <MenuItem x:Name="ViewColumnDateOfExhibition" Click="MenuItem_Click" Header="{DynamicResource dateOfExhibition}" IsChecked="True"/>
+                            <MenuItem x:Name="ViewColumnOrganization" Click="MenuItem_Click" Header="{DynamicResource organization}" IsChecked="True"/>
+                            <MenuItem x:Name="ViewColumnDocumentType" Click="MenuItem_Click" Header="{DynamicResource documentType}" IsChecked="True"/>
+                            <MenuItem x:Name="ViewColumnInvoiceNo" Click="MenuItem_Click" Header="{DynamicResource invoiceNo}" IsChecked="True"/>
+                            <MenuItem x:Name="ViewColumnReference" Click="MenuItem_Click" Header="{DynamicResource reference}" IsChecked="True"/>
+                            <MenuItem x:Name="ViewColumnMoneyTotal" Click="MenuItem_Click" Header="{DynamicResource moneyTotal}" IsChecked="True"/>
+                            <MenuItem x:Name="ViewColumnImportanceState" Click="MenuItem_Click" Header="{DynamicResource importanceState}" IsChecked="True"/>
+                            <MenuItem x:Name="ViewColumnMoneyState" Click="MenuItem_Click" Header="{DynamicResource moneyState}" IsChecked="True"/>
+                            <MenuItem x:Name="ViewColumnPaidState" Click="MenuItem_Click" Header="{DynamicResource paidState}" IsChecked="True"/>
+                            <MenuItem x:Name="ViewColumnTags" Click="MenuItem_Click" Header="{DynamicResource tags}" IsChecked="True" />
+                            <MenuItem x:Name="ViewColumnDateOfCapture" Click="MenuItem_Click" Header="{DynamicResource dateOfCapture}" IsChecked="True"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                     <DataGrid.Columns>
-                        <DataGridHyperlinkColumn  Header="{DynamicResource open}" Binding="{Binding OpenInvoiceText}"/>
-                        <DataGridTextColumn Header="{DynamicResource dateOfExhibition}"  Binding="{Binding StringExhibitionDate}"/>
-                        <DataGridTextColumn Header="{DynamicResource organization}"  Binding="{Binding Organization}"/>
-                        <DataGridTextColumn Header="{DynamicResource documentType}"  Binding="{Binding DocumentType}"/>
-                        <DataGridTextColumn Header="{DynamicResource invoiceNo}"  Binding="{Binding InvoiceNumber}"/>
-                        <DataGridTextColumn Header="{DynamicResource reference}"  Binding="{Binding Reference}"/>
-                        <DataGridTextColumn Header="{DynamicResource moneyTotal}"  Binding="{Binding StringMoneyTotal}" SortMemberPath="MoneyTotal"/>
-                        <DataGridTextColumn Header="{DynamicResource importanceState}"  Binding="{Binding StringImportanceState}"/>
-                        <DataGridTextColumn Header="{DynamicResource moneyState}"  Binding="{Binding StringMoneyState}"/>
-                        <DataGridTextColumn Header="{DynamicResource paidState}"  Binding="{Binding StringPaidState}"/>
-                        <DataGridTextColumn Header="{DynamicResource tags}"  Binding="{Binding StringTags}"/>
-                        <DataGridTextColumn Header="{DynamicResource dateOfCapture}"  Binding="{Binding StringCaptureDate}"/>
+                        <DataGridHyperlinkColumn x:Name="ColumnOpen" Header="{DynamicResource open}" Binding="{Binding OpenInvoiceText}"/>
+                        <DataGridTextColumn x:Name="ColumnDateOfExhibition" Header="{DynamicResource dateOfExhibition}"  Binding="{Binding StringExhibitionDate}"/>
+                        <DataGridTextColumn x:Name="ColumnOrganization" Header="{DynamicResource organization}"  Binding="{Binding Organization}"/>
+                        <DataGridTextColumn x:Name="ColumnDocumentType" Header="{DynamicResource documentType}"  Binding="{Binding DocumentType}"/>
+                        <DataGridTextColumn x:Name="ColumnInvoiceNo" Header="{DynamicResource invoiceNo}"  Binding="{Binding InvoiceNumber}"/>
+                        <DataGridTextColumn x:Name="ColumnReference" Header="{DynamicResource reference}"  Binding="{Binding Reference}"/>
+                        <DataGridTextColumn x:Name="ColumnMoneyTotal" Header="{DynamicResource moneyTotal}"  Binding="{Binding StringMoneyTotal}" SortMemberPath="MoneyTotal"/>
+                        <DataGridTextColumn x:Name="ColumnImportanceState" Header="{DynamicResource importanceState}"  Binding="{Binding StringImportanceState}"/>
+                        <DataGridTextColumn x:Name="ColumnMoneyState" Header="{DynamicResource moneyState}"  Binding="{Binding StringMoneyState}"/>
+                        <DataGridTextColumn x:Name="ColumnPaidState" Header="{DynamicResource paidState}"  Binding="{Binding StringPaidState}"/>
+                        <DataGridTextColumn x:Name="ColumnTags"  Header="{DynamicResource tags}"  Binding="{Binding StringTags}"/>
+                        <DataGridTextColumn x:Name="ColumnDateOfCapture" Header="{DynamicResource dateOfCapture}"  Binding="{Binding StringCaptureDate}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>

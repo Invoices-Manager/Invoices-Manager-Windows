@@ -536,5 +536,74 @@ namespace InvoicesManager
             }
             catch { }
         }
+
+        private void Dg_Invoices_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+            => Dg_Invoices.ContextMenu.IsOpen = true;
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            switch (((MenuItem)sender).Name)
+            {
+                case "ViewColumnOpen":
+                    ColumnOpen.Visibility = ColumnOpen.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+                    ViewColumnOpen.IsChecked = ColumnOpen.Visibility == Visibility.Visible ? true : false;
+                    break;
+
+                case "ViewColumnDateOfExhibition":
+                    ColumnDateOfExhibition.Visibility = ColumnDateOfExhibition.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+                    ViewColumnDateOfExhibition.IsChecked = ColumnDateOfExhibition.Visibility == Visibility.Visible ? true : false;
+                    break;
+
+                case "ViewColumnOrganization":
+                    ColumnOrganization.Visibility = ColumnOrganization.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+                    ViewColumnOrganization.IsChecked = ColumnOrganization.Visibility == Visibility.Visible ? true : false;
+                    break;
+
+                case "ViewColumnDocumentType":
+                    ColumnDocumentType.Visibility = ColumnDocumentType.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+                    ViewColumnDocumentType.IsChecked = ColumnDocumentType.Visibility == Visibility.Visible ? true : false;
+                    break;
+
+                case "ViewColumnInvoiceNo":
+                    ColumnInvoiceNo.Visibility = ColumnInvoiceNo.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+                    ViewColumnInvoiceNo.IsChecked = ColumnInvoiceNo.Visibility == Visibility.Visible ? true : false;
+                    break;
+
+                case "ViewColumnReference":
+                    ColumnReference.Visibility = ColumnReference.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+                    ViewColumnReference.IsChecked = ColumnReference.Visibility == Visibility.Visible ? true : false;
+                    break;
+
+                case "ViewColumnMoneyTotal":
+                    ColumnMoneyTotal.Visibility = ColumnMoneyTotal.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+                    ViewColumnMoneyTotal.IsChecked = ColumnMoneyTotal.Visibility == Visibility.Visible ? true : false;
+                    break;
+
+                case "ViewColumnImportanceState":
+                    ColumnImportanceState.Visibility = ColumnImportanceState.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+                    ViewColumnImportanceState.IsChecked = ColumnImportanceState.Visibility == Visibility.Visible ? true : false;
+                    break;
+
+                case "ViewColumnMoneyState":
+                    ColumnMoneyState.Visibility = ColumnMoneyState.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+                    ViewColumnMoneyState.IsChecked = ColumnMoneyState.Visibility == Visibility.Visible ? true : false;
+                    break;
+
+                case "ViewColumnPaidState":
+                    ColumnPaidState.Visibility = ColumnPaidState.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+                    ViewColumnPaidState.IsChecked = ColumnPaidState.Visibility == Visibility.Visible ? true : false;
+                    break;
+
+                case "ViewColumnTags":
+                    ColumnTags.Visibility = ColumnTags.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+                    ViewColumnTags.IsChecked = ColumnTags.Visibility == Visibility.Visible ? true : false;
+                    break;
+
+                case "ViewColumnDateOfCapture":
+                    ColumnDateOfCapture.Visibility = ColumnDateOfCapture.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+                    ViewColumnDateOfCapture.IsChecked = ColumnDateOfCapture.Visibility == Visibility.Visible ? true : false;
+                    break;
+            }
+        }
     }
 }
