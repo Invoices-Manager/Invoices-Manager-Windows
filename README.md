@@ -31,23 +31,26 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 
 ## Images:
 ### Main-Screen:                                                  
-![Main-Screen](IMAGES/Version%201.2.3.0/MainScreen.png)
+![Main-Screen](IMAGES/Version%201.3.0.0/MainScreen.png)
+
+### Invoice-Main-Screen:                                                  
+![Invoice-Main-Screen](IMAGES/Version%201.3.0.0/InvoiceMainScreen.png)
 
 ### Invoice-View-Screen:                                           
-![Invoice-View-Screen](IMAGES/Version%201.2.0.0/InvoiceViewScreen.png)
+![Invoice-View-Screen](IMAGES/Version%201.3.0.0/InvoiceViewScreen.png)
 
 ### SaveAs-Screen:
 -You can choose in which format the file should be saved (the name), or you can save it as you wish                   <br/>
-![SaveAs-Screen](IMAGES/Version%201.1.3.1/InvoiceSaveAsScreen.png)
+![SaveAs-Screen](IMAGES/Version%201.3.0.0/InvoiceSaveAsScreen.png)
 
 ### Notebook-Screen:                                         
-![Notescreen-Screen](IMAGES/Version%201.2.3.0/NotebookScreen.png) 
+![Notescreen-Screen](IMAGES/Version%201.3.0.0/NotebookScreen.png) 
 
 ### Setting-Screen:                                         
-![Setting-Screen](IMAGES/Version%201.2.2.0/SettingScreen.png) 
+![Setting-Screen](IMAGES/Version%201.3.0.0/SettingScreen.png) 
 
 ### About-Screen:                                         
-![About-Screen](IMAGES/Version%201.1.3.0/AboutScreen.png)
+![About-Screen](IMAGES/Version%201.3.0.0/AboutScreen.png)
 
 
 # CHANGELOG
@@ -68,7 +71,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 - Invoices Manager no longer uses "ModernWPF" (for later developments with own design)
 - The Organization field can now also just be left blank (it is no longer a required field).
 - The other data from the invoice are now also displayed in the DataGrid
-- You have now 4 new filter types to choose (MoneyTotal, ImportanceState, MoneyState & PaidState) 
+- You have now 5 new filter types to choose (Tags, MoneyTotal, ImportanceState, MoneyState & PaidState) 
 
 
 ## v1.2.3.2

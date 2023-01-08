@@ -52,4 +52,8 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IMAGES\Version 1.3.0.0\" />
+  </ItemGroup>
 </Project>
