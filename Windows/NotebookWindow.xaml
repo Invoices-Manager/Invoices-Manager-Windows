@@ -13,7 +13,7 @@
         WindowStartupLocation="CenterScreen">
     <Grid Background="{DynamicResource GridBackground}">
         <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
-            <ScrollViewer>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <ItemsControl x:Name="sP_Notes" >
                         <ItemsControl.ItemTemplate>
@@ -52,7 +52,7 @@
                      SpellCheck.IsEnabled="True"/>
         </Grid>
         <Grid Margin="280,0,0,0" Height="75" VerticalAlignment="Bottom">
-            <ScrollViewer HorizontalAlignment="Right">
+            <ScrollViewer HorizontalAlignment="Right" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"> 
                 <StackPanel Orientation="Horizontal">
                     <Button Content="NEW" 
                                             x:Name="Bttn_CreateNote"

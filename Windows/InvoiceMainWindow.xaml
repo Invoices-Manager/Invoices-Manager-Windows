@@ -13,13 +13,13 @@
         WindowStartupLocation="CenterScreen">
     <Grid Background="{DynamicResource GridBackground}">
         <Grid>
-            <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="35">
-                <Button x:Name="Bttn_BoardRefresh"  Content="{DynamicResource refreshBoard}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Padding="15,0,15,0" Click="Bttn_BoardRefresh_Click"/>
+            <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40">
+                <Button x:Name="Bttn_BoardRefresh"  Content="{DynamicResource refreshBoard}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_BoardRefresh_Click"/>
                 <Separator Margin="10,0,10,0"/>
-                <Button x:Name="Bttn_InvoiceAdd" Content="{DynamicResource addInvoice}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Padding="15,0,15,0" Click="Bttn_InvoiceAdd_Click"/>
-                <Button x:Name="Bttn_InvoiceEdit" Content="{DynamicResource editInvoice}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Padding="15,0,15,0" Click="Bttn_InvoiceEdit_Click"/>
-                <Button x:Name="Bttn_InvoiceRemove"  Content="{DynamicResource removeInvoice}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Padding="15,0,15,0" Click="Bttn_InvoiceRemove_Click"/>
-                <Button x:Name="Bttn_InvoiceSaveAs"  Content="{DynamicResource saveInvoiceAs}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Padding="15,0,15,0"  Click="Bttn_InvoiceSaveAs_Click"/>
+                <Button x:Name="Bttn_InvoiceAdd" Content="{DynamicResource addInvoice}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_InvoiceAdd_Click"/>
+                <Button x:Name="Bttn_InvoiceEdit" Content="{DynamicResource editInvoice}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_InvoiceEdit_Click"/>
+                <Button x:Name="Bttn_InvoiceRemove"  Content="{DynamicResource removeInvoice}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_InvoiceRemove_Click"/>
+                <Button x:Name="Bttn_InvoiceSaveAs"  Content="{DynamicResource saveInvoiceAs}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0"  Click="Bttn_InvoiceSaveAs_Click"/>
                 <Separator Margin="10,0,10,0"/>
             </ToolBarPanel>
         </Grid>
