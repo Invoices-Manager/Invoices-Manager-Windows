@@ -4,6 +4,7 @@ using InvoicesManager.Core;
 using InvoicesManager.Models;
 using InvoicesManager.Windows;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -82,6 +83,7 @@ namespace InvoicesManager
             Random r = new Random();
             string[] sampleOrganization = { "UPS", "MCDonalds", "Telekom", "DHL", "Amazon", "Apple", "Microsoft", "Google", "Facebook", "Twitter" };
             string[] sampleDocumenttype = { "Invoice", "Bill" };
+            List<InvoiceModel> sampleInvoices = new List<InvoiceModel>();
 
             for (int i = 0; i < r.Next(35, 125); i++)
             {
@@ -99,10 +101,10 @@ namespace InvoicesManager
                 invoice.MoneyState = (MoneyStateEnum)r.Next(0, 2);
                 invoice.PaidState = (PaidStateEnum)r.Next(0, 2);
 
-                EnvironmentsVariable.AllInvoices.Add(invoice);
+                sampleInvoices.Add(invoice);
             }
 
-            //InvoiceSystem.SaveIntoJsonFile();
+            File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(sampleInvoices, Formatting.Indented));
         }
 
         private void InitThreads()
