@@ -72,6 +72,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 - The Organization field can now also just be left blank (it is no longer a required field).
 - The other data from the invoice are now also displayed in the DataGrid
 - You have now 5 new filter types to choose (Tags, MoneyTotal, ImportanceState, MoneyState & PaidState) 
+- DataGrid columns can be hidden by your selection (right-click on the DataGrid).
 
 
 ## v1.2.3.2
