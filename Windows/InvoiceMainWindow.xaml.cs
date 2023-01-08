@@ -6,13 +6,10 @@ using InvoicesManager.Windows;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -546,62 +543,62 @@ namespace InvoicesManager
             {
                 case "ViewColumnOpen":
                     ColumnOpen.Visibility = ColumnOpen.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                    ViewColumnOpen.IsChecked = ColumnOpen.Visibility == Visibility.Visible ? true : false;
+                    ViewColumnOpen.IsChecked = ColumnOpen.Visibility == Visibility.Visible;
                     break;
 
                 case "ViewColumnDateOfExhibition":
                     ColumnDateOfExhibition.Visibility = ColumnDateOfExhibition.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                    ViewColumnDateOfExhibition.IsChecked = ColumnDateOfExhibition.Visibility == Visibility.Visible ? true : false;
+                    ViewColumnDateOfExhibition.IsChecked = ColumnDateOfExhibition.Visibility == Visibility.Visible;
                     break;
 
                 case "ViewColumnOrganization":
                     ColumnOrganization.Visibility = ColumnOrganization.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                    ViewColumnOrganization.IsChecked = ColumnOrganization.Visibility == Visibility.Visible ? true : false;
+                    ViewColumnOrganization.IsChecked = ColumnOrganization.Visibility == Visibility.Visible;
                     break;
 
                 case "ViewColumnDocumentType":
                     ColumnDocumentType.Visibility = ColumnDocumentType.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                    ViewColumnDocumentType.IsChecked = ColumnDocumentType.Visibility == Visibility.Visible ? true : false;
+                    ViewColumnDocumentType.IsChecked = ColumnDocumentType.Visibility == Visibility.Visible;
                     break;
 
                 case "ViewColumnInvoiceNo":
                     ColumnInvoiceNo.Visibility = ColumnInvoiceNo.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                    ViewColumnInvoiceNo.IsChecked = ColumnInvoiceNo.Visibility == Visibility.Visible ? true : false;
+                    ViewColumnInvoiceNo.IsChecked = ColumnInvoiceNo.Visibility == Visibility.Visible;
                     break;
 
                 case "ViewColumnReference":
                     ColumnReference.Visibility = ColumnReference.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                    ViewColumnReference.IsChecked = ColumnReference.Visibility == Visibility.Visible ? true : false;
+                    ViewColumnReference.IsChecked = ColumnReference.Visibility == Visibility.Visible;
                     break;
 
                 case "ViewColumnMoneyTotal":
                     ColumnMoneyTotal.Visibility = ColumnMoneyTotal.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                    ViewColumnMoneyTotal.IsChecked = ColumnMoneyTotal.Visibility == Visibility.Visible ? true : false;
+                    ViewColumnMoneyTotal.IsChecked = ColumnMoneyTotal.Visibility == Visibility.Visible;
                     break;
 
                 case "ViewColumnImportanceState":
                     ColumnImportanceState.Visibility = ColumnImportanceState.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                    ViewColumnImportanceState.IsChecked = ColumnImportanceState.Visibility == Visibility.Visible ? true : false;
+                    ViewColumnImportanceState.IsChecked = ColumnImportanceState.Visibility == Visibility.Visible;
                     break;
 
                 case "ViewColumnMoneyState":
                     ColumnMoneyState.Visibility = ColumnMoneyState.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                    ViewColumnMoneyState.IsChecked = ColumnMoneyState.Visibility == Visibility.Visible ? true : false;
+                    ViewColumnMoneyState.IsChecked = ColumnMoneyState.Visibility == Visibility.Visible;
                     break;
 
                 case "ViewColumnPaidState":
                     ColumnPaidState.Visibility = ColumnPaidState.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                    ViewColumnPaidState.IsChecked = ColumnPaidState.Visibility == Visibility.Visible ? true : false;
+                    ViewColumnPaidState.IsChecked = ColumnPaidState.Visibility == Visibility.Visible;
                     break;
 
                 case "ViewColumnTags":
                     ColumnTags.Visibility = ColumnTags.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                    ViewColumnTags.IsChecked = ColumnTags.Visibility == Visibility.Visible ? true : false;
+                    ViewColumnTags.IsChecked = ColumnTags.Visibility == Visibility.Visible;
                     break;
 
                 case "ViewColumnDateOfCapture":
                     ColumnDateOfCapture.Visibility = ColumnDateOfCapture.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                    ViewColumnDateOfCapture.IsChecked = ColumnDateOfCapture.Visibility == Visibility.Visible ? true : false;
+                    ViewColumnDateOfCapture.IsChecked = ColumnDateOfCapture.Visibility == Visibility.Visible;
                     break;
             }
         }

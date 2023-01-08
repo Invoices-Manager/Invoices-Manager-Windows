@@ -2,8 +2,6 @@
 using InvoicesManager.Core;
 using Microsoft.Win32;
 using System;
-using System.IO;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace InvoicesManager.Windows
