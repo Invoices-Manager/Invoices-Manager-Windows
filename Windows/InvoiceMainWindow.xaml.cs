@@ -6,6 +6,8 @@ using InvoicesManager.Windows;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
@@ -38,7 +40,7 @@ namespace InvoicesManager
         public InvoiceMainWindow()
         {
 #if DEBUG
-           // try { File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName); } catch  {}
+            // try { File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName); } catch  {}
 #endif
             //load the window 
             InitializeComponent();
@@ -77,7 +79,7 @@ namespace InvoicesManager
             else
                 EnvironmentsVariable.REGSystemUsesLightTheme = 1;
         }
-        
+
         private void GenerateDebugDataRecords()
         {
             Random r = new Random();
@@ -265,7 +267,7 @@ namespace InvoicesManager
             //sleep to wait for the init thread
             WaiterSystem.WaitUntilInvoiceInitFinish();
 
-            SortSystem sortSys = new SortSystem(EnvironmentsVariable.AllInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType , filterExhibitionDate, filterPaidState, filterMoneyState, filterImportanceState, filterMoneyTotal);
+            SortSystem sortSys = new SortSystem(EnvironmentsVariable.AllInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType , filterExhibitionDate, filterPaidState, filterMoneyState, filterImportanceState, filterMoneyTotal, filterTags);
 
             sortSys.Sort();
 

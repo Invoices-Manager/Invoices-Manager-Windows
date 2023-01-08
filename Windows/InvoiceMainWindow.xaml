@@ -1,4 +1,4 @@
-﻿<Window x:Class="InvoicesManager.InvoiceMainWindow"
+﻿ <Window x:Class="InvoicesManager.InvoiceMainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -103,7 +103,8 @@
                           ClipboardCopyMode="ExcludeHeader"
                           IsReadOnly="True"
                           MouseDoubleClick="DG_Invoices_MouseDoubleClick"
-                          FontSize="{DynamicResource FontSize}">
+                          FontSize="{DynamicResource FontSize}"
+                          >
                     <DataGrid.Columns>
                         <DataGridHyperlinkColumn  Header="{DynamicResource open}" Binding="{Binding OpenInvoiceText}"/>
                         <DataGridTextColumn Header="{DynamicResource dateOfExhibition}"  Binding="{Binding StringExhibitionDate}"/>
@@ -111,7 +112,7 @@
                         <DataGridTextColumn Header="{DynamicResource documentType}"  Binding="{Binding DocumentType}"/>
                         <DataGridTextColumn Header="{DynamicResource invoiceNo}"  Binding="{Binding InvoiceNumber}"/>
                         <DataGridTextColumn Header="{DynamicResource reference}"  Binding="{Binding Reference}"/>
-                        <DataGridTextColumn Header="{DynamicResource moneyTotal}"  Binding="{Binding StringMoneyTotal}"/>
+                        <DataGridTextColumn Header="{DynamicResource moneyTotal}"  Binding="{Binding StringMoneyTotal}" SortMemberPath="MoneyTotal"/>
                         <DataGridTextColumn Header="{DynamicResource importanceState}"  Binding="{Binding StringImportanceState}"/>
                         <DataGridTextColumn Header="{DynamicResource moneyState}"  Binding="{Binding StringMoneyState}"/>
                         <DataGridTextColumn Header="{DynamicResource paidState}"  Binding="{Binding StringPaidState}"/>

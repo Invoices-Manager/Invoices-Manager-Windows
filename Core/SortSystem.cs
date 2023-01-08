@@ -15,10 +15,11 @@ namespace InvoicesManager.Core
         private readonly string filterOrganization = "-1";
         private readonly string filterDocumentType = "-1";
         private readonly DateTime filterExhibitionDate = default;
-        private PaidStateEnum filterPaidState = PaidStateEnum.FilterPlaceholder;
-        private MoneyStateEnum filterMoneyState = MoneyStateEnum.FilterPlaceholder;
-        private ImportanceStateEnum filterImportanceState = ImportanceStateEnum.FilterPlaceholder;
-        private double filterMoneyTotal = double.MinValue; // -1 is not possible because it is a valid value
+        private readonly PaidStateEnum filterPaidState = PaidStateEnum.FilterPlaceholder;
+        private readonly MoneyStateEnum filterMoneyState = MoneyStateEnum.FilterPlaceholder;
+        private readonly ImportanceStateEnum filterImportanceState = ImportanceStateEnum.FilterPlaceholder;
+        private readonly double filterMoneyTotal = double.MinValue; // -1 is not possible because it is a valid value
+        private readonly  string filterTags = String.Empty;
 
         public SortSystem(List<InvoiceModel> allInvoices, 
                                         string filterReference, 
@@ -29,7 +30,8 @@ namespace InvoicesManager.Core
                                         PaidStateEnum filterPaidState,
                                         MoneyStateEnum filterMoneyState,
                                         ImportanceStateEnum filterImportanceState,
-                                        double filterMoneyTotal)
+                                        double filterMoneyTotal,
+                                        string filterTags)
         {
             this.allInvoices = allInvoices;
             this.filterReference = filterReference.ToLower();
@@ -41,6 +43,7 @@ namespace InvoicesManager.Core
             this.filterMoneyState = filterMoneyState;
             this.filterImportanceState = filterImportanceState;
             this.filterMoneyTotal = filterMoneyTotal;
+            this.filterTags = filterTags.ToLower();
         }
         
         public void Sort()
@@ -55,6 +58,7 @@ namespace InvoicesManager.Core
                 .Where(x => x.MoneyState == filterMoneyState || filterMoneyState == MoneyStateEnum.FilterPlaceholder)
                 .Where(x => x.ImportanceState == filterImportanceState || filterImportanceState == ImportanceStateEnum.FilterPlaceholder)
                 .Where(x => x.MoneyTotal == filterMoneyTotal || filterMoneyTotal == double.MinValue)
+                .Where(x => x.Tags.Contains(filterTags) || String.IsNullOrEmpty(filterTags))
                 .ToList();
         }
     }

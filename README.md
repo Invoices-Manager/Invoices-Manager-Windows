@@ -68,6 +68,8 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 - Invoices Manager no longer uses "ModernWPF" (for later developments with own design)
 - The Organization field can now also just be left blank (it is no longer a required field).
 - The other data from the invoice are now also displayed in the DataGrid
+- You have now 4 new filter types to choose (MoneyTotal, ImportanceState, MoneyState & PaidState) 
+
 
 ## v1.2.3.2
 - SaveAs had a logical error, you could not select/use a custom filename
