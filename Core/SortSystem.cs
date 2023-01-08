@@ -43,7 +43,7 @@ namespace InvoicesManager.Core
             this.filterMoneyState = filterMoneyState;
             this.filterImportanceState = filterImportanceState;
             this.filterMoneyTotal = filterMoneyTotal;
-            this.filterTags = filterTags.ToLower();
+            this.filterTags = filterTags;
         }
         
         public void Sort()
