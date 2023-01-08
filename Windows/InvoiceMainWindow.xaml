@@ -14,12 +14,12 @@
     <Grid Background="{DynamicResource GridBackground}">
         <Grid>
             <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="35">
-                <Button x:Name="Bttn_BoardRefresh"  Content="{DynamicResource refreshBoard}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_BoardRefresh_Click"/>
+                <Button x:Name="Bttn_BoardRefresh"  Content="{DynamicResource refreshBoard}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Padding="15,0,15,0" Click="Bttn_BoardRefresh_Click"/>
                 <Separator Margin="10,0,10,0"/>
-                <Button x:Name="Bttn_InvoiceAdd" Content="{DynamicResource addInvoice}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_InvoiceAdd_Click"/>
-                <Button x:Name="Bttn_InvoiceEdit" Content="{DynamicResource editInvoice}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_InvoiceEdit_Click"/>
-                <Button x:Name="Bttn_InvoiceRemove"  Content="{DynamicResource removeInvoice}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_InvoiceRemove_Click"/>
-                <Button x:Name="Bttn_InvoiceSaveAs"  Content="{DynamicResource saveInvoiceAs}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Click="Bttn_InvoiceSaveAs_Click"/>
+                <Button x:Name="Bttn_InvoiceAdd" Content="{DynamicResource addInvoice}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Padding="15,0,15,0" Click="Bttn_InvoiceAdd_Click"/>
+                <Button x:Name="Bttn_InvoiceEdit" Content="{DynamicResource editInvoice}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Padding="15,0,15,0" Click="Bttn_InvoiceEdit_Click"/>
+                <Button x:Name="Bttn_InvoiceRemove"  Content="{DynamicResource removeInvoice}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Padding="15,0,15,0" Click="Bttn_InvoiceRemove_Click"/>
+                <Button x:Name="Bttn_InvoiceSaveAs"  Content="{DynamicResource saveInvoiceAs}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5,0,5,0" Padding="15,0,15,0"  Click="Bttn_InvoiceSaveAs_Click"/>
                 <Separator Margin="10,0,10,0"/>
             </ToolBarPanel>
         </Grid>
@@ -33,7 +33,7 @@
                             <Button x:Name="Comb_Search_String_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Tb_Search_String_Clear_Click"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="{DynamicResource tags}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                    <GroupBox Header="{DynamicResource searchByTags}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
                         <Grid>
                             <TextBox x:Name="Tb_Tags_String" Margin="5,5,55,5" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" TextChanged="Tb_Tags_String_TextChanged"/>
                             <Button x:Name="Tb_Search_Tags_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Tb_Search_Tags_Clear_Click"/>
@@ -63,25 +63,25 @@
                             <Button x:Name="Dp_Search_ExhibitionDate_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Dp_Search_ExhibitionDate_Clear_Click"/>
                         </Grid> 
                     </GroupBox>
-                    <GroupBox Header="{DynamicResource moneyTotal}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                    <GroupBox Header="{DynamicResource searchByMoneyTotal}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
                         <Grid>
                             <TextBox x:Name="Tb_Search_MoneyTotal" Margin="5,5,55,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" TextChanged="Tb_Search_MoneyTotal_TextChanged"/>
                             <Button x:Name="Tb_Search_MoneyTotal_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Tb_Search_MoneyTotal_Clear_Click"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="{DynamicResource importanceState}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10"  BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                    <GroupBox Header="{DynamicResource searchByImportanceState}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10"  BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
                         <Grid>
                             <ComboBox x:Name="Comb_Search_ImportanceState" Margin="5,5,55,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_ImportanceState_SelectionChanged"/>
                             <Button x:Name="Comb_Search_ImportanceState_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Comb_Search_ImportanceState_Clear_Click"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="{DynamicResource moneyState}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10"  BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                    <GroupBox Header="{DynamicResource searchByMoneyState}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10"  BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
                         <Grid>
                             <ComboBox x:Name="Comb_Search_MoneyState" Margin="5,5,55,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_MoneyState_SelectionChanged"/>
                             <Button x:Name="Comb_Search_MoneyState_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Comb_Search_MoneyState_Clear_Click"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="{DynamicResource paidState}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10"  BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                    <GroupBox Header="{DynamicResource searchByPaidState}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10"  BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
                         <Grid>
                             <ComboBox x:Name="Comb_Search_PaidState" Margin="5,5,55,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_PaidState_SelectionChanged"/>
                             <Button x:Name="Comb_Search_PaidState_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Comb_Search_PaidState_Clear_Click"/>

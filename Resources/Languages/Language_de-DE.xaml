@@ -16,6 +16,11 @@
     <system:String x:Key="searchByOrganization">Suche nach: Organisation</system:String>
     <system:String x:Key="searchByDocumentType">Suche nach: Dokumenttyp</system:String>
     <system:String x:Key="searchByDate">Suche nach: Datum</system:String>
+    <system:String x:Key="searchByTags">Suche nach: Tags</system:String>
+    <system:String x:Key="searchByImportanceState">Suche nach: Wichtigkeit</system:String>
+    <system:String x:Key="searchByMoneyTotal">Suche nach: Geldsumme</system:String>
+    <system:String x:Key="searchByMoneyState">Suche nach: Geld Status</system:String>
+    <system:String x:Key="searchByPaidState">Suche nach: Bezahlungs Status</system:String>
     <system:String x:Key="refreshBoard">Board aktualisieren</system:String>
     <system:String x:Key="addInvoice">Rechnung hinzufügen</system:String>
     <system:String x:Key="editInvoice">Rechnung bearbeiten</system:String>

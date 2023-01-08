@@ -16,6 +16,11 @@
     <system:String x:Key="searchByOrganization">search by: Organization</system:String>
     <system:String x:Key="searchByDocumentType">search by: Document type</system:String>
     <system:String x:Key="searchByDate">search by: Date</system:String>
+    <system:String x:Key="searchByTags">search by: tags</system:String>
+    <system:String x:Key="searchByImportanceState">search by: importance state</system:String>
+    <system:String x:Key="searchByMoneyTotal">search by: money total</system:String>
+    <system:String x:Key="searchByMoneyState">search by: money state</system:String>
+    <system:String x:Key="searchByPaidState">search by: paid state</system:String>
     <system:String x:Key="refreshBoard">refresh board</system:String>
     <system:String x:Key="addInvoice">add invoice</system:String>
     <system:String x:Key="editInvoice">edit invoice</system:String>
@@ -54,7 +59,6 @@
     <system:String x:Key="add">add</system:String>
     <system:String x:Key="edit">edit</system:String>
     <system:String x:Key="delete">remove</system:String>
-    <system:String x:Key="moneytotal">money total</system:String>
     <system:String x:Key="importancestate">importance state</system:String>
     <system:String x:Key="moneystate">money state</system:String>
     <system:String x:Key="paidstate">paid state</system:String>
