@@ -4,6 +4,7 @@
     {
         InvoiceAdd,
         InvoiceEdit,
-        InvoiceDelete
+        InvoiceDelete,
+        FilterPlaceholder
     }
 }

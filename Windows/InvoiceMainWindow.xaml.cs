@@ -10,6 +10,7 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +28,12 @@ namespace InvoicesManager
         private string filterOrganization = "-1";
         private string filterDocumentType = "-1";
         private DateTime filterExhibitionDate = default;
+        private string filterTags = String.Empty;
+        private PaidStateEnum filterPaidState = PaidStateEnum.FilterPlaceholder;
+        private MoneyStateEnum filterMoneyState = MoneyStateEnum.FilterPlaceholder;
+        private ImportanceStateEnum filterImportanceState = ImportanceStateEnum.FilterPlaceholder;
+        private double filterMoneyTotal = double.MinValue; // -1 is not possible because it is a valid value
+
 
         public InvoiceMainWindow()
         {
@@ -106,6 +113,9 @@ namespace InvoicesManager
             Thread _initDocumentType = new Thread(ThreadTaskInitDocumentType);
             Thread _refreshDataGridThread = new Thread(ThreadTaskRefreshDataGrid);
             Thread _initNotebooks = new Thread(ThreadTaskInitNotebooks);
+            Thread _initPaidStateThread = new Thread(ThreadTaskInitPaidState);
+            Thread _initMoneyStateThread = new Thread(ThreadTaskInitMoneyState);
+            Thread _initImportanceState = new Thread(ThreadTaskInitImportanceState);
 
             _initInvoicesThread.Start();
             _initInvoicesThread.Join();
@@ -121,6 +131,15 @@ namespace InvoicesManager
 
             _initNotebooks.Start();
             _initNotebooks.Join();
+
+            _initPaidStateThread.Start();
+            _initPaidStateThread.Join();
+
+            _initMoneyStateThread.Start();
+            _initMoneyStateThread.Join();
+
+            _initImportanceState.Start();
+            _initImportanceState.Join();
         }
 
         private void InitInvoices()
@@ -179,6 +198,50 @@ namespace InvoicesManager
                         => { Comb_Search_Organization.Items.Add(organization); }));
         }
 
+        private void ThreadTaskInitPaidState()
+        {
+            //sleep to wait for the init thread
+            WaiterSystem.WaitUntilInvoiceInitFinish();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                     => { Comb_Search_PaidState.Items.Clear(); }));
+
+            
+            foreach (PaidStateEnum pse in Enum.GetValues(typeof(PaidStateEnum)))
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                        => {if (pse != PaidStateEnum.FilterPlaceholder)
+                                Comb_Search_PaidState.Items.Add(PaidState.EnumAsString(pse));}));
+        }
+
+        private void ThreadTaskInitMoneyState()
+        {
+            //sleep to wait for the init thread
+            WaiterSystem.WaitUntilInvoiceInitFinish();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                     => { Comb_Search_MoneyState.Items.Clear(); }));
+
+
+            foreach (MoneyStateEnum mse in Enum.GetValues(typeof(MoneyStateEnum)))
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                        => { if (mse != MoneyStateEnum.FilterPlaceholder) 
+                                Comb_Search_MoneyState.Items.Add(MoneyState.EnumAsString(mse)); }));
+        }
+
+        private void ThreadTaskInitImportanceState()
+        {
+            //sleep to wait for the init thread
+            WaiterSystem.WaitUntilInvoiceInitFinish();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                     => { Comb_Search_ImportanceState.Items.Clear(); }));
+            
+            foreach (ImportanceStateEnum ise in Enum.GetValues(typeof(ImportanceStateEnum)))
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                        => { if (ise != ImportanceStateEnum.FilterPlaceholder) 
+                                Comb_Search_ImportanceState.Items.Add(ImportanceState.EnumAsString(ise)); }));
+        }
+
         private void ThreadTaskInitDocumentType()
         {
             //sleep to wait for the init thread
@@ -202,7 +265,7 @@ namespace InvoicesManager
             //sleep to wait for the init thread
             WaiterSystem.WaitUntilInvoiceInitFinish();
 
-            SortSystem sortSys = new SortSystem(EnvironmentsVariable.AllInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType , filterExhibitionDate);
+            SortSystem sortSys = new SortSystem(EnvironmentsVariable.AllInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType , filterExhibitionDate, filterPaidState, filterMoneyState, filterImportanceState, filterMoneyTotal);
 
             sortSys.Sort();
 
@@ -337,9 +400,36 @@ namespace InvoicesManager
             RefreshDataGrid();
         }
 
+        private void Tb_Tags_String_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            filterTags = Tb_Tags_String.Text == String.Empty ? String.Empty : Tb_Tags_String.Text;
+            RefreshDataGrid();
+        }
+
         private void Tb_Search_InvoiceNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
             filterInvoiceNumber = Tb_Search_InvoiceNumber.Text == String.Empty ? String.Empty : Tb_Search_InvoiceNumber.Text;
+            RefreshDataGrid();
+        }
+
+        private void Tb_Search_MoneyTotal_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //check if the call was for the refresh
+            if (Tb_Search_MoneyTotal.Text == String.Empty)
+            {
+                filterMoneyTotal = Double.MinValue;
+                RefreshDataGrid();
+                return;
+            }
+
+            //check if the input is a double
+            if (!double.TryParse(Tb_Search_MoneyTotal.Text, out double moneyTotal))
+            {
+                Tb_Search_MoneyTotal.Text = String.Empty;
+                return;
+            }
+
+            filterMoneyTotal = Tb_Search_MoneyTotal.Text == String.Empty ? Double.MinValue : Convert.ToDouble(Tb_Search_MoneyTotal.Text);
             RefreshDataGrid();
         }
 
@@ -358,17 +448,56 @@ namespace InvoicesManager
             RefreshDataGrid();
         }
 
-        private void Comb_Search_DocumentType_Clear_Click(object sender, RoutedEventArgs e)
-             => Comb_Search_DocumentType.SelectedIndex = -1;
+        private void Comb_Search_ImportanceState_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            filterImportanceState = Comb_Search_ImportanceState.SelectedIndex.ToString() == "-1" ? ImportanceStateEnum.FilterPlaceholder : ImportanceState.StringAsEnum(Comb_Search_ImportanceState.SelectedItem.ToString());
+            RefreshDataGrid();
+        }
 
-        private void Dp_Search_ExhibitionDate_Clear_Click(object sender, RoutedEventArgs e)
-           => Dp_Search_ExhibitionDate.SelectedDate = null;
+        private void Comb_Search_MoneyState_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            filterMoneyState = Comb_Search_MoneyState.SelectedIndex.ToString() == "-1" ? MoneyStateEnum.FilterPlaceholder : MoneyState.StringAsEnum(Comb_Search_MoneyState.SelectedItem.ToString());
+            RefreshDataGrid();
+        }
+
+        private void Comb_Search_PaidState_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            filterPaidState = (Comb_Search_PaidState.SelectedIndex.ToString() == "-1" ? PaidStateEnum.FilterPlaceholder : PaidState.StringAsEnum(Comb_Search_PaidState.SelectedItem.ToString()));
+            RefreshDataGrid();
+        }
 
         private void Dp_Search_ExhibitionDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             filterExhibitionDate = (DateTime)(Dp_Search_ExhibitionDate.SelectedDate == null ? default(DateTime) : Dp_Search_ExhibitionDate.SelectedDate);
             RefreshDataGrid();
         }
+
+        private void Tb_Search_Tags_Clear_Click(object sender, RoutedEventArgs e)
+            => Tb_Tags_String.Text = String.Empty;
+        
+        private void Comb_Search_DocumentType_Clear_Click(object sender, RoutedEventArgs e)
+             => Comb_Search_DocumentType.SelectedIndex = -1;
+
+        private void Comb_Search_PaidState_Clear_Click(object sender, RoutedEventArgs e)
+            => Comb_Search_PaidState.SelectedIndex = -1;
+
+        private void Comb_Search_MoneyState_Clear_Click(object sender, RoutedEventArgs e)
+            => Comb_Search_MoneyState.SelectedIndex = -1;
+
+        private void Comb_Search_ImportanceState_Clear_Click(object sender, RoutedEventArgs e)
+            => Comb_Search_ImportanceState.SelectedIndex = -1;
+
+        private void Dp_Search_ExhibitionDate_Clear_Click(object sender, RoutedEventArgs e)
+           => Dp_Search_ExhibitionDate.SelectedDate = null;
+
+        private void Tb_Search_MoneyTotal_Clear_Click(object sender, RoutedEventArgs e)
+            => Tb_Search_MoneyTotal.Text = String.Empty;
+
+        private void Tb_Search_InvoiceNumber_Clear_Click(object sender, RoutedEventArgs e)
+            => Tb_Search_InvoiceNumber.Text = String.Empty;
+
+        private void Tb_Search_String_Clear_Click(object sender, RoutedEventArgs e)
+            => Tb_Search_String.Text = String.Empty;
 
         public void ClearInfoProgressBar()
         {
