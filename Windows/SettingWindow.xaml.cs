@@ -56,9 +56,11 @@ namespace InvoicesManager.Windows
             EnvironmentsVariable.MaxCountBackUp = Convert.ToInt32(Tb_MaxCountBackUp.Text);
 
             EnvironmentsVariable.InitWorkPath();
-            ConfigSystem.Save();
+            ConfigSystem cSys = new ConfigSystem();
+            cSys.Save();
             LanguageManager.Init();
-            NotebookSystem.Init();
+            NotebookSystem nSys = new NotebookSystem();
+            nSys.Init();
         }
 
         private void Tb_MaxCountBackUp_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

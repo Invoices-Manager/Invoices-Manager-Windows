@@ -49,10 +49,11 @@ namespace InvoicesManager
             {
                 Task.Run(() =>
                 {
-                    bool wasPerformedCorrectly = BackUpSystem.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"), this);
+                    BackUpSystem buSys = new BackUpSystem();
+                    bool wasPerformedCorrectly = buSys.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"), this);
                     if (!wasPerformedCorrectly)
                         MessageBox.Show(this.Resources["backUpFailed"] as string);
-                    BackUpSystem.CheckBackUpCount();
+                    buSys.CheckBackUpCount();
                 });
             }
 
@@ -109,7 +110,10 @@ namespace InvoicesManager
 
         private void InitThreads()
         {
-            Thread _initInvoicesThread = new Thread(InvoiceSystem.Init);
+            InvoiceSystem iSys = new InvoiceSystem();
+
+
+            Thread _initInvoicesThread = new Thread(iSys.Init);
             Thread _initOrganizationsThread = new Thread(ThreadTaskInitOrganization);
             Thread _initDocumentType = new Thread(ThreadTaskInitDocumentType);
             Thread _refreshDataGridThread = new Thread(ThreadTaskRefreshDataGrid);
@@ -145,7 +149,9 @@ namespace InvoicesManager
 
         private void InitInvoices()
         {
-            Thread _initInvoicesThread = new Thread(InvoiceSystem.Init);
+            InvoiceSystem iSys = new InvoiceSystem();
+
+            Thread _initInvoicesThread = new Thread(iSys.Init);
             _initInvoicesThread.Priority = ThreadPriority.Highest;
             _initInvoicesThread.Start();
         }
@@ -258,7 +264,8 @@ namespace InvoicesManager
 
         private void ThreadTaskInitNotebooks()
         {
-            NotebookSystem.Init();
+            NotebookSystem nSys = new NotebookSystem();
+            nSys.Init();
         }
 
             private void ThreadTaskRefreshDataGrid()

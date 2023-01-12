@@ -8,7 +8,7 @@ namespace InvoicesManager.Core
 {
     public class ConfigSystem
     {
-        public static void Init()
+        public void Init()
         {
             string json = String.Empty;
 
@@ -46,7 +46,7 @@ namespace InvoicesManager.Core
             Save();
         }
 
-        public static void Save()
+        public void Save()
         {
             ConfigModel config = new ConfigModel()
             {

@@ -10,10 +10,10 @@ namespace InvoicesManager.Core
 {
     public class BackUpSystem
     {
-        private static InvoiceMainWindow _invoiceMainWindow;
+        private InvoiceMainWindow _invoiceMainWindow;
 
         
-        public static void CheckBackUpCount()
+        public void CheckBackUpCount()
         {
             //get all files in the backup folder
             //the files are named by the date and time and the array is sorted by old to new
@@ -29,9 +29,11 @@ namespace InvoicesManager.Core
                     try { File.Delete(files[i]); } catch { }
         }
 
-        public static bool BackUp(string backupFilePath, InvoiceMainWindow mainWindow = null)
+        public bool BackUp(string backupFilePath, InvoiceMainWindow mainWindow = null)
         {
-            bool WasPerformedCorrectly = false;
+            bool wasPerformedCorrectly = false;
+            InvoiceSystem iSys = new InvoiceSystem();
+            
             try
             {
                 //set the main window for the progress bar
@@ -39,9 +41,9 @@ namespace InvoicesManager.Core
                     _invoiceMainWindow = mainWindow;
 
                 //refresh all invoices
-                InvoiceSystem.Init();
+                iSys.Init();
 
-                WasPerformedCorrectly = false;
+                wasPerformedCorrectly = false;
                 BackUpModel backUp = new BackUpModel();
                 //copy the list without the refs, otherwise happens "Collection was changed; enumeration operation must not be executed."
                 List<InvoiceModel> allInvoices = new List<InvoiceModel>(EnvironmentsVariable.AllInvoices);
@@ -111,11 +113,11 @@ namespace InvoicesManager.Core
 
                 //check if the file was created
                 if (File.Exists(backupFilePath))
-                    WasPerformedCorrectly = true;
+                    wasPerformedCorrectly = true;
 
 
                 if (String.IsNullOrEmpty(json))
-                    WasPerformedCorrectly = false;
+                    wasPerformedCorrectly = false;
 
                 //clear the progress bar
                 if (mainWindow != null)
@@ -126,22 +128,24 @@ namespace InvoicesManager.Core
                 return false;
             }
 
-            return WasPerformedCorrectly;
+            return wasPerformedCorrectly;
         }
 
-        public static bool Restore(string backupFilePath, InvoiceMainWindow mainWindow = null)
+        public bool Restore(string backupFilePath, InvoiceMainWindow mainWindow = null)
         {
             //set the main window for the progress bar
             if (mainWindow != null)
                 _invoiceMainWindow = mainWindow;
 
-            bool WasPerformedCorrectly = true;
+            bool wasPerformedCorrectly = true;
             int invoice_AlreadyExistCounter = 0;
             int invoice_WasOverwrittenCounter = 0;
             int note_AlreadyExistCounter = 0;
             int note_WasOverwrittenCounter = 0;
             List<string> allTempFiles = new List<string>();
             BackUpModel backUp = null;
+            InvoiceSystem iSys = new InvoiceSystem();
+            NotebookSystem nSys = new NotebookSystem();
 
             try
             {
@@ -150,7 +154,7 @@ namespace InvoicesManager.Core
             }
             catch
             {
-                WasPerformedCorrectly = false;
+                wasPerformedCorrectly = false;
             }
 
             //clear the progress bar
@@ -162,7 +166,7 @@ namespace InvoicesManager.Core
                 _invoiceMainWindow.SetInfoProgressMaxValue(backUp.EntityCount + backUp.Notebook.Notebook.Count);
 
             //check if the backup is valid
-            if (!WasPerformedCorrectly)
+            if (!wasPerformedCorrectly)
                 return false;
 
             //check if the file was read
@@ -208,15 +212,15 @@ namespace InvoicesManager.Core
                     //add the path, so we can delete it later (we know windows doesn't do it for us :))
                     allTempFiles.Add(tempInvoicePath);
 
-                    if (InvoiceSystem.CheckIfInvoiceExist(tempInvoicePath))
+                    if (iSys.CheckIfInvoiceExist(tempInvoicePath))
                     {
                         //check if the invoices data has changed
                         //=> if yes, then override the invoice count up and continue
                         //=> if no, then do nothing (count up and continue)
 
-                        if (InvoiceSystem.CheckIfInvoicesDataHasChanged(backUpPacked.Invoice))
+                        if (iSys.CheckIfInvoicesDataHasChanged(backUpPacked.Invoice))
                         {
-                            InvoiceSystem.OverrideInvoice(backUpPacked.Invoice);
+                            iSys.OverrideInvoice(backUpPacked.Invoice);
                             invoice_WasOverwrittenCounter++;
                             continue;
                         }
@@ -225,14 +229,14 @@ namespace InvoicesManager.Core
                         continue;
                     }
 
-                    InvoiceSystem.AddInvoice(backUpPacked.Invoice, tempInvoicePath, newPath);
+                    iSys.AddInvoice(backUpPacked.Invoice, tempInvoicePath, newPath);
                     if (mainWindow != null)
                         _invoiceMainWindow.SetInfoProgressBarValue(1);
                 }
             }
             catch
             {
-                WasPerformedCorrectly = false;
+                wasPerformedCorrectly = false;
             }
 
             
@@ -252,16 +256,16 @@ namespace InvoicesManager.Core
                         if (mainWindow != null)
                             _invoiceMainWindow.SetInfoProgressBarValue(1);
                     
-                        if (!NotebookSystem.CheckIfNoteExist(note))
+                        if (!nSys.CheckIfNoteExist(note))
                         {
-                            NotebookSystem.AddNote(note);
+                            nSys.AddNote(note);
                             continue;
                         }
                     
-                        if (NotebookSystem.CheckIfNoteHasChanged(note))
+                        if (nSys.CheckIfNoteHasChanged(note))
                         {
                             //override == edit
-                            NotebookSystem.EditNote(note);
+                            nSys.EditNote(note);
                             note_WasOverwrittenCounter++;
                             continue;
                         }
@@ -271,7 +275,7 @@ namespace InvoicesManager.Core
             }
             catch
             {
-                WasPerformedCorrectly = false;
+                wasPerformedCorrectly = false;
             }
 
             //clear the progress bar
@@ -301,7 +305,7 @@ namespace InvoicesManager.Core
                                           $"{Application.Current.Resources["fromTotal"] as string} {noteCount} {Application.Current.Resources["notes"] as string}",
                                           Application.Current.Resources["recoveryCompleted"] as string, MessageBoxButton.OK);
 
-            return WasPerformedCorrectly;
+            return wasPerformedCorrectly;
         }
     }
 }

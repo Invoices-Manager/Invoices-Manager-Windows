@@ -32,7 +32,8 @@ namespace InvoicesManager.Windows
             {
                 await Task.Run(() =>
                 {
-                    if (BackUpSystem.BackUp(sfg.FileName))
+                    BackUpSystem buSys = new BackUpSystem();
+                    if (buSys.BackUp(sfg.FileName))
                         MessageBox.Show(Application.Current.Resources["backUpSuccessfully"] as string);
                     else
                         MessageBox.Show(Application.Current.Resources["backUpFailed"] as string);
@@ -51,7 +52,8 @@ namespace InvoicesManager.Windows
             {
                 await Task.Run(() =>
                 {
-                    if (!BackUpSystem.Restore(ofd.FileName))
+                    BackUpSystem buSys = new BackUpSystem();
+                    if (!buSys.Restore(ofd.FileName))
                         MessageBox.Show(this.Resources["backUpFailedRestored"] as string);
                 });
             }

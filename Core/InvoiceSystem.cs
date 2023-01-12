@@ -10,7 +10,7 @@ namespace InvoicesManager.Core
 {
     public class InvoiceSystem
     {
-        public static void Init()
+        public void Init()
         {
             //set the flag to false
             EnvironmentsVariable.IsInvoiceInitFinish = false;
@@ -26,7 +26,7 @@ namespace InvoicesManager.Core
             EnvironmentsVariable.IsInvoiceInitFinish = true;
         }
 
-        public static void AddInvoice(InvoiceModel newInvoice, string filePath,  string newPath)
+        public void AddInvoice(InvoiceModel newInvoice, string filePath,  string newPath)
         {
             if (CheckIfInvoiceExist(filePath))
             {
@@ -39,7 +39,7 @@ namespace InvoicesManager.Core
             SaveIntoJsonFile();
         }
 
-        public static void EditInvoice(InvoiceModel oldInvoice, InvoiceModel newInvoice)
+        public void EditInvoice(InvoiceModel oldInvoice, InvoiceModel newInvoice)
         {
             if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
             {
@@ -53,7 +53,7 @@ namespace InvoicesManager.Core
             SaveIntoJsonFile();
         }
 
-        public static void RemoveInvoice(InvoiceModel oldInvoice)
+        public void RemoveInvoice(InvoiceModel oldInvoice)
         {
             if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
             {
@@ -67,12 +67,12 @@ namespace InvoicesManager.Core
             SaveIntoJsonFile();
         }
 
-        public static void SaveAs(InvoiceModel invoice, string path)
+        public void SaveAs(InvoiceModel invoice, string path)
         {
             File.Copy(EnvironmentsVariable.PathInvoices + invoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT, path);
         }
 
-        public static bool CheckIfInvoiceExist(string filePath)
+        public bool CheckIfInvoiceExist(string filePath)
         {
             string hashID = HashManager.GetMD5HashFromFile(filePath);
             bool existAlready = false;
@@ -86,7 +86,7 @@ namespace InvoicesManager.Core
             return existAlready;
         }
         
-        public static bool CheckIfInvoicesDataHasChanged(InvoiceModel backupInvoice)
+        public bool CheckIfInvoicesDataHasChanged(InvoiceModel backupInvoice)
         {
             bool hasChanged = false;
 
@@ -122,7 +122,7 @@ namespace InvoicesManager.Core
             return hasChanged;
         }
 
-        public static void OverrideInvoice(InvoiceModel invoice)
+        public void OverrideInvoice(InvoiceModel invoice)
         {
             //find the invoice in the list
             InvoiceModel invoiceToOverride = EnvironmentsVariable.AllInvoices.Find(x => x.FileID == invoice.FileID);
@@ -142,7 +142,7 @@ namespace InvoicesManager.Core
         }
 
         
-        public static void SaveIntoJsonFile()
+        private void SaveIntoJsonFile()
         {
             File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices, Formatting.Indented));
         }
