@@ -131,7 +131,6 @@ namespace InvoicesManager.Windows
 
         private bool CheckIfAllIsValide()
         {
-            
             if (String.IsNullOrWhiteSpace(Tb_Reference.Text))
                 return false;
             // Empty Tb_InvoiceNumber inputs are allowed 

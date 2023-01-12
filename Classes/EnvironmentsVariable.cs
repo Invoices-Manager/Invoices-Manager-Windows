@@ -15,6 +15,7 @@ namespace InvoicesManager.Classes
         public static string PathInvoices = @$"{Environment.CurrentDirectory}\data\invoices\";
         public static string PathBackUps = @$"{Environment.CurrentDirectory}\data\backups\";
         public static string PathNotebook = @$"{Environment.CurrentDirectory}\data\";
+        public readonly static string PathConfig = @$"{Environment.CurrentDirectory}\data\";
         public static int MaxCountBackUp = 64;
         public static string InvoicesJsonFileName = "Invoices.json";
         public static string ConfigJsonFileName = "Config.json";
@@ -41,12 +42,14 @@ namespace InvoicesManager.Classes
             Directory.CreateDirectory(EnvironmentsVariable.PathInvoices);
             Directory.CreateDirectory(EnvironmentsVariable.PathBackUps);
             Directory.CreateDirectory(EnvironmentsVariable.PathNotebook);
+            Directory.CreateDirectory(EnvironmentsVariable.PathConfig);
+            
             if (!File.Exists(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName))
                 File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, "[]");
             if (!File.Exists(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName))
                 File.WriteAllText(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName, "[]");
-            if (!File.Exists(EnvironmentsVariable.ConfigJsonFileName))
-                File.WriteAllText(EnvironmentsVariable.ConfigJsonFileName, "[]");
+            if (!File.Exists(EnvironmentsVariable.PathConfig + EnvironmentsVariable.ConfigJsonFileName))
+                File.WriteAllText(EnvironmentsVariable.PathConfig + EnvironmentsVariable.ConfigJsonFileName, "[]");
         }
     }
 }
