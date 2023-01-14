@@ -41,7 +41,6 @@ namespace InvoicesManager
             // try { File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName); } catch  {}
 #endif
             //load the window 
-            WindowState = WindowState.Maximized;
             InitializeComponent();
             //init threads
             InitThreads();
@@ -62,7 +61,6 @@ namespace InvoicesManager
             //GenerateDebugDataRecords();
             //RefreshDataGridWithInit();
 #endif
-            this.WindowState = WindowState.Maximized;
         }
 
         private void Window_Closed(object sender, EventArgs e)

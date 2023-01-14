@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:InvoicesManager"
         mc:Ignorable="d"
         Title="Invoices Manager | Made by Schecher | https://github.com/Schecher1" 
-        Height="1000" Width="1000"
+        Height="1000" Width="1500"
         Icon="/Resources/SmallIcon.png"
         Closed="Window_Closed" 
         WindowState="Maximized">
