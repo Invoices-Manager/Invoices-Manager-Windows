@@ -85,7 +85,8 @@ namespace InvoicesManager.Windows
                 return;
 
             correspondingButton = null;
-            NotebookSystem.RemoveNote(selectedNote);
+            NotebookSystem nSys = new NotebookSystem();
+            nSys.RemoveNote(selectedNote);
             Tb_Note_Title.Text = "";
             Tb_Note_Value.Text = "";
             LoadNotebooks();
@@ -122,7 +123,9 @@ namespace InvoicesManager.Windows
             selectedNote.Name = Tb_Note_Title.Text;
             selectedNote.Value = Tb_Note_Value.Text;
             selectedNote.LastEditDate = DateTime.Now;
-            NotebookSystem.EditNote(selectedNote);
+
+            NotebookSystem nSys = new NotebookSystem();
+            nSys.EditNote(selectedNote);
         }
 
         private void Bttn_CreateNote_Click(object sender, RoutedEventArgs e)
@@ -136,7 +139,8 @@ namespace InvoicesManager.Windows
                 LastEditDate = DateTime.Now
             };
 
-            NotebookSystem.AddNote(note);
+            NotebookSystem nSys = new NotebookSystem();
+            nSys.AddNote(note);
             LoadNotebooks();
         }
     }

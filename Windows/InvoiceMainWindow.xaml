@@ -7,10 +7,9 @@
         mc:Ignorable="d"
         Title="Invoices Manager | Made by Schecher | https://github.com/Schecher1" 
         Height="1000" Width="1000"
-        WindowState="Maximized" 
         Icon="/Resources/SmallIcon.png"
-        Closed="Window_Closed"
-        WindowStartupLocation="CenterScreen">
+        Closed="Window_Closed" 
+        WindowState="Maximized">
     <Grid Background="{DynamicResource GridBackground}">
         <Grid>
             <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40">

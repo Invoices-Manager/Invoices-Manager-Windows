@@ -84,7 +84,8 @@ namespace InvoicesManager.Windows
 
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                InvoiceSystem.SaveAs(invoice, fbd.SelectedPath + "\\" + fileName);
+                InvoiceSystem iSys = new InvoiceSystem();
+                iSys.SaveAs(invoice, fbd.SelectedPath + "\\" + fileName);
                 this.Close();
             }
 

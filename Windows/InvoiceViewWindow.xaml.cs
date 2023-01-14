@@ -198,8 +198,9 @@ namespace InvoicesManager.Windows
             MessageBoxResult result = MessageBox.Show("Are you sure you want to remove this invoice?", "Remove Invoice", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
-                InvoiceSystem.RemoveInvoice(invoice);
-                InvoiceSystem.Init();
+                InvoiceSystem iSys = new InvoiceSystem();
+                iSys.RemoveInvoice(invoice);
+                iSys.Init();
             }
             Close();
         }
@@ -229,9 +230,9 @@ namespace InvoicesManager.Windows
                 MoneyState = (MoneyStateEnum)Comb_MoneyState.SelectedIndex,
                 PaidState = (PaidStateEnum)Comb_PaidState.SelectedIndex
             };
-
-            InvoiceSystem.EditInvoice(invoice, editInvoice);
-            InvoiceSystem.Init();
+            InvoiceSystem iSys = new InvoiceSystem();
+            iSys.EditInvoice(invoice, editInvoice);
+            iSys.Init();
 
             Close();
         }
@@ -289,8 +290,9 @@ namespace InvoicesManager.Windows
                 PaidState = (PaidStateEnum)Comb_PaidState.SelectedIndex
             };
 
-            InvoiceSystem.AddInvoice(newInvoice, filePath, newPath);
-            InvoiceSystem.Init();
+            InvoiceSystem iSys = new InvoiceSystem();
+            iSys.AddInvoice(newInvoice, filePath, newPath);
+            iSys.Init();
         }
         //ADD AREA END
     }
