@@ -15,8 +15,8 @@ It's simple, there are enough ways to filter your documents.
 
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one).  <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.3.0.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.3.0.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.3.1.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.3.1.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
 
 
 ## Features:
@@ -59,6 +59,11 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### Y = Minor version (big updates)
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
+
+## v1.3.1.0
+- The Invoice Manager Menu starts now in full screen mode 
+- !! The Config file was moved into the Data folder !! **(that means you have to move your Conifg.json file which is where the exe is located to the corresponding "data" folder)**
+- The program optimized so that it needs less ram
 
 ## v1.3.0.0
 - There is now a main menu where you can switch to certain interfaces
