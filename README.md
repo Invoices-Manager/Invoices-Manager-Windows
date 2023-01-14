@@ -61,7 +61,6 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### W = Revision version (bug fixes)
 
 ## v1.3.1.0
-- The Invoice Manager Menu starts now in full screen mode 
 - !! The Config file was moved into the Data folder !! **(that means you have to move your Conifg.json file which is where the exe is located to the corresponding "data" folder)**
 - The program optimized so that it needs less ram
 
