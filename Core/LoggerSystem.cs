@@ -19,7 +19,7 @@ namespace InvoicesManager.Core
                 string logPath = EnvironmentsVariable.PathLog + EnvironmentsVariable.LogJsonFileName;
                 DateTime logDate = DateTime.Now;
                 //preview => [2021-05-01 12:00:00] [Info] [System_Thread] : This is a test message.
-                string logMessage = $"[{logDate.ToString("yyyy-MM-dd HH:mm:ss")}] [{logState}] [{logPrefix}] : {message}";
+                string logMessage = $"[{logDate.ToString("yyyy-MM-dd HH:mm:ss")}] [{logState}] [{logPrefix}]: {message}";
 
                 //get all logs in a list 
                 List<LogModel> allLogs = GetAllLogs();
