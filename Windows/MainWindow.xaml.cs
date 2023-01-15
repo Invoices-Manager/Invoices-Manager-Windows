@@ -16,19 +16,26 @@ namespace InvoicesManager.Windows
 
         public MainWindow()
         {
-            InitializeComponent();
-            //scan windows theme and set the app theme
-            InitWindowsTheme();
-            //init work path
-            EnvironmentsVariable.InitWorkPath();
-            //load the settings
-            ConfigSystem cSys = new ConfigSystem();
-            cSys.Init();
-            //load the window UI language
-            LanguageManager.Init();
-            //init notebooks
-            NotebookSystem nSys = new NotebookSystem();
-            nSys.Init();
+            try
+            {
+                InitializeComponent();
+                //scan windows theme and set the app theme
+                InitWindowsTheme();
+                //init work path
+                EnvironmentsVariable.InitWorkPath();
+                //load the settings
+                ConfigSystem cSys = new ConfigSystem();
+                cSys.Init();
+                //load the window UI language
+                LanguageManager.Init();
+                //init notebooks
+                NotebookSystem nSys = new NotebookSystem();
+                nSys.Init();
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.MainWindow_View, ex.Message);
+            }
         }
 
         private void InitWindowsTheme()

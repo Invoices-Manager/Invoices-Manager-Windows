@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System;
 using System.Windows;
+using InvoicesManager.Core;
 
 namespace InvoicesManager
 {
@@ -22,6 +23,10 @@ namespace InvoicesManager
 
                 //init the app
                 InitializeComponent();
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Fatal, Classes.Enums.LogPrefixEnum.System_Thread, ex.Message);
             }
             finally
             {

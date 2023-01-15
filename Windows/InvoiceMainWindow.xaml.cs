@@ -49,10 +49,14 @@ namespace InvoicesManager
             {
                 Task.Run(() =>
                 {
+                    LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.MainWindow_View, "auto backup was requested");
                     BackUpSystem buSys = new BackUpSystem();
                     bool wasPerformedCorrectly = buSys.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"), this);
                     if (!wasPerformedCorrectly)
+                    {
+                        LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.MainWindow_View, "the requested auto backup failed");
                         MessageBox.Show(this.Resources["backUpFailed"] as string);
+                    }
                     buSys.CheckBackUpCount();
                 });
             }
@@ -110,8 +114,9 @@ namespace InvoicesManager
 
         private void InitThreads()
         {
-            InvoiceSystem iSys = new InvoiceSystem();
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.MainWindow_View, "init threads was requested");
 
+            InvoiceSystem iSys = new InvoiceSystem();
 
             Thread _initInvoicesThread = new Thread(iSys.Init);
             Thread _initOrganizationsThread = new Thread(ThreadTaskInitOrganization);
@@ -179,6 +184,8 @@ namespace InvoicesManager
 
         private void RefreshDataGridWithInit()
         {
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.MainWindow_View, "RefreshDataGridWithInit was requested");
+
             InitInvoices();
             InitOrganization();
             InitDocumentType();

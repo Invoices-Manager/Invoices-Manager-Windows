@@ -86,6 +86,7 @@ namespace InvoicesManager.Windows
             {
                 InvoiceSystem iSys = new InvoiceSystem();
                 iSys.SaveAs(invoice, fbd.SelectedPath + "\\" + fileName);
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.SaveAs_View, $"Invoice was saved as {fileName} in {fbd.SelectedPath}");
                 this.Close();
             }
 

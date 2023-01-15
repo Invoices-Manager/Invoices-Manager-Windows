@@ -50,47 +50,68 @@ namespace InvoicesManager.Windows
 
         private void LoadNotebooks()
         {
-            sP_Notes.Items.Clear();
-            foreach (NoteModel note in EnvironmentsVariable.Notebook.Notebook)
-                sP_Notes.Items.Add(note);
+            try
+            {
+                sP_Notes.Items.Clear();
+                foreach (NoteModel note in EnvironmentsVariable.Notebook.Notebook)
+                    sP_Notes.Items.Add(note);
 
-            ClearTbs();
-            
-            Bttn_SaveNote.IsEnabled = false;
-            Bttn_DeleteNote.IsEnabled = false;
-            correspondingButton = null;
-            selectedNote = null;
+                ClearTbs();
+
+                Bttn_SaveNote.IsEnabled = false;
+                Bttn_DeleteNote.IsEnabled = false;
+                correspondingButton = null;
+                selectedNote = null;
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Notebook_View, ex.Message);
+            }
         }
         
         private void Bttn_LoadNote_Click(object sender, RoutedEventArgs e)
         {
-            Guid id = ((NoteModel)((FrameworkElement)sender).DataContext).Id;
-            selectedNote = EnvironmentsVariable.Notebook.Notebook.Find(note => note.Id == id);
-            if (sender is Button)
-                correspondingButton = (Button)sender;
-
-            Tb_Note_Title.Text = selectedNote.Name;
-            Tb_Note_Value.Text = selectedNote.Value;
-
-            if (correspondingButton != null)
+            try
             {
-                Bttn_SaveNote.IsEnabled = true;
-                Bttn_DeleteNote.IsEnabled = true;
+                Guid id = ((NoteModel)((FrameworkElement)sender).DataContext).Id;
+                selectedNote = EnvironmentsVariable.Notebook.Notebook.Find(note => note.Id == id);
+                if (sender is Button)
+                    correspondingButton = (Button)sender;
+
+                Tb_Note_Title.Text = selectedNote.Name;
+                Tb_Note_Value.Text = selectedNote.Value;
+
+                if (correspondingButton != null)
+                {
+                    Bttn_SaveNote.IsEnabled = true;
+                    Bttn_DeleteNote.IsEnabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Notebook_View, ex.Message);
             }
         }
 
         private void Bttn_DeleteNote_Click(object sender, RoutedEventArgs e)
         {
-            if (correspondingButton is null)
-                return;
+            try
+            {
+                if (correspondingButton is null)
+                    return;
 
-            correspondingButton = null;
-            NotebookSystem nSys = new NotebookSystem();
-            nSys.RemoveNote(selectedNote);
-            Tb_Note_Title.Text = "";
-            Tb_Note_Value.Text = "";
-            LoadNotebooks();
-            CheckButtonsState();
+                correspondingButton = null;
+                NotebookSystem nSys = new NotebookSystem();
+                nSys.RemoveNote(selectedNote);
+                Tb_Note_Title.Text = "";
+                Tb_Note_Value.Text = "";
+                LoadNotebooks();
+                CheckButtonsState();
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Notebook_View, ex.Message);
+            }
         }
 
         private void CheckButtonsState()
@@ -116,16 +137,23 @@ namespace InvoicesManager.Windows
 
         private void Bttn_SaveNote_Click(object sender, RoutedEventArgs e)
         {
-            if (correspondingButton is null)
-                return;
+            try
+            {
+                if (correspondingButton is null)
+                    return;
 
-            correspondingButton.Content = Tb_Note_Title.Text;
-            selectedNote.Name = Tb_Note_Title.Text;
-            selectedNote.Value = Tb_Note_Value.Text;
-            selectedNote.LastEditDate = DateTime.Now;
+                correspondingButton.Content = Tb_Note_Title.Text;
+                selectedNote.Name = Tb_Note_Title.Text;
+                selectedNote.Value = Tb_Note_Value.Text;
+                selectedNote.LastEditDate = DateTime.Now;
 
-            NotebookSystem nSys = new NotebookSystem();
-            nSys.EditNote(selectedNote);
+                NotebookSystem nSys = new NotebookSystem();
+                nSys.EditNote(selectedNote);
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Notebook_View, ex.Message);
+            }
         }
 
         private void Bttn_CreateNote_Click(object sender, RoutedEventArgs e)

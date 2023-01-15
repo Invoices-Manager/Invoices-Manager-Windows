@@ -32,11 +32,18 @@ namespace InvoicesManager.Windows
             {
                 await Task.Run(() =>
                 {
+                    LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.BackUp_View, "BackUp was requested");
                     BackUpSystem buSys = new BackUpSystem();
                     if (buSys.BackUp(sfg.FileName))
+                    {
+                        LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.BackUp_View, "BackUp was completed successfully!");
                         MessageBox.Show(Application.Current.Resources["backUpSuccessfully"] as string);
+                    }
                     else
+                    {
+                        LoggerSystem.Log(Classes.Enums.LogStateEnum.Warning, Classes.Enums.LogPrefixEnum.BackUp_View, "BackUp was not completed successfully!");
                         MessageBox.Show(Application.Current.Resources["backUpFailed"] as string);
+                    }
                 });
             }
         }
@@ -52,9 +59,17 @@ namespace InvoicesManager.Windows
             {
                 await Task.Run(() =>
                 {
+                    LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.BackUp_View, "Restore was requested");
                     BackUpSystem buSys = new BackUpSystem();
-                    if (!buSys.Restore(ofd.FileName))
-                        MessageBox.Show(this.Resources["backUpFailedRestored"] as string);
+                    if (buSys.Restore(ofd.FileName))
+                    {
+                        LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.BackUp_View, "Restore was completed successfully!");
+                    }
+                    else
+                    {
+                        LoggerSystem.Log(Classes.Enums.LogStateEnum.Warning, Classes.Enums.LogPrefixEnum.BackUp_View, "Restore was not completed successfully!");
+                        MessageBox.Show(Application.Current.Resources["backUpFailedRestored"] as string);
+                    }
                 });
             }
         }

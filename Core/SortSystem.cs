@@ -48,18 +48,25 @@ namespace InvoicesManager.Core
         
         public void Sort()
         {
-            EnvironmentsVariable.FilteredInvoices = allInvoices
-                .Where(x => x.Reference.ToLower().Contains(filterReference) || String.IsNullOrEmpty(filterReference))
-                .Where(x => x.InvoiceNumber.ToLower().Contains(filterInvoiceNumber) || String.IsNullOrEmpty(filterInvoiceNumber))
-                .Where(x => x.Organization.ToLower().Equals(filterOrganization) || filterOrganization is "-1")
-                .Where(x => x.DocumentType.ToLower().Equals(filterDocumentType) || filterDocumentType is "-1")
-                .Where(x => x.ExhibitionDate.Date == filterExhibitionDate.Date || filterExhibitionDate == default)
-                .Where(x => x.PaidState == filterPaidState || filterPaidState == PaidStateEnum.FilterPlaceholder)
-                .Where(x => x.MoneyState == filterMoneyState || filterMoneyState == MoneyStateEnum.FilterPlaceholder)
-                .Where(x => x.ImportanceState == filterImportanceState || filterImportanceState == ImportanceStateEnum.FilterPlaceholder)
-                .Where(x => x.MoneyTotal == filterMoneyTotal || filterMoneyTotal == double.MinValue)
-                .Where(x => x.Tags.Contains(filterTags) || String.IsNullOrEmpty(filterTags))
-                .ToList();
+            try
+            {
+                EnvironmentsVariable.FilteredInvoices = allInvoices
+                              .Where(x => x.Reference.ToLower().Contains(filterReference) || String.IsNullOrEmpty(filterReference))
+                              .Where(x => x.InvoiceNumber.ToLower().Contains(filterInvoiceNumber) || String.IsNullOrEmpty(filterInvoiceNumber))
+                              .Where(x => x.Organization.ToLower().Equals(filterOrganization) || filterOrganization is "-1")
+                              .Where(x => x.DocumentType.ToLower().Equals(filterDocumentType) || filterDocumentType is "-1")
+                              .Where(x => x.ExhibitionDate.Date == filterExhibitionDate.Date || filterExhibitionDate == default)
+                              .Where(x => x.PaidState == filterPaidState || filterPaidState == PaidStateEnum.FilterPlaceholder)
+                              .Where(x => x.MoneyState == filterMoneyState || filterMoneyState == MoneyStateEnum.FilterPlaceholder)
+                              .Where(x => x.ImportanceState == filterImportanceState || filterImportanceState == ImportanceStateEnum.FilterPlaceholder)
+                              .Where(x => x.MoneyTotal == filterMoneyTotal || filterMoneyTotal == double.MinValue)
+                              .Where(x => x.Tags.Contains(filterTags) || String.IsNullOrEmpty(filterTags))
+                              .ToList();
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Sort_System, ex.Message);
+            }
         }
     }
 }

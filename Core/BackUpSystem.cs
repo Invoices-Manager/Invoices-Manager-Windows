@@ -15,18 +15,25 @@ namespace InvoicesManager.Core
         
         public void CheckBackUpCount()
         {
-            //get all files in the backup folder
-            //the files are named by the date and time and the array is sorted by old to new
-            //that means the first file is the oldest and the last file is the newest
-            string[] files = Directory.GetFiles(EnvironmentsVariable.PathBackUps);
+            try
+            {
+                //get all files in the backup folder
+                //the files are named by the date and time and the array is sorted by old to new
+                //that means the first file is the oldest and the last file is the newest
+                string[] files = Directory.GetFiles(EnvironmentsVariable.PathBackUps);
 
-            //if its zero or negativ => no files to delete
-            int hasToDeleteCounter = files.Length - EnvironmentsVariable.MaxCountBackUp;
+                //if its zero or negativ => no files to delete
+                int hasToDeleteCounter = files.Length - EnvironmentsVariable.MaxCountBackUp;
 
-            if (hasToDeleteCounter > 0)
-                //delete the oldest files
-                for (int i = 0; i < hasToDeleteCounter; i++)
-                    try { File.Delete(files[i]); } catch { }
+                if (hasToDeleteCounter > 0)
+                    //delete the oldest files
+                    for (int i = 0; i < hasToDeleteCounter; i++)
+                        try { File.Delete(files[i]); } catch { }
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.BackUp_System, ex.Message);
+            }
         }
 
         public bool BackUp(string backupFilePath, InvoiceMainWindow mainWindow = null)
@@ -123,8 +130,9 @@ namespace InvoicesManager.Core
                 if (mainWindow != null)
                     _invoiceMainWindow.ClearInfoProgressBar();
             }
-            catch
+            catch (Exception ex)
             {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.BackUp_System, ex.Message);
                 return false;
             }
 
@@ -152,8 +160,9 @@ namespace InvoicesManager.Core
                 //get BackUp from the file
                 backUp = JsonConvert.DeserializeObject<BackUpModel>(File.ReadAllText(backupFilePath));
             }
-            catch
+            catch (Exception ex)
             {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.BackUp_System, ex.Message);
                 wasPerformedCorrectly = false;
             }
 
@@ -234,8 +243,9 @@ namespace InvoicesManager.Core
                         _invoiceMainWindow.SetInfoProgressBarValue(1);
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.BackUp_System, ex.Message);
                 wasPerformedCorrectly = false;
             }
 
@@ -273,8 +283,9 @@ namespace InvoicesManager.Core
                         note_AlreadyExistCounter++;
                     }
             }
-            catch
+            catch (Exception ex)
             {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.BackUp_System, ex.Message);
                 wasPerformedCorrectly = false;
             }
 

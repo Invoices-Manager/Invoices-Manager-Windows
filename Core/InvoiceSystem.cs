@@ -12,80 +12,126 @@ namespace InvoicesManager.Core
     {
         public void Init()
         {
-            //set the flag to false
-            EnvironmentsVariable.IsInvoiceInitFinish = false;
+            try
+            {
+                //set the flag to false
+                EnvironmentsVariable.IsInvoiceInitFinish = false;
 
-            EnvironmentsVariable.AllInvoices.Clear();
+                EnvironmentsVariable.AllInvoices.Clear();
 
-            string json = File.ReadAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName);
+                string json = File.ReadAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName);
 
-            if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
-                EnvironmentsVariable.AllInvoices = JsonConvert.DeserializeObject<List<InvoiceModel>>(json);
+                if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
+                    EnvironmentsVariable.AllInvoices = JsonConvert.DeserializeObject<List<InvoiceModel>>(json);
 
-            //set the flag to true
-            EnvironmentsVariable.IsInvoiceInitFinish = true;
+                //set the flag to true
+                EnvironmentsVariable.IsInvoiceInitFinish = true;
+
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Invoice_System, ex.Message);
+            }
         }
 
-        public void AddInvoice(InvoiceModel newInvoice, string filePath,  string newPath)
+        public void AddInvoice(InvoiceModel newInvoice, string filePath, string newPath)
         {
-            if (CheckIfInvoiceExist(filePath))
+            try
             {
-                MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
-                return;
+                if (CheckIfInvoiceExist(filePath))
+                {
+                    MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
+                    return;
+                }
+                EnvironmentsVariable.AllInvoices.Add(newInvoice);
+                File.Copy(filePath, newPath);
+                SaveIntoJsonFile();
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.Invoice_System, $"A new invoice has been added. [{newInvoice.FileID}]");
             }
-            EnvironmentsVariable.AllInvoices.Add(newInvoice);
-            File.Copy(filePath, newPath);
-
-            SaveIntoJsonFile();
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Invoice_System, ex.Message);
+            }
         }
 
         public void EditInvoice(InvoiceModel oldInvoice, InvoiceModel newInvoice)
         {
-            if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
+            try
             {
-                MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
-                return;
-            }
-            
-            EnvironmentsVariable.AllInvoices.Remove(oldInvoice);
-            EnvironmentsVariable.AllInvoices.Add(newInvoice);
+                if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
+                {
+                    MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
+                    return;
+                }
 
-            SaveIntoJsonFile();
+                EnvironmentsVariable.AllInvoices.Remove(oldInvoice);
+                EnvironmentsVariable.AllInvoices.Add(newInvoice);
+
+                SaveIntoJsonFile();
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.Invoice_System, $"A invoice has been edited. [{newInvoice.FileID}]");
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Invoice_System, ex.Message);
+            }
         }
 
         public void RemoveInvoice(InvoiceModel oldInvoice)
         {
-            if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
+            try
             {
-                MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
-                return;
+                if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
+                {
+                    MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
+                    return;
+                }
+                EnvironmentsVariable.AllInvoices.Remove(oldInvoice);
+
+                File.Delete(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT);
+
+                SaveIntoJsonFile();
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.Invoice_System, $"A invoice has been deleted. [{oldInvoice.FileID}]");
             }
-            EnvironmentsVariable.AllInvoices.Remove(oldInvoice);
-
-            File.Delete(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT);
-
-            SaveIntoJsonFile();
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Invoice_System, ex.Message);
+            }
         }
 
         public void SaveAs(InvoiceModel invoice, string path)
         {
-            File.Copy(EnvironmentsVariable.PathInvoices + invoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT, path);
+            try
+            {
+                File.Copy(EnvironmentsVariable.PathInvoices + invoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT, path);
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Invoice_System, ex.Message);
+            }
         }
 
         public bool CheckIfInvoiceExist(string filePath)
         {
-            string hashID = HashManager.GetMD5HashFromFile(filePath);
             bool existAlready = false;
-            
-            foreach (var invoice in EnvironmentsVariable.AllInvoices)
+            try
             {
-                if (invoice.FileID.Equals(hashID))
-                    existAlready = true;
+                string hashID = HashManager.GetMD5HashFromFile(filePath);
+                foreach (var invoice in EnvironmentsVariable.AllInvoices)
+                {
+                    if (invoice.FileID.Equals(hashID))
+                        existAlready = true;
+                }
+
+                return existAlready;
             }
-            
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Invoice_System, ex.Message);
+            }
+
             return existAlready;
         }
-        
+
         public bool CheckIfInvoicesDataHasChanged(InvoiceModel backupInvoice)
         {
             bool hasChanged = false;
@@ -124,27 +170,35 @@ namespace InvoicesManager.Core
 
         public void OverrideInvoice(InvoiceModel invoice)
         {
-            //find the invoice in the list
-            InvoiceModel invoiceToOverride = EnvironmentsVariable.AllInvoices.Find(x => x.FileID == invoice.FileID);
+            try
+            {
+                //find the invoice in the list
+                InvoiceModel invoiceToOverride = EnvironmentsVariable.AllInvoices.Find(x => x.FileID == invoice.FileID);
 
-            //edit the invoice (override)
-            invoiceToOverride.Reference = invoice.Reference;
-            invoiceToOverride.DocumentType = invoice.DocumentType;
-            invoiceToOverride.Organization = invoice.Organization;
-            invoiceToOverride.InvoiceNumber = invoice.InvoiceNumber;
-            invoiceToOverride.Tags = invoice.Tags;
-            invoiceToOverride.ImportanceState = invoice.ImportanceState;
-            invoiceToOverride.MoneyState = invoice.MoneyState;
-            invoiceToOverride.MoneyTotal = invoice.MoneyTotal;
-            invoiceToOverride.PaidState = invoice.PaidState;
+                //edit the invoice (override)
+                invoiceToOverride.Reference = invoice.Reference;
+                invoiceToOverride.DocumentType = invoice.DocumentType;
+                invoiceToOverride.Organization = invoice.Organization;
+                invoiceToOverride.InvoiceNumber = invoice.InvoiceNumber;
+                invoiceToOverride.Tags = invoice.Tags;
+                invoiceToOverride.ImportanceState = invoice.ImportanceState;
+                invoiceToOverride.MoneyState = invoice.MoneyState;
+                invoiceToOverride.MoneyTotal = invoice.MoneyTotal;
+                invoiceToOverride.PaidState = invoice.PaidState;
 
-            SaveIntoJsonFile();
+                SaveIntoJsonFile();
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Invoice_System, ex.Message);
+            }
         }
 
-        
+
         private void SaveIntoJsonFile()
         {
             File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices, Formatting.Indented));
+            
         }
     }
 }

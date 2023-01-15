@@ -195,14 +195,21 @@ namespace InvoicesManager.Windows
         //DELETE AREA START
         private void Bttn_InvoiceDelete_Click()
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to remove this invoice?", "Remove Invoice", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
+            try
             {
-                InvoiceSystem iSys = new InvoiceSystem();
-                iSys.RemoveInvoice(invoice);
-                iSys.Init();
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to remove this invoice?", "Remove Invoice", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    InvoiceSystem iSys = new InvoiceSystem();
+                    iSys.RemoveInvoice(invoice);
+                    iSys.Init();
+                }
+                Close();
             }
-            Close();
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_View, ex.Message);
+            }
         }
         //DELETE AREA END
 
@@ -210,31 +217,38 @@ namespace InvoicesManager.Windows
         //EDIT AREA START
         private void Bttn_InvoiceEdit_Click()
         {
-            if (!CheckIfAllIsValide())
+            try
             {
-                MessageBox.Show("Please Check you data input", "Error", MessageBoxButton.OK);
-                return;
+                if (!CheckIfAllIsValide())
+                {
+                    MessageBox.Show("Please Check you data input", "Error", MessageBoxButton.OK);
+                    return;
+                }
+
+                InvoiceModel editInvoice = new InvoiceModel()
+                {
+                    FileID = invoice.FileID,
+                    ExhibitionDate = Dp_ExhibitionDate.SelectedDate.Value,
+                    Organization = Tb_Organization.Text,
+                    DocumentType = Tb_DocumentType.Text,
+                    InvoiceNumber = Tb_InvoiceNumber.Text,
+                    Reference = Tb_Reference.Text,
+                    MoneyTotal = String.IsNullOrEmpty(Tb_MoneyTotal.Text) ? -1 : Convert.ToDouble(Tb_MoneyTotal.Text),
+                    Tags = Tb_Tags.Text.Split(';'),
+                    ImportanceState = (ImportanceStateEnum)Comb_ImportanceState.SelectedIndex,
+                    MoneyState = (MoneyStateEnum)Comb_MoneyState.SelectedIndex,
+                    PaidState = (PaidStateEnum)Comb_PaidState.SelectedIndex
+                };
+                InvoiceSystem iSys = new InvoiceSystem();
+                iSys.EditInvoice(invoice, editInvoice);
+                iSys.Init();
+
+                Close();
             }
-
-            InvoiceModel editInvoice = new InvoiceModel()
+            catch (Exception ex)
             {
-                FileID = invoice.FileID,
-                ExhibitionDate = Dp_ExhibitionDate.SelectedDate.Value,
-                Organization = Tb_Organization.Text,
-                DocumentType = Tb_DocumentType.Text,
-                InvoiceNumber = Tb_InvoiceNumber.Text,
-                Reference = Tb_Reference.Text,
-                MoneyTotal = String.IsNullOrEmpty(Tb_MoneyTotal.Text) ? -1 : Convert.ToDouble(Tb_MoneyTotal.Text),
-                Tags = Tb_Tags.Text.Split(';'),
-                ImportanceState = (ImportanceStateEnum)Comb_ImportanceState.SelectedIndex,
-                MoneyState = (MoneyStateEnum)Comb_MoneyState.SelectedIndex,
-                PaidState = (PaidStateEnum)Comb_PaidState.SelectedIndex
-            };
-            InvoiceSystem iSys = new InvoiceSystem();
-            iSys.EditInvoice(invoice, editInvoice);
-            iSys.Init();
-
-            Close();
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_View, ex.Message);
+            }
         }
         //EDIT AREA END
 
@@ -242,14 +256,21 @@ namespace InvoicesManager.Windows
         //ADD AREA START
         private void Bttn_InvoiceAdd_Click()
         {
-            if (!CheckIfAllIsValide())
+            try
             {
-                MessageBox.Show(Application.Current.Resources["checkYouInput"] as string, Application.Current.Resources["error"] as string, MessageBoxButton.OK);
-                return;
-            }
+                if (!CheckIfAllIsValide())
+                {
+                    MessageBox.Show(Application.Current.Resources["checkYouInput"] as string, Application.Current.Resources["error"] as string, MessageBoxButton.OK);
+                    return;
+                }
 
-            AddNewInvoice();
-            ClearAllInputs();
+                AddNewInvoice();
+                ClearAllInputs();
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_View, ex.Message);
+            }
         }
         private void Bttn_InvoiceFileAdd_Click(object sender, RoutedEventArgs e)
         {
