@@ -12,10 +12,10 @@ namespace InvoicesManager.Core
         {
             string json = String.Empty;
 
-            if (!File.Exists(EnvironmentsVariable.ConfigJsonFileName))
+            if (!File.Exists(EnvironmentsVariable.PathConfig + EnvironmentsVariable.ConfigJsonFileName))
                 json = "[]";
             else
-                json = File.ReadAllText(EnvironmentsVariable.ConfigJsonFileName);
+                json = File.ReadAllText(EnvironmentsVariable.PathConfig + EnvironmentsVariable.ConfigJsonFileName);
 
             ConfigModel config = new ConfigModel()
             {
@@ -61,7 +61,7 @@ namespace InvoicesManager.Core
                 MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp
             };
             
-            File.WriteAllText( EnvironmentsVariable.ConfigJsonFileName, JsonConvert.SerializeObject(config, Formatting.Indented));
+            File.WriteAllText(EnvironmentsVariable.PathConfig + EnvironmentsVariable.ConfigJsonFileName, JsonConvert.SerializeObject(config, Formatting.Indented));
         }
     }
 }

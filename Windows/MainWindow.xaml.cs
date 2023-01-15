@@ -19,11 +19,11 @@ namespace InvoicesManager.Windows
             InitializeComponent();
             //scan windows theme and set the app theme
             InitWindowsTheme();
+            //init work path
+            EnvironmentsVariable.InitWorkPath();
             //load the settings
             ConfigSystem cSys = new ConfigSystem();
             cSys.Init();
-            //init work path
-            EnvironmentsVariable.InitWorkPath();
             //load the window UI language
             LanguageManager.Init();
             //init notebooks

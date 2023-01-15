@@ -63,6 +63,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ## v1.3.1.0
 - !! The Config file was moved into the Data folder !! **(that means you have to move your Conifg.json file which is where the exe is located to the corresponding "data" folder)**
 - The program optimized so that it needs less ram
+- The program can now be started only once
 
 ## v1.3.0.0
 - There is now a main menu where you can switch to certain interfaces
