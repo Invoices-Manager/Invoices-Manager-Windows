@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using InvoicesManager.Core;
+using InvoicesManager.Classes;
 
 namespace InvoicesManager
 {
@@ -13,9 +14,14 @@ namespace InvoicesManager
         {
             try
             {
+                //program will freeze if the log folder is not created
+                EnvironmentsVariable.InitWorkPath();
+
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Debug, Classes.Enums.LogPrefixEnum.System_Thread, "The Mutex will be claimed...");
                 //check if it is already claimed
                 if (!InvoiceManagerMutex.WaitOne(TimeSpan.Zero, true))
                 {
+                    LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.System_Thread, "The Mutex was claimed successfully!");
                     //the app is already running
                     MessageBox.Show("Another instance of the app is already running.");
                     return;
@@ -31,7 +37,9 @@ namespace InvoicesManager
             finally
             {
                 //release the mutex
+                //Its should not work, because the app will release the mutex instantly but it works
                 InvoiceManagerMutex.ReleaseMutex();
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.System_Thread, "The Mutex was released successfully!");
             }
         }
     }

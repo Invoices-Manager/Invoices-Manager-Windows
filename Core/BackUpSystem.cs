@@ -208,7 +208,7 @@ namespace InvoicesManager.Core
                     //base64 to byte[] (file / invoice)
                     byte[] bytes = Convert.FromBase64String(backUpPacked.Base64);
                     //this md5 hashcode is the new file name
-                    string hashID = HashManager.GetMD5HashFromByteArray(bytes);
+                    string hashID = SecuritySystem.GetMD5HashFromByteArray(bytes);
                     //tempInvoicePath is the tempory path where the file will be saved and later deleted 
                     string tempInvoicePath = Path.Combine(Path.GetTempPath(), hashID + ".pdf");
 

@@ -63,7 +63,7 @@ namespace InvoicesManager.Core
                 LogPrefixEnum.BackUp_View => "BackUp-View",
                 LogPrefixEnum.SaveAs_View => "SaveAs-View",
                 LogPrefixEnum.Invoice_View => "Invoice-View",
-                LogPrefixEnum.MainWindow_View => "MainWindow.View",
+                LogPrefixEnum.MainWindow_View => "MainWindow-View",
                 LogPrefixEnum.Notebook_View => "Notebook-View",
                 LogPrefixEnum.Setting_View => "Setting-View",
                 _ => "Unknown",
