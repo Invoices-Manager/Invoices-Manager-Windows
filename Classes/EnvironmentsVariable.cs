@@ -16,10 +16,12 @@ namespace InvoicesManager.Classes
         public static string PathBackUps = @$"{Environment.CurrentDirectory}\data\backups\";
         public static string PathNotebook = @$"{Environment.CurrentDirectory}\data\";
         public readonly static string PathConfig = @$"{Environment.CurrentDirectory}\data\";
+        public static string PathLog = @$"{Environment.CurrentDirectory}\data\logs\";
         public static int MaxCountBackUp = 64;
         public static string InvoicesJsonFileName = "Invoices.json";
         public static string ConfigJsonFileName = "Config.json";
         public static string NotebooksJsonFileName = "Notebook.json";
+        public static string LogJsonFileName { get { return $"Log_{DateTime.Now.ToString("yyyy-MM-dd")}.txt"; } }
         public static string UILanguage = "English";
         public static string[] PossibleUILanguages = { "English", "German" };
         public const string PROGRAM_VERSION = "1.3.1.0";
@@ -35,7 +37,7 @@ namespace InvoicesManager.Classes
         public static bool Window_BackUp_IsClosed = true;
         public static char MoneyUnit = '€';
         public static char[] PossibleMoneyUnits = { '€', '$', '£', '¥', '₽', '₹' };
-
+        
         public static void InitWorkPath()
         {
             //create/check the need folders and files
