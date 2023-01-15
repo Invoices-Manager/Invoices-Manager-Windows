@@ -115,7 +115,7 @@ namespace InvoicesManager.Core
             bool existAlready = false;
             try
             {
-                string hashID = HashManager.GetMD5HashFromFile(filePath);
+                string hashID = SecuritySystem.GetMD5HashFromFile(filePath);
                 foreach (var invoice in EnvironmentsVariable.AllInvoices)
                 {
                     if (invoice.FileID.Equals(hashID))
