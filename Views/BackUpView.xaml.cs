@@ -1,8 +1,8 @@
 ﻿namespace InvoicesManager.Views
 {
-    public partial class BackUpWindow : Page
+    public partial class BackUpView: Page
     {
-        public BackUpWindow()
+        public BackUpView()
         {
             InitializeComponent();
         }

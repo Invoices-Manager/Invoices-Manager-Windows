@@ -1,8 +1,8 @@
 ﻿namespace InvoicesManager.Views
 {
-    public partial class AboutWindow : Page
+    public partial class AboutView : Page
     {
-        public AboutWindow()
+        public AboutView()
             => InitializeComponent();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

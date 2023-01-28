@@ -1,6 +1,6 @@
 ﻿namespace InvoicesManager.Views
 {
-    public partial class InvoiceMainWindow : Page
+    public partial class InvoiceMainView : Page
     {
         private string filterReference = String.Empty;
         private string filterInvoiceNumber = String.Empty;
@@ -14,7 +14,7 @@
         private double filterMoneyTotal = double.MinValue; // -1 is not possible because it is a valid value
 
 
-        public InvoiceMainWindow()
+        public InvoiceMainView()
         {
 #if DEBUG
             // try { File.Delete(EnvironmentsVariable.PathData + EnvironmentsVariable.InvoicesJsonFileName); } catch  {}

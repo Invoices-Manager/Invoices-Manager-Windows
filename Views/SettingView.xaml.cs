@@ -1,8 +1,8 @@
 ﻿namespace InvoicesManager.Views
 {
-    public partial class SettingWindow : Page
+    public partial class SettingView : Page
     {
-        public SettingWindow()
+        public SettingView()
         {
             InitializeComponent();
         }

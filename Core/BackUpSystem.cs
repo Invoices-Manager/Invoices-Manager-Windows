@@ -2,7 +2,7 @@
 {
     public class BackUpSystem
     {
-        private InvoiceMainWindow _invoiceMainWindow;
+        private InvoiceMainView _invoiceMainWindow;
 
         
         public void CheckBackUpCount()
@@ -28,7 +28,7 @@
             }
         }
 
-        public bool BackUp(string backupFilePath, InvoiceMainWindow mainWindow = null)
+        public bool BackUp(string backupFilePath, InvoiceMainView mainWindow = null)
         {
             bool wasPerformedCorrectly = false;
             InvoiceSystem iSys = new InvoiceSystem();
@@ -131,7 +131,7 @@
             return wasPerformedCorrectly;
         }
 
-        public bool Restore(string backupFilePath, InvoiceMainWindow mainWindow = null)
+        public bool Restore(string backupFilePath, InvoiceMainView mainWindow = null)
         {
             //set the main window for the progress bar
             if (mainWindow != null)

@@ -5,11 +5,11 @@ namespace InvoicesManager.Windows
 {
     public partial class MainWindow : Window
     {
-        InvoiceMainWindow invoiceMainWindow;
+        InvoiceMainView invoiceMainView;
         NotebookWindow notebookWindow;
-        SettingWindow settingWindow;
-        AboutWindow aboutWindow;
-        BackUpWindow backUpWindow;
+        SettingView settingView;
+        AboutView aboutView;
+        BackUpView backUpView;
 
         public MainWindow()
         {
@@ -29,10 +29,10 @@ namespace InvoicesManager.Windows
                 NotebookSystem nSys = new NotebookSystem();
                 nSys.Init();
                 //init the pages
-                invoiceMainWindow = new InvoiceMainWindow();
-                settingWindow = new SettingWindow();
-                aboutWindow = new AboutWindow();
-                backUpWindow = new BackUpWindow();
+                invoiceMainView = new InvoiceMainView();
+                settingView = new SettingView();
+                aboutView = new AboutView();
+                backUpView = new BackUpView();
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace InvoicesManager.Windows
         }
         
         private void Bttn_Open_Invoices_Click(object sender, RoutedEventArgs e)
-            => ViewMirror.Content = invoiceMainWindow;
+            => ViewMirror.Content = invoiceMainView;
 
         private void Bttn_Open_Notebook_Click(object sender, RoutedEventArgs e)
         {
@@ -76,13 +76,13 @@ namespace InvoicesManager.Windows
         }
         
         private void Bttn_Open_BackUp_Click(object sender, RoutedEventArgs e)
-            => ViewMirror.Content = backUpWindow;
+            => ViewMirror.Content = backUpView;
 
         private void Bttn_Open_Setting_Click(object sender, RoutedEventArgs e)
-            => ViewMirror.Content = settingWindow;
+            => ViewMirror.Content = settingView;
 
         private void Bttn_Open_About_Click(object sender, RoutedEventArgs e)
-            => ViewMirror.Content = aboutWindow;
+            => ViewMirror.Content = aboutView;
 
         private void Window_Closed(object sender, EventArgs e)
         {
