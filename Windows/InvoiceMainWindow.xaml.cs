@@ -46,9 +46,6 @@
 #endif
         }
 
-        private void Window_Closed(object sender, EventArgs e)
-            => EnvironmentsVariable.Window_Invoice_IsClosed = true;
-
         private void InitWindowsTheme()
         {
             //read the registry key

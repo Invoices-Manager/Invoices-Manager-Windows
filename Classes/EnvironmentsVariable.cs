@@ -25,11 +25,7 @@
         //0 = dark mode  | 1 = white mode
         public static int REGSystemUsesLightTheme = 1;
         public static bool CreateABackupEveryTimeTheProgramStarts = true;
-        public static bool Window_Invoice_IsClosed = true;
         public static bool Window_Notebook_IsClosed = true;
-        public static bool Window_Setting_IsClosed = true;
-        public static bool Window_About_IsClosed = true;
-        public static bool Window_BackUp_IsClosed = true;
         public static char MoneyUnit = '€';
         public static char[] PossibleMoneyUnits = { '€', '$', '£', '¥', '₽', '₹' };
         

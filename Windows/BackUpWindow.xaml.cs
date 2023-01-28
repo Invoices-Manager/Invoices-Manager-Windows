@@ -7,11 +7,6 @@
             InitializeComponent();
         }
 
-        private void Window_Closed(object sender, System.EventArgs e)
-        {
-            EnvironmentsVariable.Window_BackUp_IsClosed = true;
-        }
-
         private async void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog sfg = new SaveFileDialog()

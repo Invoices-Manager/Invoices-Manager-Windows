@@ -34,9 +34,6 @@
                 LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Setting_View, ex.Message);
             }
         }
-
-        private void Window_Closed(object sender, EventArgs e)
-             => EnvironmentsVariable.Window_Setting_IsClosed = true;
         
         private void Bttn_SaveSettings_Click(object sender, RoutedEventArgs e)
         {
