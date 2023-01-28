@@ -3,10 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:InvoicesManager"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:InvoicesManager" 
+       xmlns:converter="clr-namespace:InvoicesManager.Classes.Converter"
+      mc:Ignorable="d"
         Title="Invoices Manager | Made by Schecher | https://github.com/Schecher1" 
         d:DesignHeight="1000" d:DesignWidth="1000">
+    <Page.Resources>
+        <converter:NegativeOneConverter x:Key="NegativeOneConverter"/>
+    </Page.Resources>
     <Grid Background="{DynamicResource GridBackground}">
         <Grid>
             <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40">
@@ -124,7 +128,7 @@
                         <DataGridTextColumn x:Name="ColumnDocumentType" Header="{DynamicResource documentType}"  Binding="{Binding DocumentType}"/>
                         <DataGridTextColumn x:Name="ColumnInvoiceNo" Header="{DynamicResource invoiceNo}"  Binding="{Binding InvoiceNumber}"/>
                         <DataGridTextColumn x:Name="ColumnReference" Header="{DynamicResource reference}"  Binding="{Binding Reference}"/>
-                        <DataGridTextColumn x:Name="ColumnMoneyTotal" Header="{DynamicResource moneyTotal}"  Binding="{Binding StringMoneyTotal}" SortMemberPath="MoneyTotal"/>
+                        <DataGridTextColumn x:Name="ColumnMoneyTotal" Header="{DynamicResource moneyTotal}"  Binding="{Binding StringMoneyTotal, Converter={StaticResource NegativeOneConverter}}" SortMemberPath="MoneyTotal"/>
                         <DataGridTextColumn x:Name="ColumnImportanceState" Header="{DynamicResource importanceState}"  Binding="{Binding StringImportanceState}"/>
                         <DataGridTextColumn x:Name="ColumnMoneyState" Header="{DynamicResource moneyState}"  Binding="{Binding StringMoneyState}"/>
                         <DataGridTextColumn x:Name="ColumnPaidState" Header="{DynamicResource paidState}"  Binding="{Binding StringPaidState}"/>
