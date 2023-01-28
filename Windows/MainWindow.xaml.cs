@@ -108,7 +108,6 @@ namespace InvoicesManager.Windows
 
                 Bttn_SideBarSwapper_Inner.Visibility = Visibility.Visible;
                 Bttn_SideBarSwapper_Outter.Visibility = Visibility.Hidden;
-                ViewMirror.Margin = new Thickness(0, 0, 0, 0);
             }
 
 
