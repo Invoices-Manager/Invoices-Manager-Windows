@@ -1,4 +1,4 @@
-﻿namespace InvoicesManager
+﻿namespace InvoicesManager.Views
 {
     public partial class InvoiceMainWindow : Page
     {

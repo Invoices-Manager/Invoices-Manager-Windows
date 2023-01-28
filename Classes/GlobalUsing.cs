@@ -4,6 +4,7 @@ global using InvoicesManager.Core;
 global using InvoicesManager.Models;
 global using InvoicesManager.Windows;
 global using InvoicesManager.Classes.Converter;
+global using InvoicesManager.Views;
 global using System.Windows;
 global using System.Windows.Forms;
 global using System;

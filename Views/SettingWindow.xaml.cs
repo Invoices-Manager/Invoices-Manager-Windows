@@ -1,4 +1,4 @@
-﻿namespace InvoicesManager.Windows
+﻿namespace InvoicesManager.Views
 {
     public partial class SettingWindow : Page
     {
