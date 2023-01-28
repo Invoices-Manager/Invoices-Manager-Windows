@@ -7,7 +7,7 @@
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -29,12 +29,12 @@
                 Cb_EveryStartUpBackUp.IsChecked = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts;
                 Tb_MaxCountBackUp.Text = EnvironmentsVariable.MaxCountBackUp.ToString();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Setting_View, ex.Message);
             }
         }
-        
+
         private void Bttn_SaveSettings_Click(object sender, RoutedEventArgs e)
         {
             try

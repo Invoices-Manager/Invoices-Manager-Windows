@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Invoice Settings | Made by Schecher | https://github.com/Schecher1" 
         d:DesignHeight="1000" d:DesignWidth="1000"
-        Loaded="Window_Loaded">
+        Loaded="Page_Loaded">
     <Grid Background="{DynamicResource GridBackground}">
         <Grid Margin="50,25,50,75">
             <ScrollViewer>

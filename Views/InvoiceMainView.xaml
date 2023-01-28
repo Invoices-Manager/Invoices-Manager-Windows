@@ -7,7 +7,8 @@
        xmlns:converter="clr-namespace:InvoicesManager.Classes.Converter"
       mc:Ignorable="d"
         Title="Invoices Manager | Made by Schecher | https://github.com/Schecher1" 
-        d:DesignHeight="1000" d:DesignWidth="1000">
+        d:DesignHeight="1000" d:DesignWidth="1000"
+      Loaded="Page_Loaded">
     <Page.Resources>
         <converter:NegativeOneConverter x:Key="NegativeOneConverter"/>
     </Page.Resources>

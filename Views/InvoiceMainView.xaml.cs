@@ -46,18 +46,8 @@
 #endif
         }
 
-        private void InitWindowsTheme()
-        {
-            //read the registry key
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
-            //get the value
-            object value = key.GetValue("SystemUsesLightTheme");
-            //set the theme
-            if (Convert.ToInt32(value) == 0)
-                EnvironmentsVariable.REGSystemUsesLightTheme = 0;
-            else
-                EnvironmentsVariable.REGSystemUsesLightTheme = 1;
-        }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+            => RefreshDataGridWithInit();
 
         private void GenerateDebugDataRecords()
         {
