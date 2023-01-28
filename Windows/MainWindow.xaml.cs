@@ -93,23 +93,29 @@ namespace InvoicesManager.Windows
 
         private void Bttn_SideBarSwapper_Click(object sender, RoutedEventArgs e)
         {
-            int from, to;
-
             if (Grid_SideBar.Width == 280)
             {
-                from = 280;
-                to = 0;
+                Animation_SideBar(280, 0);
+                Animation_Frame(0, 70);
+
                 Bttn_SideBarSwapper_Inner.Visibility = Visibility.Hidden;
                 Bttn_SideBarSwapper_Outter.Visibility = Visibility.Visible;
             }
             else
             {
-                from = 0;
-                to = 280;
+                Animation_SideBar(0, 280);
+                Animation_Frame(70, 0);
+
                 Bttn_SideBarSwapper_Inner.Visibility = Visibility.Visible;
                 Bttn_SideBarSwapper_Outter.Visibility = Visibility.Hidden;
+                ViewMirror.Margin = new Thickness(0, 0, 0, 0);
             }
 
+
+        }
+
+        private void Animation_SideBar(int from, int to)
+        {
             Storyboard storyboard = new Storyboard();
             storyboard.Duration = new Duration(TimeSpan.FromSeconds(1));
 
@@ -123,6 +129,23 @@ namespace InvoicesManager.Windows
             storyboard.Children.Add(animation);
 
             Grid_SideBar.BeginStoryboard(storyboard);
+        }
+
+        private void Animation_Frame(int from, int to)
+        {
+            ThicknessAnimation animation = new ThicknessAnimation();
+            animation.From = new Thickness(0, from, 0,0);
+            animation.To = new Thickness(0, to, 0, 0);
+            animation.Duration = new Duration(TimeSpan.FromMilliseconds(500));
+            animation.AccelerationRatio = 0.5;
+            animation.DecelerationRatio = 0.5;
+
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
+            Storyboard.SetTarget(animation, ViewMirror);
+
+            Storyboard storyboard = new Storyboard();
+            storyboard.Children.Add(animation);
+            storyboard.Begin();
         }
     }
 }
