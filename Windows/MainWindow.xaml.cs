@@ -93,9 +93,9 @@ namespace InvoicesManager.Windows
 
         private void Bttn_SideBarSwapper_Click(object sender, RoutedEventArgs e)
         {
-            if (Grid_SideBar.Width == 280)
+            if (Grid_SideBar.Width == 300)
             {
-                Animation_SideBar(280, 0);
+                Animation_SideBar(300, 0);
                 Animation_Frame(0, 70);
 
                 Bttn_SideBarSwapper_Inner.Visibility = Visibility.Hidden;
@@ -103,7 +103,7 @@ namespace InvoicesManager.Windows
             }
             else
             {
-                Animation_SideBar(0, 280);
+                Animation_SideBar(0, 300);
                 Animation_Frame(70, 0);
 
                 Bttn_SideBarSwapper_Inner.Visibility = Visibility.Visible;
