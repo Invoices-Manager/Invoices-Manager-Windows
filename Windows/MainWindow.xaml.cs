@@ -28,6 +28,11 @@ namespace InvoicesManager.Windows
                 //init notebooks
                 NotebookSystem nSys = new NotebookSystem();
                 nSys.Init();
+                //init the pages
+                invoiceMainWindow = new InvoiceMainWindow();
+                settingWindow = new SettingWindow();
+                aboutWindow = new AboutWindow();
+                backUpWindow = new BackUpWindow();
             }
             catch (Exception ex)
             {
@@ -55,10 +60,8 @@ namespace InvoicesManager.Windows
         }
         
         private void Bttn_Open_Invoices_Click(object sender, RoutedEventArgs e)
-        {
-            ViewMirror.Content = new InvoiceMainWindow();
-        }
-        
+            => ViewMirror.Content = invoiceMainWindow;
+
         private void Bttn_Open_Notebook_Click(object sender, RoutedEventArgs e)
         {
             if (EnvironmentsVariable.Window_Notebook_IsClosed)
@@ -73,19 +76,13 @@ namespace InvoicesManager.Windows
         }
         
         private void Bttn_Open_BackUp_Click(object sender, RoutedEventArgs e)
-        {
-            ViewMirror.Content = new BackUpWindow();
-        }
+            => ViewMirror.Content = backUpWindow;
 
         private void Bttn_Open_Setting_Click(object sender, RoutedEventArgs e)
-        {
-            ViewMirror.Content = new SettingWindow();
-        }
-        
+            => ViewMirror.Content = settingWindow;
+
         private void Bttn_Open_About_Click(object sender, RoutedEventArgs e)
-        {
-            ViewMirror.Content = new AboutWindow();
-        }
+            => ViewMirror.Content = aboutWindow;
 
         private void Window_Closed(object sender, EventArgs e)
         {
