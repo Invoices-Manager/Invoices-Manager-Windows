@@ -1,11 +1,4 @@
-﻿using InvoicesManager.Classes;
-using InvoicesManager.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using InvoicesManager.Classes.Enums;
-
-namespace InvoicesManager.Core
+﻿namespace InvoicesManager.Core
 {
     public class SortSystem
     {

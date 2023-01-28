@@ -60,6 +60,10 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
 
+## v1.3.3.0
+- Switched from .NET 3.1 to **.NET 6.0** (when you start the program, you will be asked if you want to install .NET 6.0, if you don't want to install it, you can also download the standalone version)
+
+
 ## v1.3.2.0
 - A log function was added, everything will be logged, from infos to errors
  

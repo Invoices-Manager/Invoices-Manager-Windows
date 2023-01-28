@@ -1,14 +1,4 @@
-﻿using InvoicesManager.Classes;
-using InvoicesManager.Classes.Enums;
-using InvoicesManager.Core;
-using InvoicesManager.Models;
-using Microsoft.Win32;
-using System;
-using System.IO;
-using System.Windows;
-using System.Windows.Controls;
-
-namespace InvoicesManager.Windows
+﻿namespace InvoicesManager.Windows
 {
     public partial class InvoiceViewWindow : Window
     {
@@ -72,7 +62,7 @@ namespace InvoicesManager.Windows
             Comb_PaidState.Items.Clear();
 
             ComboBox[] comboBoxes = new ComboBox[] { Comb_ImportanceState, Comb_MoneyState, Comb_PaidState };
-            String[] keyWords = new String[] { "veryImportant", "important", "neutral", "unimportant", "paid", "received", "noInvoice", "paid", "unpaid", "noInvoice" };
+            string[] keyWords = new string[] { "veryImportant", "important", "neutral", "unimportant", "paid", "received", "noInvoice", "paid", "unpaid", "noInvoice" };
 
             for (int i = 0; i <= 9; i++)
             {
@@ -277,7 +267,7 @@ namespace InvoicesManager.Windows
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "PDF Files (*.pdf)|*.pdf";
 
-            if (ofd.ShowDialog() == true)
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 //check if the file is a pdf
                 if (Path.GetExtension(ofd.FileName).ToLower() != ".pdf")

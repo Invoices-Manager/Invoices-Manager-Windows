@@ -1,8 +1,4 @@
-﻿using InvoicesManager.Classes;
-using System;
-using System.Windows;
-
-namespace InvoicesManager.Windows
+﻿namespace InvoicesManager.Windows
 {
     public partial class AboutWindow : Window
     {

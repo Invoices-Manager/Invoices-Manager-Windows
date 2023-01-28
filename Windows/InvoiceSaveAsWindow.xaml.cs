@@ -1,12 +1,4 @@
-﻿using InvoicesManager.Core;
-using InvoicesManager.Models;
-using System;
-using System.Windows;
-using System.Windows.Forms;
-using MessageBox = System.Windows.MessageBox;
-using RadioButton = System.Windows.Controls.RadioButton;
-
-namespace InvoicesManager.Windows
+﻿namespace InvoicesManager.Windows
 {
     public partial class InvoiceSaveAsWindow : Window
     {

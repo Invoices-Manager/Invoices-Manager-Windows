@@ -1,7 +1,4 @@
-﻿using InvoicesManager.Classes;
-using System.Threading;
-
-namespace InvoicesManager.Core
+﻿namespace InvoicesManager.Core
 {
     public class WaiterSystem
     {

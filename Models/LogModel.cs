@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace InvoicesManager.Models
+﻿namespace InvoicesManager.Models
 {
     public class LogModel
     {

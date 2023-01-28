@@ -1,12 +1,4 @@
-﻿using InvoicesManager.Classes;
-using InvoicesManager.Models;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Windows;
-
-namespace InvoicesManager.Core
+﻿namespace InvoicesManager.Core
 {
     public class BackUpSystem
     {

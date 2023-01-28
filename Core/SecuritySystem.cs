@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace InvoicesManager.Core
+﻿namespace InvoicesManager.Core
 {
     class SecuritySystem
     {

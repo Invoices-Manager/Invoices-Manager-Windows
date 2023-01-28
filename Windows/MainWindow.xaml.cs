@@ -1,10 +1,4 @@
-﻿using InvoicesManager.Classes;
-using InvoicesManager.Core;
-using Microsoft.Win32;
-using System;
-using System.Windows;
-
-namespace InvoicesManager.Windows
+﻿namespace InvoicesManager.Windows
 {
     public partial class MainWindow : Window
     {

@@ -1,12 +1,4 @@
-﻿using InvoicesManager.Classes;
-using InvoicesManager.Core;
-using System;
-using System.Windows;
-using System.Windows.Forms;
-using Application = System.Windows.Application;
-using MessageBox = System.Windows.Forms.MessageBox;
-
-namespace InvoicesManager.Windows
+﻿namespace InvoicesManager.Windows
 {
     public partial class SettingWindow : Window
     {

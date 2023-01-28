@@ -1,11 +1,4 @@
-﻿using InvoicesManager.Classes;
-using InvoicesManager.Core;
-using InvoicesManager.Models;
-using System;
-using System.Windows;
-using System.Windows.Controls;
-
-namespace InvoicesManager.Windows
+﻿namespace InvoicesManager.Windows
 {
     public partial class NotebookWindow : Window
     {

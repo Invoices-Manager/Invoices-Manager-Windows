@@ -1,10 +1,4 @@
-﻿using InvoicesManager.Classes;
-using InvoicesManager.Models;
-using Newtonsoft.Json;
-using System;
-using System.IO;
-
-namespace InvoicesManager.Core
+﻿namespace InvoicesManager.Core
 {
     public class NotebookSystem
     {

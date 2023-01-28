@@ -1,12 +1,4 @@
-﻿using InvoicesManager.Classes;
-using InvoicesManager.Classes.Enums;
-using InvoicesManager.Models;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace InvoicesManager.Core
+﻿namespace InvoicesManager.Core
 {
     class LoggerSystem
     {

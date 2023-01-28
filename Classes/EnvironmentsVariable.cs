@@ -1,9 +1,4 @@
-﻿using InvoicesManager.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace InvoicesManager.Classes
+﻿namespace InvoicesManager.Classes
 {
     public class EnvironmentsVariable
     {

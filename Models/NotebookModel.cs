@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace InvoicesManager.Models
+﻿namespace InvoicesManager.Models
 {
     public class NotebookModel
     {

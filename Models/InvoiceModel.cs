@@ -1,9 +1,4 @@
-﻿using System;
-using System.Windows;
-using InvoicesManager.Classes;
-using InvoicesManager.Classes.Enums;
-
-namespace InvoicesManager.Models
+﻿namespace InvoicesManager.Models
 {
     public class InvoiceModel
     {
