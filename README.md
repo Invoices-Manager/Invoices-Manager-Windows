@@ -31,26 +31,26 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 
 ## Images:
 ### Main-Screen:                                                  
-![Main-Screen](IMAGES/Version%201.3.0.0/MainScreen.png)
+![Main-Screen](IMAGES/Version%201.4.0.0/MainScreen.png)
 
 ### Invoice-Main-Screen:                                                  
-![Invoice-Main-Screen](IMAGES/Version%201.3.0.0/InvoiceMainScreen.png)
+![Invoice-Main-Screen](IMAGES/Version%201.4.0.0/InvoiceMainScreen.png)
 
 ### Invoice-View-Screen:                                           
-![Invoice-View-Screen](IMAGES/Version%201.3.0.0/InvoiceViewScreen.png)
+![Invoice-View-Screen](IMAGES/Version%201.4.0.0/InvoiceViewScreen.png)
 
 ### SaveAs-Screen:
 -You can choose in which format the file should be saved (the name), or you can save it as you wish                   <br/>
-![SaveAs-Screen](IMAGES/Version%201.3.0.0/InvoiceSaveAsScreen.png)
+![SaveAs-Screen](IMAGES/Version%201.4.0.0/InvoiceSaveAsScreen.png)
 
 ### Notebook-Screen:                                         
 ![Notescreen-Screen](IMAGES/Version%201.3.0.0/NotebookScreen.png) 
 
 ### Setting-Screen:                                         
-![Setting-Screen](IMAGES/Version%201.3.0.0/SettingScreen.png) 
+![Setting-Screen](IMAGES/Version%201.4.0.0/SettingScreen.png) 
 
 ### About-Screen:                                         
-![About-Screen](IMAGES/Version%201.3.0.0/AboutScreen.png)
+![About-Screen](IMAGES/Version%201.4.0.0/AboutScreen.png)
 
 
 # CHANGELOG
@@ -60,9 +60,9 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
 
-## v1.3.3.0
+## v1.4.0.0
 - Switched from .NET 3.1 to **.NET 6.0** (when you start the program, you will be asked if you want to install .NET 6.0, if you don't want to install it, you can also download the standalone version)
-
+- User interface has been improved and made more user-friendly and clear.
 
 ## v1.3.2.0
 - A log function was added, everything will be logged, from infos to errors
