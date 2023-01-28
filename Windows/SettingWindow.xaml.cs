@@ -1,6 +1,6 @@
 ﻿namespace InvoicesManager.Windows
 {
-    public partial class SettingWindow : Window
+    public partial class SettingWindow : Page
     {
         public SettingWindow()
         {

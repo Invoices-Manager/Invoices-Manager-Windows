@@ -366,28 +366,6 @@
             _invoiceSaveAsWindow.ShowDialog();
         }
 
-        private void Bttn_Settings_Click(object sender, RoutedEventArgs e)
-        {
-            SettingWindow _settingWindow = new SettingWindow();
-            _settingWindow.ShowDialog();
-
-            RefreshDataGridWithInit();
-        }
-
-        private void Bttn_About_Click(object sender, RoutedEventArgs e)
-        {
-            AboutWindow _aboutWindow = new AboutWindow();
-            _aboutWindow.ShowDialog();
-        }
-
-        private void Bttn_OpenNotebook_Click(object sender, RoutedEventArgs e)
-        {
-            NotebookWindow _notebookWindow = new NotebookWindow();
-            _notebookWindow.Topmost = true;  
-            _notebookWindow.Show();
-        }
-
-
         private void Tb_Search_String_TextChanged(object sender, TextChangedEventArgs e)
         {
             filterReference = Tb_Search_String.Text == String.Empty ? String.Empty : Tb_Search_String.Text;

@@ -1,4 +1,7 @@
-﻿namespace InvoicesManager.Windows
+﻿using System.Windows.Controls;
+using System.Windows.Media.Animation;
+
+namespace InvoicesManager.Windows
 {
     public partial class MainWindow : Window
     {
@@ -92,15 +95,7 @@
 
         private void Bttn_Open_Setting_Click(object sender, RoutedEventArgs e)
         {
-            if (EnvironmentsVariable.Window_Setting_IsClosed)
-            {
-                settingWindow = new SettingWindow();
-                EnvironmentsVariable.Window_Setting_IsClosed = false;
-            }
-
-            settingWindow.Show();
-            settingWindow.WindowState = WindowState.Normal;
-            settingWindow.Focus();
+            ViewMirror.Content = new SettingWindow();
         }
         
         private void Bttn_Open_About_Click(object sender, RoutedEventArgs e)
@@ -125,10 +120,42 @@
                 notebookWindow.Close();
             if (!EnvironmentsVariable.Window_BackUp_IsClosed)
                 backUpWindow.Close();
-            if (!EnvironmentsVariable.Window_Setting_IsClosed)
-                settingWindow.Close();
             if (!EnvironmentsVariable.Window_About_IsClosed)
                 aboutWindow.Close();
+        }
+
+        private void Bttn_SideBarSwapper_Click(object sender, RoutedEventArgs e)
+        {
+            int from, to;
+
+            if (Grid_SideBar.Width == 280)
+            {
+                from = 280;
+                to = 0;
+                Bttn_SideBarSwapper_Inner.Visibility = Visibility.Hidden;
+                Bttn_SideBarSwapper_Outter.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                from = 0;
+                to = 280;
+                Bttn_SideBarSwapper_Inner.Visibility = Visibility.Visible;
+                Bttn_SideBarSwapper_Outter.Visibility = Visibility.Hidden;
+            }
+
+            Storyboard storyboard = new Storyboard();
+            storyboard.Duration = new Duration(TimeSpan.FromSeconds(1));
+
+            DoubleAnimation animation = new DoubleAnimation();
+            animation.From = from;
+            animation.To = to;
+            animation.AccelerationRatio = 0.2;
+            animation.DecelerationRatio = 0.8;
+
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Width"));
+            storyboard.Children.Add(animation);
+
+            Grid_SideBar.BeginStoryboard(storyboard);
         }
     }
 }
