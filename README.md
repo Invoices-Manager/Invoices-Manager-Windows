@@ -63,6 +63,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ## v1.4.0.0
 - Switched from .NET 3.1 to **.NET 6.0** (when you start the program, you will be asked if you want to install .NET 6.0, if you don't want to install it, you can also download the standalone version)
 - User interface has been improved and made more user-friendly and clear.
+- A UI error was fixed in the "Money" column
 
 ## v1.3.2.0
 - A log function was added, everything will be logged, from infos to errors
