@@ -1,6 +1,6 @@
 ﻿namespace InvoicesManager.Windows
 {
-    public partial class BackUpWindow : Window
+    public partial class BackUpWindow : Page
     {
         public BackUpWindow()
         {

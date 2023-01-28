@@ -1,6 +1,6 @@
 ﻿namespace InvoicesManager
 {
-    public partial class InvoiceMainWindow : Window
+    public partial class InvoiceMainWindow : Page
     {
         private string filterReference = String.Empty;
         private string filterInvoiceNumber = String.Empty;

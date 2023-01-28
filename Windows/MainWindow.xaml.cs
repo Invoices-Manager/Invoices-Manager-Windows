@@ -56,15 +56,7 @@ namespace InvoicesManager.Windows
         
         private void Bttn_Open_Invoices_Click(object sender, RoutedEventArgs e)
         {
-            if (EnvironmentsVariable.Window_Invoice_IsClosed)
-            {
-                invoiceMainWindow = new InvoiceMainWindow();
-                EnvironmentsVariable.Window_Invoice_IsClosed = false;
-            }
-
-            invoiceMainWindow.Show();
-            invoiceMainWindow.WindowState = WindowState.Normal;
-            invoiceMainWindow.Focus();
+            ViewMirror.Content = new InvoiceMainWindow();
         }
         
         private void Bttn_Open_Notebook_Click(object sender, RoutedEventArgs e)
@@ -82,15 +74,7 @@ namespace InvoicesManager.Windows
         
         private void Bttn_Open_BackUp_Click(object sender, RoutedEventArgs e)
         {
-            if (EnvironmentsVariable.Window_BackUp_IsClosed)
-            {
-                backUpWindow = new BackUpWindow();
-                EnvironmentsVariable.Window_BackUp_IsClosed = false;
-            }
-
-            backUpWindow.Show();
-            backUpWindow.WindowState = WindowState.Normal;
-            backUpWindow.Focus();
+            ViewMirror.Content = new BackUpWindow();
         }
 
         private void Bttn_Open_Setting_Click(object sender, RoutedEventArgs e)
@@ -100,28 +84,14 @@ namespace InvoicesManager.Windows
         
         private void Bttn_Open_About_Click(object sender, RoutedEventArgs e)
         {
-            if (EnvironmentsVariable.Window_About_IsClosed)
-            {
-                aboutWindow = new AboutWindow();
-                EnvironmentsVariable.Window_About_IsClosed = false;
-            }
-
-            aboutWindow.Show();
-            aboutWindow.WindowState = WindowState.Normal;
-            aboutWindow.Focus();
+            ViewMirror.Content = new AboutWindow();
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
             //kill the child windows, if the main window is closed
-            if (!EnvironmentsVariable.Window_Invoice_IsClosed)
-                invoiceMainWindow.Close();
             if (!EnvironmentsVariable.Window_Notebook_IsClosed)
                 notebookWindow.Close();
-            if (!EnvironmentsVariable.Window_BackUp_IsClosed)
-                backUpWindow.Close();
-            if (!EnvironmentsVariable.Window_About_IsClosed)
-                aboutWindow.Close();
         }
 
         private void Bttn_SideBarSwapper_Click(object sender, RoutedEventArgs e)

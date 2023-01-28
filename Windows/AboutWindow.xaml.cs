@@ -1,6 +1,6 @@
 ﻿namespace InvoicesManager.Windows
 {
-    public partial class AboutWindow : Window
+    public partial class AboutWindow : Page
     {
         public AboutWindow()
             => InitializeComponent();
