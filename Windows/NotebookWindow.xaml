@@ -35,8 +35,7 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        <Grid Margin="280,0,0,0" Height="75" VerticalAlignment="Top">
-            <ScrollViewer HorizontalAlignment="Right"/>
+        <Grid Margin="310,0,32,0" Height="75" VerticalAlignment="Top">
             <TextBox x:Name="Tb_Note_Title" 
                      FontSize="28" 
                      Margin="0,5,0,20"
@@ -44,14 +43,14 @@
         </Grid>
         <Grid>
             <TextBox x:Name="Tb_Note_Value"
-                     Margin="280,60,0,75"
+                     Margin="310,60,32,75"
                      FontSize="{DynamicResource FontSize}"
                      TextWrapping="Wrap"
                      AcceptsReturn="True"
                      AcceptsTab="True"
                      SpellCheck.IsEnabled="True"/>
         </Grid>
-        <Grid Margin="280,0,0,0" Height="75" VerticalAlignment="Bottom">
+        <Grid Margin="280,0,6,0" Height="75" VerticalAlignment="Bottom">
             <ScrollViewer HorizontalAlignment="Right" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"> 
                 <StackPanel Orientation="Horizontal">
                     <Button Content="NEW" 

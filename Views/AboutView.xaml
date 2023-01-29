@@ -29,9 +29,10 @@
             Foreground="{DynamicResource FontForeground}"
             HorizontalAlignment="Center" 
             VerticalAlignment="Top" 
-            Margin="15,135,15,0"
+            Margin="64,135,64,0"
             FontSize="25" 
-            TextAlignment="Center" TextWrapping="Wrap"/>
+            TextAlignment="Center" 
+            TextWrapping="Wrap"/>
         <Label 
             x:Name="Msg_PVersion"
             Content="PROGRAM_VERSION"
