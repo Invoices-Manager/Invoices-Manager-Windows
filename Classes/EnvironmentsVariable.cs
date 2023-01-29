@@ -22,8 +22,6 @@
         public const string PROGRAM_VERSION = "1.3.2.0";
         public static string ConfigVersion;
         public const string PROGRAM_SUPPORTEDFORMAT = ".pdf";
-        //0 = dark mode  | 1 = white mode
-        public static int REGSystemUsesLightTheme = 1;
         public static bool CreateABackupEveryTimeTheProgramStarts = true;
         public static bool Window_Notebook_IsClosed = true;
         public static char MoneyUnit = '€';
