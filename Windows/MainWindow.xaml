@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InvoicesManager.Windows"
         mc:Ignorable="d"
-        Title="Invoices Manager Menu | Made by Schecher | https://github.com/Schecher1" 
+        Title="Invoices Manager | Made by Schecher | https://github.com/Schecher1" 
         Height="800" Width="900"
         MinHeight="250" MinWidth="250"
         Icon="/Resources/SmallIcon.png"
-       WindowState="Maximized"
-        Closed="Window_Closed">
+        WindowState="Maximized"
+        Closed="Window_Closed" 
+        WindowStartupLocation="CenterOwner">
     <Grid Background="{DynamicResource GridBackground}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
