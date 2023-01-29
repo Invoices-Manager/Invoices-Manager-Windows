@@ -271,11 +271,11 @@
             var cellInfo = Dg_Invoices.CurrentCell;
             var column = cellInfo.Column as DataGridBoundColumn;
 
-            //if the colum is null (for whatever reason) then:
-            //you clicked on a "open" hyperlink colum (it will be open the file)
+            //if the colum is the Resources["open"]
+            // it will be open the file
             //      else
-            //you copy the column value into you Clipboard
-            if (column != null)
+            // you copy the column value into you Clipboard
+            if (column.Header as string != Application.Current.Resources["open"] as string)
             {
                 var element = new FrameworkElement() { DataContext = cellInfo.Item };
                 BindingOperations.SetBinding(element, TagProperty, column.Binding);

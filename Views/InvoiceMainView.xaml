@@ -106,7 +106,13 @@
                           MouseDoubleClick="DG_Invoices_MouseDoubleClick"
                           FontSize="{DynamicResource FontSize}"
                           MouseRightButtonDown="Dg_Invoices_MouseRightButtonDown">
-                     <DataGrid.ContextMenu>
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridCell}" x:Key="OperationCell">
+                            <Setter Property="Foreground" Value="Blue"/>
+                            <Setter Property="FontStyle" Value="Oblique"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem x:Name="ViewColumnOpen" Click="MenuItem_Click" Header="{DynamicResource open}" IsChecked="True"/>
                             <MenuItem x:Name="ViewColumnDateOfExhibition" Click="MenuItem_Click" Header="{DynamicResource dateOfExhibition}" IsChecked="True"/>
@@ -123,7 +129,7 @@
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                     <DataGrid.Columns>
-                        <DataGridHyperlinkColumn x:Name="ColumnOpen" Header="{DynamicResource open}" Binding="{Binding OpenInvoiceText}"/>
+                        <DataGridTextColumn x:Name="ColumnOpen" Header="{DynamicResource open}" Binding="{Binding OpenInvoiceText}" CellStyle="{StaticResource OperationCell}"/>
                         <DataGridTextColumn x:Name="ColumnDateOfExhibition" Header="{DynamicResource dateOfExhibition}"  Binding="{Binding StringExhibitionDate}"/>
                         <DataGridTextColumn x:Name="ColumnOrganization" Header="{DynamicResource organization}"  Binding="{Binding Organization}"/>
                         <DataGridTextColumn x:Name="ColumnDocumentType" Header="{DynamicResource documentType}"  Binding="{Binding DocumentType}"/>
