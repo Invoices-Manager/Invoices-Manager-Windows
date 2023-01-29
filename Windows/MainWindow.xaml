@@ -17,11 +17,11 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid x:Name="Grid_SideBar" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="300">
-            <Image Source="/Resources/SmallIcon.png" Width="64" Height="64" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,20,0,0"/>
-            <Label Content="Invoices Manager" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="25" Margin="75,30,0,0" FontWeight="Bold" />
-            <ScrollViewer Margin="0,100,0,0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" >
+            <Button x:Name="Bttn_SideBarSwapper_Inner" Height="50" Width="50" FontSize="35" Content=">" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,15,15,0" Click="Bttn_SideBarSwapper_Click"/>
+            <Image Source="/Resources/SmallIcon.png" Width="64" Height="64" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,85,0,0"/>
+            <Label Content="Invoices Manager" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="25" Margin="75,95,0,0" FontWeight="Bold" />
+            <ScrollViewer Margin="0,175,0,0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" >
                 <Grid>
-                    <Button x:Name="Bttn_SideBarSwapper_Inner" Height="64" Width="64" FontSize="45" Content=">" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" Click="Bttn_SideBarSwapper_Click"/>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <!--<Button ToolTip="Will be added in a future version!" x:Name="Bttn_Open_Dashboard" Content="{DynamicResource Bttn_Dashboard}" FontSize="25" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_Open_Dashboard_Click" Background="#FFDDDDDD" OpacityMask="Black"/>
                 -->
