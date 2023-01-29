@@ -33,10 +33,12 @@
             }
         }
 
-        public void EditInvoice(TemplateModel oldTemplate, TemplateModel newTemplate)
+        public void EditTemplate(string oldTemplateName, TemplateModel newTemplate)
         {
             try
             {
+                //get template by name 
+                TemplateModel oldTemplate = EnvironmentsVariable.AllTemplates.Where(x => x.Name.Equals(oldTemplateName)).FirstOrDefault();
                 EnvironmentsVariable.AllTemplates.Remove(oldTemplate);
                 EnvironmentsVariable.AllTemplates.Add(newTemplate);
 
@@ -49,7 +51,7 @@
             }
         }
 
-        public void RemoveInvoice(TemplateModel oldTemplate)
+        public void RemoveTemplate(TemplateModel oldTemplate)
         {
             try
             {

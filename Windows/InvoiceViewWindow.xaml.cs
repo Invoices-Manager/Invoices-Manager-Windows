@@ -23,6 +23,8 @@
             Comb_PaidState.SelectedIndex = 2;
 
             //init the templates
+            TemplateSystem _ts = new TemplateSystem();
+            _ts.Init();
             foreach (var template in EnvironmentsVariable.AllTemplates)
                 Comb_Templates.Items.Add(template.Name);
 
@@ -189,9 +191,11 @@
             }
         }
         
-        private void Comb_Templates_Selected(object sender, RoutedEventArgs e)
+        private void Comb_Templates_SelectionChanged(object sender, RoutedEventArgs e)
         {
-
+            TemplateModel template = EnvironmentsVariable.AllTemplates.Where(x => x.Name == Comb_Templates.SelectedItem.ToString()).FirstOrDefault();
+            invoice = template.Template;
+            LoadInvoiceData();
         }
 
         //DELETE AREA START

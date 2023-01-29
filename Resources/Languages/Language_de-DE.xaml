@@ -99,4 +99,9 @@
     <system:String x:Key="saveTemplate">Vorlage speichern</system:String>
     <system:String x:Key="deleteTemplate">Vorlage löschen</system:String>
     <system:String x:Key="templateMgr">Vorlagen Manager</system:String>
+    <system:String x:Key="templateAlreadyExist">Vorlage existiert bereits</system:String>
+    <system:String x:Key="templateNameEmpty">Vorlagenamen ist leer</system:String>
+    <system:String x:Key="templateNotSelected">Es wurde keine Vorlage ausgewählt</system:String>
+    <system:String x:Key="deleteTemplateMsg">Wollen Sie wirklich diese Vorlage löschen?</system:String>
+    <system:String x:Key="deleteTemplateTitle">Achtung, löschung einer Vorlage!</system:String>
 </ResourceDictionary>

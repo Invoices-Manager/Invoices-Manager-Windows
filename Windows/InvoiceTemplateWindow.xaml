@@ -16,7 +16,7 @@
             <StackPanel>
                 <Grid>
                     <Label x:Name="Msg_Templates" Margin="90,50,0,0" Content="{DynamicResource selectTemplate}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <ComboBox x:Name="Comb_Templates" Margin="350,50,0,0" Width="350" HorizontalAlignment="Left" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
+                    <ComboBox x:Name="Comb_Templates" Margin="350,50,0,0" Width="350" HorizontalAlignment="Left" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" SelectionChanged="Comb_Templates_SelectionChanged"/>
                 </Grid>
                 <Grid>
                     <Label Margin="90,50,0,0" Content="{DynamicResource dateOfExhibition}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
@@ -40,7 +40,7 @@
                 </Grid>
                 <Grid>
                     <Label Margin="90,15,0,0" Content="{DynamicResource moneytotal}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_MoneyTotal" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
+                    <TextBox x:Name="Tb_MoneyTotal" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" TextChanged="Tb_MoneyTotal_TextChanged"/>
                 </Grid>
                 <Grid>
                     <Label Margin="90,15,0,0" Content="{DynamicResource tags}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />

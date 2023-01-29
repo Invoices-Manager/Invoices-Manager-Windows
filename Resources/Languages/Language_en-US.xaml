@@ -97,5 +97,10 @@
     <system:String x:Key="createTemplate">create template</system:String>
     <system:String x:Key="saveTemplate">save template</system:String>
     <system:String x:Key="deleteTemplate">delete template</system:String>
-    <system:String x:Key="templateMgr">Template Manager</system:String>
+    <system:String x:Key="templateMgr">template Manager</system:String>
+    <system:String x:Key="templateAlreadyExist">the template already exist</system:String>
+    <system:String x:Key="templateNameEmpty">the template name is empty</system:String>
+    <system:String x:Key="templateNotSelected">no template is selected</system:String>
+    <system:String x:Key="deleteTemplateMsg">do you really want to delete this template?</system:String>
+    <system:String x:Key="deleteTemplateTitle">Attention, deletion of a template!</system:String>
 </ResourceDictionary>
