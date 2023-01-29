@@ -18,7 +18,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid x:Name="Grid_SideBar" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="300">
-            <Button x:Name="Bttn_SideBarSwapper_Inner" Height="50" Width="50" FontSize="35" Content=">" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,15,15,0" Click="Bttn_SideBarSwapper_Click"/>
+            <Button x:Name="Bttn_SideBarSwapper_Inner" Height="50" Width="50" FontSize="35" Content="&lt;" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,15,15,0" Click="Bttn_SideBarSwapper_Click"/>
             <Image Source="/Resources/SmallIcon.png" Width="64" Height="64" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,85,0,0"/>
             <Label Content="Invoices Manager" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="25" Margin="75,95,0,0" FontWeight="Bold" />
             <ScrollViewer Margin="0,175,0,0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" >
@@ -37,7 +37,7 @@
         </Grid>
         <Grid Grid.Column="1">
             <Frame x:Name="ViewMirror" NavigationUIVisibility="Hidden"/>
-            <Button x:Name="Bttn_SideBarSwapper_Outter" Visibility="Hidden" Height="50" Width="50" FontSize="35" Content="&lt;" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="15" Click="Bttn_SideBarSwapper_Click"/>
+            <Button x:Name="Bttn_SideBarSwapper_Outter" Visibility="Hidden" Height="50" Width="50" FontSize="35" Content=">" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="15" Click="Bttn_SideBarSwapper_Click"/>
         </Grid>
 
     </Grid>
