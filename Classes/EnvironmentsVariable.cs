@@ -23,7 +23,7 @@
         
         public static string UILanguage = "English";
         public static string[] PossibleUILanguages = { "English", "German" };
-        public const string PROGRAM_VERSION = "1.3.2.0";
+        public const string PROGRAM_VERSION = "1.4.0.0";
         public static string ConfigVersion;
         public const string PROGRAM_SUPPORTEDFORMAT = ".pdf";
         public static bool CreateABackupEveryTimeTheProgramStarts = true;
