@@ -39,6 +39,9 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### Invoice-View-Screen:                                           
 ![Invoice-View-Screen](IMAGES/Version%201.4.0.0/InvoiceViewScreen.png)
 
+### Invoice-Template-Screen:                                           
+![Invoice-Template-Screen](IMAGES/Version%201.4.0.0/InvoiceTemplateScreen.png)
+
 ### SaveAs-Screen:
 -You can choose in which format the file should be saved (the name), or you can save it as you wish                   <br/>
 ![SaveAs-Screen](IMAGES/Version%201.4.0.0/InvoiceSaveAsScreen.png)
@@ -46,8 +49,11 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### Notebook-Screen:                                         
 ![Notescreen-Screen](IMAGES/Version%201.3.0.0/NotebookScreen.png) 
 
+### BackUp-Screen:                                         
+![BackUp-Screen](IMAGES/Version%201.4.0.0/SettingScreen.png) 
+
 ### Setting-Screen:                                         
-![Setting-Screen](IMAGES/Version%201.4.0.0/SettingScreen.png) 
+![Setting-Screen](IMAGES/Version%201.4.0.0/BackUpScreen.png) 
 
 ### About-Screen:                                         
 ![About-Screen](IMAGES/Version%201.4.0.0/AboutScreen.png)
@@ -64,7 +70,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 - Switched from .NET 3.1 to **.NET 6.0** (when you start the program, you will be asked if you want to install .NET 6.0, if you don't want to install it, you can also download the standalone version)
 - User interface has been improved and made more user-friendly and clear.
 - A UI error was fixed in the "Money" column
-- There are now templates that you can create and use (for new documents/invoices)
+- There are now templates that you can create and use (for new documents/invoices) (!! Not included in the backup !!)
 
 ## v1.3.2.0
 - A log function was added, everything will be logged, from infos to errors
