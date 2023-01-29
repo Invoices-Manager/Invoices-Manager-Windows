@@ -93,4 +93,10 @@
     <system:String x:Key="tags">Tags</system:String>
     <system:String x:Key="moneyTotal">Geldsumme</system:String>
     <system:String x:Key="moneyUnit">Währung</system:String>
+    <system:String x:Key="selectTemplate">Vorlage auswählen</system:String>
+    <system:String x:Key="openTemplateManager">Template Manager öffnen?</system:String>
+    <system:String x:Key="createTemplate">Vorlage erstellen</system:String>
+    <system:String x:Key="saveTemplate">Vorlage speichern</system:String>
+    <system:String x:Key="deleteTemplate">Vorlage löschen</system:String>
+    <system:String x:Key="templateMgr">Vorlagen Manager</system:String>
 </ResourceDictionary>

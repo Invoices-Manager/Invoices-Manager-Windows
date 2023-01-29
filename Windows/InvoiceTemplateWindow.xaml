@@ -1,4 +1,4 @@
-﻿<Window x:Class="InvoicesManager.Windows.InvoiceViewWindow"
+﻿<Window x:Class="InvoicesManager.Windows.InvoiceTemplateWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:InvoicesManager.Windows"
         mc:Ignorable="d"
         Title="Invoice {MODE} | Made by Schecher | https://github.com/Schecher1" 
-        Height="850" Width="800"
-        MinHeight="850" MinWidth="800"
-        MaxHeight="850" MaxWidth="800"
+        Height="850" Width="950"
+        MinHeight="850" MinWidth="950"
+        MaxHeight="850" MaxWidth="950"
         Icon="/Resources/SmallIcon.png"
         WindowStartupLocation="CenterScreen">
     <Grid Background="{DynamicResource GridBackground}">
@@ -59,15 +59,13 @@
                     <Label Margin="90,15,0,0" Content="{DynamicResource paidstate}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
                     <ComboBox x:Name="Comb_PaidState" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
-                <Grid>
-                    <Label x:Name="Msg_file" Margin="100,15,0,0" Content="{DynamicResource file}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <Button x:Name="Bttn_InvoiceFileAdd" Margin="350,15,0,0" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="32" Width="350" Content="{DynamicResource pleaseSelectFile}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Click="Bttn_InvoiceFileAdd_Click"/>
-                </Grid>
-                <Grid>
-                    <TextBlock x:Name="Tb_FilePath" Margin="0,10,0,50" Text="{DynamicResource file}" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Center" TextWrapping="Wrap" />
-                </Grid>
             </StackPanel>
         </Grid>
-        <Button x:Name="Bttn_InvoiceAction" Content="{DynamicResource addInvoice}" Click="Bttn_InvoiceAction_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="{DynamicResource FontForeground}" Margin="0,1,0,20" Padding="15,5,15,5" FontSize="30" IsDefault="True"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
+            <TextBox x:Name="Tb_TemplateName" Width="250" Height="50" FontSize="25" Margin="0,0,0,20"/>
+            <Button x:Name="Bttn_Create" Content="{DynamicResource createTemplate}" Foreground="{DynamicResource FontForeground}" Margin="10,1,0,20" Padding="15,5,15,5" FontSize="25" Click="Bttn_Create_Click"/>
+            <Button x:Name="Bttn_Save" Content="{DynamicResource saveTemplate}" Foreground="{DynamicResource FontForeground}" Margin="10,1,0,20" Padding="15,5,15,5" FontSize="25" Click="Bttn_Save_Click"/>
+            <Button x:Name="Bttn_Delete" Content="{DynamicResource deleteTemplate}" Foreground="{DynamicResource FontForeground}" Margin="10,1,0,20" Padding="15,5,15,5" FontSize="25" Click="Bttn_Delete_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

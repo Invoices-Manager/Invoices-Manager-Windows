@@ -92,4 +92,10 @@
     <system:String x:Key="tags">tags</system:String>
     <system:String x:Key="moneyTotal">money total</system:String>
     <system:String x:Key="moneyUnit">currency</system:String>
+    <system:String x:Key="selectTemplate">select template</system:String>
+    <system:String x:Key="openTemplateManager">open template manager?</system:String>
+    <system:String x:Key="createTemplate">create template</system:String>
+    <system:String x:Key="saveTemplate">save template</system:String>
+    <system:String x:Key="deleteTemplate">delete template</system:String>
+    <system:String x:Key="templateMgr">Template Manager</system:String>
 </ResourceDictionary>

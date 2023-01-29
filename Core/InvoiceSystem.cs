@@ -190,7 +190,6 @@
         private void SaveIntoJsonFile()
         {
             File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices, Formatting.Indented));
-            
         }
     }
 }

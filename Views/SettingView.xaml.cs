@@ -1,4 +1,6 @@
-﻿namespace InvoicesManager.Views
+﻿using InvoicesManager.Classes.Enums;
+
+namespace InvoicesManager.Views
 {
     public partial class SettingView : Page
     {
@@ -120,6 +122,12 @@
 
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 Tb_NotebookPath.Text = fbd.SelectedPath + "\\";
+        }
+
+        private void Bttn_OpenTemplateMgr_Click(object sender, RoutedEventArgs e)
+        {
+            InvoiceTemplateWindow invoiceViewWindow = new InvoiceTemplateWindow();
+            invoiceViewWindow.ShowDialog();
         }
     }
 }

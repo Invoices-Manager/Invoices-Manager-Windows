@@ -5,6 +5,7 @@
         public static List<InvoiceModel> AllInvoices = new List<InvoiceModel>();
         public static List<InvoiceModel> FilteredInvoices = new List<InvoiceModel>();
         public static NotebookModel Notebook = new NotebookModel();
+        public static List<TemplateModel> AllTemplates = new List<TemplateModel>();
         public static volatile bool IsInvoiceInitFinish = false;
         public static string PathPDFBrowser = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
         public static string PathInvoices = @$"{Environment.CurrentDirectory}\data\invoices\";
@@ -12,11 +13,14 @@
         public static string PathNotebook = @$"{Environment.CurrentDirectory}\data\";
         public readonly static string PathConfig = @$"{Environment.CurrentDirectory}\data\";
         public static string PathLog = @$"{Environment.CurrentDirectory}\data\logs\";
+        public static string PathTemplates = @$"{Environment.CurrentDirectory}\data\";
         public static int MaxCountBackUp = 64;
         public static string InvoicesJsonFileName = "Invoices.json";
         public static string ConfigJsonFileName = "Config.json";
         public static string NotebooksJsonFileName = "Notebook.json";
+        public static string TemplatesJsonFileName = "Templates.json";
         public static string LogJsonFileName { get { return $"Log_{DateTime.Now.ToString("yyyy-MM-dd")}.txt"; } }
+        
         public static string UILanguage = "English";
         public static string[] PossibleUILanguages = { "English", "German" };
         public const string PROGRAM_VERSION = "1.3.2.0";
@@ -44,6 +48,8 @@
                 File.WriteAllText(EnvironmentsVariable.PathConfig + EnvironmentsVariable.ConfigJsonFileName, "[]");
             if (!File.Exists(EnvironmentsVariable.PathLog + EnvironmentsVariable.LogJsonFileName))
                 File.WriteAllText(EnvironmentsVariable.PathLog + EnvironmentsVariable.LogJsonFileName, "[]");
+            if (!File.Exists(EnvironmentsVariable.PathTemplates + EnvironmentsVariable.TemplatesJsonFileName))
+                File.WriteAllText(EnvironmentsVariable.PathTemplates + EnvironmentsVariable.TemplatesJsonFileName, "[]");
         }
     }
 }

@@ -22,6 +22,10 @@
             Comb_MoneyState.SelectedIndex = 2;
             Comb_PaidState.SelectedIndex = 2;
 
+            //init the templates
+            foreach (var template in EnvironmentsVariable.AllTemplates)
+                Comb_Templates.Items.Add(template.Name);
+
             LoadInvoiceViewWindow();
         }
 
@@ -40,6 +44,8 @@
                     Msg_file.Visibility = Visibility.Hidden;
                     Bttn_InvoiceFileAdd.Visibility = Visibility.Hidden;
                     Tb_FilePath.Visibility = Visibility.Hidden;
+                    Comb_Templates.Visibility = Visibility.Hidden;
+                    Msg_Templates.Visibility = Visibility.Hidden;
                     LoadInvoiceData();
                     break;
 
@@ -49,6 +55,8 @@
                     Msg_file.Visibility = Visibility.Hidden;
                     Bttn_InvoiceFileAdd.Visibility = Visibility.Hidden;
                     Tb_FilePath.Visibility = Visibility.Hidden;
+                    Comb_Templates.Visibility = Visibility.Hidden;
+                    Msg_Templates.Visibility = Visibility.Hidden;
                     DoEverythingDisable();
                     LoadInvoiceData();
                     break;
@@ -180,7 +188,11 @@
                     break;
             }
         }
+        
+        private void Comb_Templates_Selected(object sender, RoutedEventArgs e)
+        {
 
+        }
 
         //DELETE AREA START
         private void Bttn_InvoiceDelete_Click()

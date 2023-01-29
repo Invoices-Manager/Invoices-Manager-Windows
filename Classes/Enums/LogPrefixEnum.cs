@@ -10,7 +10,9 @@
         Notebook_System,
         Sort_System,
         Security_System,
-        
+        Template_System,
+
+
         About_View,
         BackUp_View,
         SaveAs_View,
