@@ -117,7 +117,9 @@
 
         private void LoadInvoiceData()
         {
-            Dp_ExhibitionDate.SelectedDate = invoice.ExhibitionDate;
+            //to avoid that the date is taken from the template
+            if (InvoiceViewModeEnum.InvoiceAdd != invoiceViewModeEnum)
+                Dp_ExhibitionDate.SelectedDate = invoice.ExhibitionDate;
             Tb_Organization.Text = invoice.Organization;
             Tb_DocumentType.Text = invoice.DocumentType;
             Tb_InvoiceNumber.Text = invoice.InvoiceNumber == "" ? "" : invoice.InvoiceNumber;
@@ -193,9 +195,13 @@
         
         private void Comb_Templates_SelectionChanged(object sender, RoutedEventArgs e)
         {
+            if (Comb_Templates.SelectedIndex == -1)
+                return;
+            
             TemplateModel template = EnvironmentsVariable.AllTemplates.Where(x => x.Name == Comb_Templates.SelectedItem.ToString()).FirstOrDefault();
             invoice = template.Template;
             LoadInvoiceData();
+            Comb_Templates.SelectedIndex = -1;
         }
 
         //DELETE AREA START

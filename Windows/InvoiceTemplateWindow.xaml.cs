@@ -9,16 +9,11 @@
         {
             InitializeComponent();
             
-            //The date of the exhibition is now by default today's date
-            Dp_ExhibitionDate.SelectedDate = DateTime.Now;
-
             LoadTheEnumComBoxes();
             //Set the default value of the comboboxes
             Comb_ImportanceState.SelectedIndex = 2;
             Comb_MoneyState.SelectedIndex = 2;
             Comb_PaidState.SelectedIndex = 2;
-
-
 
             //init the templates
             TemplateSystem _ts = new TemplateSystem();
@@ -67,7 +62,6 @@
 
         private void LoadInvoiceData()
         {
-            Dp_ExhibitionDate.SelectedDate = invoice.ExhibitionDate;
             Tb_Organization.Text = invoice.Organization;
             Tb_DocumentType.Text = invoice.DocumentType;
             Tb_InvoiceNumber.Text = invoice.InvoiceNumber == "" ? "" : invoice.InvoiceNumber;
@@ -188,7 +182,6 @@
                 Template = new InvoiceModel()
                 {
                     FileID = "",
-                    ExhibitionDate = Dp_ExhibitionDate.SelectedDate.Value,
                     Organization = Tb_Organization.Text,
                     Reference = Tb_Reference.Text,
                     InvoiceNumber = Tb_InvoiceNumber.Text,

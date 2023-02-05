@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:InvoicesManager.Windows"
         mc:Ignorable="d"
         Title="Invoice {MODE} | Made by Schecher | https://github.com/Schecher1" 
-        Height="850" Width="950"
-        MinHeight="850" MinWidth="950"
-        MaxHeight="850" MaxWidth="950"
+        Height="850" Width="900"
+        MinHeight="850" MinWidth="900"
+        MaxHeight="850" MaxWidth="900"
         Icon="/Resources/SmallIcon.png"
         WindowStartupLocation="CenterScreen">
     <Grid Background="{DynamicResource GridBackground}">
@@ -19,12 +19,8 @@
                     <ComboBox x:Name="Comb_Templates" Margin="350,50,0,0" Width="350" HorizontalAlignment="Left" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" SelectionChanged="Comb_Templates_SelectionChanged"/>
                 </Grid>
                 <Grid>
-                    <Label Margin="90,50,0,0" Content="{DynamicResource dateOfExhibition}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <DatePicker x:Name="Dp_ExhibitionDate" Margin="350,50,0,0" Width="350" HorizontalAlignment="Left" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
-                </Grid>
-                <Grid>
-                    <Label Margin="90,15,0,0" Content="{DynamicResource organization}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_Organization" Margin="350,15,0,0" Width="350" FontSize="{DynamicResource FontSize}" HorizontalAlignment="Left" Foreground="{DynamicResource FontForeground}"/>
+                    <Label Margin="90,50,0,0" Content="{DynamicResource organization}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
+                    <TextBox x:Name="Tb_Organization" Margin="350,50,0,0" Width="350" FontSize="{DynamicResource FontSize}" HorizontalAlignment="Left" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
                     <Label Margin="90,15,0,0" Content="{DynamicResource documentType}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
@@ -62,10 +58,10 @@
             </StackPanel>
         </Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
-            <TextBox x:Name="Tb_TemplateName" Width="250" Height="50" FontSize="25" Margin="0,0,0,20"/>
-            <Button x:Name="Bttn_Create" Content="{DynamicResource createTemplate}" Foreground="{DynamicResource FontForeground}" Margin="10,1,0,20" Padding="15,5,15,5" FontSize="25" Click="Bttn_Create_Click"/>
-            <Button x:Name="Bttn_Save" Content="{DynamicResource saveTemplate}" Foreground="{DynamicResource FontForeground}" Margin="10,1,0,20" Padding="15,5,15,5" FontSize="25" Click="Bttn_Save_Click"/>
-            <Button x:Name="Bttn_Delete" Content="{DynamicResource deleteTemplate}" Foreground="{DynamicResource FontForeground}" Margin="10,1,0,20" Padding="15,5,15,5" FontSize="25" Click="Bttn_Delete_Click"/>
+            <TextBox x:Name="Tb_TemplateName" Width="225" Height="50" FontSize="35" Margin="0,0,0,20"/>
+            <Button x:Name="Bttn_Create" Content="{DynamicResource createTemplate}" Foreground="{DynamicResource FontForeground}" Margin="10,0,10,20" Padding="15,5,15,5" FontSize="20" Click="Bttn_Create_Click"/>
+            <Button x:Name="Bttn_Save" Content="{DynamicResource saveTemplate}" Foreground="{DynamicResource FontForeground}" Margin="10,0,0,20" Padding="15,5,15,5" FontSize="20" Click="Bttn_Save_Click"/>
+            <Button x:Name="Bttn_Delete" Content="{DynamicResource deleteTemplate}" Foreground="{DynamicResource FontForeground}" Margin="10,0,0,20" Padding="15,5,15,5" FontSize="20" Click="Bttn_Delete_Click"/>
         </StackPanel>
     </Grid>
 </Window>
