@@ -8,8 +8,8 @@
     <StartupObject>InvoicesManager.App</StartupObject>
     <NoWin32Manifest>true</NoWin32Manifest>
     <UseWindowsForms>True</UseWindowsForms>
-    <AssemblyVersion>1.4.0.0</AssemblyVersion>
-    <FileVersion>1.4.0.0</FileVersion>
+    <AssemblyVersion>1.4.1.0</AssemblyVersion>
+    <FileVersion>1.4.1.0</FileVersion>
     <Company>GermanNightmare</Company>
     <Authors>Schecher_1</Authors>
     <Configurations>Debug;Release</Configurations>

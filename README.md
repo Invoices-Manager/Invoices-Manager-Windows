@@ -71,6 +71,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 - The template no longer has an "date of exhibition" value, since it made no sense anyway and only disturbed
 - The UI of the template manager has been improved
 - The UI of the invoice view (add, edit, delete) has been improved
+- The combo boxes "Organization" & "Document Type" are now sorted alphabetically (A => Z)
 
 ## v1.4.0.0
 - Switched from .NET 3.1 to **.NET 6.0** (when you start the program, you will be asked if you want to install .NET 6.0, if you don't want to install it, you can also download the standalone version)
