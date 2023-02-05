@@ -37,7 +37,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ![Invoice-Main-Screen](IMAGES/Version%201.4.0.0/InvoiceMainScreen.png)
 
 ### Invoice-View-Screen:                                           
-![Invoice-View-Screen](IMAGES/Version%201.4.0.0/InvoiceViewScreen.png)
+![Invoice-View-Screen](IMAGES/Version%201.4.1.0/InvoiceViewScreen.png)
 
 ### Invoice-Template-Screen:                                           
 ![Invoice-Template-Screen](IMAGES/Version%201.4.0.0/InvoiceTemplateScreen.png)
