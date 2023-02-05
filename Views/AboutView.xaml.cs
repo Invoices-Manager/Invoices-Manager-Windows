@@ -6,6 +6,9 @@
             => InitializeComponent();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-            => Msg_PVersion.Content = $"Version: {Classes.EnvironmentsVariable.PROGRAM_VERSION}";
+        {
+            Msg_PVersion.Content = $"Version: {Classes.EnvironmentsVariable.PROGRAM_VERSION}";
+            Msg_PLicense.Content = Classes.EnvironmentsVariable.PROGRAM_LICENSE;
+        }
     }
 }

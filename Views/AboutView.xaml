@@ -17,14 +17,7 @@
             VerticalAlignment="Top" 
             Margin="0,50,0,0"
             FontSize="40"/>
-        <Label 
-            Content="©2022-2023" 
-            Foreground="{DynamicResource FontForeground}"
-            HorizontalAlignment="Right" 
-            VerticalAlignment="Bottom" 
-            Margin="0,0,5,5"
-            FontSize="20"/>
-
+        
         <ScrollViewer Margin="0,115,0,45"  VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <StackPanel.Resources>
@@ -51,6 +44,23 @@
             HorizontalAlignment="Left" 
             VerticalAlignment="Bottom" 
             Margin="5,0,10,5"
+            FontSize="20"/>
+
+        <Label 
+            x:Name="Msg_PLicense"
+            Content="PROGRAM_LICENSE" 
+            Foreground="{DynamicResource FontForeground}"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Bottom" 
+            Margin="0,0,5,5"
+            FontSize="20"/>
+
+        <Label 
+            Content="©2022-2023" 
+            Foreground="{DynamicResource FontForeground}"
+            HorizontalAlignment="Right" 
+            VerticalAlignment="Bottom" 
+            Margin="0,0,5,5"
             FontSize="20"/>
     </Grid>
 </Page>

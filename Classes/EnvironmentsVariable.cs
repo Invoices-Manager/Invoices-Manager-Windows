@@ -24,6 +24,7 @@
         public static string UILanguage = "English";
         public static string[] PossibleUILanguages = { "English", "German" };
         public const string PROGRAM_VERSION = "1.4.1.0";
+        public const string PROGRAM_LICENSE = "License: Open source"; // Placeholder
         public static string ConfigVersion;
         public const string PROGRAM_SUPPORTEDFORMAT = ".pdf";
         public static bool CreateABackupEveryTimeTheProgramStarts = true;
