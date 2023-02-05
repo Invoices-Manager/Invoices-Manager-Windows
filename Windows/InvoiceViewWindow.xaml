@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:InvoicesManager.Windows"
         mc:Ignorable="d"
         Title="Invoice {MODE} | Made by Schecher | https://github.com/Schecher1" 
-        Height="850" Width="800"
-        MinHeight="850" MinWidth="800"
-        MaxHeight="850" MaxWidth="800"
+        Height="900" Width="850"
+        MinHeight="900" MinWidth="850"
+        MaxHeight="900" MaxWidth="850"
         Icon="/Resources/SmallIcon.png"
         WindowStartupLocation="CenterScreen">
     <Grid Background="{DynamicResource GridBackground}">
@@ -64,7 +64,7 @@
                     <Button x:Name="Bttn_InvoiceFileAdd" Margin="350,15,0,0" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="32" Width="350" Content="{DynamicResource pleaseSelectFile}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Click="Bttn_InvoiceFileAdd_Click"/>
                 </Grid>
                 <Grid>
-                    <TextBlock x:Name="Tb_FilePath" Margin="0,10,0,50" Text="{DynamicResource file}" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                    <TextBlock x:Name="Tb_FilePath" Margin="0,20,0,50" Text="{DynamicResource file}" FontSize="20" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Center" TextWrapping="Wrap" />
                 </Grid>
             </StackPanel>
         </Grid>

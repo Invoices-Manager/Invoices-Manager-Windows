@@ -15,8 +15,8 @@ It's simple, there are enough ways to filter your documents.
 
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one).  <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.0.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.0.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.1.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.1.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
 
 
 ## Features:
@@ -68,6 +68,8 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 
 ## v1.4.1.0
 - The About Text was changed and the CopyRight was changed to "©2022-2023"
+- The template no longer has an "date of exhibition" value, since it made no sense anyway and only disturbed
+- The UI of the template manager has been improved
 
 ## v1.4.0.0
 - Switched from .NET 3.1 to **.NET 6.0** (when you start the program, you will be asked if you want to install .NET 6.0, if you don't want to install it, you can also download the standalone version)
