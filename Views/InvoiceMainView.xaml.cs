@@ -2,6 +2,11 @@
 {
     public partial class InvoiceMainView : Page
     {
+        //the last selected items vars
+        private string lastOrganization = String.Empty;
+        private string lastDocumentType = String.Empty;
+
+        //the filter vars
         private string filterReference = String.Empty;
         private string filterInvoiceNumber = String.Empty;
         private string filterOrganization = "-1";
@@ -157,7 +162,7 @@
         private void ThreadTaskInitOrganization()
         {
             //sleep to wait for the init thread
-            WaiterSystem.WaitUntilInvoiceInitFinish();
+            WaiterSystem.WaitUntilInvoiceInitFinish();            
 
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                      => { Comb_Search_Organization.Items.Clear(); }));
@@ -175,6 +180,11 @@
                 .OrderBy(x => x))
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                         => { Comb_Search_Organization.Items.Add(organization); }));
+
+            //sets the last selected organization if it is still available
+            if (Comb_Search_Organization.Items.Contains(lastOrganization))
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                        =>{ Comb_Search_Organization.SelectedItem = lastOrganization; }));
         }
 
         private void ThreadTaskInitPaidState()
@@ -188,10 +198,8 @@
 
             foreach (PaidStateEnum pse in Enum.GetValues(typeof(PaidStateEnum)))
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
-                        => {
-                            if (pse != PaidStateEnum.FilterPlaceholder)
-                                Comb_Search_PaidState.Items.Add(PaidState.EnumAsString(pse));
-                        }));
+                        => { if (pse != PaidStateEnum.FilterPlaceholder)
+                                Comb_Search_PaidState.Items.Add(PaidState.EnumAsString(pse));}));
         }
 
         private void ThreadTaskInitMoneyState()
@@ -205,10 +213,8 @@
 
             foreach (MoneyStateEnum mse in Enum.GetValues(typeof(MoneyStateEnum)))
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
-                        => {
-                            if (mse != MoneyStateEnum.FilterPlaceholder)
-                                Comb_Search_MoneyState.Items.Add(MoneyState.EnumAsString(mse));
-                        }));
+                        => {if (mse != MoneyStateEnum.FilterPlaceholder)
+                                Comb_Search_MoneyState.Items.Add(MoneyState.EnumAsString(mse));}));
         }
 
         private void ThreadTaskInitImportanceState()
@@ -221,10 +227,8 @@
 
             foreach (ImportanceStateEnum ise in Enum.GetValues(typeof(ImportanceStateEnum)))
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
-                        => {
-                            if (ise != ImportanceStateEnum.FilterPlaceholder)
-                                Comb_Search_ImportanceState.Items.Add(ImportanceState.EnumAsString(ise));
-                        }));
+                        => { if (ise != ImportanceStateEnum.FilterPlaceholder)
+                                Comb_Search_ImportanceState.Items.Add(ImportanceState.EnumAsString(ise)); }));
         }
 
         private void ThreadTaskInitDocumentType()
@@ -241,6 +245,11 @@
                 .OrderBy(x => x))
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                     => { Comb_Search_DocumentType.Items.Add(documenttype); }));
+
+            //sets the last selected document type if it is still available
+            if (Comb_Search_DocumentType.Items.Contains(lastDocumentType))
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                        => { Comb_Search_DocumentType.SelectedItem = lastDocumentType; }));
         }
 
         private void ThreadTaskRefreshDataGrid()
@@ -396,6 +405,10 @@
 
         private void Comb_Search_Organization_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //saves the last selected item, for more infos see changelog v1.4.1.0 (RefreshGrid) 
+            if (Comb_Search_Organization.SelectedIndex.ToString() != "-1")
+                lastOrganization = Comb_Search_Organization.SelectedItem.ToString();
+
             filterOrganization = Comb_Search_Organization.SelectedIndex.ToString() == "-1" ? "-1" : Comb_Search_Organization.SelectedItem.ToString();
             RefreshDataGrid();
         }
@@ -405,6 +418,10 @@
 
         private void Comb_Search_DocumentType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //saves the last selected item, for more infos see changelog v1.4.1.0 (RefreshGrid) 
+            if (Comb_Search_DocumentType.SelectedIndex.ToString() != "-1")
+                lastDocumentType = Comb_Search_DocumentType.SelectedItem.ToString();
+
             filterDocumentType = Comb_Search_DocumentType.SelectedIndex.ToString() == "-1" ? "-1" : Comb_Search_DocumentType.SelectedItem.ToString();
             RefreshDataGrid();
         }
