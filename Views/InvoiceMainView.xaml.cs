@@ -169,7 +169,10 @@
             //otherwise an empty orga will be displayed in the comb
             allInvoices.RemoveAll(x => x.Organization == String.Empty);
 
-            foreach (var organization in allInvoices.Select(x => x.Organization).Distinct())
+            foreach (var organization in allInvoices
+                .Select(x => x.Organization)
+                .Distinct()
+                .OrderBy(x => x))
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                         => { Comb_Search_Organization.Items.Add(organization); }));
         }
@@ -232,7 +235,10 @@
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                 => { Comb_Search_DocumentType.Items.Clear(); }));
 
-            foreach (var documenttype in EnvironmentsVariable.AllInvoices.Select(x => x.DocumentType).Distinct())
+            foreach (var documenttype in EnvironmentsVariable.AllInvoices
+                .Select(x => x.DocumentType)
+                .Distinct()
+                .OrderBy(x => x))
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                     => { Comb_Search_DocumentType.Items.Add(documenttype); }));
         }
