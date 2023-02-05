@@ -53,7 +53,7 @@
                               .Where(x => x.MoneyState == filterMoneyState || filterMoneyState == MoneyStateEnum.FilterPlaceholder)
                               .Where(x => x.ImportanceState == filterImportanceState || filterImportanceState == ImportanceStateEnum.FilterPlaceholder)
                               .Where(x => x.MoneyTotal == filterMoneyTotal || filterMoneyTotal == double.MinValue)
-                              .Where(x => x.Tags.Contains(filterTags) || String.IsNullOrEmpty(filterTags))
+                              .Where(x => x.Tags.Select(y => y.ToLower()).Contains(filterTags.ToLower()) || String.IsNullOrEmpty(filterTags))
                               .ToList();
             }
             catch (Exception ex)
