@@ -256,7 +256,7 @@
         {
             //sleep to wait for the init thread
             WaiterSystem.WaitUntilInvoiceInitFinish();
-
+            
             SortSystem sortSys = new SortSystem(EnvironmentsVariable.AllInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType, filterExhibitionDate, filterPaidState, filterMoneyState, filterImportanceState, filterMoneyTotal, filterTags);
 
             sortSys.Sort();

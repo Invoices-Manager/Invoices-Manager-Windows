@@ -68,17 +68,18 @@
             if (Rb_Custom.IsChecked == true)
                 fileName = Tb_CustomName.Text + ".pdf";
 
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.UseDescriptionForTitle = true;
-            fbd.Description = "Select the folder where you want to save the invoice";
-            fbd.ShowNewFolderButton = true;
-            fbd.RootFolder = Environment.SpecialFolder.MyComputer;
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "Save Invoice";
+            sfd.CheckPathExists = true;
+            sfd.FileName = fileName;
+            sfd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            sfd.Filter = "PDF files (*.pdf)|*.txt|All files (*.*)|*.*";
 
-            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 InvoiceSystem iSys = new InvoiceSystem();
-                iSys.SaveAs(invoice, fbd.SelectedPath + "\\" + fileName);
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.SaveAs_View, $"Invoice was saved as {fileName} in {fbd.SelectedPath}");
+                iSys.SaveAs(invoice, sfd.FileName);
+                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.SaveAs_View, $"Invoice was saved as {fileName} in {sfd.FileName}");
                 this.Close();
             }
 

@@ -74,6 +74,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 - The combo boxes "Organization" & "Document Type" are now sorted alphabetically (A => Z)
 - FIX: The combo boxes (Organization & Document Type) keep their last selected object if it is still exist. After a DataGrid refresh
 - It is no longer necessary to pay attention to whether the tags are written in lower or upper case.
+- It is now possible to search in combo boxes (just type in the writing field)
 
 ## v1.4.0.0
 - Switched from .NET 3.1 to **.NET 6.0** (when you start the program, you will be asked if you want to install .NET 6.0, if you don't want to install it, you can also download the standalone version)
