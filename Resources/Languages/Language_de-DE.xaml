@@ -39,7 +39,18 @@
     <system:String x:Key="uiLanguage">Benutzersprache</system:String>
     <system:String x:Key="pdfProgram">PDF-Programm</system:String>
     <system:String x:Key="dataPath">Datenpfad</system:String>
-    <system:String x:Key="invoicesManagerIsAnOpenSourceTool">Invoices Manager ist ein Open-Source-Tool, das Sie kostenlos nutzen können. Sie können sich sogar den Quellcode auf GitHub einsehen und ihn weiterentwickeln, wenn Sie möchten.</system:String>
+    <system:String x:Key="invoicesManagerIsAnOpenSourceTool01">
+        Invoices Manager ist ein Open-Source-Programm, das Sie kostenlos nutzen &amp; weiter entwickeln können.
+    </system:String>
+    <system:String x:Key="invoicesManagerIsAnOpenSourceTool02">
+        Der Quellcode ist auf GitHub zu finden (Invoices-Manager/Invoices-Manager-Windows).
+    </system:String>
+    <system:String x:Key="invoicesManagerIsAnOpenSourceTool03">
+        Mit diesem Programm können Sie Belege, Rechnungen und vieles mehr speichern und verwalten &amp; mit Hilfe der vielen Filtermöglichkeiten können Sie die Belege auch schnell wieder finden, außerdem werden die Daten nur auf Ihrem Computer gespeichert, ich und niemand sonst haben Einblick in IHRE Daten.
+    </system:String>
+    <system:String x:Key="invoicesManagerIsAnOpenSourceTool04">
+        Deshalb habe ich dieses Programm entwickelt, damit du sicher sein kannst, dass deine Daten nur bei dir sind und nicht irgendwo in einer Cloud, deren Firma du gar nicht kennst.
+    </system:String>
     <system:String x:Key="modernWpfExtension">Invoices Manager verwendet die ModernWpf-Erweiterung für die Benutzeroberfläche</system:String>
     <system:String x:Key="saveSettings">Einstellungen speichern</system:String>
     <system:String x:Key="invoicesWereRestored">Rechnungen wurden wiederhergestellt.</system:String>

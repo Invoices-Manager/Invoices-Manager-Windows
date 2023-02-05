@@ -8,7 +8,7 @@
         Title="Invoices Manager | About" 
         d:DesignHeight="1000" d:DesignWidth="1000"
         Loaded="Window_Loaded">
-    
+
     <Grid Background="{DynamicResource GridBackground}">
         <Label 
             Content="Invoices Manager" 
@@ -16,23 +16,34 @@
             HorizontalAlignment="Center" 
             VerticalAlignment="Top" 
             Margin="0,50,0,0"
-            FontSize="35"/>
+            FontSize="40"/>
         <Label 
-            Content="©2022" 
+            Content="©2022-2023" 
             Foreground="{DynamicResource FontForeground}"
             HorizontalAlignment="Right" 
             VerticalAlignment="Bottom" 
             Margin="0,0,5,5"
             FontSize="20"/>
-        <TextBlock 
-            Text="{DynamicResource invoicesManagerIsAnOpenSourceTool}" 
-            Foreground="{DynamicResource FontForeground}"
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Top" 
-            Margin="64,135,64,0"
-            FontSize="25" 
-            TextAlignment="Center" 
-            TextWrapping="Wrap"/>
+
+        <ScrollViewer Margin="0,115,0,45"  VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="{DynamicResource FontForeground}"/>
+                        <Setter Property="VerticalAlignment" Value="Top"/>
+                        <Setter Property="Margin" Value="64,25,64,0"/>
+                        <Setter Property="FontSize" Value="25"/>
+                        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+                    </Style>
+                </StackPanel.Resources>
+                
+                <TextBlock Text="{DynamicResource invoicesManagerIsAnOpenSourceTool01}"/>
+                <TextBlock Text="{DynamicResource invoicesManagerIsAnOpenSourceTool02}"/>
+                <TextBlock Text="{DynamicResource invoicesManagerIsAnOpenSourceTool03}"/>
+                <TextBlock Text="{DynamicResource invoicesManagerIsAnOpenSourceTool04}"/>
+            </StackPanel>
+        </ScrollViewer>
+
         <Label 
             x:Name="Msg_PVersion"
             Content="PROGRAM_VERSION"
