@@ -162,6 +162,7 @@
 
         private void ClearAllInputs()
         {
+            Dp_ExhibitionDate.SelectedDate = DateTime.Now;
             Tb_FilePath.Text = String.Empty;
             Tb_Organization.Text = String.Empty;
             Tb_Reference.Text = String.Empty;
