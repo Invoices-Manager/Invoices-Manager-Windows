@@ -66,6 +66,8 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
 
+## v1.4.2.0
+
 ## v1.4.1.0
 - The About Text was changed and the CopyRight was changed to "©2022-2023"
 - The template no longer has an "date of exhibition" value, since it made no sense anyway and only disturbed
