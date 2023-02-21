@@ -23,7 +23,8 @@
                     PathBackUp = EnvironmentsVariable.PathBackUps,
                     MoneyUnit = EnvironmentsVariable.MoneyUnit,
                     CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
-                    MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp
+                    MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp,
+                    ColumnVisibility = EnvironmentsVariable.ColumnVisibility
                 };
 
                 if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
@@ -38,6 +39,9 @@
                 EnvironmentsVariable.MoneyUnit = config.MoneyUnit;
                 EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = config.CreateABackupEveryTimeTheProgramStarts;
                 EnvironmentsVariable.MaxCountBackUp = config.MaxCountBackUp;
+                //if the owner starts this program with an older config version, then by default there is NULL, and the program would crash at init
+                if (config.ColumnVisibility is not null)
+                    EnvironmentsVariable.ColumnVisibility = config.ColumnVisibility;
 
                 Save();
             }
@@ -59,7 +63,8 @@
                 PathBackUp = EnvironmentsVariable.PathBackUps,
                 MoneyUnit = EnvironmentsVariable.MoneyUnit,
                 CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
-                MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp
+                MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp,
+                ColumnVisibility = EnvironmentsVariable.ColumnVisibility
             };
             
             File.WriteAllText(EnvironmentsVariable.PathConfig + EnvironmentsVariable.ConfigJsonFileName, JsonConvert.SerializeObject(config, Formatting.Indented));

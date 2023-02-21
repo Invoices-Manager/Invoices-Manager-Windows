@@ -26,6 +26,8 @@
 #endif
             //load the window 
             InitializeComponent();
+            //set the column visibility
+            SetColumnVisibility();
             //init threads
             InitThreads();
             //check for auto backup
@@ -485,9 +487,7 @@
             try
             {
                 PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
-                {
-                    PB_InfoProgressBar.Value = 0;
-                }));
+                { PB_InfoProgressBar.Value = 0; }));
             }
             catch { }
         }
@@ -497,9 +497,7 @@
             try
             {
                 PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
-                {
-                    PB_InfoProgressBar.Value += value;
-                }));
+                { PB_InfoProgressBar.Value += value; }));
             }
             catch { }
         }
@@ -509,9 +507,7 @@
             try
             {
                 PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
-                {
-                    PB_InfoProgressBar.Maximum = value;
-                }));
+                { PB_InfoProgressBar.Maximum = value; }));
             }
             catch { }
         }
@@ -583,6 +579,46 @@
                     ViewColumnDateOfCapture.IsChecked = ColumnDateOfCapture.Visibility == Visibility.Visible;
                     break;
             }
+
+            //save the current state of the columns
+            EnvironmentsVariable.ColumnVisibility.IsVisibleColumnOpen = ColumnOpen.Visibility == Visibility.Visible;
+            EnvironmentsVariable.ColumnVisibility.IsVisibleColumnDateOfExhibition = ColumnDateOfExhibition.Visibility == Visibility.Visible;
+            EnvironmentsVariable.ColumnVisibility.IsVisibleColumnOrganization = ColumnOrganization.Visibility == Visibility.Visible;
+            EnvironmentsVariable.ColumnVisibility.IsVisibleColumnDocumentType = ColumnDocumentType.Visibility == Visibility.Visible;
+            EnvironmentsVariable.ColumnVisibility.IsVisibleColumnInvoiceNo = ColumnInvoiceNo.Visibility == Visibility.Visible;
+            EnvironmentsVariable.ColumnVisibility.IsVisibleColumnReference = ColumnReference.Visibility == Visibility.Visible;
+            EnvironmentsVariable.ColumnVisibility.IsVisibleColumnMoneyTotal = ColumnMoneyTotal.Visibility == Visibility.Visible;
+            EnvironmentsVariable.ColumnVisibility.IsVisibleColumnImportanceState = ColumnImportanceState.Visibility == Visibility.Visible;
+            EnvironmentsVariable.ColumnVisibility.IsVisibleColumnMoneyState = ColumnMoneyState.Visibility == Visibility.Visible;
+            EnvironmentsVariable.ColumnVisibility.IsVisibleColumnPaidState = ColumnPaidState.Visibility == Visibility.Visible;
+            EnvironmentsVariable.ColumnVisibility.IsVisibleColumnTags = ColumnTags.Visibility == Visibility.Visible;
+            EnvironmentsVariable.ColumnVisibility.IsVisibleColumnDateOfCapture = ColumnDateOfCapture.Visibility == Visibility.Visible;
+
+            //save into the config file
+            ConfigSystem _cs = new ConfigSystem();
+            _cs.Save();
+        }
+
+        private void SetColumnVisibility()
+        {
+            SetColumnVisibility(ColumnOpen, ViewColumnOpen, EnvironmentsVariable.ColumnVisibility.IsVisibleColumnOpen);
+            SetColumnVisibility(ColumnDateOfExhibition, ViewColumnDateOfExhibition, EnvironmentsVariable.ColumnVisibility.IsVisibleColumnDateOfExhibition);
+            SetColumnVisibility(ColumnOrganization, ViewColumnOrganization, EnvironmentsVariable.ColumnVisibility.IsVisibleColumnOrganization);
+            SetColumnVisibility(ColumnDocumentType, ViewColumnDocumentType, EnvironmentsVariable.ColumnVisibility.IsVisibleColumnDocumentType);
+            SetColumnVisibility(ColumnInvoiceNo, ViewColumnInvoiceNo, EnvironmentsVariable.ColumnVisibility.IsVisibleColumnInvoiceNo);
+            SetColumnVisibility(ColumnReference, ViewColumnReference, EnvironmentsVariable.ColumnVisibility.IsVisibleColumnReference);
+            SetColumnVisibility(ColumnMoneyTotal, ViewColumnMoneyTotal, EnvironmentsVariable.ColumnVisibility.IsVisibleColumnMoneyTotal);
+            SetColumnVisibility(ColumnImportanceState, ViewColumnImportanceState, EnvironmentsVariable.ColumnVisibility.IsVisibleColumnImportanceState);
+            SetColumnVisibility(ColumnMoneyState, ViewColumnMoneyState, EnvironmentsVariable.ColumnVisibility.IsVisibleColumnMoneyState);
+            SetColumnVisibility(ColumnPaidState, ViewColumnPaidState, EnvironmentsVariable.ColumnVisibility.IsVisibleColumnPaidState);
+            SetColumnVisibility(ColumnTags, ViewColumnTags, EnvironmentsVariable.ColumnVisibility.IsVisibleColumnTags);
+            SetColumnVisibility(ColumnDateOfCapture, ViewColumnDateOfCapture, EnvironmentsVariable.ColumnVisibility.IsVisibleColumnDateOfCapture);
+        }
+
+        private void SetColumnVisibility(DataGridTextColumn column, MenuItem checkBox, bool isVisible)
+        {
+            column.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+            checkBox.IsChecked = isVisible;
         }
     }
 }

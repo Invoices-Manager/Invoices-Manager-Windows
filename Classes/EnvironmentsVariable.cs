@@ -2,6 +2,7 @@
 {
     public class EnvironmentsVariable
     {
+        public static ColumnVisibilityModel ColumnVisibility = new ColumnVisibilityModel();
         public static List<InvoiceModel> AllInvoices = new List<InvoiceModel>();
         public static List<InvoiceModel> FilteredInvoices = new List<InvoiceModel>();
         public static NotebookModel Notebook = new NotebookModel();
@@ -20,7 +21,8 @@
         public static string NotebooksJsonFileName = "Notebook.json";
         public static string TemplatesJsonFileName = "Templates.json";
         public static string LogJsonFileName { get { return $"Log_{DateTime.Now.ToString("yyyy-MM-dd")}.txt"; } }
-        
+
+
         public static string UILanguage = "English";
         public static string[] PossibleUILanguages = { "English", "German" };
         public const string PROGRAM_VERSION = "1.4.2.0";
