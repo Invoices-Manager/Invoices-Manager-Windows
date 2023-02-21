@@ -16,9 +16,11 @@
                 if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
                     EnvironmentsVariable.AllInvoices = JsonConvert.DeserializeObject<List<InvoiceModel>>(json);
 
+                //remove the unessary spaces from the tags
+                EnvironmentsVariable.AllInvoices.ForEach(x => x.Tags = x.Tags.Select(y => y.Trim()).ToArray());
+
                 //set the flag to true
                 EnvironmentsVariable.IsInvoiceInitFinish = true;
-
             }
             catch (Exception ex)
             {
