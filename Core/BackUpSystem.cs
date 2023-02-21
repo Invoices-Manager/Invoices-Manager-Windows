@@ -4,7 +4,6 @@
     {
         private InvoiceMainView _invoiceMainWindow;
 
-        
         public void CheckBackUpCount()
         {
             try
@@ -24,7 +23,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.BackUp_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, ex.Message);
             }
         }
 
@@ -124,7 +123,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.BackUp_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, ex.Message);
                 return false;
             }
 
@@ -154,7 +153,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.BackUp_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, ex.Message);
                 wasPerformedCorrectly = false;
             }
 
@@ -237,7 +236,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.BackUp_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, ex.Message);
                 wasPerformedCorrectly = false;
             }
 
@@ -277,7 +276,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.BackUp_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, ex.Message);
                 wasPerformedCorrectly = false;
             }
 

@@ -15,7 +15,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Notebook_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, ex.Message);
             }
         }
 
@@ -26,11 +26,11 @@
                 EnvironmentsVariable.Notebook.Notebook.Add(newNote);
 
                 SaveIntoJsonFile();
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.Notebook_System, $"A new note has been added. [{newNote.Id}]");
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Notebook_System, $"A new note has been added. [{newNote.Id}]");
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Notebook_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, ex.Message);
             }
         }
 
@@ -44,11 +44,11 @@
                 note.LastEditDate = DateTime.Now;
 
                 SaveIntoJsonFile();
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.Notebook_System, $"A note has been edited. [{editNote.Id}]");
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Notebook_System, $"A note has been edited. [{editNote.Id}]");
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Notebook_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, ex.Message);
             }
         }
 
@@ -59,11 +59,11 @@
                 EnvironmentsVariable.Notebook.Notebook.Remove(oldNote);
 
                 SaveIntoJsonFile();
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.Notebook_System, $"A note has been removed. [{oldNote.Id}]");
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Notebook_System, $"A note has been removed. [{oldNote.Id}]");
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Notebook_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, ex.Message);
             }
         }
 

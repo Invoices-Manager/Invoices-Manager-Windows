@@ -3,9 +3,7 @@
     public partial class NotebookWindow : Window
     {
         public NotebookWindow()
-        {
-            InitializeComponent();
-        }
+            => InitializeComponent();
 
         private NoteModel selectedNote;
         private Button correspondingButton;
@@ -58,7 +56,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Notebook_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_View, ex.Message);
             }
         }
         
@@ -82,7 +80,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Notebook_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_View, ex.Message);
             }
         }
 
@@ -103,7 +101,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Notebook_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_View, ex.Message);
             }
         }
 
@@ -145,7 +143,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Notebook_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_View, ex.Message);
             }
         }
 

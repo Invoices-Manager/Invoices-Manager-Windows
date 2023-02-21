@@ -47,7 +47,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Config_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Config_System, ex.Message);
             }
         }
 

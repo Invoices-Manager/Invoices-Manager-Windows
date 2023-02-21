@@ -2,7 +2,7 @@
 {
     public partial class InvoiceSaveAsWindow : Window
     {
-        InvoiceModel invoice;
+        readonly InvoiceModel invoice;
         private string fileName = string.Empty;
 
         //ORGA_INCNR_DATE => Rb_Vers01
@@ -79,7 +79,7 @@
             {
                 InvoiceSystem iSys = new InvoiceSystem();
                 iSys.SaveAs(invoice, sfd.FileName);
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.SaveAs_View, $"Invoice was saved as {fileName} in {sfd.FileName}");
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.SaveAs_View, $"Invoice was saved as {fileName} in {sfd.FileName}");
                 this.Close();
             }
 

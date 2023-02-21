@@ -1,5 +1,4 @@
-﻿using System.Windows.Controls;
-using System.Windows.Media.Animation;
+﻿using System.Windows.Media.Animation;
 
 namespace InvoicesManager.Windows
 {
@@ -34,7 +33,7 @@ namespace InvoicesManager.Windows
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.MainWindow_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.MainWindow_View, ex.Message);
             }
         }
        

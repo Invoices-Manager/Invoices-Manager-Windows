@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows;
-
-namespace InvoicesManager.Classes.Enums
+﻿namespace InvoicesManager.Classes.Enums
 {
     public enum MoneyStateEnum
     {

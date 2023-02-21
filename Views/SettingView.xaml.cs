@@ -33,7 +33,7 @@ namespace InvoicesManager.Views
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Setting_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Setting_View, ex.Message);
             }
         }
 
@@ -65,7 +65,7 @@ namespace InvoicesManager.Views
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Setting_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Setting_View, ex.Message);
             }
         }
 
@@ -95,7 +95,7 @@ namespace InvoicesManager.Views
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
 
-            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (fbd.ShowDialog() == DialogResult.OK)
                 Tb_BackUpPath.Text = fbd.SelectedPath + "\\";
         }
 
@@ -103,7 +103,7 @@ namespace InvoicesManager.Views
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
 
-            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (fbd.ShowDialog() == DialogResult.OK)
                 Tb_InvoicePath.Text = fbd.SelectedPath + "\\";
         }
 
@@ -112,7 +112,7 @@ namespace InvoicesManager.Views
             OpenFileDialog fd = new OpenFileDialog();
             fd.Filter = "(*.exe)|*.exe";
 
-            if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (fd.ShowDialog() == DialogResult.OK)
                 Tb_PDFProgramPath.Text = fd.FileName;
         }
 
@@ -120,7 +120,7 @@ namespace InvoicesManager.Views
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
 
-            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (fbd.ShowDialog() == DialogResult.OK)
                 Tb_NotebookPath.Text = fbd.SelectedPath + "\\";
         }
 

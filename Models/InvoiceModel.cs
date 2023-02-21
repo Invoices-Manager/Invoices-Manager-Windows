@@ -13,14 +13,14 @@
         public bool ShouldSerializeStringImportanceState() { return false; }
 
         //Model
-        public string FileID { get; set; } // (NN)
-        public DateTime CaptureDate { get; set; } // (NN)
-        public DateTime ExhibitionDate { get; set; }     // (NN)
-        public string Reference { get; set; } // (NN)
-        public string DocumentType { get; set; }// (NN)
+        public string FileID { get; set; } 
+        public DateTime CaptureDate { get; set; } 
+        public DateTime ExhibitionDate { get; set; }     
+        public string Reference { get; set; } 
+        public string DocumentType { get; set; }
         public string Organization { get; set; }
         public string InvoiceNumber { get; set; }
-        public string[] Tags { get; set; } // (NN)
+        public string[] Tags { get; set; }
         public ImportanceStateEnum ImportanceState { get; set; } // { VeryImportant, Important, Neutral, Unimportant }
         public MoneyStateEnum MoneyState { get; set; } // { Paid , Received,  NoInvoice }
         public PaidStateEnum PaidState { get; set; } // { Paid , Unpaid,  NoInvoice }

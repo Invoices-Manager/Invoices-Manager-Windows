@@ -15,7 +15,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Template_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Template_System, ex.Message);
             }
         }
 
@@ -25,11 +25,11 @@
             {
                 EnvironmentsVariable.AllTemplates.Add(newTemplate);
                 SaveIntoJsonFile();
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.Template_System, $"A new template has been added. [{newTemplate.Name}]");
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Template_System, $"A new template has been added. [{newTemplate.Name}]");
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Template_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Template_System, ex.Message);
             }
         }
 
@@ -43,11 +43,11 @@
                 EnvironmentsVariable.AllTemplates.Add(newTemplate);
 
                 SaveIntoJsonFile();
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.Template_System, $"A template has been edited. [{newTemplate.Name}]");
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Template_System, $"A template has been edited. [{newTemplate.Name}]");
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Template_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Template_System, ex.Message);
             }
         }
 
@@ -58,11 +58,11 @@
                 EnvironmentsVariable.AllTemplates.Remove(oldTemplate);
 
                 SaveIntoJsonFile();
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.Template_System, $"A template has been deleted. [{oldTemplate.Name}]");
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Template_System, $"A template has been deleted. [{oldTemplate.Name}]");
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(Classes.Enums.LogStateEnum.Error, Classes.Enums.LogPrefixEnum.Template_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Template_System, ex.Message);
             }
         }
         

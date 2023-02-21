@@ -37,22 +37,22 @@
         public static void InitWorkPath()
         {
             //create/check the need folders and files
-            Directory.CreateDirectory(EnvironmentsVariable.PathInvoices);
-            Directory.CreateDirectory(EnvironmentsVariable.PathBackUps);
-            Directory.CreateDirectory(EnvironmentsVariable.PathNotebook);
-            Directory.CreateDirectory(EnvironmentsVariable.PathConfig);
-            Directory.CreateDirectory(EnvironmentsVariable.PathLog);
+            Directory.CreateDirectory(PathInvoices);
+            Directory.CreateDirectory(PathBackUps);
+            Directory.CreateDirectory(PathNotebook);
+            Directory.CreateDirectory(PathConfig);
+            Directory.CreateDirectory(PathLog);
 
-            if (!File.Exists(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName))
-                File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, "[]");
-            if (!File.Exists(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName))
-                File.WriteAllText(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName, "[]");
-            if (!File.Exists(EnvironmentsVariable.PathConfig + EnvironmentsVariable.ConfigJsonFileName))
-                File.WriteAllText(EnvironmentsVariable.PathConfig + EnvironmentsVariable.ConfigJsonFileName, "[]");
-            if (!File.Exists(EnvironmentsVariable.PathLog + EnvironmentsVariable.LogJsonFileName))
-                File.WriteAllText(EnvironmentsVariable.PathLog + EnvironmentsVariable.LogJsonFileName, "[]");
-            if (!File.Exists(EnvironmentsVariable.PathTemplates + EnvironmentsVariable.TemplatesJsonFileName))
-                File.WriteAllText(EnvironmentsVariable.PathTemplates + EnvironmentsVariable.TemplatesJsonFileName, "[]");
+            if (!File.Exists(PathInvoices + InvoicesJsonFileName))
+                File.WriteAllText(PathInvoices + InvoicesJsonFileName, "[]");
+            if (!File.Exists(PathNotebook + NotebooksJsonFileName))
+                File.WriteAllText(PathNotebook + NotebooksJsonFileName, "[]");
+            if (!File.Exists(PathConfig + ConfigJsonFileName))
+                File.WriteAllText(PathConfig + ConfigJsonFileName, "[]");
+            if (!File.Exists(PathLog + LogJsonFileName))
+                File.WriteAllText(PathLog + LogJsonFileName, "[]");
+            if (!File.Exists(PathTemplates + TemplatesJsonFileName))
+                File.WriteAllText(PathTemplates + TemplatesJsonFileName, "[]");
         }
     }
 }

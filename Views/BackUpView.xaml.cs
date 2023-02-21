@@ -3,9 +3,7 @@
     public partial class BackUpView: Page
     {
         public BackUpView()
-        {
-            InitializeComponent();
-        }
+            => InitializeComponent();
 
         private async void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
         {
@@ -15,20 +13,20 @@
                 RestoreDirectory = true
             };
 
-            if (sfg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (sfg.ShowDialog() == DialogResult.OK)
             {
                 await Task.Run(() =>
                 {
-                    LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.BackUp_View, "BackUp was requested");
+                    LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "BackUp was requested");
                     BackUpSystem buSys = new BackUpSystem();
                     if (buSys.BackUp(sfg.FileName))
                     {
-                        LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.BackUp_View, "BackUp was completed successfully!");
+                        LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "BackUp was completed successfully!");
                         MessageBox.Show(Application.Current.Resources["backUpSuccessfully"] as string);
                     }
                     else
                     {
-                        LoggerSystem.Log(Classes.Enums.LogStateEnum.Warning, Classes.Enums.LogPrefixEnum.BackUp_View, "BackUp was not completed successfully!");
+                        LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "BackUp was not completed successfully!");
                         MessageBox.Show(Application.Current.Resources["backUpFailed"] as string);
                     }
                 });
@@ -42,19 +40,19 @@
                 Filter = "BackUp-Datei (*.bkup)|*.bkup"
             };
 
-            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 await Task.Run(() =>
                 {
-                    LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.BackUp_View, "Restore was requested");
+                    LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "Restore was requested");
                     BackUpSystem buSys = new BackUpSystem();
                     if (buSys.Restore(ofd.FileName))
                     {
-                        LoggerSystem.Log(Classes.Enums.LogStateEnum.Info, Classes.Enums.LogPrefixEnum.BackUp_View, "Restore was completed successfully!");
+                        LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "Restore was completed successfully!");
                     }
                     else
                     {
-                        LoggerSystem.Log(Classes.Enums.LogStateEnum.Warning, Classes.Enums.LogPrefixEnum.BackUp_View, "Restore was not completed successfully!");
+                        LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "Restore was not completed successfully!");
                         MessageBox.Show(Application.Current.Resources["backUpFailedRestored"] as string);
                     }
                 });

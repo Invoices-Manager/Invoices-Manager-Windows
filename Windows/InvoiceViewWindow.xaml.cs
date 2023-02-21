@@ -289,7 +289,7 @@
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "PDF Files (*.pdf)|*.pdf";
-
+            
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 //check if the file is a pdf

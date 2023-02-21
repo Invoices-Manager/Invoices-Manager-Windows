@@ -6,21 +6,13 @@
         {
             ResourceDictionary dict = new ResourceDictionary();
 
-            switch (EnvironmentsVariable.UILanguage)
+            dict.Source = EnvironmentsVariable.UILanguage switch
             {
-                case "English":
-                    dict.Source = new Uri("..\\Resources\\Languages\\Language_en-US.xaml", UriKind.Relative);
-                    break;
-
-                case "German":
-                    dict.Source = new Uri("..\\Resources\\Languages\\Language_de-DE.xaml", UriKind.Relative);
-                    break;
-
-                default:
-                    dict.Source = new Uri("..\\Resources\\Languages\\Language_en-US.xaml", UriKind.Relative);
-                    break;
-            }
-
+                "English" => new Uri("..\\Resources\\Languages\\Language_en-US.xaml", UriKind.Relative),
+                "German" => new Uri("..\\Resources\\Languages\\Language_de-DE.xaml", UriKind.Relative),
+                _ => new Uri("..\\Resources\\Languages\\Language_en-US.xaml", UriKind.Relative),
+            };
+            
             Application.Current.Resources.MergedDictionaries.Add(dict);
         }
     }
