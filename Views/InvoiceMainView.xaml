@@ -105,7 +105,11 @@
                           IsReadOnly="True"
                           MouseDoubleClick="DG_Invoices_MouseDoubleClick"
                           FontSize="{DynamicResource FontSize}"
-                          MouseRightButtonDown="Dg_Invoices_MouseRightButtonDown">
+                          MouseRightButtonDown="Dg_Invoices_MouseRightButtonDown"
+                          VirtualizingPanel.IsVirtualizing="True"
+                          VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                          VirtualizingPanel.VirtualizationMode="Recycling"
+                          VirtualizingPanel.ScrollUnit="Item">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridCell}" x:Key="OperationCell">
                             <Setter Property="Foreground" Value="Blue"/>

@@ -67,6 +67,8 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### W = Revision version (bug fixes)
 
 ## v1.4.2.0
+- The date picker is now reset to the current date when an invoice has been added
+- The invoices are now loaded and displayed faster. 
 
 ## v1.4.1.0
 - The About Text was changed and the CopyRight was changed to "©2022-2023"

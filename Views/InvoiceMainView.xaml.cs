@@ -261,12 +261,15 @@
 
             sortSys.Sort();
 
-            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
-                => { Dg_Invoices.Items.Clear(); }));
+            //Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+            //    => { Dg_Invoices.Items.Clear(); }));
 
-            foreach (var invoice in EnvironmentsVariable.FilteredInvoices)
-                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
-                    => { Dg_Invoices.Items.Add(invoice); }));
+            //foreach (var invoice in EnvironmentsVariable.FilteredInvoices)
+            //    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+            //        => { Dg_Invoices.Items.Add(invoice); }));
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                => { Dg_Invoices.ItemsSource = EnvironmentsVariable.FilteredInvoices; }));
 
             //set bottom status bar
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
