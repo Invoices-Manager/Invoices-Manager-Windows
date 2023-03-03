@@ -66,6 +66,9 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
 
+## v1.4.2.1
+- The 3 buttons from the notebook had a static text (no translation) 
+
 ## v1.4.2.0
 - The date picker is now reset to the current date when an invoice has been added
 - The invoices are now loaded and displayed faster
