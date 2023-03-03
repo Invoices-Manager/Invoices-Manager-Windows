@@ -70,6 +70,8 @@
     <system:String x:Key="add">hinzufügen</system:String>
     <system:String x:Key="edit">bearbeiten</system:String>
     <system:String x:Key="delete">löschen</system:String>
+    <system:String x:Key="new">neu</system:String>
+    <system:String x:Key="save">speichern</system:String>
     <system:String x:Key="moneytotal">Summe</system:String>
     <system:String x:Key="importancestate">Wichtigkeits Status</system:String>
     <system:String x:Key="moneystate">Geld Status</system:String>

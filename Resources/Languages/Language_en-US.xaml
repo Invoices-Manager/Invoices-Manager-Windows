@@ -69,6 +69,8 @@
     <system:String x:Key="checkYouInput">Please Check you data input</system:String>
     <system:String x:Key="add">add</system:String>
     <system:String x:Key="edit">edit</system:String>
+    <system:String x:Key="new">new</system:String>
+    <system:String x:Key="save">save</system:String>
     <system:String x:Key="delete">remove</system:String>
     <system:String x:Key="importancestate">importance state</system:String>
     <system:String x:Key="moneystate">money state</system:String>
