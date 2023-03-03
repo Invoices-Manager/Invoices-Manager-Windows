@@ -53,7 +53,7 @@
         <Grid Margin="280,0,6,0" Height="75" VerticalAlignment="Bottom">
             <ScrollViewer HorizontalAlignment="Right" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"> 
                 <StackPanel Orientation="Horizontal">
-                    <Button Content="NEW" 
+                    <Button Content="{DynamicResource new}" 
                                             x:Name="Bttn_CreateNote"
                                            FontSize="{DynamicResource FontSize}" 
                                            Width="100"
@@ -64,7 +64,7 @@
                                            Margin="0,0,25,0" 
                                            HorizontalAlignment="Right"
                                            Click="Bttn_CreateNote_Click"/>
-                    <Button Content="SAVE" 
+                    <Button Content="{DynamicResource save}" 
                                            x:Name="Bttn_SaveNote"
                                            FontSize="{DynamicResource FontSize}" 
                                            Width="100"
@@ -75,7 +75,7 @@
                                            Margin="0,0,25,0" 
                                            HorizontalAlignment="Right"
                                            Click="Bttn_SaveNote_Click"/>
-                    <Button Content="DELETE" 
+                    <Button Content="{DynamicResource delete}" 
                                            x:Name="Bttn_DeleteNote"
                                            FontSize="{DynamicResource FontSize}" 
                                            Width="100"
