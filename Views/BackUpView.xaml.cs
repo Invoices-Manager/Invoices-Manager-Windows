@@ -73,10 +73,10 @@
                 CheckFileExists = false
             };
 
-            if (ofd_backUpFilePath.ShowDialog() == DialogResult.OK)
+            if (ofd_backUpFilePath.ShowDialog() != DialogResult.OK)
                 return;
 
-            if (ofd_savePath.ShowDialog() == DialogResult.OK)
+            if (ofd_savePath.ShowDialog() != DialogResult.OK)
                 return;
 
             await Task.Run(() =>
