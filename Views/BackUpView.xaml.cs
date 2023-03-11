@@ -115,8 +115,8 @@
                     Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                         => { 
                                 Dg_BackUps.ItemsSource = backUpInfos;
-                                MsgBox_BackUpCounter.Content = backUpInfos.Count;
-                        }));
+                                MsgBox_BackUpCounter.Content = $"{Application.Current.Resources["backUpCount"] as string}: {backUpInfos.Count}";
+                            }));
                 }
                 else
                 {

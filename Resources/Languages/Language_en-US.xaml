@@ -126,4 +126,5 @@
     <system:String x:Key="backUpFailedSaveAs">the save failed!</system:String>
     <system:String x:Key="bkupFilter">BackUp-File (*.bkup)|*.bkup</system:String>
     <system:String x:Key="backUpSize">backup size</system:String>
+    <system:String x:Key="backUpCount">backup count</system:String>
 </ResourceDictionary>

@@ -50,7 +50,7 @@
         </Grid>
 
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="35">
-            <Label x:Name="MsgBox_BackUpCounter" Content="BackUp: CounterMax" FontSize="{DynamicResource FontSize}" Margin="10,-5,2,0"/>
+            <Label x:Name="MsgBox_BackUpCounter" Content="backup count: xy" FontSize="{DynamicResource FontSize}" Margin="10,-5,2,0"/>
             <ProgressBar x:Name="PB_InfoProgressBar" Background="#33000000" Height="20" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="150,0,10,0" Width="400"/>
         </Grid>
     </Grid>
