@@ -9,7 +9,7 @@
         {
             SaveFileDialog sfg = new SaveFileDialog()
             {
-                Filter = "BackUp-Datei (*.bkup)|*.bkup",
+                Filter = Application.Current.Resources["bkupFilter"] as string,
                 RestoreDirectory = true
             };
 
@@ -37,7 +37,7 @@
         {
             OpenFileDialog ofd = new OpenFileDialog()
             {
-                Filter = "BackUp-Datei (*.bkup)|*.bkup"
+                Filter = Application.Current.Resources["bkupFilter"] as string,
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -63,13 +63,13 @@
         {
             OpenFileDialog ofd_backUpFilePath = new OpenFileDialog()
             {
-                Filter = "BackUp-Datei (*.bkup)|*.bkup",
+                Filter = Application.Current.Resources["bkupFilter"] as string,
                 CheckFileExists = true
             };
 
             OpenFileDialog ofd_savePath = new OpenFileDialog()
             {
-                Filter = "BackUp-Datei (*.bkup)|*.bkup",
+                Filter = Application.Current.Resources["bkupFilter"] as string,
                 CheckFileExists = false
             };
 

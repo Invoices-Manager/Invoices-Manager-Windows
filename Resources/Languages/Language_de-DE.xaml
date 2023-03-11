@@ -125,4 +125,5 @@
     <system:String x:Key="backUpPath">Sicherungs Pfad</system:String>
     <system:String x:Key="saveBackUpAs">Sicherung speichern als</system:String>
     <system:String x:Key="backUpFailedSaveAs">Das speichern hat nicht funktoniert!</system:String>
+    <system:String x:Key="bkupFilter">BackUp-Datei (*.bkup)|*.bkup</system:String>
 </ResourceDictionary>
