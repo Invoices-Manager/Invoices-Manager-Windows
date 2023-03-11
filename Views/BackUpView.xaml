@@ -9,11 +9,48 @@
         d:DesignHeight="1000" d:DesignWidth="1000"
         MinHeight="250" MinWidth="250">
     <Grid Background="{DynamicResource GridBackground}">
-        <ScrollViewer>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="Bttn_BackUpCreate" Content="{DynamicResource createBackUp}" Foreground="{DynamicResource FontForeground}" FontSize="{DynamicResource FontSize}" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_BackUpCreate_Click"/>
-                <Button x:Name="Bttn_BackUpRestore"  Content="{DynamicResource importBackUp}" Foreground="{DynamicResource FontForeground}" FontSize="{DynamicResource FontSize}" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_BackUpRestore_Click"/>
-            </StackPanel>
-        </ScrollViewer>
+        <Grid>
+            <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40">
+                <Button x:Name="Bttn_BoardRefresh"  Content="{DynamicResource refreshBoard}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" />
+                <Separator Margin="10,0,10,0"/>
+                <Button x:Name="Bttn_BackUpCreate" Content="{DynamicResource createBackUp}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" />
+                <Button x:Name="Bttn_BackUpRestore" Content="{DynamicResource importBackUp}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" />
+                <Separator Margin="10,0,10,0"/>
+                <Button x:Name="Bttn_BackSaveAs" Content="{DynamicResource saveBackUpAs}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0"/>
+            </ToolBarPanel>
+        </Grid>
+
+        <Grid Margin="0,40,0,35" Background="#FF232323">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid Name="Dg_BackUps" 
+                          ItemsSource="{Binding}" 
+                          Foreground="{DynamicResource FontForeground}"
+                          AutoGenerateColumns="False" 
+                          CanUserReorderColumns="False" 
+                          CanUserDeleteRows="False" 
+                          CanUserAddRows="False" 
+                          ClipboardCopyMode="ExcludeHeader"
+                          IsReadOnly="True"
+                          FontSize="{DynamicResource FontSize}"
+                          VirtualizingPanel.IsVirtualizing="True"
+                          VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                          VirtualizingPanel.VirtualizationMode="Recycling"
+                          VirtualizingPanel.ScrollUnit="Item">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="Column_DateOfCreation" Header="{DynamicResource dateOfCreation}" Binding="{Binding OpenInvoiceText}"/>
+                        <DataGridTextColumn x:Name="Column_BackUpVersion" Header="{DynamicResource backUpVersion}" Binding="{Binding OpenInvoiceText}"/>
+                        <DataGridTextColumn x:Name="Column_EntitiyCount_Invoices" Header="{DynamicResource entitiyCountInvoices}" Binding="{Binding OpenInvoiceText}"/>
+                        <DataGridTextColumn x:Name="Column_EntitiyCount_Notebooks" Header="{DynamicResource entitiyCountNotebooks}" Binding="{Binding OpenInvoiceText}"/>
+                        <DataGridTextColumn x:Name="Column_BackUpName" Header="{DynamicResource backUpName}" Binding="{Binding OpenInvoiceText}"/>
+                        <DataGridTextColumn x:Name="Column_BackUpPath" Header="{DynamicResource backUpPath}" Binding="{Binding OpenInvoiceText}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="35">
+            <Label x:Name="MsgBox_BackUpCounter" Content="BackUp: CounterAre from CounterMax" FontSize="{DynamicResource FontSize}" Margin="10,-5,2,0"/>
+            <ProgressBar x:Name="PB_InfoProgressBar" Background="#33000000" Height="20" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="150,0,10,0" Width="400"/>
+        </Grid>
     </Grid>
 </Page>

@@ -116,4 +116,11 @@
     <system:String x:Key="templateNotSelected">no template is selected</system:String>
     <system:String x:Key="deleteTemplateMsg">do you really want to delete this template?</system:String>
     <system:String x:Key="deleteTemplateTitle">Attention, deletion of a template!</system:String>
+    <system:String x:Key="dateOfCreation">date of creation</system:String>
+    <system:String x:Key="backUpVersion">backup version</system:String>
+    <system:String x:Key="entitiyCountInvoices">invoices count</system:String>
+    <system:String x:Key="entitiyCountNotebooks">notebooks count</system:String>
+    <system:String x:Key="backUpName">backup name</system:String>
+    <system:String x:Key="backUpPath">backup path</system:String>
+    <system:String x:Key="saveBackUpAs">backup save as</system:String>
 </ResourceDictionary>
