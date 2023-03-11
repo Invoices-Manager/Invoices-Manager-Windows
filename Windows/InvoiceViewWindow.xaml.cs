@@ -192,12 +192,16 @@
 
         private void ClearAllInputs()
         {
+            Comb_Templates.SelectedIndex = -1;
+            Comb_Templates.Text = String.Empty;
             Dp_ExhibitionDate.SelectedDate = DateTime.Now;
             Tb_FilePath.Text = String.Empty;
             Comb_Organization.SelectedIndex = -1;
+            Comb_Organization.Text = String.Empty;
             Tb_Reference.Text = String.Empty;
             Tb_InvoiceNumber.Text = String.Empty;
             Comb_DocumentType.SelectedIndex = -1;
+            Comb_DocumentType.Text = String.Empty;
             Tb_MoneyTotal.Text = String.Empty;
             Tb_Tags.Text = String.Empty;
             Comb_ImportanceState.SelectedIndex = 2;
