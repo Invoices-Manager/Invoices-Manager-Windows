@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-namespace InvoicesManager.Models
+﻿namespace InvoicesManager.Models
 {
     public class BackUpInfoModel
     {
