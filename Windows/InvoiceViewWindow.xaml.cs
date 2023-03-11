@@ -16,7 +16,10 @@
             //The date of the exhibition is now by default today's date
             Dp_ExhibitionDate.SelectedDate = DateTime.Now;
 
-            LoadTheEnumComBoxes();
+           LoadTheEnumComBoxes();
+           LoadOrganizationComBox();
+           LoadDocumentTypeComBox();
+
             //Set the default value of the comboboxes
             Comb_ImportanceState.SelectedIndex = 2;
             Comb_MoneyState.SelectedIndex = 2;
@@ -30,7 +33,7 @@
 
             LoadInvoiceViewWindow();
         }
-
+        
         private void LoadInvoiceViewWindow()
         {
             switch (invoiceViewModeEnum)
@@ -100,13 +103,40 @@
             }
         }
 
+        private void LoadDocumentTypeComBox()
+        {
+            foreach (var documenttype in EnvironmentsVariable.AllInvoices
+                .Select(x => x.DocumentType)
+                .Distinct()
+                .OrderBy(x => x))
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                    => { Comb_DocumentType.Items.Add(documenttype); }));
+        }
+
+        private void LoadOrganizationComBox()
+        {
+            //it must be done, otherwise the exception will be thrown (
+            //System.InvalidOperationException: "Collection was modified; enumeration operation may not execute".)
+            List<InvoiceModel> allInvoices = new List<InvoiceModel>(EnvironmentsVariable.AllInvoices);
+
+            //otherwise an empty orga will be displayed in the comb
+            allInvoices.RemoveAll(x => x.Organization == String.Empty);
+
+            foreach (var organization in allInvoices
+                .Select(x => x.Organization)
+                .Distinct()
+                .OrderBy(x => x))
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                        => { Comb_Organization.Items.Add(organization); }));
+        }
+
         private void DoEverythingDisable()
         {
             Tb_FilePath.IsEnabled = false;
-            Tb_Organization.IsEnabled = false;
+            Comb_Organization.IsEnabled = false;
             Tb_Reference.IsEnabled = false;
             Tb_InvoiceNumber.IsEnabled = false;
-            Tb_DocumentType.IsEnabled = false;
+            Comb_DocumentType.IsEnabled = false;
             Tb_MoneyTotal.IsEnabled = false;
             Tb_Tags.IsEnabled = false;
             Comb_ImportanceState.IsEnabled = false;
@@ -120,8 +150,8 @@
             //to avoid that the date is taken from the template
             if (InvoiceViewModeEnum.InvoiceAdd != invoiceViewModeEnum)
                 Dp_ExhibitionDate.SelectedDate = invoice.ExhibitionDate;
-            Tb_Organization.Text = invoice.Organization;
-            Tb_DocumentType.Text = invoice.DocumentType;
+            Comb_Organization.Text = invoice.Organization;
+            Comb_DocumentType.Text = invoice.DocumentType;
             Tb_InvoiceNumber.Text = invoice.InvoiceNumber == "" ? "" : invoice.InvoiceNumber;
             Tb_Reference.Text = invoice.Reference;
             Tb_MoneyTotal.Text = invoice.MoneyTotal == -1 ? "" : invoice.MoneyTotal.ToString();
@@ -141,7 +171,7 @@
             // Empty Tb_Organization inputs are allowed 
             //if (String.IsNullOrWhiteSpace(Tb_Organization.Text))
             //    return false;
-            if (String.IsNullOrWhiteSpace(Tb_DocumentType.Text))
+            if (String.IsNullOrWhiteSpace(Comb_DocumentType.Text))
                 return false;
             if (Dp_ExhibitionDate.SelectedDate == default)
                 return false;
@@ -164,10 +194,10 @@
         {
             Dp_ExhibitionDate.SelectedDate = DateTime.Now;
             Tb_FilePath.Text = String.Empty;
-            Tb_Organization.Text = String.Empty;
+            Comb_Organization.SelectedIndex = -1;
             Tb_Reference.Text = String.Empty;
             Tb_InvoiceNumber.Text = String.Empty;
-            Tb_DocumentType.Text = String.Empty;
+            Comb_DocumentType.SelectedIndex = -1;
             Tb_MoneyTotal.Text = String.Empty;
             Tb_Tags.Text = String.Empty;
             Comb_ImportanceState.SelectedIndex = 2;
@@ -242,8 +272,8 @@
                 {
                     FileID = invoice.FileID,
                     ExhibitionDate = Dp_ExhibitionDate.SelectedDate.Value,
-                    Organization = Tb_Organization.Text,
-                    DocumentType = Tb_DocumentType.Text,
+                    Organization = Comb_Organization.Text,
+                    DocumentType = Comb_DocumentType.Text,
                     InvoiceNumber = Tb_InvoiceNumber.Text,
                     Reference = Tb_Reference.Text,
                     MoneyTotal = String.IsNullOrEmpty(Tb_MoneyTotal.Text) ? -1 : Convert.ToDouble(Tb_MoneyTotal.Text),
@@ -313,8 +343,8 @@
                 FileID = hashID,
                 CaptureDate = DateTime.Now,
                 ExhibitionDate = Dp_ExhibitionDate.SelectedDate.Value,
-                Organization = Tb_Organization.Text,
-                DocumentType = Tb_DocumentType.Text,
+                Organization = Comb_Organization.Text,
+                DocumentType = Comb_DocumentType.Text,
                 InvoiceNumber = Tb_InvoiceNumber.Text,
                 Reference = Tb_Reference.Text,
                 MoneyTotal = String.IsNullOrEmpty(Tb_MoneyTotal.Text) ? -1 : Convert.ToDouble(Tb_MoneyTotal.Text),
