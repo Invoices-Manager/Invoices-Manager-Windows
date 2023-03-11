@@ -332,5 +332,67 @@
 
             return true;
         }
+
+        internal List<BackUpInfoModel> GetBackUps()
+        {
+            List<BackUpInfoModel> backUpInfos = new List<BackUpInfoModel>();
+
+            //get all files in the backup folder
+            string[] files = Directory.GetFiles(EnvironmentsVariable.PathBackUps);
+
+            //go through all files and add them to the list
+            foreach (string file in files)
+            {
+                //get meta data from backup
+                BackUpInfoModel backUpMetaData = GetBackUpMetaData(file);
+
+                //add the file to the list
+                backUpInfos.Add(backUpMetaData);
+            }
+
+            return backUpInfos;
+        }
+
+        private BackUpInfoModel GetBackUpMetaData(string file)
+        {
+            BackUpInfoModel backUpMetaData = new BackUpInfoModel();
+            BackUpModel backUp = JsonConvert.DeserializeObject<BackUpModel>(File.ReadAllText(file));
+
+            //get date of creation
+            backUpMetaData.DateOfCreation = backUp.DateOfCreation;
+
+            //get backup version
+            backUpMetaData.BackUpVersion = backUp.BackUpVersion;
+
+            //get entitiy count invoices
+            backUpMetaData.EntityCountInvoices = backUp.EntityCount;
+
+            //get entitiy count notes
+            backUpMetaData.EntityCountNotes = backUp.Notebook.Notebook.Count;
+
+            //get file size in mb
+            backUpMetaData.BackUpSize = GetFileSize(file);
+
+            //get fileName 
+            backUpMetaData.BackUpName = Path.GetFileName(file);
+
+            //get file path
+            backUpMetaData.BackUpPath = file;
+            
+            return backUpMetaData;
+        }
+
+        public static string GetFileSize(string path)
+        {
+            long size = new FileInfo(path).Length;
+
+            string[] suf = { "B", "KB", "MB", "GB", "TB", "PB", "EB" }; //Longs run out around EB
+            if (size == 0)
+                return "0" + suf[0];
+            long bytes = Math.Abs(size);
+            int place = Convert.ToInt32(Math.Floor(Math.Log(bytes, 1024)));
+            double num = Math.Round(bytes / Math.Pow(1024, place), 1);
+            return (Math.Sign(size) * num).ToString() + suf[place];
+        }
     }
 }

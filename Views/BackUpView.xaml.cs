@@ -3,7 +3,13 @@
     public partial class BackUpView: Page
     {
         public BackUpView()
-            => InitializeComponent();
+        {
+            InitializeComponent();
+            RefreshDataGrid();
+        }
+
+        private void Bttn_BoardRefresh_Click(object sender, RoutedEventArgs e)
+            => RefreshDataGrid();
 
         private async void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
         {
@@ -91,6 +97,30 @@
                 {
                     LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "Save as was not completed successfully!");
                     MessageBox.Show(Application.Current.Resources["backUpFailedSaveAs"] as string);
+                }
+            });
+        }
+        
+        private async void RefreshDataGrid()
+        {
+            await Task.Run(() =>
+            {
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, "Refresh was requested");
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, "GetBackUps() was requested");
+                BackUpSystem buSys = new BackUpSystem();
+                List<BackUpInfoModel> backUpInfos = buSys.GetBackUps();
+                if (backUpInfos != null)
+                {
+                    LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"Refresh was completed successfully! {backUpInfos.Count} items were found");
+                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                        => { 
+                                Dg_BackUps.ItemsSource = backUpInfos;
+                                MsgBox_BackUpCounter.Content = backUpInfos.Count;
+                        }));
+                }
+                else
+                {
+                    LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "Refresh was not completed successfully!");
                 }
             });
         }
