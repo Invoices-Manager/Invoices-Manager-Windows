@@ -124,4 +124,5 @@
     <system:String x:Key="backUpName">Sicherungs Name</system:String>
     <system:String x:Key="backUpPath">Sicherungs Pfad</system:String>
     <system:String x:Key="saveBackUpAs">Sicherung speichern als</system:String>
+    <system:String x:Key="backUpFailedSaveAs">Das speichern hat nicht funktoniert!</system:String>
 </ResourceDictionary>

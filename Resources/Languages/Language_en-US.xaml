@@ -123,4 +123,5 @@
     <system:String x:Key="backUpName">backup name</system:String>
     <system:String x:Key="backUpPath">backup path</system:String>
     <system:String x:Key="saveBackUpAs">backup save as</system:String>
+    <system:String x:Key="backUpFailedSaveAs">the save failed!</system:String>
 </ResourceDictionary>

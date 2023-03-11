@@ -13,10 +13,10 @@
             <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40">
                 <Button x:Name="Bttn_BoardRefresh"  Content="{DynamicResource refreshBoard}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" />
                 <Separator Margin="10,0,10,0"/>
-                <Button x:Name="Bttn_BackUpCreate" Content="{DynamicResource createBackUp}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" />
-                <Button x:Name="Bttn_BackUpRestore" Content="{DynamicResource importBackUp}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" />
+                <Button x:Name="Bttn_BackUpCreate" Content="{DynamicResource createBackUp}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_BackUpCreate_Click"/>
+                <Button x:Name="Bttn_BackUpRestore" Content="{DynamicResource importBackUp}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_BackUpRestore_Click"/>
                 <Separator Margin="10,0,10,0"/>
-                <Button x:Name="Bttn_BackSaveAs" Content="{DynamicResource saveBackUpAs}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0"/>
+                <Button x:Name="Bttn_BackSaveAs" Content="{DynamicResource saveBackUpAs}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_BackUpSaveAs_Click"/>
             </ToolBarPanel>
         </Grid>
 

@@ -309,5 +309,28 @@
 
             return wasPerformedCorrectly;
         }
+
+        public bool SaveAs(string backupFilePath, string newPath)
+        {
+            //return if the backup not exist
+            if (!File.Exists(backupFilePath))
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, $"The BackUp file does not exist, abort the process! {backupFilePath}");
+                return false;
+            }
+
+            //delete if the file already exist
+            if (File.Exists(newPath))
+            {
+                LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_System, $"The file already exists, file will be deleted! {newPath}");
+                File.Delete(newPath);
+            }
+
+            //saves the backup to the new path
+            File.Copy(backupFilePath, newPath);
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, "");
+
+            return true;
+        }
     }
 }
