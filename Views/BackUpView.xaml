@@ -36,6 +36,12 @@
                           VirtualizingPanel.IsVirtualizingWhenGrouping="True"
                           VirtualizingPanel.VirtualizationMode="Recycling"
                           VirtualizingPanel.ScrollUnit="Item">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem x:Name="MenuItem_BackUpRestore"  Header="{DynamicResource importBackUp}"/>
+                            <MenuItem x:Name="MenuItem_BackSaveAs"  Header="{DynamicResource saveBackUpAs}"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="Column_DateOfCreation" Header="{DynamicResource dateOfCreation}" Binding="{Binding DateOfCreation}"/>
                         <DataGridTextColumn x:Name="Column_BackUpVersion" Header="{DynamicResource backUpVersion}" Binding="{Binding BackUpVersion}"/>
