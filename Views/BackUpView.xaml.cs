@@ -129,5 +129,10 @@
         {
 
         }
+
+        private void MenuItem_BackUpDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
