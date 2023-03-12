@@ -335,6 +335,8 @@
 
         public async IAsyncEnumerable<BackUpInfoModel> GetBackUps()
         {
+            BackUpSystem buSys = new BackUpSystem();
+
             //get all files in the backup folder
             string[] files = Directory.GetFiles(EnvironmentsVariable.PathBackUps);
 
@@ -342,12 +344,13 @@
             foreach (string file in files)
             {
                 //get meta data from backup
-                BackUpInfoModel backUpMetaData = await Task.Run(() => GetBackUpMetaData(file));
+                BackUpInfoModel backUpMetaData = await Task.Run(() => buSys.GetBackUpMetaData(file));
 
-                //yield the result (is used because with many backups it can take a long time until all are ready. (for UX))
+                //yield the result
                 yield return backUpMetaData;
             }
         }
+
 
 
         private BackUpInfoModel GetBackUpMetaData(string file)

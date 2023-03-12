@@ -101,29 +101,24 @@
                 }
             });
         }
-        
-        private async void RefreshDataGrid()
+
+        private async Task RefreshDataGrid()
         {
-            await Task.Run(() =>
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, "Refresh was requested");
+            BackUpSystem buSys = new BackUpSystem();
+
+            //clear the dg
+            Dg_BackUps.Items.Clear();
+
+            await foreach (BackUpInfoModel backUpInfo in buSys.GetBackUps())
             {
-                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, "Refresh was requested");
-                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, "GetBackUps() was requested");
-                BackUpSystem buSys = new BackUpSystem();
-                List<BackUpInfoModel> backUpInfos = buSys.GetBackUps();
-                if (backUpInfos != null)
-                {
-                    LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"Refresh was completed successfully! {backUpInfos.Count} items were found");
-                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
-                        => { 
-                                Dg_BackUps.ItemsSource = backUpInfos;
-                                MsgBox_BackUpCounter.Content = $"{Application.Current.Resources["backUpCount"] as string}: {backUpInfos.Count}";
-                            }));
-                }
-                else
-                {
-                    LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "Refresh was not completed successfully!");
-                }
-            });
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"New BackUpInfoModel was found: {backUpInfo.BackUpName}");
+                Dg_BackUps.Items.Add(backUpInfo);
+                MsgBox_BackUpCounter.Content = $"{Application.Current.Resources["backUpCount"] as string}: {Dg_BackUps.Items.Count}";
+            }
+
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"Refresh was completed successfully! {Dg_BackUps.Items.Count} items were found");
         }
+
     }
 }
