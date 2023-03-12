@@ -1,4 +1,6 @@
-﻿namespace InvoicesManager.Views
+﻿using System.Security.Cryptography;
+
+namespace InvoicesManager.Views
 {
     public partial class BackUpView: Page
     {
@@ -17,7 +19,7 @@
             {
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, $"BackUp was requested {EnvironmentsVariable.PathBackUps}");
                 BackUpSystem buSys = new BackUpSystem();
-                if (buSys.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup")))
+                if (buSys.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"), this))
                 {
                     LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "BackUp was completed successfully!");
                     MessageBox.Show(Application.Current.Resources["backUpSuccessfully"] as string);
@@ -39,14 +41,14 @@
                 RestoreDirectory = true
             };
 
-            if (sfg.ShowDialog() == DialogResult.OK)
+            if (sfg.ShowDialog() != DialogResult.OK)
                 return;
 
             await Task.Run(() =>
             {
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, $"BackUp was requested {sfg.FileName}");
                 BackUpSystem buSys = new BackUpSystem();
-                if (buSys.BackUp(sfg.FileName))
+                if (buSys.BackUp(sfg.FileName, this))
                 {
                     LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "BackUp was completed successfully!");
                     MessageBox.Show(Application.Current.Resources["backUpSuccessfully"] as string);
@@ -73,7 +75,7 @@
             {
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "Restore was requested");
                 BackUpSystem buSys = new BackUpSystem();
-                if (buSys.Restore(ofd.FileName))
+                if (buSys.Restore(ofd.FileName, this))
                 {
                     LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "Restore was completed successfully!");
                 }
@@ -104,7 +106,7 @@
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"Refresh was completed successfully! {Dg_BackUps.Items.Count} items were found");
         }
 
-        private void MenuItem_BackUpRestore_Click(object sender, RoutedEventArgs e)
+        private async void MenuItem_BackUpRestore_Click(object sender, RoutedEventArgs e)
         {
             BackUpInfoModel selectedBackUp = (BackUpInfoModel)Dg_BackUps.SelectedItem;
             BackUpSystem buSys = new BackUpSystem();
@@ -117,10 +119,20 @@
 
             LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, $"Restore was requested {selectedBackUp.BackUpPath}");
 
-            if (buSys.Restore(selectedBackUp.BackUpPath))
-                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "Restore was completed successfully!");
-            else
-                LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "Restore was not completed successfully!");
+            await Task.Run(() =>
+            {
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "Restore was requested");
+                BackUpSystem buSys = new BackUpSystem();
+                if (buSys.Restore(selectedBackUp.BackUpPath, this))
+                {
+                    LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "Restore was completed successfully!");
+                }
+                else
+                {
+                    LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "Restore was not completed successfully!");
+                    MessageBox.Show(Application.Current.Resources["backUpFailedRestored"] as string);
+                }
+            });
         }
 
         private void MenuItem_BackSaveAs_Click(object sender, RoutedEventArgs e)
@@ -172,6 +184,37 @@
             }
             else
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_View, "BackUp was NOT deleted");
+        }
+
+
+        public void ClearInfoProgressBar()
+        {
+            try
+            {
+                PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
+                { PB_InfoProgressBar.Value = 0; }));
+            }
+            catch { }
+        }
+
+        public void SetInfoProgressBarValue(int value)
+        {
+            try
+            {
+                PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
+                { PB_InfoProgressBar.Value += value; }));
+            }
+            catch { }
+        }
+
+        public void SetInfoProgressMaxValue(int value)
+        {
+            try
+            {
+                PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
+                { PB_InfoProgressBar.Maximum = value; }));
+            }
+            catch { }
         }
     }
 }
