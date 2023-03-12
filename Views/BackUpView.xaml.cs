@@ -90,8 +90,9 @@
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, "Refresh was requested");
             BackUpSystem buSys = new BackUpSystem();
 
-            //clear the dg
+            //clear the dg and counter
             Dg_BackUps.Items.Clear();
+            MsgBox_BackUpCounter.Content = $"{Application.Current.Resources["backUpCount"] as string}: 0";
 
             await foreach (BackUpInfoModel backUpInfo in buSys.GetBackUps())
             {
@@ -108,7 +109,18 @@
             BackUpInfoModel selectedBackUp = (BackUpInfoModel)Dg_BackUps.SelectedItem;
             BackUpSystem buSys = new BackUpSystem();
 
-            buSys.Restore(selectedBackUp.BackUpPath);
+            if (selectedBackUp is null)
+            {
+                LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "Restore was requested, but backUp was null!");
+                return;
+            }
+
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, $"Restore was requested {selectedBackUp.BackUpPath}");
+
+            if (buSys.Restore(selectedBackUp.BackUpPath))
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "Restore was completed successfully!");
+            else
+                LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "Restore was not completed successfully!");
         }
 
         private void MenuItem_BackSaveAs_Click(object sender, RoutedEventArgs e)
@@ -121,26 +133,45 @@
                 CheckFileExists = false
             };
 
+            if (selectedBackUp is null)
+            {
+                LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "BackUp save as was requested, but backUp was null!");
+                return;
+            }
+
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, $"BackUp save as was requested  {ofd.FileName}");
+
             if (ofd.ShowDialog() != DialogResult.OK)
                 return;
 
-            buSys.SaveAs(selectedBackUp.BackUpPath, ofd.FileName);
+            if (buSys.SaveAs(selectedBackUp.BackUpPath, ofd.FileName))
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "BackUp save as was completed successfully!");
+            else
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_View, "BackUp save as was not completed successfully!");
         }
 
         private void MenuItem_BackUpDelete_Click(object sender, RoutedEventArgs e)
         {
             BackUpInfoModel selectedBackUp = (BackUpInfoModel)Dg_BackUps.SelectedItem;
             BackUpSystem buSys = new BackUpSystem();
-            
-            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "BackUp delete was requested");
+
+            if (selectedBackUp is null)
+            {
+                LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "BackUp delete was requested , but backUp was null!");
+                return;
+            }
+
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, $"BackUp delete was requested  {selectedBackUp.BackUpName}");
 
             if (buSys.Delete(selectedBackUp.BackUpPath))
             {
                 Dg_BackUps.Items.Remove(selectedBackUp);
-                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, $"BackUp was deleted {selectedBackUp.BackUpName}");
+                //update counter
+                MsgBox_BackUpCounter.Content = $"{Application.Current.Resources["backUpCount"] as string}: {Dg_BackUps.Items.Count}";
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "BackUp was deleted");
             }
             else
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_View, $"BackUp was  NOT deleted {selectedBackUp.BackUpName}");
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_View, "BackUp was NOT deleted");
         }
     }
 }
