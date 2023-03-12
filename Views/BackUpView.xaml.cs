@@ -66,42 +66,6 @@
             });
         }
 
-        private async void Bttn_BackUpSaveAs_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog ofd_backUpFilePath = new OpenFileDialog()
-            {
-                Filter = Application.Current.Resources["bkupFilter"] as string,
-                CheckFileExists = true
-            };
-
-            OpenFileDialog ofd_savePath = new OpenFileDialog()
-            {
-                Filter = Application.Current.Resources["bkupFilter"] as string,
-                CheckFileExists = false
-            };
-
-            if (ofd_backUpFilePath.ShowDialog() != DialogResult.OK)
-                return;
-
-            if (ofd_savePath.ShowDialog() != DialogResult.OK)
-                return;
-
-            await Task.Run(() =>
-            {
-                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "Save as was requested");
-                BackUpSystem buSys = new BackUpSystem();
-                if (buSys.SaveAs(ofd_backUpFilePath.FileName, ofd_savePath.FileName))
-                {
-                    LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "Save as was completed successfully!");
-                }
-                else
-                {
-                    LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "Save as was not completed successfully!");
-                    MessageBox.Show(Application.Current.Resources["backUpFailedSaveAs"] as string);
-                }
-            });
-        }
-
         private async Task RefreshDataGrid()
         {
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, "Refresh was requested");
