@@ -68,6 +68,8 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 
 ## v1.4.3.0
 - In the invoice view (add & edit) you can now search by template, document type & the organization (just type in the box)
+- The backup view has been improved (there is now a backup manager)
+- The Backup Manager shows you the backup files
 
 ## v1.4.2.1
 - The 3 buttons from the notebook had a static text (no translation) 
