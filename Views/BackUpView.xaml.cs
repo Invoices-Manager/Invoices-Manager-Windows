@@ -5,11 +5,11 @@
         public BackUpView()
         {
             InitializeComponent();
-            RefreshDataGrid();
+            _ = RefreshDataGrid();
         }
 
         private void Bttn_BoardRefresh_Click(object sender, RoutedEventArgs e)
-            => RefreshDataGrid();
+            => _ = RefreshDataGrid();
 
         private async void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
         {
