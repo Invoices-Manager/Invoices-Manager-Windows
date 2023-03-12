@@ -122,17 +122,42 @@
 
         private void MenuItem_BackUpRestore_Click(object sender, RoutedEventArgs e)
         {
+            BackUpInfoModel selectedBackUp = (BackUpInfoModel)Dg_BackUps.SelectedItem;
+            BackUpSystem buSys = new BackUpSystem();
 
+            buSys.Restore(selectedBackUp.BackUpPath);
         }
 
         private void MenuItem_BackSaveAs_Click(object sender, RoutedEventArgs e)
         {
+            BackUpInfoModel selectedBackUp = (BackUpInfoModel)Dg_BackUps.SelectedItem;
+            BackUpSystem buSys = new BackUpSystem();
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                Filter = Application.Current.Resources["bkupFilter"] as string,
+                CheckFileExists = false
+            };
 
+            if (ofd.ShowDialog() != DialogResult.OK)
+                return;
+
+            buSys.SaveAs(selectedBackUp.BackUpPath, ofd.FileName);
         }
 
         private void MenuItem_BackUpDelete_Click(object sender, RoutedEventArgs e)
         {
+            BackUpInfoModel selectedBackUp = (BackUpInfoModel)Dg_BackUps.SelectedItem;
+            BackUpSystem buSys = new BackUpSystem();
+            
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "BackUp delete was requested");
 
+            if (buSys.Delete(selectedBackUp.BackUpPath))
+            {
+                Dg_BackUps.Items.Remove(selectedBackUp);
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, $"BackUp was deleted {selectedBackUp.BackUpName}");
+            }
+            else
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_View, $"BackUp was  NOT deleted {selectedBackUp.BackUpName}");
         }
     }
 }

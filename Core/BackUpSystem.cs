@@ -394,5 +394,20 @@
             double num = Math.Round(bytes / Math.Pow(1024, place), 1);
             return (Math.Sign(size) * num).ToString() + suf[place];
         }
+
+        public bool Delete(string backUpPath)
+        {
+            //delete the backup
+            try
+            {
+                File.Delete(backUpPath);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, ex.Message);
+                return false;
+            }
+        }
     }
 }
