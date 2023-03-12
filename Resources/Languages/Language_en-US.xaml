@@ -27,6 +27,7 @@
     <system:String x:Key="removeInvoice">remove invoice</system:String>
     <system:String x:Key="saveInvoiceAs">save invoice as</system:String>
     <system:String x:Key="createBackUp">create backup</system:String>
+    <system:String x:Key="createBackUpAndSaveAs">create backup and save as...</system:String>
     <system:String x:Key="restoreBackUp">restore backup</system:String>
     <system:String x:Key="deleteBackUp">delete backup</system:String>
     <system:String x:Key="settings">settings</system:String>

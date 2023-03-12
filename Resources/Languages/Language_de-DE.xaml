@@ -27,6 +27,7 @@
     <system:String x:Key="removeInvoice">Rechnung entfernen</system:String>
     <system:String x:Key="saveInvoiceAs">Rechnung speichern als</system:String>
     <system:String x:Key="createBackUp">Sicherung erstellen</system:String>
+    <system:String x:Key="createBackUpAndSaveAs">Sicherung erstellen und speichern unter...</system:String>
     <system:String x:Key="restoreBackUp">Sicherung importieren</system:String>
     <system:String x:Key="deleteBackUp">Sicherung löschen</system:String>
     <system:String x:Key="settings">Einstellungen</system:String>

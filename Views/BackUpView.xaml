@@ -13,7 +13,9 @@
             <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40">
                 <Button x:Name="Bttn_BoardRefresh"  Content="{DynamicResource refreshBoard}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0"  Click="Bttn_BoardRefresh_Click"/>
                 <Separator Margin="10,0,10,0"/>
-                <Button x:Name="Bttn_BackUpCreate" Content="{DynamicResource createBackUp}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_BackUpCreate_Click"/>
+                <Button x:Name="Bttn_BackUpCreates" Content="{DynamicResource createBackUp}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_BackUpCreate_Click"/>
+                <Separator Margin="10,0,10,0"/>
+                <Button x:Name="Bttn_BackUpCreateSaveAs" Content="{DynamicResource createBackUpAndSaveAs}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_BackUpCreateSaveAs_Click"/>
                 <Button x:Name="Bttn_BackUpRestore" Content="{DynamicResource restoreBackUp}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_BackUpRestore_Click"/>
             </ToolBarPanel>
         </Grid>

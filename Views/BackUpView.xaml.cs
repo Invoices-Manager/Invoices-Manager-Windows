@@ -13,6 +13,26 @@
 
         private async void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
         {
+            await Task.Run(() =>
+            {
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, $"BackUp was requested {EnvironmentsVariable.PathBackUps}");
+                BackUpSystem buSys = new BackUpSystem();
+                if (buSys.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup")))
+                {
+                    LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "BackUp was completed successfully!");
+                    MessageBox.Show(Application.Current.Resources["backUpSuccessfully"] as string);
+                }
+                else
+                {
+                    LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "BackUp was not completed successfully!");
+                    MessageBox.Show(Application.Current.Resources["backUpFailed"] as string);
+                }
+            });
+            await RefreshDataGrid();
+        }
+        
+        private async void Bttn_BackUpCreateSaveAs_Click(object sender, RoutedEventArgs e)
+        {
             SaveFileDialog sfg = new SaveFileDialog()
             {
                 Filter = Application.Current.Resources["bkupFilter"] as string,
@@ -24,7 +44,7 @@
 
             await Task.Run(() =>
             {
-                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "BackUp was requested");
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, $"BackUp was requested {sfg.FileName}");
                 BackUpSystem buSys = new BackUpSystem();
                 if (buSys.BackUp(sfg.FileName))
                 {
@@ -37,7 +57,6 @@
                     MessageBox.Show(Application.Current.Resources["backUpFailed"] as string);
                 }
             });
-
         }
 
         private async void Bttn_BackUpRestore_Click(object sender, RoutedEventArgs e)
