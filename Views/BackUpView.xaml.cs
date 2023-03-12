@@ -120,5 +120,14 @@
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"Refresh was completed successfully! {Dg_BackUps.Items.Count} items were found");
         }
 
+        private void MenuItem_BackUpRestore_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_BackSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

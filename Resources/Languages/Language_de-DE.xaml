@@ -28,6 +28,7 @@
     <system:String x:Key="saveInvoiceAs">Rechnung speichern als</system:String>
     <system:String x:Key="createBackUp">Sicherung erstellen</system:String>
     <system:String x:Key="importBackUp">Sicherung importieren</system:String>
+    <system:String x:Key="deleteBackUp">Sicherung löschen</system:String>
     <system:String x:Key="settings">Einstellungen</system:String>
     <system:String x:Key="about">Über das Programm</system:String>
     <system:String x:Key="invoices">Rechnungen</system:String>

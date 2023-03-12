@@ -38,8 +38,9 @@
                           VirtualizingPanel.ScrollUnit="Item">
                     <DataGrid.ContextMenu>
                         <ContextMenu>
-                            <MenuItem x:Name="MenuItem_BackUpRestore"  Header="{DynamicResource importBackUp}"/>
-                            <MenuItem x:Name="MenuItem_BackSaveAs"  Header="{DynamicResource saveBackUpAs}"/>
+                            <MenuItem x:Name="MenuItem_BackUpRestore"  Header="{DynamicResource importBackUp}" Click="MenuItem_BackUpRestore_Click"/>
+                            <MenuItem x:Name="MenuItem_BackUpDelete"  Header="{DynamicResource deleteBackUp}" Click="MenuItem_BackUpDelete_Click"/>
+                            <MenuItem x:Name="MenuItem_BackSaveAs"  Header="{DynamicResource saveBackUpAs}" Click="MenuItem_BackSaveAs_Click"/>
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                     <DataGrid.Columns>
