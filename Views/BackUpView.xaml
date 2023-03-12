@@ -7,13 +7,59 @@
         mc:Ignorable="d"
         Title="BackUp Menu | Made by Schecher | https://github.com/Schecher1" 
         d:DesignHeight="1000" d:DesignWidth="1000"
-        MinHeight="250" MinWidth="250">
+        MinHeight="250" MinWidth="250"
+        Loaded="Page_Loaded">
     <Grid Background="{DynamicResource GridBackground}">
-        <ScrollViewer>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="Bttn_BackUpCreate" Content="{DynamicResource createBackUp}" Foreground="{DynamicResource FontForeground}" FontSize="{DynamicResource FontSize}" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_BackUpCreate_Click"/>
-                <Button x:Name="Bttn_BackUpRestore"  Content="{DynamicResource importBackUp}" Foreground="{DynamicResource FontForeground}" FontSize="{DynamicResource FontSize}" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_BackUpRestore_Click"/>
-            </StackPanel>
-        </ScrollViewer>
+        <Grid>
+            <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40">
+                <Button x:Name="Bttn_BoardRefresh"  Content="{DynamicResource refreshBoard}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0"  Click="Bttn_BoardRefresh_Click"/>
+                <Separator Margin="10,0,10,0"/>
+                <Button x:Name="Bttn_BackUpCreates" Content="{DynamicResource createBackUp}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_BackUpCreate_Click"/>
+                <Separator Margin="10,0,10,0"/>
+                <Button x:Name="Bttn_BackUpCreateSaveAs" Content="{DynamicResource createBackUpAndSaveAs}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_BackUpCreateSaveAs_Click"/>
+                <Button x:Name="Bttn_BackUpRestore" Content="{DynamicResource restoreBackUp}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_BackUpRestore_Click"/>
+            </ToolBarPanel>
+        </Grid>
+
+        <Grid Margin="0,40,0,35" Background="#FF232323">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid Name="Dg_BackUps" 
+                          ItemsSource="{Binding}" 
+                          Foreground="{DynamicResource FontForeground}"
+                          AutoGenerateColumns="False" 
+                          CanUserReorderColumns="False" 
+                          CanUserDeleteRows="False" 
+                          CanUserAddRows="False" 
+                          ClipboardCopyMode="ExcludeHeader"
+                          IsReadOnly="True"
+                          FontSize="{DynamicResource FontSize}"
+                          VirtualizingPanel.IsVirtualizing="True"
+                          VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                          VirtualizingPanel.VirtualizationMode="Recycling"
+                          VirtualizingPanel.ScrollUnit="Item">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem x:Name="MenuItem_BackUpRestore"  Header="{DynamicResource restoreBackUp}" Click="MenuItem_BackUpRestore_Click"/>
+                            <MenuItem x:Name="MenuItem_BackUpDelete"  Header="{DynamicResource deleteBackUp}" Click="MenuItem_BackUpDelete_Click"/>
+                            <MenuItem x:Name="MenuItem_BackSaveAs"  Header="{DynamicResource saveBackUpAs}" Click="MenuItem_BackSaveAs_Click"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="Column_DateOfCreation" Header="{DynamicResource dateOfCreation}" Binding="{Binding DateOfCreation}"/>
+                        <DataGridTextColumn x:Name="Column_BackUpVersion" Header="{DynamicResource backUpVersion}" Binding="{Binding BackUpVersion}"/>
+                        <DataGridTextColumn x:Name="Column_BackUpSize" Header="{DynamicResource backUpSize}" Binding="{Binding BackUpSize}"/>
+                        <DataGridTextColumn x:Name="Column_EntitiyCount_Invoices" Header="{DynamicResource entitiyCountInvoices}" Binding="{Binding EntityCountInvoices}"/>
+                        <DataGridTextColumn x:Name="Column_EntitiyCount_Notebooks" Header="{DynamicResource entitiyCountNotebooks}" Binding="{Binding EntityCountNotes}"/>
+                        <DataGridTextColumn x:Name="Column_BackUpName" Header="{DynamicResource backUpName}" Binding="{Binding BackUpName}"/>
+                        <DataGridTextColumn x:Name="Column_BackUpPath" Header="{DynamicResource backUpPath}" Binding="{Binding BackUpPath}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="35">
+            <Label x:Name="MsgBox_BackUpCounter" Content="backup count: xy" FontSize="{DynamicResource FontSize}" Margin="10,-5,2,0"/>
+            <ProgressBar x:Name="PB_InfoProgressBar" Background="#33000000" Height="20" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="150,0,10,0" Width="400"/>
+        </Grid>
     </Grid>
 </Page>

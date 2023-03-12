@@ -15,8 +15,8 @@ It's simple, there are enough ways to filter your documents.
 
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one).  <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.2.1/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.2.1/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.3.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.3.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
 
 
 ## Features:
@@ -31,32 +31,32 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 
 ## Images:
 ### Main-Screen:                                                  
-![Main-Screen](IMAGES/Version%201.4.0.0/MainScreen.png)
+![Main-Screen](IMAGES/Version%201.4.3.0/MainScreen.png)
 
 ### Invoice-Main-Screen:                                                  
-![Invoice-Main-Screen](IMAGES/Version%201.4.0.0/InvoiceMainScreen.png)
+![Invoice-Main-Screen](IMAGES/Version%201.4.3.0/InvoiceMainScreen.png)
 
 ### Invoice-View-Screen:                                           
-![Invoice-View-Screen](IMAGES/Version%201.4.1.0/InvoiceViewScreen.png)
+![Invoice-View-Screen](IMAGES/Version%201.4.3.0/InvoiceViewScreen.png)
 
-### Invoice-Template-Screen:                                           
-![Invoice-Template-Screen](IMAGES/Version%201.4.0.0/InvoiceTemplateScreen.png)
+### Invoice-Template-Manager:                                           
+![Invoice-Template-Manager](IMAGES/Version%201.4.3.0/InvoiceTemplateScreen.png)
 
 ### SaveAs-Screen:
 -You can choose in which format the file should be saved (the name), or you can save it as you wish                   <br/>
-![SaveAs-Screen](IMAGES/Version%201.4.0.0/InvoiceSaveAsScreen.png)
+![SaveAs-Screen](IMAGES/Version%201.4.3.0/InvoiceSaveAsScreen.png)
 
 ### Notebook-Screen:                                         
-![Notescreen-Screen](IMAGES/Version%201.3.0.0/NotebookScreen.png) 
+![Notescreen-Screen](IMAGES/Version%201.4.3.0/NotebookScreen.png) 
 
 ### BackUp-Screen:                                         
-![BackUp-Screen](IMAGES/Version%201.4.0.0/SettingScreen.png) 
+![BackUp-Screen](IMAGES/Version%201.4.3.0/BackUpScreen.png) 
 
 ### Setting-Screen:                                         
-![Setting-Screen](IMAGES/Version%201.4.0.0/BackUpScreen.png) 
+![Setting-Screen](IMAGES/Version%201.4.3.0/SettingScreen.png) 
 
 ### About-Screen:                                         
-![About-Screen](IMAGES/Version%201.4.0.0/AboutScreen.png)
+![About-Screen](IMAGES/Version%201.4.3.0/AboutScreen.png)
 
 
 # CHANGELOG
@@ -65,6 +65,11 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### Y = Minor version (big updates)
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
+
+## v1.4.3.0
+- In the invoice view (add & edit) you can now search by template, document type & the organization (just type in the box)
+- The backup view has been improved (there is now a backup manager)
+- The Backup Manager shows you the backup files
 
 ## v1.4.2.1
 - The 3 buttons from the notebook had a static text (no translation) 

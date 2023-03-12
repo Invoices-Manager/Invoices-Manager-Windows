@@ -18,7 +18,6 @@
         private ImportanceStateEnum filterImportanceState = ImportanceStateEnum.FilterPlaceholder;
         private double filterMoneyTotal = double.MinValue; // -1 is not possible because it is a valid value
 
-
         public InvoiceMainView()
         {
 #if DEBUG
@@ -37,7 +36,7 @@
                 {
                     LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.MainWindow_View, "auto backup was requested");
                     BackUpSystem buSys = new BackUpSystem();
-                    bool wasPerformedCorrectly = buSys.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"), this);
+                    bool wasPerformedCorrectly = buSys.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"));
                     if (!wasPerformedCorrectly)
                     {
                         LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.MainWindow_View, "the requested auto backup failed");
@@ -481,36 +480,6 @@
 
         private void Tb_Search_String_Clear_Click(object sender, RoutedEventArgs e)
             => Tb_Search_String.Text = String.Empty;
-
-        public void ClearInfoProgressBar()
-        {
-            try
-            {
-                PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
-                { PB_InfoProgressBar.Value = 0; }));
-            }
-            catch { }
-        }
-
-        public void SetInfoProgressBarValue(int value)
-        {
-            try
-            {
-                PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
-                { PB_InfoProgressBar.Value += value; }));
-            }
-            catch { }
-        }
-
-        public void SetInfoProgressMaxValue(int value)
-        {
-            try
-            {
-                PB_InfoProgressBar.Dispatcher.Invoke(new Action(() =>
-                { PB_InfoProgressBar.Maximum = value; }));
-            }
-            catch { }
-        }
 
         private void Dg_Invoices_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
             => Dg_Invoices.ContextMenu.IsOpen = true;

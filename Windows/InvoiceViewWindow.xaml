@@ -16,7 +16,7 @@
             <StackPanel>
                 <Grid>
                     <Label x:Name="Msg_Templates" Margin="90,50,0,0" Content="{DynamicResource selectTemplate}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <ComboBox x:Name="Comb_Templates" Margin="350,50,0,0" Width="350" HorizontalAlignment="Left" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" SelectionChanged="Comb_Templates_SelectionChanged"/>
+                    <ComboBox x:Name="Comb_Templates" IsEditable="True" Margin="350,50,0,0" Width="350" HorizontalAlignment="Left" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" SelectionChanged="Comb_Templates_SelectionChanged"/>
                 </Grid>
                 <Grid>
                     <Label Margin="90,50,0,0" Content="{DynamicResource dateOfExhibition}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
@@ -24,11 +24,11 @@
                 </Grid>
                 <Grid>
                     <Label Margin="90,15,0,0" Content="{DynamicResource organization}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_Organization" Margin="350,15,0,0" Width="350" FontSize="{DynamicResource FontSize}" HorizontalAlignment="Left" Foreground="{DynamicResource FontForeground}"/>
+                    <ComboBox x:Name="Comb_Organization" IsEditable="True" Margin="350,15,0,0" Width="350" FontSize="{DynamicResource FontSize}" HorizontalAlignment="Left" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
                     <Label Margin="90,15,0,0" Content="{DynamicResource documentType}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />
-                    <TextBox x:Name="Tb_DocumentType" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
+                    <ComboBox x:Name="Comb_DocumentType" IsEditable="True" Margin="350,15,0,0" Width="350" HorizontalAlignment="Left" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
                 </Grid>
                 <Grid>
                     <Label Margin="90,15,0,0" Content="{DynamicResource invoiceNo}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Left" />

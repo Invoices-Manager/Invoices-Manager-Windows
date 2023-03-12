@@ -1,8 +1,10 @@
-﻿namespace InvoicesManager.Core
+﻿using ProgressBar = System.Windows.Controls.ProgressBar;
+
+namespace InvoicesManager.Core
 {
     public class BackUpSystem
     {
-        private InvoiceMainView _invoiceMainWindow;
+        private BackUpView _backUpMgrView;
 
         public void CheckBackUpCount()
         {
@@ -27,7 +29,7 @@
             }
         }
 
-        public bool BackUp(string backupFilePath, InvoiceMainView mainWindow = null)
+        public bool BackUp(string backupFilePath, BackUpView backUpMgr = null)
         {
             bool wasPerformedCorrectly = false;
             InvoiceSystem iSys = new InvoiceSystem();
@@ -35,8 +37,8 @@
             try
             {
                 //set the main window for the progress bar
-                if (mainWindow != null)
-                    _invoiceMainWindow = mainWindow;
+                if (backUpMgr != null)
+                    _backUpMgrView = backUpMgr;
 
                 //refresh all invoices
                 iSys.Init();
@@ -48,13 +50,13 @@
                 List<InvoiceBackUpModel> invoices = new List<InvoiceBackUpModel>();
 
                 //clear the progress bar
-                if (mainWindow != null)
-                    _invoiceMainWindow.ClearInfoProgressBar();
+                if (backUpMgr != null)
+                    _backUpMgrView.ClearInfoProgressBar();
 
                 //set the progress bar max value 
                 //2 => SerializeObject & WriteAllText 
-                if (mainWindow != null)
-                    _invoiceMainWindow.SetInfoProgressMaxValue(allInvoices.Count + 2);
+                if (backUpMgr != null)
+                    _backUpMgrView.SetInfoProgressMaxValue(allInvoices.Count + 2);
 
                 //create all InvoiceBackUpModel and add them into the list
                 foreach (InvoiceModel invoice in allInvoices)
@@ -80,8 +82,8 @@
                     };
 
                     invoices.Add(tmpBackUp);
-                    if (mainWindow != null)
-                        _invoiceMainWindow.SetInfoProgressBarValue(1);
+                    if (backUpMgr != null)
+                        _backUpMgrView.SetInfoProgressBarValue(1);
                 }
 
                 //set the creation date
@@ -101,13 +103,13 @@
 
                 //serialize the backup into the json object
                 string json = JsonConvert.SerializeObject(backUp);
-                if (mainWindow != null)
-                    _invoiceMainWindow.SetInfoProgressBarValue(1);
+                if (backUpMgr != null)
+                    _backUpMgrView.SetInfoProgressBarValue(1);
 
                 //write the json into the file
                 File.WriteAllText(backupFilePath, json);
-                if (mainWindow != null)
-                    _invoiceMainWindow.SetInfoProgressBarValue(1);
+                if (backUpMgr != null)
+                    _backUpMgrView.SetInfoProgressBarValue(1);
 
                 //check if the file was created
                 if (File.Exists(backupFilePath))
@@ -118,8 +120,8 @@
                     wasPerformedCorrectly = false;
 
                 //clear the progress bar
-                if (mainWindow != null)
-                    _invoiceMainWindow.ClearInfoProgressBar();
+                if (backUpMgr != null)
+                    _backUpMgrView.ClearInfoProgressBar();
             }
             catch (Exception ex)
             {
@@ -130,11 +132,11 @@
             return wasPerformedCorrectly;
         }
 
-        public bool Restore(string backupFilePath, InvoiceMainView mainWindow = null)
+        public bool Restore(string backupFilePath, BackUpView backUpMgr = null)
         {
             //set the main window for the progress bar
-            if (mainWindow != null)
-                _invoiceMainWindow = mainWindow;
+            if (backUpMgr != null)
+                _backUpMgrView = backUpMgr;
 
             bool wasPerformedCorrectly = true;
             int invoice_AlreadyExistCounter = 0;
@@ -158,12 +160,12 @@
             }
 
             //clear the progress bar
-            if (mainWindow != null)
-                _invoiceMainWindow.ClearInfoProgressBar();
+            if (backUpMgr != null)
+                _backUpMgrView.ClearInfoProgressBar();
 
             //set the progress bar max value 
-            if (mainWindow != null)
-                _invoiceMainWindow.SetInfoProgressMaxValue(backUp.EntityCount + backUp.Notebook.Notebook.Count);
+            if (backUpMgr != null)
+                _backUpMgrView.SetInfoProgressMaxValue(backUp.EntityCount + backUp.Notebook.Notebook.Count);
 
             //check if the backup is valid
             if (!wasPerformedCorrectly)
@@ -230,8 +232,8 @@
                     }
 
                     iSys.AddInvoice(backUpPacked.Invoice, tempInvoicePath, newPath);
-                    if (mainWindow != null)
-                        _invoiceMainWindow.SetInfoProgressBarValue(1);
+                    if (backUpMgr != null)
+                        _backUpMgrView.SetInfoProgressBarValue(1);
                 }
             }
             catch (Exception ex)
@@ -239,8 +241,7 @@
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, ex.Message);
                 wasPerformedCorrectly = false;
             }
-
-            
+           
             try
             {
                 //restore the notebook
@@ -254,8 +255,8 @@
                 if (backUp.Notebook != null)
                     foreach (NoteModel note in backUp.Notebook.Notebook)
                     {
-                        if (mainWindow != null)
-                            _invoiceMainWindow.SetInfoProgressBarValue(1);
+                        if (backUpMgr != null)
+                            _backUpMgrView.SetInfoProgressBarValue(1);
                     
                         if (!nSys.CheckIfNoteExist(note))
                         {
@@ -281,8 +282,8 @@
             }
 
             //clear the progress bar
-            if (mainWindow != null)
-                _invoiceMainWindow.ClearInfoProgressBar();
+            if (backUpMgr != null)
+                _backUpMgrView.ClearInfoProgressBar();
 
             //delete all temp files
             foreach (string file in allTempFiles)
@@ -308,6 +309,124 @@
                                           Application.Current.Resources["recoveryCompleted"] as string, MessageBoxButton.OK);
 
             return wasPerformedCorrectly;
+        }
+
+        public bool SaveAs(string backupFilePath, string newPath)
+        {
+            //return if the backup not exist
+            if (!File.Exists(backupFilePath))
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, $"The BackUp file does not exist, abort the process! {backupFilePath}");
+                return false;
+            }
+
+            //delete if the file already exist
+            if (File.Exists(newPath))
+            {
+                LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_System, $"The file already exists, file will be deleted! {newPath}");
+                File.Delete(newPath);
+            }
+
+            //saves the backup to the new path
+            File.Copy(backupFilePath, newPath);
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, "");
+
+            return true;
+        }
+
+        public async IAsyncEnumerable<BackUpInfoModel> GetBackUps()
+        {
+            BackUpSystem buSys = new BackUpSystem();
+
+            //get all files in the backup folder
+            string[] files = Directory.GetFiles(EnvironmentsVariable.PathBackUps);
+
+            //go through all files and yield each BackUpInfoModel as it is processed
+            foreach (string file in files)
+            {
+                //get meta data from backup
+                BackUpInfoModel backUpMetaData = await Task.Run(() => buSys.GetBackUpMetaData(file));
+
+                //skips the backup if its corrupted
+                if (backUpMetaData == new BackUpInfoModel { })
+                    continue;
+
+                //yield the result
+                yield return backUpMetaData;
+            }
+        }
+
+        private BackUpInfoModel GetBackUpMetaData(string file)
+        {
+            try
+            {
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"Get meta data from backup file: {file}");
+
+                BackUpInfoModel backUpMetaData = new BackUpInfoModel();
+                BackUpModel backUp = JsonConvert.DeserializeObject<BackUpModel>(File.ReadAllText(file));
+
+                //throw excp if the backUp is not valid
+                if (backUp is null)
+                    throw new Exception("backup does not seem to be in the standard as it should be!");
+
+                //get date of creation
+                backUpMetaData.DateOfCreation = backUp.DateOfCreation;
+
+                //get backup version
+                backUpMetaData.BackUpVersion = backUp.BackUpVersion;
+
+                //get entitiy count invoices
+                backUpMetaData.EntityCountInvoices = backUp.EntityCount;
+
+                //get entitiy count notes
+                if (backUp.Notebook is not null)
+                    backUpMetaData.EntityCountNotes = backUp.Notebook.Notebook.Count;
+
+                //get file size in mb
+                backUpMetaData.BackUpSize = GetFileSize(file);
+
+                //get fileName 
+                backUpMetaData.BackUpName = Path.GetFileName(file);
+
+                //get file path
+                backUpMetaData.BackUpPath = file;
+
+                return backUpMetaData;
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, $"The BackUp file is corrupted, abort the process! {file}   Error: {ex.Message}");
+                
+                return new BackUpInfoModel { };
+            }
+        }
+
+        public static string GetFileSize(string path)
+        {
+            long size = new FileInfo(path).Length;
+
+            string[] suf = { "B", "KB", "MB", "GB", "TB", "PB", "EB" }; //Longs run out around EB
+            if (size == 0)
+                return "0" + suf[0];
+            long bytes = Math.Abs(size);
+            int place = Convert.ToInt32(Math.Floor(Math.Log(bytes, 1024)));
+            double num = Math.Round(bytes / Math.Pow(1024, place), 1);
+            return (Math.Sign(size) * num).ToString() + suf[place];
+        }
+
+        public bool Delete(string backUpPath)
+        {
+            //delete the backup
+            try
+            {
+                File.Delete(backUpPath);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, ex.Message);
+                return false;
+            }
         }
     }
 }
