@@ -333,25 +333,22 @@
             return true;
         }
 
-        internal List<BackUpInfoModel> GetBackUps()
+        public async IAsyncEnumerable<BackUpInfoModel> GetBackUps()
         {
-            List<BackUpInfoModel> backUpInfos = new List<BackUpInfoModel>();
-
             //get all files in the backup folder
             string[] files = Directory.GetFiles(EnvironmentsVariable.PathBackUps);
 
-            //go through all files and add them to the list
+            //go through all files and yield each BackUpInfoModel as it is processed
             foreach (string file in files)
             {
                 //get meta data from backup
-                BackUpInfoModel backUpMetaData = GetBackUpMetaData(file);
+                BackUpInfoModel backUpMetaData = await Task.Run(() => GetBackUpMetaData(file));
 
-                //add the file to the list
-                backUpInfos.Add(backUpMetaData);
+                //yield the result (is used because with many backups it can take a long time until all are ready. (for UX))
+                yield return backUpMetaData;
             }
-
-            return backUpInfos;
         }
+
 
         private BackUpInfoModel GetBackUpMetaData(string file)
         {
