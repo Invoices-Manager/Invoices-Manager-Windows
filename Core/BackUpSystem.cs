@@ -347,6 +347,10 @@ namespace InvoicesManager.Core
                 //get meta data from backup
                 BackUpInfoModel backUpMetaData = await Task.Run(() => buSys.GetBackUpMetaData(file));
 
+                //skips the backup if its corrupted
+                if (backUpMetaData == new BackUpInfoModel { })
+                    continue;
+
                 //yield the result
                 yield return backUpMetaData;
             }
@@ -354,31 +358,47 @@ namespace InvoicesManager.Core
 
         private BackUpInfoModel GetBackUpMetaData(string file)
         {
-            BackUpInfoModel backUpMetaData = new BackUpInfoModel();
-            BackUpModel backUp = JsonConvert.DeserializeObject<BackUpModel>(File.ReadAllText(file));
+            try
+            {
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"Get meta data from backup file: {file}");
 
-            //get date of creation
-            backUpMetaData.DateOfCreation = backUp.DateOfCreation;
+                BackUpInfoModel backUpMetaData = new BackUpInfoModel();
+                BackUpModel backUp = JsonConvert.DeserializeObject<BackUpModel>(File.ReadAllText(file));
 
-            //get backup version
-            backUpMetaData.BackUpVersion = backUp.BackUpVersion;
+                //throw excp if the backUp is not valid
+                if (backUp is null)
+                    throw new Exception("backup does not seem to be in the standard as it should be!");
 
-            //get entitiy count invoices
-            backUpMetaData.EntityCountInvoices = backUp.EntityCount;
+                //get date of creation
+                backUpMetaData.DateOfCreation = backUp.DateOfCreation;
 
-            //get entitiy count notes
-            backUpMetaData.EntityCountNotes = backUp.Notebook.Notebook.Count;
+                //get backup version
+                backUpMetaData.BackUpVersion = backUp.BackUpVersion;
 
-            //get file size in mb
-            backUpMetaData.BackUpSize = GetFileSize(file);
+                //get entitiy count invoices
+                backUpMetaData.EntityCountInvoices = backUp.EntityCount;
 
-            //get fileName 
-            backUpMetaData.BackUpName = Path.GetFileName(file);
+                //get entitiy count notes
+                if (backUp.Notebook is not null)
+                    backUpMetaData.EntityCountNotes = backUp.Notebook.Notebook.Count;
 
-            //get file path
-            backUpMetaData.BackUpPath = file;
-            
-            return backUpMetaData;
+                //get file size in mb
+                backUpMetaData.BackUpSize = GetFileSize(file);
+
+                //get fileName 
+                backUpMetaData.BackUpName = Path.GetFileName(file);
+
+                //get file path
+                backUpMetaData.BackUpPath = file;
+
+                return backUpMetaData;
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, $"The BackUp file is corrupted, abort the process! {file}   Error: {ex.Message}");
+                
+                return new BackUpInfoModel { };
+            }
         }
 
         public static string GetFileSize(string path)
