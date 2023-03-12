@@ -5,12 +5,12 @@ namespace InvoicesManager.Views
     public partial class BackUpView: Page
     {
         public BackUpView()
-        {
-            InitializeComponent();
-            _ = RefreshDataGrid();
-        }
+            => InitializeComponent();
 
         private void Bttn_BoardRefresh_Click(object sender, RoutedEventArgs e)
+            => _ = RefreshDataGrid();
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
             => _ = RefreshDataGrid();
 
         private async void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
