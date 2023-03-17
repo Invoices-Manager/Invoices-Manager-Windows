@@ -11,6 +11,7 @@
         Sort_System,
         Security_System,
         Template_System,
+        Language_System,
 
 
         About_View,
@@ -19,6 +20,6 @@
         Invoice_View,
         MainWindow_View,
         Notebook_View,
-        Setting_View,
+        Setting_View
     }
 }
