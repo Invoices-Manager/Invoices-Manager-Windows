@@ -43,6 +43,9 @@
         {
             try
             {
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Sort_System, $"Start sorting invoices");
+                DateTime startTime = DateTime.Now;
+
                 EnvironmentsVariable.FilteredInvoices = allInvoices
                               .Where(x => x.Reference.ToLower().Contains(filterReference) || String.IsNullOrEmpty(filterReference))
                               .Where(x => x.InvoiceNumber.ToLower().Contains(filterInvoiceNumber) || String.IsNullOrEmpty(filterInvoiceNumber))
@@ -55,10 +58,12 @@
                               .Where(x => x.MoneyTotal == filterMoneyTotal || filterMoneyTotal == double.MinValue)
                               .Where(x => x.Tags.Select(y => y.ToLower()).Contains(filterTags.ToLower()) || String.IsNullOrEmpty(filterTags))
                               .ToList();
+
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Sort_System, $"Stop sorting invoices took {(DateTime.Now - startTime).TotalMilliseconds} ms");
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Sort_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Sort_System, $"Error while sorting invoices {ex.Message}");
             }
         }
     }

@@ -36,11 +36,14 @@
 
         private static List<LogModel> GetAllLogs()
         {
+            Log(LogStateEnum.Debug, LogPrefixEnum.Logger_System, "GetAllLogs() has been called");
             return JsonConvert.DeserializeObject<List<LogModel>>(File.ReadAllText(EnvironmentsVariable.PathLog + EnvironmentsVariable.LogJsonFileName));
         }
 
         private static string GetEnumPrefixAsString(LogPrefixEnum prefix)
         {
+            Log(LogStateEnum.Debug, LogPrefixEnum.Logger_System, "GetEnumPrefixAsString() has been called");
+            
             return prefix switch
             {
                 LogPrefixEnum.System_Thread => "System-Thread",
@@ -64,6 +67,8 @@
 
         private static string GetEnumStateAsString(LogStateEnum state)
         {
+            Log(LogStateEnum.Debug, LogPrefixEnum.Logger_System, "GetEnumStateAsString() has been called");
+            
             return state switch
             {
                 LogStateEnum.Debug => "DEBUG",

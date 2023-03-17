@@ -58,7 +58,7 @@ namespace InvoicesManager.Views
 
                 EnvironmentsVariable.InitWorkPath();
                 ConfigSystem cSys = new ConfigSystem();
-                cSys.Save();
+                cSys.SaveIntoJsonFile();
                 LanguageManager.Init();
                 NotebookSystem nSys = new NotebookSystem();
                 nSys.Init();

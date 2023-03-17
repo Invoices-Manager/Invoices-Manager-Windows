@@ -4,6 +4,8 @@
     {
         public void Init()
         {
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Config_System, "Config init has been started.");
+
             try
             {
                 string json = String.Empty;
@@ -39,19 +41,21 @@
                 EnvironmentsVariable.MoneyUnit = config.MoneyUnit;
                 EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = config.CreateABackupEveryTimeTheProgramStarts;
                 EnvironmentsVariable.MaxCountBackUp = config.MaxCountBackUp;
+                
                 //if the owner starts this program with an older config version, then by default there is NULL, and the program would crash at init
                 if (config.ColumnVisibility is not null)
                     EnvironmentsVariable.ColumnVisibility = config.ColumnVisibility;
 
-                Save();
+                SaveIntoJsonFile();
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Config_System, "Config init has been finished.");
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Config_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Config_System, "Config init has been failed. err: " + ex.Message);
             }
         }
 
-        public void Save()
+        public void SaveIntoJsonFile()
         {
             ConfigModel config = new ConfigModel()
             {
@@ -66,8 +70,17 @@
                 MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp,
                 ColumnVisibility = EnvironmentsVariable.ColumnVisibility
             };
-            
-            File.WriteAllText(EnvironmentsVariable.PathConfig + EnvironmentsVariable.ConfigJsonFileName, JsonConvert.SerializeObject(config, Formatting.Indented));
+
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Config_System, "SaveIntoJsonFile() has been called");
+
+            try
+            {
+                File.WriteAllText(EnvironmentsVariable.PathConfig + EnvironmentsVariable.ConfigJsonFileName, JsonConvert.SerializeObject(config, Formatting.Indented));
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Config_System, $"Error saving changes to the config file, err: {ex.Message}");
+            }
         }
     }
 }

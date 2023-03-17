@@ -8,10 +8,17 @@
             {
                 //set the flag to false
                 EnvironmentsVariable.IsInvoiceInitFinish = false;
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "set EnvironmentsVariable.IsInvoiceInitFinish to false");
+
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, "Initializing the invoices...");
 
                 EnvironmentsVariable.AllInvoices.Clear();
 
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "Loading the invoices from the json file...");
+
                 string json = File.ReadAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName);
+
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "Finished, loading the invoices from the json file");
 
                 if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
                     EnvironmentsVariable.AllInvoices = JsonConvert.DeserializeObject<List<InvoiceModel>>(json);
@@ -21,10 +28,11 @@
 
                 //set the flag to true
                 EnvironmentsVariable.IsInvoiceInitFinish = true;
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "set EnvironmentsVariable.IsInvoiceInitFinish to true");
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error while initializing the invoices, err: " + ex.Message);
             }
         }
 
@@ -37,14 +45,17 @@
                     MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
                     return;
                 }
+                
                 EnvironmentsVariable.AllInvoices.Add(newInvoice);
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"start FileCp filePath: {filePath}  newPath: {newPath}");
                 File.Copy(filePath, newPath);
+                
                 SaveIntoJsonFile();
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, $"A new invoice has been added. [{newInvoice.FileID}]");
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error while adding a new invoice, err: " + ex.Message);
             }
         }
 
@@ -66,7 +77,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error while editing a invoice, err: " + ex.Message);
             }
         }
 
@@ -88,7 +99,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error while deleting a invoice, err: " + ex.Message);
             }
         }
 
@@ -96,17 +107,21 @@
         {
             try
             {
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, $"A invoice has been saved as. ID: [{invoice.FileID}] Path: [{path}]");
                 File.Copy(EnvironmentsVariable.PathInvoices + invoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT, path);
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error while saving a invoice as, err: " + ex.Message);
             }
         }
 
         public bool CheckIfInvoiceExist(string filePath)
         {
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"CheckIfInvoiceExist() was called");
+
             bool existAlready = false;
+            
             try
             {
                 string hashID = SecuritySystem.GetMD5HashFromFile(filePath);
@@ -120,7 +135,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error while checking if the invoice exist, err: " + ex.Message);
             }
 
             return existAlready;
@@ -128,9 +143,21 @@
 
         public bool CheckIfInvoicesDataHasChanged(InvoiceModel backupInvoice)
         {
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"CheckIfInvoicesDataHasChanged() was called");
+
             bool hasChanged = false;
 
-            var invoice = EnvironmentsVariable.AllInvoices.Find(x => x.FileID.Equals(backupInvoice.FileID));
+            InvoiceModel invoice;
+
+            try
+            {
+                invoice = EnvironmentsVariable.AllInvoices.Find(x => x.FileID.Equals(backupInvoice.FileID));
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error while getting the invoice, err: " + ex.Message);
+                return false;
+            }
 
             if (invoice.Reference != backupInvoice.Reference)
                 hasChanged = true;
@@ -164,6 +191,8 @@
 
         public void OverrideInvoice(InvoiceModel invoice)
         {
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"OverrideInvoice() was called");
+
             try
             {
                 //find the invoice in the list
@@ -184,14 +213,23 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error while overriding a invoice, err: " + ex.Message);
             }
         }
 
 
         private void SaveIntoJsonFile()
         {
-            File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices, Formatting.Indented));
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"SaveIntoJsonFile() was called");
+
+            try
+            {
+                File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices, Formatting.Indented));
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, $"Error while saving the invoices into the json file, err: {ex.Message}");
+            }
         }
     }
 }
