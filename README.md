@@ -66,6 +66,9 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
 
+## v1.4.4.0
+- Logging has been improved. (more loggin, no worries will only be stored on your pc)
+
 ## v1.4.3.0
 - In the invoice view (add & edit) you can now search by template, document type & the organization (just type in the box)
 - The backup view has been improved (there is now a backup manager)
