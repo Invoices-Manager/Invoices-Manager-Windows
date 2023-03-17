@@ -20,16 +20,20 @@ namespace InvoicesManager.Core
                 //if its zero or negativ => no files to delete
                 int hasToDeleteCounter = files.Length - EnvironmentsVariable.MaxCountBackUp;
 
-                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, "CheckBackUpCount has been found " + hasToDeleteCounter + " files to delete.");
 
-                if (hasToDeleteCounter > 0)
-                    //delete the oldest files
-                    for (int i = 0; i < hasToDeleteCounter; i++)
-                        try 
-                        { 
-                            File.Delete(files[i]);
-                            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, "CheckBackUpCount has been deleted the file: (autobackup overflow)" + files[i]);
-                        } catch { }
+                if (!(hasToDeleteCounter > 0))
+                    return;
+
+
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, "CheckBackUpCount has been found " + hasToDeleteCounter + " files to delete.");
+                //delete the oldest files
+                for (int i = 0; i < hasToDeleteCounter; i++)
+                    try
+                    {
+                        File.Delete(files[i]);
+                        LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, "CheckBackUpCount has been deleted the file: (autobackup overflow)" + files[i]);
+                    }
+                    catch { }
             }
             catch (Exception ex)
             {
