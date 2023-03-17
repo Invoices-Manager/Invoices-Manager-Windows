@@ -8,6 +8,8 @@ namespace InvoicesManager.Core
 
         public void CheckBackUpCount()
         {
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, "CheckBackUpCount has been called.");
+
             try
             {
                 //get all files in the backup folder
@@ -18,14 +20,24 @@ namespace InvoicesManager.Core
                 //if its zero or negativ => no files to delete
                 int hasToDeleteCounter = files.Length - EnvironmentsVariable.MaxCountBackUp;
 
-                if (hasToDeleteCounter > 0)
-                    //delete the oldest files
-                    for (int i = 0; i < hasToDeleteCounter; i++)
-                        try { File.Delete(files[i]); } catch { }
+
+                if (!(hasToDeleteCounter > 0))
+                    return;
+
+
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, "CheckBackUpCount has been found " + hasToDeleteCounter + " files to delete.");
+                //delete the oldest files
+                for (int i = 0; i < hasToDeleteCounter; i++)
+                    try
+                    {
+                        File.Delete(files[i]);
+                        LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, "CheckBackUpCount has been deleted the file: (autobackup overflow)" + files[i]);
+                    }
+                    catch { }
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, "CheckBackUpCount has been failed. err: " + ex.Message);
             }
         }
 
@@ -33,7 +45,10 @@ namespace InvoicesManager.Core
         {
             bool wasPerformedCorrectly = false;
             InvoiceSystem iSys = new InvoiceSystem();
-            
+
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, "BackUp has been called.");
+            DateTime start = DateTime.Now;
+
             try
             {
                 //set the main window for the progress bar
@@ -125,15 +140,21 @@ namespace InvoicesManager.Core
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, "BackUp has been failed. err: " + ex.Message);
                 return false;
             }
+
+            DateTime stop = DateTime.Now;
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"BackUp has been finished. Took: {(stop - start).TotalMilliseconds} ms, that is in seconds: {(stop - start).TotalSeconds} s");
 
             return wasPerformedCorrectly;
         }
 
         public bool Restore(string backupFilePath, BackUpView backUpMgr = null)
         {
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, "Restore has been called.");
+            DateTime start = DateTime.Now;
+
             //set the main window for the progress bar
             if (backUpMgr != null)
                 _backUpMgrView = backUpMgr;
@@ -277,7 +298,7 @@ namespace InvoicesManager.Core
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, "Error while restoring, err: " + ex.Message);
                 wasPerformedCorrectly = false;
             }
 
@@ -287,7 +308,11 @@ namespace InvoicesManager.Core
 
             //delete all temp files
             foreach (string file in allTempFiles)
-                try { File.Delete(file); } catch { }
+                try
+                {
+                    LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"Deleting temp file: {file}");
+                    File.Delete(file); 
+                } catch { }
 
             //must be, if the backup is from a older version (v1.2.3.2 or older)
             int noteCount = 0;
@@ -295,6 +320,8 @@ namespace InvoicesManager.Core
             if (backUp.Notebook != null)
                 noteCount = backUp.Notebook.Notebook.Count;
 
+            DateTime stop = DateTime.Now;
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"Restore has been finished. Took: {(stop - start).TotalMilliseconds} ms, that is in seconds: {(stop - start).TotalSeconds} s");
 
             //show the results
             MessageBox.Show($"{backUp.EntityCount - (invoice_AlreadyExistCounter + invoice_WasOverwrittenCounter)} {Application.Current.Resources["invoicesWereRestored"] as string}" + Environment.NewLine +
@@ -308,11 +335,15 @@ namespace InvoicesManager.Core
                                           $"{Application.Current.Resources["fromTotal"] as string} {noteCount} {Application.Current.Resources["notes"] as string}",
                                           Application.Current.Resources["recoveryCompleted"] as string, MessageBoxButton.OK);
 
+            
             return wasPerformedCorrectly;
         }
 
         public bool SaveAs(string backupFilePath, string newPath)
         {
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"SaveAs() has been called");
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"Save as: {backupFilePath} to {newPath}");
+
             //return if the backup not exist
             if (!File.Exists(backupFilePath))
             {
@@ -329,13 +360,15 @@ namespace InvoicesManager.Core
 
             //saves the backup to the new path
             File.Copy(backupFilePath, newPath);
-            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, "");
-
+            
             return true;
         }
 
         public async IAsyncEnumerable<BackUpInfoModel> GetBackUps()
         {
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"GetBackUps() has been called");
+            DateTime start = DateTime.Now;
+
             BackUpSystem buSys = new BackUpSystem();
 
             //get all files in the backup folder
@@ -354,10 +387,16 @@ namespace InvoicesManager.Core
                 //yield the result
                 yield return backUpMetaData;
             }
+
+            DateTime stop = DateTime.Now;
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"GetBackUps() has been finished. Took: {(stop - start).TotalMilliseconds} ms, that is in seconds: {(stop - start).TotalSeconds} s");
         }
 
         private BackUpInfoModel GetBackUpMetaData(string file)
         {
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"GetBackUpMetaData() has been called");
+            DateTime start = DateTime.Now;
+
             try
             {
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"Get meta data from backup file: {file}");
@@ -391,11 +430,14 @@ namespace InvoicesManager.Core
                 //get file path
                 backUpMetaData.BackUpPath = file;
 
+                DateTime stop = DateTime.Now;
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"GetBackUpMetaData() has been finished. Took: {(stop - start).TotalMilliseconds} ms");
+
                 return backUpMetaData;
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, $"The BackUp file is corrupted, abort the process! {file}   Error: {ex.Message}");
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, $"The BackUp file is corrupted, abort the process! {file}   err: {ex.Message}");
                 
                 return new BackUpInfoModel { };
             }
@@ -403,6 +445,8 @@ namespace InvoicesManager.Core
 
         public static string GetFileSize(string path)
         {
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"GetFileSize() has been called");
+
             long size = new FileInfo(path).Length;
 
             string[] suf = { "B", "KB", "MB", "GB", "TB", "PB", "EB" }; //Longs run out around EB
@@ -416,15 +460,18 @@ namespace InvoicesManager.Core
 
         public bool Delete(string backUpPath)
         {
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"Delete() has been called");
+
             //delete the backup
             try
             {
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"Delete backup file: {backUpPath}");
                 File.Delete(backUpPath);
                 return true;
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.BackUp_System, "Could not delete the backup file! err:" + ex.Message);
                 return false;
             }
         }

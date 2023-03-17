@@ -6,16 +6,20 @@
         {
             try
             {
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Notebook_System, "Notebook init has been started.");
+
                 EnvironmentsVariable.Notebook.Notebook.Clear();
 
                 string json = File.ReadAllText(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName);
 
                 if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
                     EnvironmentsVariable.Notebook = JsonConvert.DeserializeObject<NotebookModel>(json);
+                
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Notebook_System, "Notebook system has been initialized.");
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, "Error initializing Notebook System, err: " + ex.Message);
             }
         }
 
@@ -30,7 +34,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, "Error adding note, err: " + ex.Message);
             }
         }
 
@@ -48,7 +52,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, "Error editing note, err: " + ex.Message);
             }
         }
 
@@ -63,25 +67,36 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, "Error removing note, err: " + ex.Message);
             }
         }
 
         public bool CheckIfNoteExist(NoteModel note)
         {
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Notebook_System, "CheckIfNoteExist() has been called");
             return EnvironmentsVariable.Notebook.Notebook.Exists(x => x.Id == note.Id);
         }
 
         public bool CheckIfNoteHasChanged(NoteModel note)
         {
-            NoteModel noteFromList = EnvironmentsVariable.Notebook.Notebook.Find(x => x.Id == note.Id);
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Notebook_System, "CheckIfNoteHasChanged() has been called");
 
+            NoteModel noteFromList = EnvironmentsVariable.Notebook.Notebook.Find(x => x.Id == note.Id);
             return noteFromList.Name != note.Name || noteFromList.Value != note.Value;
         }
         
         private void SaveIntoJsonFile()
         {
-            File.WriteAllText(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.Notebook, Formatting.Indented));
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Notebook_System, "SaveIntoJsonFile() has been called");
+            
+            try
+            {
+                File.WriteAllText(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.Notebook, Formatting.Indented));
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, $"Error saving changes to the notebook file, err: {ex.Message}");
+            }
         }
     }
 }

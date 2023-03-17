@@ -14,6 +14,8 @@
             };
             
             Application.Current.Resources.MergedDictionaries.Add(dict);
+            
+            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Language_System, "Language system has been initialized.");
         }
     }
 }

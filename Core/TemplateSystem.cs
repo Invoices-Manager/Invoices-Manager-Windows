@@ -12,10 +12,12 @@
 
                 if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
                     EnvironmentsVariable.AllTemplates = JsonConvert.DeserializeObject<List<TemplateModel>>(json);
+
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Template_System, "Template System Initialized Successfully.");
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Template_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Template_System, $"Error initializing Template System: {ex.Message}");
             }
         }
 
@@ -29,7 +31,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Template_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Template_System, $"Error adding template: {ex.Message}");
             }
         }
 
@@ -47,7 +49,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Template_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Template_System, $"Error editing template: {ex.Message}");
             }
         }
 
@@ -62,13 +64,22 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Template_System, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Template_System, $"Error deleting template: {ex.Message}");
             }
         }
-        
+
         private void SaveIntoJsonFile()
         {
-            File.WriteAllText(EnvironmentsVariable.PathTemplates + EnvironmentsVariable.TemplatesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllTemplates, Formatting.Indented));
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Template_System, "SaveIntoJsonFile() has been called");
+            
+            try
+            {
+                File.WriteAllText(EnvironmentsVariable.PathTemplates + EnvironmentsVariable.TemplatesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllTemplates, Formatting.Indented));
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Template_System, $"Error saving changes to the template file: {ex.Message}");
+            }
         }
     }
 }

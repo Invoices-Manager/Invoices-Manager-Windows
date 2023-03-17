@@ -565,7 +565,7 @@
 
             //save into the config file
             ConfigSystem _cs = new ConfigSystem();
-            _cs.Save();
+            _cs.SaveIntoJsonFile();
         }
 
         private void SetColumnVisibility()

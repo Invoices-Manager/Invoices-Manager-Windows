@@ -33,7 +33,7 @@ namespace InvoicesManager.Windows
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.MainWindow_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Fatal, LogPrefixEnum.MainWindow_View, "Error while initializing the main window, err: " + ex.Message);
             }
         }
        

@@ -33,7 +33,7 @@ namespace InvoicesManager.Views
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Setting_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Setting_View, "Error while loading settings, err: " + ex.Message);
             }
         }
 
@@ -58,14 +58,14 @@ namespace InvoicesManager.Views
 
                 EnvironmentsVariable.InitWorkPath();
                 ConfigSystem cSys = new ConfigSystem();
-                cSys.Save();
+                cSys.SaveIntoJsonFile();
                 LanguageManager.Init();
                 NotebookSystem nSys = new NotebookSystem();
                 nSys.Init();
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Setting_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Setting_View, "Error while saving settings, err: " + ex.Message);
             }
         }
 
