@@ -33,7 +33,7 @@ namespace InvoicesManager.Views
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Setting_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Setting_View, "Error while loading settings, err: " + ex.Message);
             }
         }
 
@@ -65,7 +65,7 @@ namespace InvoicesManager.Views
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Setting_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Setting_View, "Error while saving settings, err: " + ex.Message);
             }
         }
 

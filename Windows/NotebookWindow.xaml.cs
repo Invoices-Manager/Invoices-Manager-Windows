@@ -56,7 +56,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_View, "Error while loading the notebooks, err: " + ex.Message);
             }
         }
         
@@ -80,7 +80,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_View, "Error while loading the note, err: " + ex.Message);
             }
         }
 
@@ -101,7 +101,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_View, "Error while deleting the note, err: " + ex.Message);
             }
         }
 
@@ -143,7 +143,7 @@
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_View, ex.Message);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_View, "Error while saving the note, err: " + ex.Message);
             }
         }
 
