@@ -67,14 +67,7 @@
                           VirtualizingPanel.IsVirtualizingWhenGrouping="True"
                           VirtualizingPanel.VirtualizationMode="Recycling"
                           VirtualizingPanel.ScrollUnit="Item">
-                    <DataGrid.Resources>
-                        <Style TargetType="{x:Type DataGridCell}" x:Key="OperationCell">
-                            <Setter Property="Foreground" Value="Blue"/>
-                            <Setter Property="FontStyle" Value="Oblique"/>
-                        </Style>
-                    </DataGrid.Resources>
                     <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="ColumnCopy" Header="{DynamicResource copy}" Binding="{Binding CopyText}" CellStyle="{StaticResource OperationCell}"/>
                         <DataGridTextColumn x:Name="ColumnDate" Header="{DynamicResource dateOfCapture}"  Binding="{Binding LogData.DateOfTheEvent}"/>
                         <DataGridTextColumn x:Name="ColumnState" Header="{DynamicResource state}"  Binding="{Binding LogData.State}"/>
                         <DataGridTextColumn x:Name="ColumnPrefix" Header="{DynamicResource prefix}"  Binding="{Binding LogData.Prefix}"/>
