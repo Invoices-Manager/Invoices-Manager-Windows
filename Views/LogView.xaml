@@ -68,7 +68,7 @@
                           VirtualizingPanel.VirtualizationMode="Recycling"
                           VirtualizingPanel.ScrollUnit="Item">
                     <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="ColumnDate" Header="{DynamicResource dateOfCapture}"  Binding="{Binding LogData.DateOfTheEvent}"/>
+                        <DataGridTextColumn x:Name="ColumnDate" Header="{DynamicResource dateOfCapture}"  Binding="{Binding StringDateOfTheEvent}"/>
                         <DataGridTextColumn x:Name="ColumnState" Header="{DynamicResource state}"  Binding="{Binding LogData.State}"/>
                         <DataGridTextColumn x:Name="ColumnPrefix" Header="{DynamicResource prefix}"  Binding="{Binding LogData.Prefix}"/>
                         <DataGridTextColumn x:Name="ColumnMessage" Header="{DynamicResource message}"  Binding="{Binding LogData.Log}"/>
