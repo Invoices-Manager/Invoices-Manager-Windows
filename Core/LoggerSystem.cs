@@ -34,7 +34,7 @@
             }
         }
 
-        private static List<LogModel> GetAllLogs()
+        public static List<LogModel> GetAllLogs()
         {
             return JsonConvert.DeserializeObject<List<LogModel>>(File.ReadAllText(EnvironmentsVariable.PathLog + EnvironmentsVariable.LogJsonFileName));
         }

@@ -25,25 +25,25 @@
                     <GroupBox Header="{DynamicResource searchByDate}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
                         <Grid>
                             <DatePicker x:Name="Dp_Search_Date" IsTodayHighlighted="True" Foreground="{DynamicResource FontForeground}" FirstDayOfWeek="Monday" SelectedDateFormat="Long"  Margin="5,5,55,5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedDateChanged="Dp_Search_Date_SelectedDateChanged"/>
-                            <Button x:Name="Comb_Search_Date_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Comb_Search_Date_Clear_Click"/>
+                            <Button x:Name="Bttn_Search_Date_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Bttn_Search_Date_Clear_Click"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="{DynamicResource searchByState}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
                         <Grid>
                             <ComboBox x:Name="Comb_Search_State" IsEditable="True" Margin="5,5,55,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_State_SelectionChanged"/>
-                            <Button x:Name="Comb_Search_State_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Comb_Search_State_Clear_Click"/>
+                            <Button x:Name="Bttn_Search_State_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Bttn_Search_State_Clear_Click"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="{DynamicResource searchByPrefix}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
                         <Grid>
                             <ComboBox x:Name="Comb_Search_Prefix" IsEditable="True" Margin="5,5,55,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_Prefix_SelectionChanged"/>
-                            <Button x:Name="Tb_Search_Prefix_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Tb_Search_Prefix_Clear_Click"/>
+                            <Button x:Name="Bttn_Search_Prefix_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Bttn_Search_Prefix_Clear_Click"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="{DynamicResource searchByMessage}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
                         <Grid>
                             <TextBox x:Name="Tb_Search_Message" Margin="5,5,55,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" TextChanged="Tb_Search_Message_TextChanged"/>
-                            <Button x:Name="Comb_Search_Message_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Comb_Search_Message_Clear_Click"/>
+                            <Button x:Name="Bttn_Search_Message_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Bttn_Search_Message_Clear_Click"/>
                         </Grid>
                     </GroupBox>
                 </StackPanel>
