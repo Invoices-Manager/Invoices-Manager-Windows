@@ -101,6 +101,7 @@
     <system:String x:Key="Bttn_BackUp">Sicherungen</system:String>
     <system:String x:Key="Bttn_Settings">Einstellungen</system:String>
     <system:String x:Key="Bttn_About">Über das Program</system:String>
+    <system:String x:Key="Bttn_Logs">Protokolle</system:String>
     <system:String x:Key="dateOfCapture">Datum der Erfassung</system:String>
     <system:String x:Key="paidState">Zahlungs Status</system:String>
     <system:String x:Key="moneyState">Geld Status</system:String>

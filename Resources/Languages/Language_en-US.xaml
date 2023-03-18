@@ -100,6 +100,7 @@
     <system:String x:Key="Bttn_BackUp">BackUp</system:String>
     <system:String x:Key="Bttn_Settings">Settings</system:String>
     <system:String x:Key="Bttn_About">About</system:String>
+    <system:String x:Key="Bttn_Logs">Logs</system:String>
     <system:String x:Key="dateOfCapture">date of capture</system:String>
     <system:String x:Key="paidState">paid state</system:String>
     <system:String x:Key="moneyState">money state</system:String>

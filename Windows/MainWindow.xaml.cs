@@ -9,6 +9,7 @@ namespace InvoicesManager.Windows
         SettingView settingView;
         AboutView aboutView;
         BackUpView backUpView;
+        LogView logView;
 
         public MainWindow()
         {
@@ -67,6 +68,9 @@ namespace InvoicesManager.Windows
 
         private void Bttn_Open_About_Click(object sender, RoutedEventArgs e)
             => ViewMirror.Content = aboutView;
+
+        private void Bttn_Open_Logs_Click(object sender, RoutedEventArgs e)
+            => ViewMirror.Content = logView;
 
         private void Window_Closed(object sender, EventArgs e)
         {
