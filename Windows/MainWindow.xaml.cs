@@ -31,6 +31,7 @@ namespace InvoicesManager.Windows
                 settingView = new SettingView();
                 aboutView = new AboutView();
                 backUpView = new BackUpView();
+                logView = new LogView();
             }
             catch (Exception ex)
             {

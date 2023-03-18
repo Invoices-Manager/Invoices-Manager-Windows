@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InvoicesManager.Views"
        xmlns:converter="clr-namespace:InvoicesManager.Classes.Converter"
-      mc:Ignorable="d"
-        Title="Invoices Manager | Made by Schecher | https://github.com/Schecher1" 
-        d:DesignHeight="1000" d:DesignWidth="1000"
+       mc:Ignorable="d"
+       Title="Invoices Manager | Made by Schecher | https://github.com/Schecher1" 
+       d:DesignHeight="1000" d:DesignWidth="1000"
       Loaded="Page_Loaded">
     <Page.Resources>
         <converter:NegativeOneConverter x:Key="NegativeOneConverter"/>
