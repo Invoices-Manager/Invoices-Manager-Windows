@@ -8,10 +8,7 @@ namespace InvoicesManager.Views
             => InitializeComponent();
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            RefreshBoard();
-        }
-
+            => RefreshBoard();
 
         private void Bttn_BoardRefresh_Click(object sender, RoutedEventArgs e)
             => RefreshBoard();
@@ -36,9 +33,7 @@ namespace InvoicesManager.Views
 
 
         private void Comb_Logs_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+            => RefreshBoard();
         
         private void Dp_Search_Date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -91,9 +86,40 @@ namespace InvoicesManager.Views
 
         private void RefreshBoard()
         {
-            List<LogModel> logs = LoggerSystem.GetAllLogs();
+            List<LogModel> logs = new List<LogModel>();
+
+            //check which kind of logs the user wants to see
+
+            switch (Comb_Logs.SelectedIndex)
+            {
+                //has noting selected
+                case -1:
+                    break;
+
+                //wants to see all logs
+                case 0:
+                    logs = LoggerSystem.GetAllLogs();
+                    break;
+
+                //wants to see only the today logs
+                case 1:
+                    logs = LoggerSystem.GetAllLogs(onlyToday: true);
+                    break;
+                    
+                default:
+                    logs = LoggerSystem.GetLogs(Comb_Logs.SelectedItem.ToString());
+                    break;
+            }
 
             Dg_Logs.ItemsSource = logs;
+
+            //update the Comb_Logs
+            UpdateCombLogs();
+        }
+
+        private void UpdateCombLogs()
+        {
+            Comb_Logs.ItemsSource = LoggerSystem.GetLogsChoices();
         }
     }
 }

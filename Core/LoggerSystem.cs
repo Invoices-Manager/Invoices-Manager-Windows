@@ -1,4 +1,6 @@
-﻿namespace InvoicesManager.Core
+﻿using System.Collections;
+
+namespace InvoicesManager.Core
 {
     class LoggerSystem
     {
@@ -14,7 +16,7 @@
                 string logMessage = $"[{logDate.ToString("yyyy-MM-dd HH:mm:ss")}] [{logState}] [{logPrefix}]: {message}";
 
                 //get all logs in a list 
-                List<LogModel> allLogs = GetAllLogs();
+                List<LogModel> allLogs = GetAllLogs(onlyToday: true);
 
                 //add the new log to the list
                 allLogs.Add(new LogModel() { FullLog = logMessage, LogData = new SubLogModel() { DateOfTheEvent = logDate, State = logState, Prefix = logPrefix, Log = message } });
@@ -31,6 +33,34 @@
             catch (Exception ex)
             {
                 Log(LogStateEnum.Error, LogPrefixEnum.Logger_System, ex.Message);
+            }
+        }
+
+        public static List<LogModel> GetLogs(string logFileName)
+        {
+            //get the file name and read the file and serialize it to a list
+            return JsonConvert.DeserializeObject<List<LogModel>>(File.ReadAllText(EnvironmentsVariable.PathLog + logFileName + ".txt"));
+        }
+
+        public static IEnumerable GetLogsChoices()
+        {
+            yield return "All Logs";
+            yield return "Today Logs";
+
+            //get all files in the log folder and return them as a list
+            string[] allFiles = Directory.GetFiles(EnvironmentsVariable.PathLog);
+
+            foreach (string file in allFiles)
+            {
+                string fileName = Path.GetFileName(file);
+                
+                if (fileName.Contains("Log.txt"))
+                    continue;
+
+                //remove the .txt extension
+                fileName = fileName.Replace(".txt", "");
+
+                yield return fileName;
             }
         }
 
@@ -51,18 +81,25 @@
         public static List<LogModel> GetAllLogs(bool onlyToday = false)
         {
             List<LogModel> allLogs = new List<LogModel>();
-            
-            if (onlyToday)
-                allLogs = JsonConvert.DeserializeObject<List<LogModel>>(File.ReadAllText(EnvironmentsVariable.PathLog + EnvironmentsVariable.ToDayLogJsonFileName));
-            else
-                foreach (string file in Directory.GetFiles(EnvironmentsVariable.PathLog))
-                {
-                    //skips the all days log file (only has the message and not the json data)
-                    if (file.Contains("Log.txt"))
-                        continue;
 
-                    allLogs.AddRange(JsonConvert.DeserializeObject<List<LogModel>>(File.ReadAllText(file)));
-                }
+            try
+            {
+                if (onlyToday)
+                    allLogs = JsonConvert.DeserializeObject<List<LogModel>>(File.ReadAllText(EnvironmentsVariable.PathLog + EnvironmentsVariable.ToDayLogJsonFileName));
+                else
+                    foreach (string file in Directory.GetFiles(EnvironmentsVariable.PathLog))
+                    {
+                        //skips the all days log file (only has the message and not the json data)
+                        if (file.Contains("Log.txt"))
+                            continue;
+
+                        allLogs.AddRange(JsonConvert.DeserializeObject<List<LogModel>>(File.ReadAllText(file)));
+                    }
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Logger_System, "Error while getting all logs, err:" + ex.Message);
+            }
 
             return allLogs;
         }

@@ -15,7 +15,7 @@
                 <Button x:Name="Bttn_OpenLogFolder" Content="{DynamicResource openLogFolder}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_OpenLogFolder_Click" />
                 <Button x:Name="Bttn_DeleteAllLogs" Content="{DynamicResource deleteAllLogs}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_DeleteAllLogs_Click"/>
                 <Separator Margin="10,0,10,0"/>
-                <ComboBox x:Name="Comb_Logs" Width="250" Margin="5" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" SelectionChanged="Comb_Logs_SelectionChanged"/>
+                <ComboBox x:Name="Comb_Logs" Width="250" Margin="5" Padding="15,0,15,0"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" SelectionChanged="Comb_Logs_SelectionChanged"/>
             </ToolBarPanel>
         </Grid>
 
