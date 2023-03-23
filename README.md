@@ -76,6 +76,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
   -You can sort the logs<br/>
   -You can delete all logs<br/>
 - You can set the Log path (its it is not static anymore)
+- Big improvement in the RAM usage (memoryLeak)
 
 ## v1.4.4.0
 - Logging has been improved. (more loggin, no worries will only be stored on your pc)
