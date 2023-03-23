@@ -9,7 +9,6 @@ namespace InvoicesManager.Views
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
             RefreshBoard();
         }
 
@@ -25,7 +24,14 @@ namespace InvoicesManager.Views
 
         private void Bttn_DeleteAllLogs_Click(object sender, RoutedEventArgs e)
         {
+            //delete all files in the log folder and refresh the board (but ask for confirmation first)
 
+            //leave if the user doesn't want to delete all logs
+            if (MessageBox.Show("Are you sure you want to delete all logs?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                return;
+
+            LoggerSystem.DeleteAllLogs();
+            RefreshBoard();
         }
 
 

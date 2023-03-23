@@ -20,7 +20,7 @@
         public static string ConfigJsonFileName = "Config.json";
         public static string NotebooksJsonFileName = "Notebook.json";
         public static string TemplatesJsonFileName = "Templates.json";
-        public static string LogJsonFileName { get { return $"Log_{DateTime.Now.ToString("yyyy-MM-dd")}.txt"; } }
+        public static string ToDayLogJsonFileName { get { return $"Log_{DateTime.Now.ToString("yyyy-MM-dd")}.txt"; } }
 
 
         public static string UILanguage = "English";
@@ -49,8 +49,8 @@
                 File.WriteAllText(PathNotebook + NotebooksJsonFileName, "[]");
             if (!File.Exists(PathConfig + ConfigJsonFileName))
                 File.WriteAllText(PathConfig + ConfigJsonFileName, "[]");
-            if (!File.Exists(PathLog + LogJsonFileName))
-                File.WriteAllText(PathLog + LogJsonFileName, "[]");
+            if (!File.Exists(PathLog + ToDayLogJsonFileName))
+                File.WriteAllText(PathLog + ToDayLogJsonFileName, "[]");
             if (!File.Exists(PathTemplates + TemplatesJsonFileName))
                 File.WriteAllText(PathTemplates + TemplatesJsonFileName, "[]");
         }
