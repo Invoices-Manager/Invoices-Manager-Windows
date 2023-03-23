@@ -1,4 +1,6 @@
-﻿namespace InvoicesManager.Views
+﻿using InvoicesManager.Classes;
+
+namespace InvoicesManager.Views
 {
     public partial class LogView : Page
     {
@@ -17,7 +19,8 @@
 
         private void Bttn_OpenLogFolder_Click(object sender, RoutedEventArgs e)
         {
-
+            //open the folder where the logs are stored with explorer
+            Process.Start("explorer.exe", EnvironmentsVariable.PathLog);
         }
 
         private void Bttn_DeleteAllLogs_Click(object sender, RoutedEventArgs e)
