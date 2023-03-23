@@ -138,7 +138,7 @@
     <system:String x:Key="searchByMessage">Suche nach: Nachricht</system:String>
     <system:String x:Key="copy">kopieren</system:String>
     <system:String x:Key="state">Status</system:String>
-    <system:String x:Key="prefix">Prefix</system:String>
+    <system:String x:Key="prefix">Präfix</system:String>
     <system:String x:Key="message">Nachricht</system:String>
     <system:String x:Key="fullLog">vollständiges Protokoll</system:String>
 </ResourceDictionary>
