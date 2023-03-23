@@ -58,6 +58,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="IMAGES\Version 1.4.5.0\" />
     <Folder Include="IMAGES\Version 1.4.3.0\" />
     <Folder Include="IMAGES\Version 1.4.0.0\" />
   </ItemGroup>
