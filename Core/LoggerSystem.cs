@@ -11,7 +11,7 @@ namespace InvoicesManager.Core
             {
                 string logState = GetEnumStateAsString(state);
                 string logPrefix = GetEnumPrefixAsString(prefix);
-                string logPath = EnvironmentsVariable.PathLog + EnvironmentsVariable.ToDayLogJsonFileName;
+                string logPath = EnvironmentsVariable.PathLogs + EnvironmentsVariable.ToDayLogJsonFileName;
                 DateTime logDate = DateTime.Now;
                 //preview => [2021-05-01 12:00:00] [Info] [System_Thread] : This is a test message.
                 string logMessage = $"[{logDate.ToString("yyyy-MM-dd HH:mm:ss")}] [{logState}] [{logPrefix}]: {message}";
@@ -26,7 +26,7 @@ namespace InvoicesManager.Core
                 File.WriteAllText(logPath, JsonConvert.SerializeObject(allLogs, Formatting.Indented));
 
                 //write into a long time log file
-                File.AppendAllText(EnvironmentsVariable.PathLog + "Log.txt", logMessage + Environment.NewLine);
+                File.AppendAllText(EnvironmentsVariable.PathLogs + "Log.txt", logMessage + Environment.NewLine);
 
                 //clear the list
                 allLogs.Clear();
@@ -40,7 +40,7 @@ namespace InvoicesManager.Core
         public static List<LogModel> GetLogs(string logFileName)
         {
             //get the file name and read the file and serialize it to a list
-            return JsonConvert.DeserializeObject<List<LogModel>>(File.ReadAllText(EnvironmentsVariable.PathLog + logFileName + ".txt"));
+            return JsonConvert.DeserializeObject<List<LogModel>>(File.ReadAllText(EnvironmentsVariable.PathLogs + logFileName + ".txt"));
         }
 
         public static IEnumerable GetLogsChoices()
@@ -49,7 +49,7 @@ namespace InvoicesManager.Core
             yield return Application.Current.Resources["toDayLogs"] as string;
 
             //get all files in the log folder and return them as a list
-            string[] allFiles = Directory.GetFiles(EnvironmentsVariable.PathLog);
+            string[] allFiles = Directory.GetFiles(EnvironmentsVariable.PathLogs);
 
             foreach (string file in allFiles)
             {
@@ -70,7 +70,7 @@ namespace InvoicesManager.Core
             try
             {
                 //delete all files in the log folder
-                foreach (string file in Directory.GetFiles(EnvironmentsVariable.PathLog))
+                foreach (string file in Directory.GetFiles(EnvironmentsVariable.PathLogs))
                     File.Delete(file);
             }
             catch (Exception ex)
@@ -86,9 +86,9 @@ namespace InvoicesManager.Core
             try
             {
                 if (onlyToday)
-                    allLogs = JsonConvert.DeserializeObject<List<LogModel>>(File.ReadAllText(EnvironmentsVariable.PathLog + EnvironmentsVariable.ToDayLogJsonFileName));
+                    allLogs = JsonConvert.DeserializeObject<List<LogModel>>(File.ReadAllText(EnvironmentsVariable.PathLogs + EnvironmentsVariable.ToDayLogJsonFileName));
                 else
-                    foreach (string file in Directory.GetFiles(EnvironmentsVariable.PathLog))
+                    foreach (string file in Directory.GetFiles(EnvironmentsVariable.PathLogs))
                     {
                         //skips the all days log file (only has the message and not the json data)
                         if (file.Contains("Log.txt"))

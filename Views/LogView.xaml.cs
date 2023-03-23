@@ -53,7 +53,7 @@ namespace InvoicesManager.Views
         private void Bttn_OpenLogFolder_Click(object sender, RoutedEventArgs e)
         {
             //open the folder where the logs are stored with explorer
-            Process.Start("explorer.exe", EnvironmentsVariable.PathLog);
+            Process.Start("explorer.exe", EnvironmentsVariable.PathLogs);
         }
 
         private void Bttn_DeleteAllLogs_Click(object sender, RoutedEventArgs e)

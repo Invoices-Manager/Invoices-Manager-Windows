@@ -88,6 +88,7 @@
     <system:String x:Key="invoicePath">invoice path</system:String>
     <system:String x:Key="backupPath">backup path</system:String>
     <system:String x:Key="notebookPath">notebook path</system:String>
+    <system:String x:Key="logPath">log path</system:String>
     <system:String x:Key="tagInfo">(seperate with =>   ;  )</system:String>
     <system:String x:Key="everyStartUpBackUp">create a BackUp every program start?</system:String>
     <system:String x:Key="backupMaxCount">maximum number of backups</system:String>

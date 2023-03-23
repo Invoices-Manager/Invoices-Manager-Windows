@@ -23,6 +23,7 @@
                     PathInvoice = EnvironmentsVariable.PathInvoices,
                     PathNotebook = EnvironmentsVariable.PathNotebook,
                     PathBackUp = EnvironmentsVariable.PathBackUps,
+                    PathLogs = EnvironmentsVariable.PathLogs,
                     MoneyUnit = EnvironmentsVariable.MoneyUnit,
                     CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
                     MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp,
@@ -38,6 +39,7 @@
                 EnvironmentsVariable.PathInvoices = config.PathInvoice;
                 EnvironmentsVariable.PathNotebook = config.PathNotebook;
                 EnvironmentsVariable.PathBackUps = config.PathBackUp;
+                EnvironmentsVariable.PathLogs = config.PathLogs;
                 EnvironmentsVariable.MoneyUnit = config.MoneyUnit;
                 EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = config.CreateABackupEveryTimeTheProgramStarts;
                 EnvironmentsVariable.MaxCountBackUp = config.MaxCountBackUp;
@@ -65,6 +67,7 @@
                 PathInvoice = EnvironmentsVariable.PathInvoices,
                 PathNotebook = EnvironmentsVariable.PathNotebook,
                 PathBackUp = EnvironmentsVariable.PathBackUps,
+                PathLogs = EnvironmentsVariable.PathLogs,
                 MoneyUnit = EnvironmentsVariable.MoneyUnit,
                 CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
                 MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp,
