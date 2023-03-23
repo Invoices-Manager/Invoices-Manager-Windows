@@ -1,6 +1,4 @@
-﻿using InvoicesManager.Classes;
-
-namespace InvoicesManager.Views
+﻿namespace InvoicesManager.Views
 {
     public partial class LogView : Page
     {
