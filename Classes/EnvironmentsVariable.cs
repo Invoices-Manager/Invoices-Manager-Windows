@@ -5,6 +5,7 @@
         public static ColumnVisibilityModel ColumnVisibility = new ColumnVisibilityModel();
         public static List<InvoiceModel> AllInvoices = new List<InvoiceModel>();
         public static List<InvoiceModel> FilteredInvoices = new List<InvoiceModel>();
+        public static List<LogModel> FilteredLogs = new List<LogModel>();
         public static NotebookModel Notebook = new NotebookModel();
         public static List<TemplateModel> AllTemplates = new List<TemplateModel>();
         public static volatile bool IsInvoiceInitFinish = false;
@@ -21,7 +22,7 @@
         public static string NotebooksJsonFileName = "Notebook.json";
         public static string TemplatesJsonFileName = "Templates.json";
         public static string ToDayLogJsonFileName { get { return $"Log_{DateTime.Now.ToString("yyyy-MM-dd")}.txt"; } }
-
+        
 
         public static string UILanguage = "English";
         public static string[] PossibleUILanguages = { "English", "German" };

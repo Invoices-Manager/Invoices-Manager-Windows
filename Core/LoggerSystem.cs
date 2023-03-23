@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using InvoicesManager.Core.Sort;
+using System.Collections;
 
 namespace InvoicesManager.Core
 {
@@ -104,7 +105,7 @@ namespace InvoicesManager.Core
             return allLogs;
         }
 
-        private static string GetEnumPrefixAsString(LogPrefixEnum prefix)
+        public static string GetEnumPrefixAsString(LogPrefixEnum prefix)
         {
             return prefix switch
             {
@@ -114,7 +115,8 @@ namespace InvoicesManager.Core
                 LogPrefixEnum.Invoice_System => "Invoice-System",
                 LogPrefixEnum.Logger_System => "Logger-System",
                 LogPrefixEnum.Notebook_System => "Notebook-System",
-                LogPrefixEnum.Sort_System => "Sort-System",
+                LogPrefixEnum.InvoicesSort_System => "Invoices-Sort-System",
+                LogPrefixEnum.LogSort_System => "Log-Sort-System",
                 LogPrefixEnum.Security_System => "Security-System",
                 LogPrefixEnum.Language_System => "Language-System",
                 LogPrefixEnum.About_View => "About-View",
@@ -128,7 +130,7 @@ namespace InvoicesManager.Core
             };
         }
 
-        private static string GetEnumStateAsString(LogStateEnum state)
+        public static string GetEnumStateAsString(LogStateEnum state)
         {
             return state switch
             {

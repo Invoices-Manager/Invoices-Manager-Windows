@@ -1,11 +1,13 @@
 ﻿namespace InvoicesManager.Classes.Enums
 {
-    enum LogStateEnum
+    public enum LogStateEnum
     {
         Debug,
         Info,
         Warning,
         Error,
-        Fatal
+        Fatal,
+        
+        FilterPlaceholder
     }
 }
