@@ -47,7 +47,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ![SaveAs-Screen](IMAGES/Version%201.4.3.0/InvoiceSaveAsScreen.png)
 
 ### Notebook-Screen:                                         
-![Notescreen-Screen](IMAGES/Version%201.4.5.0/NotebookScreen.png) 
+![Notescreen-Screen](IMAGES/Version%201.4.3.0/NotebookScreen.png) 
 
 ### BackUp-Screen:                                         
 ![BackUp-Screen](IMAGES/Version%201.4.5.0/BackUpScreen.png) 
