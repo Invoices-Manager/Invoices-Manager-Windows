@@ -260,7 +260,7 @@ namespace InvoicesManager.Views
             //sleep to wait for the init thread
             WaiterSystem.WaitUntilInvoiceInitFinish();
             
-            InvoicesSortSystem sortSys = new InvoicesSortSystem(EnvironmentsVariable.AllInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType, filterExhibitionDate, filterPaidState, filterMoneyState, filterImportanceState, filterMoneyTotal, filterTags);
+            InvoicesSortSystem sortSys = new Core.Sort.InvoicesSortSystem(EnvironmentsVariable.AllInvoices, filterReference, filterInvoiceNumber, filterOrganization, filterDocumentType, filterExhibitionDate, filterPaidState, filterMoneyState, filterImportanceState, filterMoneyTotal, filterTags);
 
             sortSys.Sort();
 

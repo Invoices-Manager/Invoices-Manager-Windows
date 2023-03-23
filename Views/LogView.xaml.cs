@@ -1,18 +1,50 @@
-﻿namespace InvoicesManager.Views
+﻿using InvoicesManager.Core.Sort;
+
+namespace InvoicesManager.Views
 {
     public partial class LogView : Page
     {
         public LogView()
             => InitializeComponent();
 
-        List<LogModel> allDataGridLogs = new List<LogModel>();
+        private List<LogModel> allDataGridLogs = new List<LogModel>();
+        private DateTime filterDate = default;
+        private LogStateEnum filterLogState = LogStateEnum.FilterPlaceholder;
+        private LogPrefixEnum filterLogPrefix = LogPrefixEnum.FilterPlaceholder;
+        private string filterMessage = string.Empty;
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            Task.Run(() => { MessageBox.Show(Application.Current.Resources["loadTimeMessage"] as string, Application.Current.Resources["loadTimeTitle"] as string, MessageBoxButton.OK, MessageBoxImage.Information); });
+            
             //update the Comb_Logs
             UpdateCombLogs();
             //set default of "todays logs"
             Comb_Logs.SelectedIndex = 1;
+
+            //load the state combobox
+            LoadStateComb();
+
+            //load the prefix combobox
+            LoadPrefixComb();
+        }
+
+        private void LoadPrefixComb()
+        {
+            Comb_Search_Prefix.Items.Clear();
+
+            foreach (LogPrefixEnum lpe in Enum.GetValues(typeof(LogPrefixEnum)))
+                if (lpe != LogPrefixEnum.FilterPlaceholder)
+                    Comb_Search_Prefix.Items.Add(lpe);
+        }
+        
+        private void LoadStateComb()
+        {
+            Comb_Search_State.Items.Clear();
+
+            foreach (LogStateEnum lse in Enum.GetValues(typeof(LogStateEnum)))
+                if (lse != LogStateEnum.FilterPlaceholder)
+                    Comb_Search_State.Items.Add(lse);
         }
 
         private void Bttn_BoardRefresh_Click(object sender, RoutedEventArgs e)
@@ -42,22 +74,26 @@
         
         private void Dp_Search_Date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            filterDate = Dp_Search_Date.SelectedDate ?? default;
+            Sort();
         }
 
         private void Comb_Search_State_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            filterLogState = (LogStateEnum)Comb_Search_State.SelectedItem;
+            Sort();
         }
 
         private void Comb_Search_Prefix_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            filterLogPrefix = (LogPrefixEnum)Comb_Search_Prefix.SelectedItem;
+            Sort();
         }
         
         private void Tb_Search_Message_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            filterMessage = Tb_Search_Message.Text ?? String.Empty;
+            Sort();
         }
 
 
@@ -92,7 +128,6 @@
         private void RefreshBoard()
         {
             //TODO: IMPROVE Loading time
-            Task.Run(() => { MessageBox.Show(Application.Current.Resources["loadTimeMessage"] as string, Application.Current.Resources["loadTimeTitle"] as string, MessageBoxButton.OK, MessageBoxImage.Information); });
             
             int index = Comb_Logs.SelectedIndex;
             
@@ -140,6 +175,20 @@
             {
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
                         => { Comb_Logs.ItemsSource = LoggerSystem.GetLogsChoices(); }));
+            });
+        }
+
+        private void Sort()
+        {
+            Task.Run(() =>
+            {
+                LogsSortSystem _lss = new LogsSortSystem(allDataGridLogs, filterDate, filterLogState, filterLogPrefix, filterMessage);
+                _lss.Sort();
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                    => { Dg_Logs.ItemsSource = EnvironmentsVariable.FilteredLogs; }));
+
+                RefreshBoard();
             });
         }
     }
