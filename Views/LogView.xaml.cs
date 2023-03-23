@@ -8,7 +8,11 @@ namespace InvoicesManager.Views
             => InitializeComponent();
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
-            => RefreshBoard();
+        {
+            RefreshBoard();
+            //set default of "todays logs"
+            Comb_Logs.SelectedIndex = 0;
+        }
 
         private void Bttn_BoardRefresh_Click(object sender, RoutedEventArgs e)
             => RefreshBoard();
