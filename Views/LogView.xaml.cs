@@ -5,9 +5,12 @@
         public LogView()
             => InitializeComponent();
 
+        List<LogModel> allDataGridLogs = new List<LogModel>();
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            RefreshBoard();
+            //update the Comb_Logs
+            UpdateCombLogs();
             //set default of "todays logs"
             Comb_Logs.SelectedIndex = 1;
         }
@@ -88,40 +91,56 @@
 
         private void RefreshBoard()
         {
-            List<LogModel> logs = new List<LogModel>();
-
-            //check which kind of logs the user wants to see
-
-            switch (Comb_Logs.SelectedIndex)
+            //TODO: IMPROVE Loading time
+            Task.Run(() => { MessageBox.Show(Application.Current.Resources["loadTimeMessage"] as string, Application.Current.Resources["loadTimeTitle"] as string, MessageBoxButton.OK, MessageBoxImage.Information); });
+            
+            int index = Comb_Logs.SelectedIndex;
+            
+            Task.Run(() => 
             {
-                //has noting selected
-                case -1:
-                    break;
+                List<LogModel> logs = new List<LogModel>();
 
-                //wants to see all logs
-                case 0:
-                    logs = LoggerSystem.GetAllLogs();
-                    break;
+                //check which kind of logs the user wants to see
 
-                //wants to see only the today logs
-                case 1:
-                    logs = LoggerSystem.GetAllLogs(onlyToday: true);
-                    break;
-                    
-                default:
-                    logs = LoggerSystem.GetLogs(Comb_Logs.SelectedItem.ToString());
-                    break;
-            }
+                switch (index)
+                {
+                    //has noting selected
+                    case -1:
+                        break;
 
-            Dg_Logs.ItemsSource = logs;
+                    //wants to see all logs
+                    case 0:
+                        logs = LoggerSystem.GetAllLogs();
+                        break;
 
-            //update the Comb_Logs
-            UpdateCombLogs();
+                    //wants to see only the today logs
+                    case 1:
+                        logs = LoggerSystem.GetAllLogs(onlyToday: true);
+                        break;
+
+                    default:
+                        logs = LoggerSystem.GetLogs(Comb_Logs.SelectedItem.ToString());
+                        break;
+                }
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                    => { Dg_Logs.ItemsSource = logs; }));
+
+                //will be needed later for the sort
+                allDataGridLogs = logs;
+
+                //update the Comb_Logs
+                UpdateCombLogs();
+            });
         }
 
         private void UpdateCombLogs()
         {
-            Comb_Logs.ItemsSource = LoggerSystem.GetLogsChoices();
+            Task.Run(() =>
+            {
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(()
+                        => { Comb_Logs.ItemsSource = LoggerSystem.GetLogsChoices(); }));
+            });
         }
     }
 }

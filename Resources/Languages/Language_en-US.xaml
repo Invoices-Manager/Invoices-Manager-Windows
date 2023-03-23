@@ -144,4 +144,6 @@
     <system:String x:Key="deleteAllLogsTitle">Attention, deleting of all logs!</system:String>
     <system:String x:Key="allLogs">All logs</system:String>
     <system:String x:Key="toDayLogs">Only today's logs</system:String>
+    <system:String x:Key="loadTimeMessage">Please wait, depending on the size of the log file it may take time!</system:String>
+    <system:String x:Key="loadTimeTitle">Loading...</system:String>
 </ResourceDictionary>
