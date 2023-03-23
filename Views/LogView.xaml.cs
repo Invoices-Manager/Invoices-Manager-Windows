@@ -28,7 +28,7 @@ namespace InvoicesManager.Views
             //delete all files in the log folder and refresh the board (but ask for confirmation first)
 
             //leave if the user doesn't want to delete all logs
-            if (MessageBox.Show("Are you sure you want to delete all logs?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            if (MessageBox.Show(Application.Current.Resources["deleteAllLogsMsg"] as string, Application.Current.Resources["deleteAllLogsTitle"] as string, MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
                 return;
 
             LoggerSystem.DeleteAllLogs();

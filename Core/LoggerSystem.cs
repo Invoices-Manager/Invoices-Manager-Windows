@@ -44,8 +44,8 @@ namespace InvoicesManager.Core
 
         public static IEnumerable GetLogsChoices()
         {
-            yield return "All Logs";
-            yield return "Today Logs";
+            yield return Application.Current.Resources["allLogs"] as string;
+            yield return Application.Current.Resources["toDayLogs"] as string;
 
             //get all files in the log folder and return them as a list
             string[] allFiles = Directory.GetFiles(EnvironmentsVariable.PathLog);

@@ -141,4 +141,8 @@
     <system:String x:Key="prefix">Präfix</system:String>
     <system:String x:Key="message">Nachricht</system:String>
     <system:String x:Key="fullLog">Vollständiges Protokoll</system:String>
+    <system:String x:Key="deleteAllLogsMsg">Wollen Sie wirklich alle Protokolle löschen?</system:String>
+    <system:String x:Key="deleteAllLogsTitle">Achtung, Löschen aller Protokolle!</system:String>
+    <system:String x:Key="allLogs">Alle Protokolle</system:String>
+    <system:String x:Key="toDayLogs">Nur die heutigen Protokolle</system:String>
 </ResourceDictionary>

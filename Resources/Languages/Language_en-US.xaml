@@ -135,10 +135,13 @@
     <system:String x:Key="searchByState">search by: state</system:String>
     <system:String x:Key="searchByPrefix">search by: prefix</system:String>
     <system:String x:Key="searchByMessage">seach by: message</system:String>
-
     <system:String x:Key="copy">copy</system:String>
     <system:String x:Key="state">state</system:String>
     <system:String x:Key="prefix">prefix</system:String>
     <system:String x:Key="message">message</system:String>
     <system:String x:Key="fullLog">full log</system:String>
+    <system:String x:Key="deleteAllLogsMsg">Do you really want to delete all logs?</system:String>
+    <system:String x:Key="deleteAllLogsTitle">Attention, deleting of all logs!</system:String>
+    <system:String x:Key="allLogs">All logs</system:String>
+    <system:String x:Key="toDayLogs">Only today's logs</system:String>
 </ResourceDictionary>
