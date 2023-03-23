@@ -80,13 +80,21 @@ namespace InvoicesManager.Views
 
         private void Comb_Search_State_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            filterLogState = (LogStateEnum)Comb_Search_State.SelectedItem;
+            if (Comb_Search_State.SelectedIndex == -1)
+                filterLogState = LogStateEnum.FilterPlaceholder;
+            else
+                filterLogState = (LogStateEnum)Comb_Search_State.SelectedItem;
+            
             Sort();
         }
 
         private void Comb_Search_Prefix_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            filterLogPrefix = (LogPrefixEnum)Comb_Search_Prefix.SelectedItem;
+            if (Comb_Search_Prefix.SelectedIndex == -1)
+                filterLogPrefix = LogPrefixEnum.FilterPlaceholder;
+            else
+                filterLogPrefix = (LogPrefixEnum)Comb_Search_Prefix.SelectedItem;
+            
             Sort();
         }
         
@@ -101,7 +109,7 @@ namespace InvoicesManager.Views
             => Dp_Search_Date.SelectedDate = default;
 
         private void Bttn_Search_State_Clear_Click(object sender, RoutedEventArgs e)
-            => Comb_Search_Prefix.SelectedIndex = -1;
+            => Comb_Search_State.SelectedIndex = -1;
 
         private void Bttn_Search_Prefix_Clear_Click(object sender, RoutedEventArgs e)
             => Comb_Search_Prefix.SelectedIndex = -1;
