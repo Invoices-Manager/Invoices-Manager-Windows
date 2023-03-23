@@ -11,7 +11,7 @@ namespace InvoicesManager.Views
         {
             RefreshBoard();
             //set default of "todays logs"
-            Comb_Logs.SelectedIndex = 0;
+            Comb_Logs.SelectedIndex = 1;
         }
 
         private void Bttn_BoardRefresh_Click(object sender, RoutedEventArgs e)
