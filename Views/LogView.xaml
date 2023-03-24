@@ -1,0 +1,84 @@
+﻿<Page x:Class="InvoicesManager.Views.LogView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="1000"
+      Loaded="Page_Loaded"
+      KeepAlive="False">
+
+    <Grid Background="{DynamicResource GridBackground}">
+        <Grid>
+            <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40">
+                <Button x:Name="Bttn_BoardRefresh"  Content="{DynamicResource refreshBoard}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_BoardRefresh_Click"/>
+                <Separator Margin="10,0,10,0"/>
+                <Button x:Name="Bttn_OpenLogFolder" Content="{DynamicResource openLogFolder}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_OpenLogFolder_Click" />
+                <Button x:Name="Bttn_DeleteAllLogs" Content="{DynamicResource deleteAllLogs}" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" Margin="5" Padding="15,0,15,0" Click="Bttn_DeleteAllLogs_Click"/>
+                <Separator Margin="10,0,10,0"/>
+                <ComboBox x:Name="Comb_Logs" Width="250" Margin="5" Padding="15,0,15,0"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" SelectionChanged="Comb_Logs_SelectionChanged"/>
+            </ToolBarPanel>
+        </Grid>
+
+        <Grid HorizontalAlignment="Right" Width="400" Margin="0,35,0,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,25">
+                <StackPanel>
+                    <GroupBox Header="{DynamicResource searchByDate}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                        <Grid>
+                            <DatePicker x:Name="Dp_Search_Date" IsTodayHighlighted="True" Foreground="{DynamicResource FontForeground}" FirstDayOfWeek="Monday" SelectedDateFormat="Long"  Margin="5,5,55,5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedDateChanged="Dp_Search_Date_SelectedDateChanged"/>
+                            <Button x:Name="Bttn_Search_Date_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Bttn_Search_Date_Clear_Click"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="{DynamicResource searchByState}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                        <Grid>
+                            <ComboBox x:Name="Comb_Search_State" IsEditable="True" Margin="5,5,55,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_State_SelectionChanged"/>
+                            <Button x:Name="Bttn_Search_State_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Bttn_Search_State_Clear_Click"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="{DynamicResource searchByPrefix}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                        <Grid>
+                            <ComboBox x:Name="Comb_Search_Prefix" IsEditable="True" Margin="5,5,55,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectionChanged="Comb_Search_Prefix_SelectionChanged"/>
+                            <Button x:Name="Bttn_Search_Prefix_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Bttn_Search_Prefix_Clear_Click"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="{DynamicResource searchByMessage}" FontSize="{DynamicResource FontSize}" Margin="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="Black" Foreground="{DynamicResource FontForeground}">
+                        <Grid>
+                            <TextBox x:Name="Tb_Search_Message" Margin="5,5,55,5" Foreground="{DynamicResource FontForeground}" VerticalAlignment="Center" TextChanged="Tb_Search_Message_TextChanged"/>
+                            <Button x:Name="Bttn_Search_Message_Clear" Content="X" HorizontalAlignment="Right" Margin="0,0,15,0" Background="Transparent" BorderBrush="Transparent" Foreground="Red" FontWeight="Bold" FontSize="30" Click="Bttn_Search_Message_Clear_Click"/>
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid Margin="0,40,400,35" Background="#FF232323">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid Name="Dg_Logs" 
+                          ItemsSource="{Binding}" 
+                          Foreground="{DynamicResource FontForeground}"
+                          AutoGenerateColumns="False" 
+                          CanUserReorderColumns="False" 
+                          CanUserDeleteRows="False" 
+                          CanUserAddRows="False" 
+                          ClipboardCopyMode="ExcludeHeader"
+                          IsReadOnly="True"
+                          MouseDoubleClick="Dg_Logs_MouseDoubleClick"
+                          FontSize="{DynamicResource FontSize}"
+                          VirtualizingPanel.IsVirtualizing="True"
+                          VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                          VirtualizingPanel.VirtualizationMode="Recycling"
+                          VirtualizingPanel.ScrollUnit="Item">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="ColumnDate" Header="{DynamicResource dateOfCapture}"  Binding="{Binding StringDateOfTheEvent}"/>
+                        <DataGridTextColumn x:Name="ColumnState" Header="{DynamicResource state}"  Binding="{Binding LogData.State}"/>
+                        <DataGridTextColumn x:Name="ColumnPrefix" Header="{DynamicResource prefix}"  Binding="{Binding LogData.Prefix}"/>
+                        <DataGridTextColumn x:Name="ColumnMessage" Header="{DynamicResource message}"  Binding="{Binding LogData.Log}"/>
+                        <DataGridTextColumn x:Name="ColumnFullLog" Header="{DynamicResource fullLog}"  Binding="{Binding FullLog}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="35"/>
+    </Grid>
+</Page>

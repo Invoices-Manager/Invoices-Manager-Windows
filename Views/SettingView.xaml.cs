@@ -28,6 +28,7 @@ namespace InvoicesManager.Views
                 Tb_InvoicePath.Text = EnvironmentsVariable.PathInvoices;
                 Tb_NotebookPath.Text = EnvironmentsVariable.PathNotebook;
                 Tb_BackUpPath.Text = EnvironmentsVariable.PathBackUps;
+                Tb_LogPath.Text = EnvironmentsVariable.PathLogs;
                 Cb_EveryStartUpBackUp.IsChecked = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts;
                 Tb_MaxCountBackUp.Text = EnvironmentsVariable.MaxCountBackUp.ToString();
             }
@@ -53,6 +54,7 @@ namespace InvoicesManager.Views
                 EnvironmentsVariable.PathInvoices = Tb_InvoicePath.Text;
                 EnvironmentsVariable.PathNotebook = Tb_NotebookPath.Text;
                 EnvironmentsVariable.PathBackUps = Tb_BackUpPath.Text;
+                EnvironmentsVariable.PathLogs = Tb_LogPath.Text;
                 EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = Cb_EveryStartUpBackUp.IsChecked.Value;
                 EnvironmentsVariable.MaxCountBackUp = Convert.ToInt32(Tb_MaxCountBackUp.Text);
 
@@ -124,10 +126,18 @@ namespace InvoicesManager.Views
                 Tb_NotebookPath.Text = fbd.SelectedPath + "\\";
         }
 
+        private void Bttn_Select_LogPath_Click(object sender, RoutedEventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+
+            if (fbd.ShowDialog() == DialogResult.OK)
+                Tb_LogPath.Text = fbd.SelectedPath + "\\";
+        }
+
         private void Bttn_OpenTemplateMgr_Click(object sender, RoutedEventArgs e)
         {
-            InvoiceTemplateWindow invoiceViewWindow = new InvoiceTemplateWindow();
-            invoiceViewWindow.ShowDialog();
+            InvoiceTemplateWindow invoiceTemplateWindow = new InvoiceTemplateWindow();
+            invoiceTemplateWindow.ShowDialog();
         }
     }
 }

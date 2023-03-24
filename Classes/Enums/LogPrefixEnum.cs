@@ -1,6 +1,6 @@
 ﻿namespace InvoicesManager.Classes.Enums
 {
-    enum LogPrefixEnum
+    public enum LogPrefixEnum
     {
         System_Thread,
         Config_System,
@@ -8,7 +8,8 @@
         Invoice_System,
         Logger_System,
         Notebook_System,
-        Sort_System,
+        InvoicesSort_System,
+        LogSort_System,
         Security_System,
         Template_System,
         Language_System,
@@ -20,6 +21,9 @@
         Invoice_View,
         MainWindow_View,
         Notebook_View,
-        Setting_View
+        Setting_View,
+
+        
+        FilterPlaceholder
     }
 }

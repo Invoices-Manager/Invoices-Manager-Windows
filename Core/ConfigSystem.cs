@@ -23,6 +23,7 @@
                     PathInvoice = EnvironmentsVariable.PathInvoices,
                     PathNotebook = EnvironmentsVariable.PathNotebook,
                     PathBackUp = EnvironmentsVariable.PathBackUps,
+                    PathLogs = EnvironmentsVariable.PathLogs,
                     MoneyUnit = EnvironmentsVariable.MoneyUnit,
                     CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
                     MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp,
@@ -32,16 +33,17 @@
                 if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
                     config = JsonConvert.DeserializeObject<ConfigModel>(json);
 
-                EnvironmentsVariable.PathPDFBrowser = config.PathPDFBrowser;
-                EnvironmentsVariable.UILanguage = config.UILanguage;
-                EnvironmentsVariable.ConfigVersion = config.ConfigVersion;
-                EnvironmentsVariable.PathInvoices = config.PathInvoice;
-                EnvironmentsVariable.PathNotebook = config.PathNotebook;
-                EnvironmentsVariable.PathBackUps = config.PathBackUp;
-                EnvironmentsVariable.MoneyUnit = config.MoneyUnit;
+                EnvironmentsVariable.PathPDFBrowser = config.PathPDFBrowser ?? EnvironmentsVariable.PathPDFBrowser;
+                EnvironmentsVariable.UILanguage = config.UILanguage ?? EnvironmentsVariable.UILanguage;
+                EnvironmentsVariable.ConfigVersion = config.ConfigVersion ?? EnvironmentsVariable.ConfigVersion;
+                EnvironmentsVariable.PathInvoices = config.PathInvoice ?? EnvironmentsVariable.PathInvoices;
+                EnvironmentsVariable.PathNotebook = config.PathNotebook ?? EnvironmentsVariable.PathNotebook;
+                EnvironmentsVariable.PathBackUps = config.PathBackUp ?? EnvironmentsVariable.PathBackUps;
+                EnvironmentsVariable.PathLogs = config.PathLogs ?? EnvironmentsVariable.PathLogs;
+                EnvironmentsVariable.MoneyUnit = config.MoneyUnit == '\0' ? EnvironmentsVariable.MoneyUnit : config.MoneyUnit;
                 EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = config.CreateABackupEveryTimeTheProgramStarts;
                 EnvironmentsVariable.MaxCountBackUp = config.MaxCountBackUp;
-                
+
                 //if the owner starts this program with an older config version, then by default there is NULL, and the program would crash at init
                 if (config.ColumnVisibility is not null)
                     EnvironmentsVariable.ColumnVisibility = config.ColumnVisibility;
@@ -65,6 +67,7 @@
                 PathInvoice = EnvironmentsVariable.PathInvoices,
                 PathNotebook = EnvironmentsVariable.PathNotebook,
                 PathBackUp = EnvironmentsVariable.PathBackUps,
+                PathLogs = EnvironmentsVariable.PathLogs,
                 MoneyUnit = EnvironmentsVariable.MoneyUnit,
                 CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
                 MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp,

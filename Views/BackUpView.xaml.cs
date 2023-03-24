@@ -1,9 +1,9 @@
-﻿using System.Security.Cryptography;
-
-namespace InvoicesManager.Views
+﻿namespace InvoicesManager.Views
 {
     public partial class BackUpView: Page
     {
+        private CancellationTokenSource _pageUnloadedCancelToken;
+
         public BackUpView()
             => InitializeComponent();
 
@@ -11,7 +11,15 @@ namespace InvoicesManager.Views
             => _ = RefreshDataGrid();
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
-            => _ = RefreshDataGrid();
+        {
+            _ = RefreshDataGrid();
+            _pageUnloadedCancelToken = new CancellationTokenSource();
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            _pageUnloadedCancelToken.Cancel();
+        }
 
         private async void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
         {
@@ -96,11 +104,21 @@ namespace InvoicesManager.Views
             Dg_BackUps.Items.Clear();
             MsgBox_BackUpCounter.Content = $"{Application.Current.Resources["backUpCount"] as string}: 0";
 
-            await foreach (BackUpInfoModel backUpInfo in buSys.GetBackUps())
+            try
             {
-                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"New BackUpInfoModel was found: {backUpInfo.BackUpName}");
-                Dg_BackUps.Items.Add(backUpInfo);
-                MsgBox_BackUpCounter.Content = $"{Application.Current.Resources["backUpCount"] as string}: {Dg_BackUps.Items.Count}";
+                await foreach (BackUpInfoModel backUpInfo in buSys.GetBackUps())
+                {
+                    _pageUnloadedCancelToken.Token.ThrowIfCancellationRequested();
+                    LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"New BackUpInfoModel was found: {backUpInfo.BackUpName}");
+                    Dg_BackUps.Items.Add(backUpInfo);
+                    MsgBox_BackUpCounter.Content = $"{Application.Current.Resources["backUpCount"] as string}: {Dg_BackUps.Items.Count}";
+                }
+            }
+            catch (OperationCanceledException ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"RefreshDataGrid() was canceled! (page unload) err: {ex.Message}");
+                Dg_BackUps.Items.Clear();
+                return;
             }
 
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"Refresh was completed successfully! {Dg_BackUps.Items.Count} items were found");

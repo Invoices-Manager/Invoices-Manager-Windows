@@ -1,10 +1,10 @@
-﻿namespace InvoicesManager.Core
+﻿namespace InvoicesManager.Core.Sort
 {
-    public class SortSystem
+    public class InvoicesSortSystem
     {
         private readonly List<InvoiceModel> allInvoices;
-        private readonly string filterReference = String.Empty;
-        private readonly string filterInvoiceNumber = String.Empty;
+        private readonly string filterReference = string.Empty;
+        private readonly string filterInvoiceNumber = string.Empty;
         private readonly string filterOrganization = "-1";
         private readonly string filterDocumentType = "-1";
         private readonly DateTime filterExhibitionDate = default;
@@ -12,13 +12,13 @@
         private readonly MoneyStateEnum filterMoneyState = MoneyStateEnum.FilterPlaceholder;
         private readonly ImportanceStateEnum filterImportanceState = ImportanceStateEnum.FilterPlaceholder;
         private readonly double filterMoneyTotal = double.MinValue; // -1 is not possible because it is a valid value
-        private readonly  string filterTags = String.Empty;
+        private readonly string filterTags = string.Empty;
 
-        public SortSystem(List<InvoiceModel> allInvoices, 
-                                        string filterReference, 
-                                        string filterInvoiceNumber, 
-                                        string filterOrganization, 
-                                        string filterDocumentType, 
+        public InvoicesSortSystem(List<InvoiceModel> allInvoices,
+                                        string filterReference,
+                                        string filterInvoiceNumber,
+                                        string filterOrganization,
+                                        string filterDocumentType,
                                         DateTime filterExhibitionDate,
                                         PaidStateEnum filterPaidState,
                                         MoneyStateEnum filterMoneyState,
@@ -38,17 +38,17 @@
             this.filterMoneyTotal = filterMoneyTotal;
             this.filterTags = filterTags;
         }
-        
+
         public void Sort()
         {
             try
             {
-                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Sort_System, $"Start sorting invoices");
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.InvoicesSort_System, $"Start sorting invoices");
                 DateTime startTime = DateTime.Now;
 
                 EnvironmentsVariable.FilteredInvoices = allInvoices
-                              .Where(x => x.Reference.ToLower().Contains(filterReference) || String.IsNullOrEmpty(filterReference))
-                              .Where(x => x.InvoiceNumber.ToLower().Contains(filterInvoiceNumber) || String.IsNullOrEmpty(filterInvoiceNumber))
+                              .Where(x => x.Reference.ToLower().Contains(filterReference) || string.IsNullOrEmpty(filterReference))
+                              .Where(x => x.InvoiceNumber.ToLower().Contains(filterInvoiceNumber) || string.IsNullOrEmpty(filterInvoiceNumber))
                               .Where(x => x.Organization.ToLower().Equals(filterOrganization) || filterOrganization is "-1")
                               .Where(x => x.DocumentType.ToLower().Equals(filterDocumentType) || filterDocumentType is "-1")
                               .Where(x => x.ExhibitionDate.Date == filterExhibitionDate.Date || filterExhibitionDate == default)
@@ -56,14 +56,14 @@
                               .Where(x => x.MoneyState == filterMoneyState || filterMoneyState == MoneyStateEnum.FilterPlaceholder)
                               .Where(x => x.ImportanceState == filterImportanceState || filterImportanceState == ImportanceStateEnum.FilterPlaceholder)
                               .Where(x => x.MoneyTotal == filterMoneyTotal || filterMoneyTotal == double.MinValue)
-                              .Where(x => x.Tags.Select(y => y.ToLower()).Contains(filterTags.ToLower()) || String.IsNullOrEmpty(filterTags))
+                              .Where(x => x.Tags.Select(y => y.ToLower()).Contains(filterTags.ToLower()) || string.IsNullOrEmpty(filterTags))
                               .ToList();
 
-                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Sort_System, $"Stop sorting invoices took {(DateTime.Now - startTime).TotalMilliseconds} ms");
+                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.InvoicesSort_System, $"Stop sorting invoices, took {(DateTime.Now - startTime).TotalMilliseconds} ms");
             }
             catch (Exception ex)
             {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Sort_System, $"Error while sorting invoices {ex.Message}");
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.InvoicesSort_System, $"Error while sorting invoices, err: {ex.Message}");
             }
         }
     }

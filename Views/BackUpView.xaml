@@ -8,7 +8,10 @@
         Title="BackUp Menu | Made by Schecher | https://github.com/Schecher1" 
         d:DesignHeight="1000" d:DesignWidth="1000"
         MinHeight="250" MinWidth="250"
-        Loaded="Page_Loaded">
+        Loaded="Page_Loaded"
+        Unloaded="Page_Unloaded"
+        KeepAlive="False">
+    
     <Grid Background="{DynamicResource GridBackground}">
         <Grid>
             <ToolBarPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40">

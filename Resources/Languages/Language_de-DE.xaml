@@ -88,6 +88,7 @@
     <system:String x:Key="noInvoice">Keine Rechnung</system:String>
     <system:String x:Key="invoicePath">Rechnungs Pfad</system:String>
     <system:String x:Key="backupPath">Sicherungs Pfad</system:String>
+    <system:String x:Key="logPath">Protokoll Pfad</system:String>
     <system:String x:Key="notebookPath">Notizbuch Pfad</system:String>
     <system:String x:Key="tagInfo">(mit  ;  trennen)</system:String>
     <system:String x:Key="everyStartUpBackUp">Bei jedem Programmstart ein BackUp erstellen?</system:String>
@@ -101,6 +102,7 @@
     <system:String x:Key="Bttn_BackUp">Sicherungen</system:String>
     <system:String x:Key="Bttn_Settings">Einstellungen</system:String>
     <system:String x:Key="Bttn_About">Über das Program</system:String>
+    <system:String x:Key="Bttn_Logs">Protokolle</system:String>
     <system:String x:Key="dateOfCapture">Datum der Erfassung</system:String>
     <system:String x:Key="paidState">Zahlungs Status</system:String>
     <system:String x:Key="moneyState">Geld Status</system:String>
@@ -130,4 +132,20 @@
     <system:String x:Key="bkupFilter">BackUp-Datei (*.bkup)|*.bkup</system:String>
     <system:String x:Key="backUpSize">Sicherungs Größe</system:String>
     <system:String x:Key="backUpCount">Sicherungs Anzahl</system:String>
+    <system:String x:Key="openLogFolder">Öffne Protokoll Ordner</system:String>
+    <system:String x:Key="deleteAllLogs">Alle Protokolle löschen</system:String>
+    <system:String x:Key="searchByState">Suche nach: Status</system:String>
+    <system:String x:Key="searchByPrefix">Suche nach: Prefix</system:String>
+    <system:String x:Key="searchByMessage">Suche nach: Nachricht</system:String>
+    <system:String x:Key="copy">kopieren</system:String>
+    <system:String x:Key="state">Status</system:String>
+    <system:String x:Key="prefix">Präfix</system:String>
+    <system:String x:Key="message">Nachricht</system:String>
+    <system:String x:Key="fullLog">Vollständiges Protokoll</system:String>
+    <system:String x:Key="deleteAllLogsMsg">Wollen Sie wirklich alle Protokolle löschen?</system:String>
+    <system:String x:Key="deleteAllLogsTitle">Achtung, Löschen aller Protokolle!</system:String>
+    <system:String x:Key="allLogs">Alle Protokolle</system:String>
+    <system:String x:Key="toDayLogs">Nur die heutigen Protokolle</system:String>
+    <system:String x:Key="loadTimeMessage">Bitte warten, je nach größe der Log Datei kann es dauern!</system:String>
+    <system:String x:Key="loadTimeTitle">Lade...</system:String>
 </ResourceDictionary>

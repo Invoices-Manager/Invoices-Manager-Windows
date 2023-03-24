@@ -15,8 +15,8 @@ It's simple, there are enough ways to filter your documents.
 
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one).  <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.4.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.4.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.5.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.5.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
 
 
 ## Features:
@@ -31,10 +31,10 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 
 ## Images:
 ### Main-Screen:                                                  
-![Main-Screen](IMAGES/Version%201.4.3.0/MainScreen.png)
+![Main-Screen](IMAGES/Version%201.4.5.0/MainScreen.png)
 
 ### Invoice-Main-Screen:                                                  
-![Invoice-Main-Screen](IMAGES/Version%201.4.3.0/InvoiceMainScreen.png)
+![Invoice-Main-Screen](IMAGES/Version%201.4.5.0/InvoiceMainScreen.png)
 
 ### Invoice-View-Screen:                                           
 ![Invoice-View-Screen](IMAGES/Version%201.4.3.0/InvoiceViewScreen.png)
@@ -50,13 +50,16 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ![Notescreen-Screen](IMAGES/Version%201.4.3.0/NotebookScreen.png) 
 
 ### BackUp-Screen:                                         
-![BackUp-Screen](IMAGES/Version%201.4.3.0/BackUpScreen.png) 
+![BackUp-Screen](IMAGES/Version%201.4.5.0/BackUpScreen.png) 
+
+### Log-Screen:                                         
+![BackUp-Screen](IMAGES/Version%201.4.5.0/LogScreen.png) 
 
 ### Setting-Screen:                                         
-![Setting-Screen](IMAGES/Version%201.4.3.0/SettingScreen.png) 
+![Setting-Screen](IMAGES/Version%201.4.5.0/SettingScreen.png) 
 
 ### About-Screen:                                         
-![About-Screen](IMAGES/Version%201.4.3.0/AboutScreen.png)
+![About-Screen](IMAGES/Version%201.4.5.0/AboutScreen.png)
 
 
 # CHANGELOG
@@ -65,6 +68,15 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### Y = Minor version (big updates)
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
+
+## v1.4.5.0
+- Add a Log Manager:
+  -You can open the log folder<br/>
+  -You can see all logs (all, only today or a specific day log)<br/>
+  -You can sort the logs<br/>
+  -You can delete all logs<br/>
+- You can set the Log path (its it is not static anymore)
+- Big improvement in the RAM usage (memoryLeak)
 
 ## v1.4.4.0
 - Logging has been improved. (more loggin, no worries will only be stored on your pc)

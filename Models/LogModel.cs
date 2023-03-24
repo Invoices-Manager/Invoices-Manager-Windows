@@ -4,6 +4,7 @@
     {
         public string FullLog { get; set; }
         public SubLogModel LogData { get; set; }
+        public string StringDateOfTheEvent { get { return LogData.DateOfTheEvent.ToString("HH:mm:ss yyyy.MM.dd"); } }
     }
 
     public class SubLogModel
