@@ -138,7 +138,8 @@ namespace InvoicesManager.Views
             //TODO: IMPROVE Loading time
             
             int index = Comb_Logs.SelectedIndex;
-            
+            string combText = Comb_Logs.SelectedItem.ToString() ?? "";
+
             Task.Run(() => 
             {
                 List<LogModel> logs = new List<LogModel>();
@@ -162,7 +163,7 @@ namespace InvoicesManager.Views
                         break;
 
                     default:
-                        logs = LoggerSystem.GetLogs(Comb_Logs.SelectedItem.ToString());
+                        logs = LoggerSystem.GetLogs(combText);
                         break;
                 }
 
