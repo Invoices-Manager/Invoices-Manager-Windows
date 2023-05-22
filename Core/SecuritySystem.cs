@@ -9,7 +9,9 @@
 
             try
             {
+#if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Security_System, $"Get MD5 Hash from file: {path}");
+#endif
                 return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLowerInvariant();
             }
             catch (Exception ex)
@@ -25,7 +27,9 @@
             
             try
             {
+#if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Security_System, "Get MD5 Hash from byte array");
+#endif 
                 return BitConverter.ToString(md5.ComputeHash(bytes)).Replace("-", "").ToLowerInvariant();
             }
             catch (Exception ex)

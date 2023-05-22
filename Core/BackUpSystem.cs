@@ -310,7 +310,9 @@ namespace InvoicesManager.Core
             foreach (string file in allTempFiles)
                 try
                 {
+#if DEBUG
                     LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"Deleting temp file: {file}");
+#endif
                     File.Delete(file); 
                 } catch { }
 
@@ -399,7 +401,9 @@ namespace InvoicesManager.Core
 
             try
             {
+#if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"Get meta data from backup file: {file}");
+#endif
 
                 BackUpInfoModel backUpMetaData = new BackUpInfoModel();
                 BackUpModel backUp = JsonConvert.DeserializeObject<BackUpModel>(File.ReadAllText(file));
@@ -465,7 +469,10 @@ namespace InvoicesManager.Core
             //delete the backup
             try
             {
+#if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"Delete backup file: {backUpPath}");
+#endif
+
                 File.Delete(backUpPath);
                 return true;
             }

@@ -70,8 +70,9 @@
 
         private void SaveIntoJsonFile()
         {
+#if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Template_System, "SaveIntoJsonFile() has been called");
-            
+#endif
             try
             {
                 File.WriteAllText(EnvironmentsVariable.PathTemplates + EnvironmentsVariable.TemplatesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllTemplates, Formatting.Indented));

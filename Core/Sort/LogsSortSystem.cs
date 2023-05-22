@@ -30,7 +30,9 @@ namespace InvoicesManager.Core.Sort
                 //Check that at least one filter is on when all are off. Then it skips the sorting, saving a lot of time.
                 if (!CheckIfAtLeastOneFilter())
                 {
+#if DEBUG
                     LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.LogSort_System, $"No filter is on, skipping sorting");
+#endif
                     EnvironmentsVariable.FilteredLogs = allLogs;
                     return;
                 }

@@ -17,7 +17,9 @@ namespace InvoicesManager
                 //program will freeze if the log folder is not created
                 EnvironmentsVariable.InitWorkPath();
 
+#if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.System_Thread, "The Mutex will be claimed...");
+#endif
                 //check if it is already claimed
                 if (!InvoiceManagerMutex.WaitOne(TimeSpan.Zero, true))
                 {

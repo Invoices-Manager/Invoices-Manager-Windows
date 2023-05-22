@@ -73,9 +73,9 @@
                 MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp,
                 ColumnVisibility = EnvironmentsVariable.ColumnVisibility
             };
-
+#if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Config_System, "SaveIntoJsonFile() has been called");
-
+#endif
             try
             {
                 File.WriteAllText(EnvironmentsVariable.PathConfig + EnvironmentsVariable.ConfigJsonFileName, JsonConvert.SerializeObject(config, Formatting.Indented));
