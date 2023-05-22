@@ -69,6 +69,10 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
 
+## v1.4.5.2
+- The program does not create debuggin logs any more, on the one hand they are not useful for the enduser and on the other hand the program sometimes crashed while logging debug stuff.
+- Certain "[INFO]" logs were rather "[DEBUG]" logs, meaning the logs were classified as debug and thus no longer visible.
+
 ## v1.4.5.1 (HotFix for v1.4.5.0)
 - The log manager had an error, when you selected a log file nothing happened
 

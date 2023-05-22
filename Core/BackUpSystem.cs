@@ -343,7 +343,9 @@ namespace InvoicesManager.Core
 
         public bool SaveAs(string backupFilePath, string newPath)
         {
-            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"SaveAs() has been called");
+#if DEBUG
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"SaveAs() has been called");
+#endif
             LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"Save as: {backupFilePath} to {newPath}");
 
             //return if the backup not exist
@@ -368,7 +370,9 @@ namespace InvoicesManager.Core
 
         public async IAsyncEnumerable<BackUpInfoModel> GetBackUps()
         {
-            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"GetBackUps() has been called");
+#if DEBUG
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"GetBackUps() has been called");
+#endif
             DateTime start = DateTime.Now;
 
             BackUpSystem buSys = new BackUpSystem();
@@ -396,7 +400,9 @@ namespace InvoicesManager.Core
 
         private BackUpInfoModel GetBackUpMetaData(string file)
         {
-            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"GetBackUpMetaData() has been called");
+#if DEBUG
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"GetBackUpMetaData() has been called");
+#endif
             DateTime start = DateTime.Now;
 
             try
@@ -449,7 +455,9 @@ namespace InvoicesManager.Core
 
         public static string GetFileSize(string path)
         {
-            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"GetFileSize() has been called");
+#if DEBUG
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"GetFileSize() has been called");
+#endif
 
             long size = new FileInfo(path).Length;
 
@@ -464,7 +472,9 @@ namespace InvoicesManager.Core
 
         public bool Delete(string backUpPath)
         {
-            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"Delete() has been called");
+#if DEBUG
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"Delete() has been called");
+#endif
 
             //delete the backup
             try

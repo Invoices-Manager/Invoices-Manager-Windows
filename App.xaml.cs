@@ -23,7 +23,9 @@ namespace InvoicesManager
                 //check if it is already claimed
                 if (!InvoiceManagerMutex.WaitOne(TimeSpan.Zero, true))
                 {
-                    LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.System_Thread, "The Mutex was claimed successfully!");
+#if DEBUG
+                    LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.System_Thread, "The Mutex was claimed successfully!");
+#endif
                     //the app is already running
                     MessageBox.Show("Another instance of the app is already running.");
                     return;
@@ -41,7 +43,9 @@ namespace InvoicesManager
                 //release the mutex
                 //Its should not work, because the app will release the mutex instantly but it works
                 InvoiceManagerMutex.ReleaseMutex();
-                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.System_Thread, "The Mutex was released successfully!");
+#if DEBUG
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.System_Thread, "The Mutex was released successfully!");
+#endif
             }
         }
     }
