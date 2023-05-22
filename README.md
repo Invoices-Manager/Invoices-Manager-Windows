@@ -15,8 +15,8 @@ It's simple, there are enough ways to filter your documents.
 
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one).  <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.5.1/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.5.1/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.5.2/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.5.2/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
 
 
 ## Features:
@@ -72,6 +72,7 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ## v1.4.5.2
 - The program does not create debuggin logs any more, on the one hand they are not useful for the enduser and on the other hand the program sometimes crashed while logging debug stuff.
 - Certain "[INFO]" logs were rather "[DEBUG]" logs, meaning the logs were classified as debug and thus no longer visible.
+- Template System did not have a log prefix until now, it was called "Unknown" but now it is called "Template System.
 
 ## v1.4.5.1 (HotFix for v1.4.5.0)
 - The log manager had an error, when you selected a log file nothing happened
