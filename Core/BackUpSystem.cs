@@ -441,8 +441,9 @@ namespace InvoicesManager.Core
                 backUpMetaData.BackUpPath = file;
 
                 DateTime stop = DateTime.Now;
-                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"GetBackUpMetaData() has been finished. Took: {(stop - start).TotalMilliseconds} ms");
-
+#if DEBUG
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"GetBackUpMetaData() has been finished. Took: {(stop - start).TotalMilliseconds} ms");
+#endif
                 return backUpMetaData;
             }
             catch (Exception ex)
