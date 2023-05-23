@@ -310,7 +310,9 @@ namespace InvoicesManager.Core
             foreach (string file in allTempFiles)
                 try
                 {
+#if DEBUG
                     LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"Deleting temp file: {file}");
+#endif
                     File.Delete(file); 
                 } catch { }
 
@@ -341,7 +343,9 @@ namespace InvoicesManager.Core
 
         public bool SaveAs(string backupFilePath, string newPath)
         {
-            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"SaveAs() has been called");
+#if DEBUG
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"SaveAs() has been called");
+#endif
             LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"Save as: {backupFilePath} to {newPath}");
 
             //return if the backup not exist
@@ -366,7 +370,9 @@ namespace InvoicesManager.Core
 
         public async IAsyncEnumerable<BackUpInfoModel> GetBackUps()
         {
-            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"GetBackUps() has been called");
+#if DEBUG
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"GetBackUps() has been called");
+#endif
             DateTime start = DateTime.Now;
 
             BackUpSystem buSys = new BackUpSystem();
@@ -394,12 +400,16 @@ namespace InvoicesManager.Core
 
         private BackUpInfoModel GetBackUpMetaData(string file)
         {
-            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"GetBackUpMetaData() has been called");
+#if DEBUG
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"GetBackUpMetaData() has been called");
+#endif
             DateTime start = DateTime.Now;
 
             try
             {
+#if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"Get meta data from backup file: {file}");
+#endif
 
                 BackUpInfoModel backUpMetaData = new BackUpInfoModel();
                 BackUpModel backUp = JsonConvert.DeserializeObject<BackUpModel>(File.ReadAllText(file));
@@ -431,8 +441,9 @@ namespace InvoicesManager.Core
                 backUpMetaData.BackUpPath = file;
 
                 DateTime stop = DateTime.Now;
-                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"GetBackUpMetaData() has been finished. Took: {(stop - start).TotalMilliseconds} ms");
-
+#if DEBUG
+                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"GetBackUpMetaData() has been finished. Took: {(stop - start).TotalMilliseconds} ms");
+#endif
                 return backUpMetaData;
             }
             catch (Exception ex)
@@ -445,7 +456,9 @@ namespace InvoicesManager.Core
 
         public static string GetFileSize(string path)
         {
-            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"GetFileSize() has been called");
+#if DEBUG
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"GetFileSize() has been called");
+#endif
 
             long size = new FileInfo(path).Length;
 
@@ -460,12 +473,17 @@ namespace InvoicesManager.Core
 
         public bool Delete(string backUpPath)
         {
-            LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, $"Delete() has been called");
+#if DEBUG
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"Delete() has been called");
+#endif
 
             //delete the backup
             try
             {
+#if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"Delete backup file: {backUpPath}");
+#endif
+
                 File.Delete(backUpPath);
                 return true;
             }

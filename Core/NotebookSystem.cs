@@ -73,22 +73,26 @@
 
         public bool CheckIfNoteExist(NoteModel note)
         {
+#if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Notebook_System, "CheckIfNoteExist() has been called");
+#endif
             return EnvironmentsVariable.Notebook.Notebook.Exists(x => x.Id == note.Id);
         }
 
         public bool CheckIfNoteHasChanged(NoteModel note)
         {
+#if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Notebook_System, "CheckIfNoteHasChanged() has been called");
-
+#endif
             NoteModel noteFromList = EnvironmentsVariable.Notebook.Notebook.Find(x => x.Id == note.Id);
             return noteFromList.Name != note.Name || noteFromList.Value != note.Value;
         }
         
         private void SaveIntoJsonFile()
         {
+#if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Notebook_System, "SaveIntoJsonFile() has been called");
-            
+#endif
             try
             {
                 File.WriteAllText(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.Notebook, Formatting.Indented));

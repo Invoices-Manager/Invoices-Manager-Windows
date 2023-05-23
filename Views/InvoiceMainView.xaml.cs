@@ -88,7 +88,9 @@ namespace InvoicesManager.Views
 
         private void InitThreads()
         {
+#if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.MainWindow_View, "init threads was requested");
+#endif
 
             InvoiceSystem iSys = new InvoiceSystem();
 
@@ -154,8 +156,9 @@ namespace InvoicesManager.Views
 
         private void RefreshDataGridWithInit()
         {
+#if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.MainWindow_View, "RefreshDataGridWithInit was requested");
-
+#endif
             InitInvoices();
             InitOrganization();
             InitDocumentType();

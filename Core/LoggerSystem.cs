@@ -119,6 +119,7 @@ namespace InvoicesManager.Core
                 LogPrefixEnum.LogSort_System => "Log-Sort-System",
                 LogPrefixEnum.Security_System => "Security-System",
                 LogPrefixEnum.Language_System => "Language-System",
+                LogPrefixEnum.Template_System => "Template-System",
                 LogPrefixEnum.About_View => "About-View",
                 LogPrefixEnum.BackUp_View => "BackUp-View",
                 LogPrefixEnum.SaveAs_View => "SaveAs-View",

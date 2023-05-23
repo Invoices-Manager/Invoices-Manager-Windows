@@ -97,7 +97,10 @@
 
         private async Task RefreshDataGrid()
         {
+#if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, "Refresh was requested");
+#endif
+
             BackUpSystem buSys = new BackUpSystem();
 
             //clear the dg and counter
@@ -109,19 +112,25 @@
                 await foreach (BackUpInfoModel backUpInfo in buSys.GetBackUps())
                 {
                     _pageUnloadedCancelToken.Token.ThrowIfCancellationRequested();
+#if DEBUG
                     LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"New BackUpInfoModel was found: {backUpInfo.BackUpName}");
+#endif
                     Dg_BackUps.Items.Add(backUpInfo);
                     MsgBox_BackUpCounter.Content = $"{Application.Current.Resources["backUpCount"] as string}: {Dg_BackUps.Items.Count}";
                 }
             }
             catch (OperationCanceledException ex)
             {
+#if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"RefreshDataGrid() was canceled! (page unload) err: {ex.Message}");
+#endif
                 Dg_BackUps.Items.Clear();
                 return;
             }
 
+#if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"Refresh was completed successfully! {Dg_BackUps.Items.Count} items were found");
+#endif
         }
 
         private async void MenuItem_BackUpRestore_Click(object sender, RoutedEventArgs e)

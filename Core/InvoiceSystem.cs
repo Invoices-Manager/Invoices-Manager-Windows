@@ -8,18 +8,19 @@
             {
                 //set the flag to false
                 EnvironmentsVariable.IsInvoiceInitFinish = false;
+#if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "set EnvironmentsVariable.IsInvoiceInitFinish to false");
-
+#endif
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, "Initializing the invoices...");
 
                 EnvironmentsVariable.AllInvoices.Clear();
-
+#if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "Loading the invoices from the json file...");
-
+#endif
                 string json = File.ReadAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName);
-
+#if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "Finished, loading the invoices from the json file");
-
+#endif
                 if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
                     EnvironmentsVariable.AllInvoices = JsonConvert.DeserializeObject<List<InvoiceModel>>(json);
 
@@ -28,7 +29,9 @@
 
                 //set the flag to true
                 EnvironmentsVariable.IsInvoiceInitFinish = true;
+#if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "set EnvironmentsVariable.IsInvoiceInitFinish to true");
+#endif
             }
             catch (Exception ex)
             {
@@ -47,7 +50,9 @@
                 }
                 
                 EnvironmentsVariable.AllInvoices.Add(newInvoice);
+#if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"start FileCp filePath: {filePath}  newPath: {newPath}");
+#endif
                 File.Copy(filePath, newPath);
                 
                 SaveIntoJsonFile();
@@ -118,8 +123,9 @@
 
         public bool CheckIfInvoiceExist(string filePath)
         {
+#if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"CheckIfInvoiceExist() was called");
-
+#endif
             bool existAlready = false;
             
             try
@@ -143,8 +149,9 @@
 
         public bool CheckIfInvoicesDataHasChanged(InvoiceModel backupInvoice)
         {
+#if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"CheckIfInvoicesDataHasChanged() was called");
-
+#endif
             bool hasChanged = false;
 
             InvoiceModel invoice;
@@ -191,8 +198,9 @@
 
         public void OverrideInvoice(InvoiceModel invoice)
         {
+#if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"OverrideInvoice() was called");
-
+#endif
             try
             {
                 //find the invoice in the list
@@ -220,8 +228,9 @@
 
         private void SaveIntoJsonFile()
         {
+#if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"SaveIntoJsonFile() was called");
-
+#endif
             try
             {
                 File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices, Formatting.Indented));
