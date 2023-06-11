@@ -59,7 +59,7 @@ namespace InvoicesManager.Core
                 note.LastEditDate = DateTime.Now;
 
                 //save into web
-                if (!NoteWebSystem.Edit(editNote.Id, editNote))
+                if (!NoteWebSystem.Edit(editNote))
                     throw new Exception("Error editing note via api.");
 
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Notebook_System, $"A note has been edited. [{editNote.Id}]");

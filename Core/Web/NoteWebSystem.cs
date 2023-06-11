@@ -43,25 +43,88 @@ namespace InvoicesManager.Core.Web
 
             return JsonConvert.SerializeObject(notebook);
         }
-
-        public static string Get(int id)
-        {
-            return "";
-        }
         
         public static int Add(NoteModel newNote)
         {
-            return -1;
+            WebRequestSystem _wr = new WebRequestSystem(EnvironmentsVariable.API_ENDPOINT_NOTE);
+
+            _wr.SetRequestMethod("POST");
+            _wr.SetHeaders(new WebHeaderCollection()
+            {
+                { "bearerToken", EnvironmentsVariable.BearerToken },
+                { "Content-Type", "application/json" }
+            });
+            _wr.SetBody(JsonConvert.SerializeObject(newNote));
+
+            _wr.SendRequest();
+
+            HttpStatusCode statusCode = _wr.GetStatusCode();
+            string responseBody = _wr.GetResponseBody();
+            bool isSuccess = _wr.IsSuccess();
+
+            if (!isSuccess)
+            {
+                throw new Exception("Error: " + statusCode + " " + responseBody);
+            }
+
+            WebResponseModel response = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
+
+            return JsonConvert.DeserializeObject<NoteModel>(response.Args["note"].ToString()).Id;
         }
 
-        public static bool Edit(int idFromOldNote, NoteModel newNote)
+        public static bool Edit(NoteModel newNote)
         {
-            return false;
+            WebRequestSystem _wr = new WebRequestSystem(EnvironmentsVariable.API_ENDPOINT_NOTE);
+
+            _wr.SetRequestMethod("PUT");
+            _wr.SetHeaders(new WebHeaderCollection()
+            {
+                { "bearerToken", EnvironmentsVariable.BearerToken },
+                { "Content-Type", "application/json" }
+            });
+            _wr.SetBody(JsonConvert.SerializeObject(newNote));
+
+            _wr.SendRequest();
+
+            HttpStatusCode statusCode = _wr.GetStatusCode();
+            string responseBody = _wr.GetResponseBody();
+            bool isSuccess = _wr.IsSuccess();
+
+            if (!isSuccess)
+            {
+                throw new Exception("Error: " + statusCode + " " + responseBody);
+            }
+
+            WebResponseModel response = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
+            
+            return _wr.IsSuccess();
         }
 
         public static bool Delete(int id)
         {
-            return false;
+            WebRequestSystem _wr = new WebRequestSystem(EnvironmentsVariable.API_ENDPOINT_NOTE + $"?Id={id}");
+
+            _wr.SetRequestMethod("DELETE");
+            _wr.SetHeaders(new WebHeaderCollection()
+            {
+                { "bearerToken", EnvironmentsVariable.BearerToken },
+                { "Content-Type", "application/json" }
+            });
+
+            _wr.SendRequest();
+
+            HttpStatusCode statusCode = _wr.GetStatusCode();
+            string responseBody = _wr.GetResponseBody();
+            bool isSuccess = _wr.IsSuccess();
+
+            if (!isSuccess)
+            {
+                throw new Exception("Error: " + statusCode + " " + responseBody);
+            }
+
+            WebResponseModel response = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
+
+            return _wr.IsSuccess();
         }
     }
 }
