@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:InvoicesManager.Windows"
         mc:Ignorable="d"
         Title="Invoice Notebook | Made by Schecher | https://github.com/Schecher1" 
-        Height="600" Width="800"
+        Height="600" Width="850"
         Loaded="Window_Loaded"
         Icon="/Resources/SmallIcon.png"
         Closed="Window_Closed"
@@ -35,7 +35,7 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        <Grid Margin="310,0,32,0" Height="75" VerticalAlignment="Top">
+        <Grid Margin="310,0,15,0" Height="75" VerticalAlignment="Top">
             <TextBox x:Name="Tb_Note_Title" 
                      FontSize="28" 
                      Margin="0,5,0,20"
@@ -43,7 +43,7 @@
         </Grid>
         <Grid>
             <TextBox x:Name="Tb_Note_Value"
-                     Margin="310,60,32,75"
+                     Margin="310,60,15,75"
                      FontSize="{DynamicResource FontSize}"
                      TextWrapping="Wrap"
                      AcceptsReturn="True"
@@ -86,6 +86,17 @@
                                            HorizontalAlignment="Right" 
                                            Margin="0,0,25,0"
                                           Click="Bttn_DeleteNote_Click"/>
+                    <Button Content="{DynamicResource refresh}" 
+                                            x:Name="Bttn_RefreshNotebook"
+                                           FontSize="{DynamicResource FontSize}" 
+                                           Width="100"
+                                            Height="50"
+                                           Foreground="{DynamicResource FontForeground}" 
+                                           HorizontalContentAlignment="Center" 
+                                           VerticalContentAlignment="Center" 
+                                           Margin="0,0,25,0" 
+                                           HorizontalAlignment="Right"
+                                           Click="Bttn_RefreshNotebook_Click"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

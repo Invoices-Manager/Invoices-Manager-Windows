@@ -1,4 +1,6 @@
-﻿namespace InvoicesManager.Windows
+﻿using InvoicesManager.Core;
+
+namespace InvoicesManager.Windows
 {
     public partial class NotebookWindow : Window
     {
@@ -44,6 +46,10 @@
             try
             {
                 sP_Notes.Items.Clear();
+
+                NotebookSystem nSys = new NotebookSystem();
+                nSys.Init();
+
                 foreach (NoteModel note in EnvironmentsVariable.Notebook.Notebook)
                     sP_Notes.Items.Add(note);
 
@@ -159,6 +165,11 @@
 
             NotebookSystem nSys = new NotebookSystem();
             nSys.AddNote(note);
+            LoadNotebooks();
+        }
+
+        private void Bttn_RefreshNotebook_Click(object sender, RoutedEventArgs e)
+        {
             LoadNotebooks();
         }
     }

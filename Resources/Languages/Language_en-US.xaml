@@ -37,6 +37,7 @@
     <system:String x:Key="from">from</system:String>
     <system:String x:Key="whatShouldTheFileBeCalled">what should the file be called?</system:String>
     <system:String x:Key="saveAs">save as</system:String>
+    <system:String x:Key="refresh">refresh</system:String>
     <system:String x:Key="pleaseChooseALocationForYourBackUpFile">please choose a location for your BackUp file</system:String>
     <system:String x:Key="uiLanguage">UI Language</system:String>
     <system:String x:Key="pdfProgram">PDF Program</system:String>

@@ -37,6 +37,7 @@
     <system:String x:Key="from">von</system:String>
     <system:String x:Key="whatShouldTheFileBeCalled">Wie soll die Datei heißen?</system:String>
     <system:String x:Key="saveAs">Speichern unter</system:String>
+    <system:String x:Key="refresh">Neu laden</system:String>
     <system:String x:Key="pleaseChooseALocationForYourBackUpFile">Bitte wählen Sie einen Speicherort für Ihre Sicherungsdatei</system:String>
     <system:String x:Key="uiLanguage">Benutzersprache</system:String>
     <system:String x:Key="pdfProgram">PDF-Programm</system:String>
