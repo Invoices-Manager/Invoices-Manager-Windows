@@ -23,7 +23,6 @@
         public static string TemplatesJsonFileName = "Templates.json";
         public static string ToDayLogJsonFileName { get { return $"Log_{DateTime.Now.ToString("yyyy-MM-dd")}.txt"; } }
 
-       
         public static string UILanguage = "English";
         public static string[] PossibleUILanguages = { "English", "German" };
         public const string PROGRAM_VERSION = "1.4.5.2";
@@ -34,7 +33,19 @@
         public static bool Window_Notebook_IsClosed = true;
         public static char MoneyUnit = '€';
         public static char[] PossibleMoneyUnits = { '€', '$', '£', '¥', '₽', '₹' };
-        
+
+
+        public static string BearerToken = "";
+
+        public const string HOST_PROT = "https";
+        public const string HOST_ADDRESS = "localhost";
+        public const string HOST_PORT = "5001";
+        public const string HOST_PATH = "/api/v01";
+        public const string HOST_ENDPOINT = HOST_PROT + "://" + HOST_ADDRESS + ":" + HOST_PORT + HOST_PATH;
+
+        public const string API_ENDPOINT_NOTE = HOST_ENDPOINT + "/Note";
+        public const string API_ENDPOINT_NOTE_GETALL = API_ENDPOINT_NOTE + "/GetAll";
+
         public static void InitWorkPath()
         {
             //create/check the need folders and files
