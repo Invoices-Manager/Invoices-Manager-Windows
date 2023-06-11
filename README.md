@@ -9,24 +9,25 @@ via the BackUp function in the program.
 ## Application description:
 Are you also tired of putting all your invoices (and other documents) 
 in one folder and then having to search for them? <br/>
-Now it has an end, with this you can import and manage them. 
-It's simple, there are enough ways to filter your documents.
+Now it has an end, with this you can import and manage them,  
+and the best comes now, all in a cloud that can also be hosted by you!  
+([press here](https://github.com/Invoices-Manager/Invoices-Manager-API#readme) to see more about the API) 
+It's simple, there are enough options to filter your documents.
+
 
 
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one).  <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.5.2/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
-Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/releases/download/InvoicesManager-Vers-1.4.5.2/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Cloud-Windows/releases/download/InvoicesManager-Vers-2.0.0.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Cloud-Windows/releases/download/InvoicesManager-Vers-2.0.0.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
 
 
 ## Features:
 ✔️ Clean UI<br/>
 ✔️ User friendly / beginner friendly<br/>
-✔️ BackUp function<br/>
 ✔️ Built in notebook<br/>
-✔️ Auto BackUp function<br/>
 ✔️ Many filter methods<br/>
-✔️ File database is optimal so that other programs can also use it<br/>
+✔️ All via an ASP API that can be hosted by yourself<br/>
                                                                                                              
 
 ## Images:
@@ -68,6 +69,9 @@ Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Windows/rel
 ### Y = Minor version (big updates)
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
+
+## v2.0.0.0
+- The complete code for local storage has been rewritten, now there is a cloud function (ATTENTION WITHOUT ENCRYPTION; COMES LATER)
 
 ## v1.4.5.2
 - The program does not create debuggin logs any more, on the one hand they are not useful for the enduser and on the other hand the program sometimes crashed while logging debug stuff.
