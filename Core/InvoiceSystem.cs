@@ -1,4 +1,7 @@
-﻿namespace InvoicesManager.Core
+﻿using InvoicesManager.Core.Web;
+using System.Buffers.Text;
+
+namespace InvoicesManager.Core
 {
     public class InvoiceSystem
     {
@@ -17,7 +20,7 @@
 #if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "Loading the invoices from the json file...");
 #endif
-                string json = File.ReadAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName);
+                string json = InvoiceWebSystem.GetAll();
 #if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "Finished, loading the invoices from the json file");
 #endif
@@ -48,14 +51,16 @@
                     MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
                     return;
                 }
-                
+
+                //convert the file to base64
+                string base64 = Convert.ToBase64String(File.ReadAllBytes(filePath));
+
+                //save into web
+                if (InvoiceWebSystem.Add(newInvoice, base64))
+                    throw new Exception("Error while adding a new invoice");
+                //save into env
                 EnvironmentsVariable.AllInvoices.Add(newInvoice);
-#if DEBUG
-                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"start FileCp filePath: {filePath}  newPath: {newPath}");
-#endif
-                File.Copy(filePath, newPath);
                 
-                SaveIntoJsonFile();
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, $"A new invoice has been added. [{newInvoice.FileID}]");
             }
             catch (Exception ex)
@@ -68,16 +73,19 @@
         {
             try
             {
-                if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
+                if (!InvoiceWebSystem.CheckIfInvoiceExist(oldInvoice.FileID))
                 {
                     MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
                     return;
                 }
 
+                //save into web
+                if (InvoiceWebSystem.Edit(newInvoice))
+                    throw new Exception("Error while editing a invoice");
+                //save into env
                 EnvironmentsVariable.AllInvoices.Remove(oldInvoice);
                 EnvironmentsVariable.AllInvoices.Add(newInvoice);
-
-                SaveIntoJsonFile();
+                
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, $"A invoice has been edited. [{newInvoice.FileID}]");
             }
             catch (Exception ex)
@@ -90,16 +98,18 @@
         {
             try
             {
-                if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
+                if (!InvoiceWebSystem.CheckIfInvoiceExist(oldInvoice.FileID))
                 {
                     MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
                     return;
                 }
+
+                //  save into web
+                if (InvoiceWebSystem.Remove(oldInvoice.FileID))
+                    throw new Exception("Error while deleting a invoice");
+                //save into env
                 EnvironmentsVariable.AllInvoices.Remove(oldInvoice);
 
-                File.Delete(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT);
-
-                SaveIntoJsonFile();
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, $"A invoice has been deleted. [{oldInvoice.FileID}]");
             }
             catch (Exception ex)
@@ -113,7 +123,10 @@
             try
             {
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, $"A invoice has been saved as. ID: [{invoice.FileID}] Path: [{path}]");
-                File.Copy(EnvironmentsVariable.PathInvoices + invoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT, path);
+                
+                string base64 = InvoiceWebSystem.GetFile(invoice.FileID);
+
+                File.WriteAllBytes(path, Convert.FromBase64String(base64));
             }
             catch (Exception ex)
             {
@@ -217,27 +230,13 @@
                 invoiceToOverride.MoneyTotal = invoice.MoneyTotal;
                 invoiceToOverride.PaidState = invoice.PaidState;
 
-                SaveIntoJsonFile();
+                //save into web
+                if (!InvoiceWebSystem.Edit(invoice))
+                    throw new Exception("Error while overriding a invoice");
             }
             catch (Exception ex)
             {
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error while overriding a invoice, err: " + ex.Message);
-            }
-        }
-
-
-        private void SaveIntoJsonFile()
-        {
-#if DEBUG
-            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"SaveIntoJsonFile() was called");
-#endif
-            try
-            {
-                File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices, Formatting.Indented));
-            }
-            catch (Exception ex)
-            {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, $"Error while saving the invoices into the json file, err: {ex.Message}");
             }
         }
     }
