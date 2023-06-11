@@ -64,7 +64,7 @@
         {
             try
             {
-                Guid id = ((NoteModel)((FrameworkElement)sender).DataContext).Id;
+                int id = ((NoteModel)((FrameworkElement)sender).DataContext).Id;
                 selectedNote = EnvironmentsVariable.Notebook.Notebook.Find(note => note.Id == id);
                 if (sender is Button)
                     correspondingButton = (Button)sender;
@@ -151,7 +151,6 @@
         {
             NoteModel note = new NoteModel()
             {
-                Id = Guid.NewGuid(),
                 Name = $"Note {EnvironmentsVariable.Notebook.Notebook.Count}",
                 Value = $"",
                 CreationDate = DateTime.Now,

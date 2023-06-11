@@ -35,11 +35,11 @@
         public static char[] PossibleMoneyUnits = { '€', '$', '£', '¥', '₽', '₹' };
 
 
-        public static string BearerToken = "";
+        public static string BearerToken = "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IlVzZXJOYW1lIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6IkZpcnN0TmFtZSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3N1cm5hbWUiOiJMYXN0TmFtZSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImVtYWlsQGV4YW1wbGUuY29tIiwiRXhwaXJlc09uIjoiMjAyMy0wNi0xMSAxMzo1MTo0MiIsImlzcyI6Ikludm9pY2VNYW5nZXJBUEkiLCJhdWQiOiJJbnZvaWNlTWFuZ2VyIn0.uZB1Ibb6OCeP8qPIfWXXOakqAD5LeYnMJEE43y-qJ80";
 
-        public const string HOST_PROT = "https";
+        public const string HOST_PROT = "http";
         public const string HOST_ADDRESS = "localhost";
-        public const string HOST_PORT = "5001";
+        public const string HOST_PORT = "25565";
         public const string HOST_PATH = "/api/v01";
         public const string HOST_ENDPOINT = HOST_PROT + "://" + HOST_ADDRESS + ":" + HOST_PORT + HOST_PATH;
 
