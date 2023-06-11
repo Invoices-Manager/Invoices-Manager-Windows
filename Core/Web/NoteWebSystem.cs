@@ -89,8 +89,6 @@ namespace InvoicesManager.Core.Web
             {
                 throw new Exception("Error: " + statusCode + " " + responseBody);
             }
-
-            WebResponseModel response = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
             
             return _wr.IsSuccess();
         }
@@ -116,8 +114,6 @@ namespace InvoicesManager.Core.Web
             {
                 throw new Exception("Error: " + statusCode + " " + responseBody);
             }
-
-            WebResponseModel response = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
 
             return _wr.IsSuccess();
         }

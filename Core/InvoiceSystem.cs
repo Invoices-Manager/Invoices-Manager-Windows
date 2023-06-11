@@ -42,7 +42,7 @@ namespace InvoicesManager.Core
             }
         }
 
-        public void AddInvoice(InvoiceModel newInvoice, string filePath, string newPath)
+        public void AddInvoice(InvoiceModel newInvoice, string filePath)
         {
             try
             {
@@ -56,9 +56,11 @@ namespace InvoicesManager.Core
                 string base64 = Convert.ToBase64String(File.ReadAllBytes(filePath));
 
                 //save into web
-                if (InvoiceWebSystem.Add(newInvoice, base64))
+                int id = InvoiceWebSystem.Add(newInvoice, base64);
+                if (id == -1 || id == 0)
                     throw new Exception("Error while adding a new invoice");
                 //save into env
+                newInvoice.Id = id;
                 EnvironmentsVariable.AllInvoices.Add(newInvoice);
                 
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, $"A new invoice has been added. [{newInvoice.FileID}]");
@@ -73,13 +75,8 @@ namespace InvoicesManager.Core
         {
             try
             {
-                if (!InvoiceWebSystem.CheckIfInvoiceExist(oldInvoice.FileID))
-                {
-                    MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
-                    return;
-                }
-
                 //save into web
+                newInvoice.Id = oldInvoice.Id;
                 if (InvoiceWebSystem.Edit(newInvoice))
                     throw new Exception("Error while editing a invoice");
                 //save into env
@@ -98,14 +95,8 @@ namespace InvoicesManager.Core
         {
             try
             {
-                if (!InvoiceWebSystem.CheckIfInvoiceExist(oldInvoice.FileID))
-                {
-                    MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
-                    return;
-                }
-
                 //  save into web
-                if (InvoiceWebSystem.Remove(oldInvoice.FileID))
+                if (InvoiceWebSystem.Remove(oldInvoice.Id))
                     throw new Exception("Error while deleting a invoice");
                 //save into env
                 EnvironmentsVariable.AllInvoices.Remove(oldInvoice);
@@ -124,7 +115,7 @@ namespace InvoicesManager.Core
             {
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, $"A invoice has been saved as. ID: [{invoice.FileID}] Path: [{path}]");
                 
-                string base64 = InvoiceWebSystem.GetFile(invoice.FileID);
+                string base64 = InvoiceWebSystem.GetFile(invoice.Id);
 
                 File.WriteAllBytes(path, Convert.FromBase64String(base64));
             }

@@ -43,6 +43,9 @@ namespace InvoicesManager.Core
 
         public bool BackUp(string backupFilePath, BackUpView backUpMgr = null)
         {
+            //bypass for the debug
+            return true;
+
             bool wasPerformedCorrectly = false;
             InvoiceSystem iSys = new InvoiceSystem();
 
@@ -152,6 +155,9 @@ namespace InvoicesManager.Core
 
         public bool Restore(string backupFilePath, BackUpView backUpMgr = null)
         {
+            //bypass for the debug
+            return true;
+            
             LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_System, "Restore has been called.");
             DateTime start = DateTime.Now;
 
@@ -252,7 +258,7 @@ namespace InvoicesManager.Core
                         continue;
                     }
 
-                    iSys.AddInvoice(backUpPacked.Invoice, tempInvoicePath, newPath);
+                    iSys.AddInvoice(backUpPacked.Invoice, tempInvoicePath);
                     if (backUpMgr != null)
                         _backUpMgrView.SetInfoProgressBarValue(1);
                 }
@@ -343,6 +349,9 @@ namespace InvoicesManager.Core
 
         public bool SaveAs(string backupFilePath, string newPath)
         {
+            //bypass for the debug
+            return true;
+            
 #if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_System, $"SaveAs() has been called");
 #endif

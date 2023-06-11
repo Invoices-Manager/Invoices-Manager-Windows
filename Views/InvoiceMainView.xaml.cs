@@ -1,4 +1,5 @@
 ﻿using InvoicesManager.Core.Sort;
+using InvoicesManager.Core.Web;
 
 namespace InvoicesManager.Views
 {
@@ -314,8 +315,8 @@ namespace InvoicesManager.Views
 
             //copy file to temp folder and open it then delete it
             string tempPath = Path.Combine(Path.GetTempPath(), invoice.FileID + ".pdf");
-            string sourcePath = Path.Combine(EnvironmentsVariable.PathInvoices, invoice.FileID + ".pdf");
-            File.Copy(sourcePath, tempPath, true);
+
+            File.WriteAllBytes(tempPath, Convert.FromBase64String(InvoiceWebSystem.GetFile(invoice.Id)));
             Process.Start(EnvironmentsVariable.PathPDFBrowser, tempPath);
 
             //this program has to wait, so the pdf browser can open it

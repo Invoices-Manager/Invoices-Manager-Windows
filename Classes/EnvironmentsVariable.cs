@@ -44,6 +44,11 @@
 
         public const string API_ENDPOINT_NOTE = HOST_ENDPOINT + "/Note";
         public const string API_ENDPOINT_NOTE_GETALL = API_ENDPOINT_NOTE + "/GetAll";
+        
+        public const string API_ENDPOINT_INVOICE = HOST_ENDPOINT + "/Invoice";
+        public const string API_ENDPOINT_INVOICE_GETALL = API_ENDPOINT_INVOICE + "/GetAll";
+        public const string API_ENDPOINT_INVOICE_GETFILE = API_ENDPOINT_INVOICE + "/GetFile";
+
 
         public static void InitWorkPath()
         {

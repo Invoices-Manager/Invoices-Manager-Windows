@@ -13,7 +13,7 @@
         public bool ShouldSerializeStringImportanceState() { return false; }
 
         //Model
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string FileID { get; set; } 
         public DateTime CaptureDate { get; set; } 
         public DateTime ExhibitionDate { get; set; }     

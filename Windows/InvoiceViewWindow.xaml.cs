@@ -339,12 +339,9 @@
         }
         private void AddNewInvoice()
         {
-            string hashID = SecuritySystem.GetMD5HashFromFile(filePath);
-            string newPath = @$"{EnvironmentsVariable.PathInvoices}\{hashID}.pdf";
-
             InvoiceModel newInvoice = new InvoiceModel()
             {
-                FileID = hashID,
+                FileID = "",
                 CaptureDate = DateTime.Now,
                 ExhibitionDate = Dp_ExhibitionDate.SelectedDate.Value,
                 Organization = Comb_Organization.Text,
@@ -359,7 +356,7 @@
             };
 
             InvoiceSystem iSys = new InvoiceSystem();
-            iSys.AddInvoice(newInvoice, filePath, newPath);
+            iSys.AddInvoice(newInvoice, filePath);
             iSys.Init();
         }
         //ADD AREA END
