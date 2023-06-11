@@ -35,18 +35,19 @@ namespace InvoicesManager.Views
             //check for auto backup
             if (EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts)
             {
-                Task.Run(() =>
-                {
-                    LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.MainWindow_View, "auto backup was requested");
-                    BackUpSystem buSys = new BackUpSystem();
-                    bool wasPerformedCorrectly = buSys.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"));
-                    if (!wasPerformedCorrectly)
-                    {
-                        LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.MainWindow_View, "the requested auto backup failed");
-                        MessageBox.Show(this.Resources["backUpFailed"] as string);
-                    }
-                    buSys.CheckBackUpCount();
-                });
+                throw new NotImplementedException();
+                //Task.Run(() =>
+                //{
+                //    LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.MainWindow_View, "auto backup was requested");
+                //    BackUpSystem buSys = new BackUpSystem();
+                //    bool wasPerformedCorrectly = buSys.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"));
+                //    if (!wasPerformedCorrectly)
+                //    {
+                //        LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.MainWindow_View, "the requested auto backup failed");
+                //        MessageBox.Show(this.Resources["backUpFailed"] as string);
+                //    }
+                //    buSys.CheckBackUpCount();
+                //});
             }
 
 #if DEBUG
@@ -84,7 +85,7 @@ namespace InvoicesManager.Views
                 sampleInvoices.Add(invoice);
             }
 
-            File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(sampleInvoices, Formatting.Indented));
+            //File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(sampleInvoices, Formatting.Indented));
         }
 
         private void InitThreads()

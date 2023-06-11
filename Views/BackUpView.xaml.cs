@@ -23,22 +23,23 @@
 
         private async void Bttn_BackUpCreate_Click(object sender, RoutedEventArgs e)
         {
-            await Task.Run(() =>
-            {
-                LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, $"BackUp was requested {EnvironmentsVariable.PathBackUps}");
-                BackUpSystem buSys = new BackUpSystem();
-                if (buSys.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"), this))
-                {
-                    LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "BackUp was completed successfully!");
-                    MessageBox.Show(Application.Current.Resources["backUpSuccessfully"] as string);
-                }
-                else
-                {
-                    LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "BackUp was not completed successfully!");
-                    MessageBox.Show(Application.Current.Resources["backUpFailed"] as string);
-                }
-            });
-            await RefreshDataGrid();
+            throw new NotImplementedException();
+            //await Task.Run(() =>
+            //{
+            //    LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, $"BackUp was requested {EnvironmentsVariable.PathBackUps}");
+            //    BackUpSystem buSys = new BackUpSystem();
+            //    if (buSys.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"), this))
+            //    {
+            //        LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.BackUp_View, "BackUp was completed successfully!");
+            //        MessageBox.Show(Application.Current.Resources["backUpSuccessfully"] as string);
+            //    }
+            //    else
+            //    {
+            //        LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.BackUp_View, "BackUp was not completed successfully!");
+            //        MessageBox.Show(Application.Current.Resources["backUpFailed"] as string);
+            //    }
+            //});
+            //await RefreshDataGrid();
         }
         
         private async void Bttn_BackUpCreateSaveAs_Click(object sender, RoutedEventArgs e)
@@ -97,40 +98,41 @@
 
         private async Task RefreshDataGrid()
         {
-#if DEBUG
-            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, "Refresh was requested");
-#endif
+            throw new NotImplementedException();
+            //#if DEBUG
+            //            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, "Refresh was requested");
+            //#endif
 
-            BackUpSystem buSys = new BackUpSystem();
+            //            BackUpSystem buSys = new BackUpSystem();
 
-            //clear the dg and counter
-            Dg_BackUps.Items.Clear();
-            MsgBox_BackUpCounter.Content = $"{Application.Current.Resources["backUpCount"] as string}: 0";
+            //            //clear the dg and counter
+            //            Dg_BackUps.Items.Clear();
+            //            MsgBox_BackUpCounter.Content = $"{Application.Current.Resources["backUpCount"] as string}: 0";
 
-            try
-            {
-                await foreach (BackUpInfoModel backUpInfo in buSys.GetBackUps())
-                {
-                    _pageUnloadedCancelToken.Token.ThrowIfCancellationRequested();
-#if DEBUG
-                    LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"New BackUpInfoModel was found: {backUpInfo.BackUpName}");
-#endif
-                    Dg_BackUps.Items.Add(backUpInfo);
-                    MsgBox_BackUpCounter.Content = $"{Application.Current.Resources["backUpCount"] as string}: {Dg_BackUps.Items.Count}";
-                }
-            }
-            catch (OperationCanceledException ex)
-            {
-#if DEBUG
-                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"RefreshDataGrid() was canceled! (page unload) err: {ex.Message}");
-#endif
-                Dg_BackUps.Items.Clear();
-                return;
-            }
+            //            try
+            //            {
+            //                await foreach (BackUpInfoModel backUpInfo in buSys.GetBackUps())
+            //                {
+            //                    _pageUnloadedCancelToken.Token.ThrowIfCancellationRequested();
+            //#if DEBUG
+            //                    LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"New BackUpInfoModel was found: {backUpInfo.BackUpName}");
+            //#endif
+            //                    Dg_BackUps.Items.Add(backUpInfo);
+            //                    MsgBox_BackUpCounter.Content = $"{Application.Current.Resources["backUpCount"] as string}: {Dg_BackUps.Items.Count}";
+            //                }
+            //            }
+            //            catch (OperationCanceledException ex)
+            //            {
+            //#if DEBUG
+            //                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"RefreshDataGrid() was canceled! (page unload) err: {ex.Message}");
+            //#endif
+            //                Dg_BackUps.Items.Clear();
+            //                return;
+            //            }
 
-#if DEBUG
-            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"Refresh was completed successfully! {Dg_BackUps.Items.Count} items were found");
-#endif
+            //#if DEBUG
+            //            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.BackUp_View, $"Refresh was completed successfully! {Dg_BackUps.Items.Count} items were found");
+            //#endif
         }
 
         private async void MenuItem_BackUpRestore_Click(object sender, RoutedEventArgs e)

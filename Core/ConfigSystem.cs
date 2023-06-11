@@ -20,9 +20,6 @@
                     PathPDFBrowser = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
                     UILanguage = "English",
                     ConfigVersion = EnvironmentsVariable.PROGRAM_VERSION,
-                    PathInvoice = EnvironmentsVariable.PathInvoices,
-                    PathNotebook = EnvironmentsVariable.PathNotebook,
-                    PathBackUp = EnvironmentsVariable.PathBackUps,
                     PathLogs = EnvironmentsVariable.PathLogs,
                     MoneyUnit = EnvironmentsVariable.MoneyUnit,
                     CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
@@ -36,9 +33,6 @@
                 EnvironmentsVariable.PathPDFBrowser = config.PathPDFBrowser ?? EnvironmentsVariable.PathPDFBrowser;
                 EnvironmentsVariable.UILanguage = config.UILanguage ?? EnvironmentsVariable.UILanguage;
                 EnvironmentsVariable.ConfigVersion = config.ConfigVersion ?? EnvironmentsVariable.ConfigVersion;
-                EnvironmentsVariable.PathInvoices = config.PathInvoice ?? EnvironmentsVariable.PathInvoices;
-                EnvironmentsVariable.PathNotebook = config.PathNotebook ?? EnvironmentsVariable.PathNotebook;
-                EnvironmentsVariable.PathBackUps = config.PathBackUp ?? EnvironmentsVariable.PathBackUps;
                 EnvironmentsVariable.PathLogs = config.PathLogs ?? EnvironmentsVariable.PathLogs;
                 EnvironmentsVariable.MoneyUnit = config.MoneyUnit == '\0' ? EnvironmentsVariable.MoneyUnit : config.MoneyUnit;
                 EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = config.CreateABackupEveryTimeTheProgramStarts;
@@ -64,9 +58,6 @@
                 PathPDFBrowser = EnvironmentsVariable.PathPDFBrowser,
                 UILanguage = EnvironmentsVariable.UILanguage,
                 ConfigVersion = EnvironmentsVariable.PROGRAM_VERSION,
-                PathInvoice = EnvironmentsVariable.PathInvoices,
-                PathNotebook = EnvironmentsVariable.PathNotebook,
-                PathBackUp = EnvironmentsVariable.PathBackUps,
                 PathLogs = EnvironmentsVariable.PathLogs,
                 MoneyUnit = EnvironmentsVariable.MoneyUnit,
                 CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
