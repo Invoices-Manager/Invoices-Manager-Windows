@@ -9,7 +9,6 @@ namespace InvoicesManager.Windows
         NotebookWindow notebookWindow;
         SettingView settingView;
         AboutView aboutView;
-        BackUpView backUpView;
         LogView logView;
 
         public MainWindow()
@@ -53,7 +52,7 @@ namespace InvoicesManager.Windows
         }
         
         private void Bttn_Open_Invoices_Click(object sender, RoutedEventArgs e)
-            => ViewMirror.Content = invoiceMainView;
+            => ViewMirror.Content = new InvoiceMainView();
 
         private void Bttn_Open_Notebook_Click(object sender, RoutedEventArgs e)
         {
@@ -68,8 +67,8 @@ namespace InvoicesManager.Windows
             notebookWindow.Focus();
         }
 
-        private void Bttn_Open_BackUp_Click(object sender, RoutedEventArgs e)
-            => ViewMirror.Content = backUpView;
+        //private void Bttn_Open_BackUp_Click(object sender, RoutedEventArgs e)
+        //    => ViewMirror.Content = backUpView;
 
         private void Bttn_Open_Setting_Click(object sender, RoutedEventArgs e)
             => ViewMirror.Content = settingView;
