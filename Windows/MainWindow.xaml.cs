@@ -93,6 +93,10 @@ namespace InvoicesManager.Windows
             //kill the child windows, if the main window is closed
             if (!EnvironmentsVariable.Window_Notebook_IsClosed)
                 notebookWindow.Close();
+
+            //logout the user
+            UserSystem us = new UserSystem();
+            us.Logout();
         }
 
         private void Bttn_SideBarSwapper_Click(object sender, RoutedEventArgs e)
