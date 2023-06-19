@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace InvoicesManager.Core
 {
@@ -39,12 +40,26 @@ namespace InvoicesManager.Core
             return true;
         }
 
-        public bool Create(string username, string password)
+        public bool Create(dynamic userData)
         {
-            //check if the data is vaild
-            if (String.IsNullOrWhiteSpace(username) || String.IsNullOrWhiteSpace(password))
-                return false;
+            WebRequestSystem _wr = new WebRequestSystem(EnvironmentsVariable.API_ENDPOINT_USER);
 
+            _wr.SetRequestMethod("POST");
+            _wr.SetHeaders(new WebHeaderCollection()
+            {
+                { "Content-Type", "application/json" }
+            });
+            _wr.SetBody(JsonConvert.SerializeObject(userData));
+            _wr.SendRequest();
+
+            HttpStatusCode statusCode = _wr.GetStatusCode();
+            string responseBody = _wr.GetResponseBody();
+            bool isSuccess = _wr.IsSuccess();
+
+            if (!isSuccess)
+            {
+                throw new Exception("Error: " + statusCode + " " + responseBody);
+            }
 
             return true;
         }
