@@ -15,13 +15,13 @@
             HorizontalAlignment="Center" 
             VerticalAlignment="Top" 
             Margin="0,50,0,0"
-            FontSize="40"/>
-        <TextBox x:Name="Tb_Username" HorizontalAlignment="Left" Margin="414,165,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="484" FontSize="40" Text="UserName"/>
-        <PasswordBox x:Name="Tb_Password" HorizontalAlignment="Left" Margin="414,239,0,0"  VerticalAlignment="Top" Width="484" FontSize="40" Password="UserPassword"/>
-        <Label Content="Username:" HorizontalAlignment="Left" Margin="200,165,0,0" VerticalAlignment="Top" FontSize="40"/>
-        <Label Content="Password:" HorizontalAlignment="Left" Margin="200,228,0,0" VerticalAlignment="Top" FontSize="40"/>
-        <Button x:Name="Bttn_SignIn"  Content="Login" HorizontalAlignment="Left" Margin="428,422,0,0" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignIn_Click"/>
-        <Button x:Name="Bttn_SignUp"  Content="Sign Up" HorizontalAlignment="Left" Margin="414,500,0,0" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignUp_Click"/>
+            FontSize="65"/>
+        <TextBox x:Name="Tb_Username" HorizontalAlignment="Center" VerticalAlignment="Top" Width="484" FontSize="40" Margin="200,250,0,0"/>
+        <PasswordBox x:Name="Tb_Password" HorizontalAlignment="Center" Margin="200,328,0,0"  VerticalAlignment="Top" Width="484" FontSize="40"/>
+        <Label Content="Username:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-500,240,0,0"/>
+        <Button x:Name="Bttn_SignIn"  Content="Login" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignIn_Click" Margin="100,450,101,0" Width="500"/>
+        <Button x:Name="Bttn_SignUp"  Content="Sign Up" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignUp_Click" Width="350" Margin="0,532,0,0"/>
+        <Label Content="Password:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-500,325,0,0"/>
 
     </Grid>
 </Page>
