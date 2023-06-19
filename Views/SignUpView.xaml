@@ -5,10 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:InvoicesManager.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="SignUpView">
+          Title="Invoices Manager | Sign Up" 
+        d:DesignHeight="1000" d:DesignWidth="1000">
 
-    <Grid>
-        
+    <Grid Background="{DynamicResource GridBackground}">
+        <Label 
+            Content="Sign Up" 
+            Foreground="{DynamicResource FontForeground}"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Top" 
+            Margin="0,50,0,0"
+            FontSize="40"/>
+        <TextBox x:Name="Tb_Username" HorizontalAlignment="Left" Margin="414,165,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="484" FontSize="40"/>
+        <PasswordBox x:Name="Tb_Password01" HorizontalAlignment="Left" Margin="414,239,0,0"  VerticalAlignment="Top" Width="484" FontSize="40"/>
+        <PasswordBox x:Name="Tb_Password02" HorizontalAlignment="Left" Margin="414,316,0,0"  VerticalAlignment="Top" Width="484" FontSize="40"/>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="200,165,0,0" VerticalAlignment="Top" FontSize="40"/>
+        <Label Content="Password:" HorizontalAlignment="Left" Margin="200,228,0,0" VerticalAlignment="Top" FontSize="40"/>
+        <Label Content="Reapeat password:" HorizontalAlignment="Left" Margin="57,308,0,0" VerticalAlignment="Top" FontSize="40"/>
+        <Button x:Name="Bttn_SignIn"  Content="Login" HorizontalAlignment="Left" Margin="414,542,0,0" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignIn_Click"/>
+        <Button x:Name="Bttn_SignUp"  Content="Sign Up" HorizontalAlignment="Left" Margin="414,443,0,0" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignUp_Click"/>
+
     </Grid>
 </Page>

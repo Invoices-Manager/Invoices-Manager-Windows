@@ -6,10 +6,22 @@
       xmlns:local="clr-namespace:InvoicesManager.Views"
       mc:Ignorable="d" 
       Title="Invoices Manager | Sign In" 
-        d:DesignHeight="1000" d:DesignWidth="1000"
-        Loaded="Window_Loaded">
+        d:DesignHeight="1000" d:DesignWidth="1000">
 
     <Grid Background="{DynamicResource GridBackground}">
+        <Label 
+            Content="Login" 
+            Foreground="{DynamicResource FontForeground}"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Top" 
+            Margin="0,50,0,0"
+            FontSize="40"/>
+        <TextBox x:Name="Tb_Username" HorizontalAlignment="Left" Margin="414,165,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="484" FontSize="40"/>
+        <PasswordBox x:Name="Tb_Password" HorizontalAlignment="Left" Margin="414,239,0,0"  VerticalAlignment="Top" Width="484" FontSize="40"/>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="200,165,0,0" VerticalAlignment="Top" FontSize="40"/>
+        <Label Content="Password:" HorizontalAlignment="Left" Margin="200,228,0,0" VerticalAlignment="Top" FontSize="40"/>
+        <Button x:Name="Bttn_SignIn"  Content="Login" HorizontalAlignment="Left" Margin="428,422,0,0" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignIn_Click"/>
+        <Button x:Name="Bttn_SignUp"  Content="Sign Up" HorizontalAlignment="Left" Margin="414,500,0,0" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignUp_Click"/>
 
     </Grid>
 </Page>

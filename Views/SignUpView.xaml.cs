@@ -15,14 +15,23 @@ using System.Windows.Shapes;
 
 namespace InvoicesManager.Views
 {
-    /// <summary>
-    /// Interaktionslogik für SignUpView.xaml
-    /// </summary>
     public partial class SignUpView : Page
     {
-        public SignUpView()
+        private MainWindow _mw;
+        public SignUpView(MainWindow mw)
         {
             InitializeComponent();
+            _mw = mw;
+        }
+
+        private void Bttn_SignIn_Click(object sender, RoutedEventArgs e)
+        {
+            _mw.ViewMirror.Content = new SignInView(_mw);
+        }
+
+        private void Bttn_SignUp_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

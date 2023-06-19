@@ -1,4 +1,5 @@
-﻿using System.Windows.Media.Animation;
+﻿using System.ComponentModel;
+using System.Windows.Media.Animation;
 
 namespace InvoicesManager.Windows
 {
@@ -23,22 +24,25 @@ namespace InvoicesManager.Windows
                 cSys.Init();
                 //load the window UI language
                 LanguageManager.Init();
-                //init notebooks
-                NotebookSystem nSys = new NotebookSystem();
-                nSys.Init();
                 //init the pages
-                invoiceMainView = new InvoiceMainView();
                 settingView = new SettingView();
                 aboutView = new AboutView();
-                backUpView = new BackUpView();
                 logView = new LogView();
+
+                //set the default view to login (signIn)
+                ViewMirror.Content = new SignInView(this);
+
+                //disable all buttons
+                UI_Logout();
             }
             catch (Exception ex)
             {
                 LoggerSystem.Log(LogStateEnum.Fatal, LogPrefixEnum.MainWindow_View, "Error while initializing the main window, err: " + ex.Message);
             }
         }
-       
+
+        #region NAV-BAR BUTTONS EVENTS
+
         private void Bttn_Open_Dashboard_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Will be added in a future version!");
@@ -60,7 +64,7 @@ namespace InvoicesManager.Windows
             notebookWindow.WindowState = WindowState.Normal;
             notebookWindow.Focus();
         }
-        
+
         private void Bttn_Open_BackUp_Click(object sender, RoutedEventArgs e)
             => ViewMirror.Content = backUpView;
 
@@ -72,6 +76,11 @@ namespace InvoicesManager.Windows
 
         private void Bttn_Open_Logs_Click(object sender, RoutedEventArgs e)
             => ViewMirror.Content = logView;
+
+        private void Bttn_Open_Login_Click(object sender, RoutedEventArgs e)
+            => ViewMirror.Content = new SignInView(this);
+
+        #endregion
 
         private void Window_Closed(object sender, EventArgs e)
         {
@@ -115,6 +124,25 @@ namespace InvoicesManager.Windows
             storyboard.Children.Add(animation);
 
             Grid_SideBar.BeginStoryboard(storyboard);
+        }
+
+        public void UI_Logout()
+        {
+            //ui logout
+            Button[] allButtons = new Button[] { Bttn_Open_Invoices, Bttn_Open_Notebook };
+            foreach (var button in allButtons)
+                button.IsEnabled= false;
+        }
+
+        public void UI_Login()
+        {
+            //init 
+            //invoiceMainView = new InvoiceMainView();
+
+            //ui login
+            Button[] allButtons = new Button[] { Bttn_Open_Invoices, Bttn_Open_Notebook };
+            foreach (var button in allButtons)
+                button.IsEnabled = true;
         }
 
         private void Animation_Frame(int from, int to)
