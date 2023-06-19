@@ -16,8 +16,8 @@
             VerticalAlignment="Top" 
             Margin="0,50,0,0"
             FontSize="40"/>
-        <TextBox x:Name="Tb_Username" HorizontalAlignment="Left" Margin="414,165,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="484" FontSize="40"/>
-        <PasswordBox x:Name="Tb_Password" HorizontalAlignment="Left" Margin="414,239,0,0"  VerticalAlignment="Top" Width="484" FontSize="40"/>
+        <TextBox x:Name="Tb_Username" HorizontalAlignment="Left" Margin="414,165,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="484" FontSize="40" Text="UserName"/>
+        <PasswordBox x:Name="Tb_Password" HorizontalAlignment="Left" Margin="414,239,0,0"  VerticalAlignment="Top" Width="484" FontSize="40" Password="UserPassword"/>
         <Label Content="Username:" HorizontalAlignment="Left" Margin="200,165,0,0" VerticalAlignment="Top" FontSize="40"/>
         <Label Content="Password:" HorizontalAlignment="Left" Margin="200,228,0,0" VerticalAlignment="Top" FontSize="40"/>
         <Button x:Name="Bttn_SignIn"  Content="Login" HorizontalAlignment="Left" Margin="428,422,0,0" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignIn_Click"/>

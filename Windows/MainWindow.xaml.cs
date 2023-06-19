@@ -146,6 +146,9 @@ namespace InvoicesManager.Windows
             Button[] allButtons = new Button[] { Bttn_Open_Invoices, Bttn_Open_Notebook };
             foreach (var button in allButtons)
                 button.IsEnabled = true;
+
+            //clear mirror
+            ViewMirror.Content = new Page();
         }
 
         private void Animation_Frame(int from, int to)
