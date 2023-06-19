@@ -25,13 +25,16 @@ namespace InvoicesManager.Views
         }
 
         private void Bttn_SignIn_Click(object sender, RoutedEventArgs e)
-        {
-            _mw.ViewMirror.Content = new SignInView(_mw);
-        }
+            => _mw.ViewMirror.Content = new SignInView(_mw);
 
         private void Bttn_SignUp_Click(object sender, RoutedEventArgs e)
         {
-            
+            //check if the password is correct
+            if (!Tb_Password01.Password.Equals(Tb_Password02.Password))
+                return;
+
+            UserSystem us = new UserSystem(_mw);
+            us.Create(Tb_Username.Text, Tb_Password01.Password);
         }
     }
 }

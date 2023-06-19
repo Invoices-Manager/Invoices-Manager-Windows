@@ -43,6 +43,16 @@ namespace InvoicesManager.Core
             return true;
         }
 
+        public bool Create(string username, string password)
+        {
+            //check if the data is vaild
+            if (String.IsNullOrWhiteSpace(username) || String.IsNullOrWhiteSpace(password))
+                return false;
+
+
+            return true;
+        }
+
         private bool LogoutFromApi()
         {
             WebRequestSystem _wr = new WebRequestSystem(EnvironmentsVariable.API_ENDPOINT_USER_LOGOUT);
