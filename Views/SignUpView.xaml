@@ -10,7 +10,7 @@
 
     <Grid Background="{DynamicResource GridBackground}">
         <Label 
-            Content="Sign Up" 
+            Content="{DynamicResource signUp}"
             Foreground="{DynamicResource FontForeground}"
             HorizontalAlignment="Center" 
             VerticalAlignment="Top" 
@@ -18,17 +18,17 @@
             FontSize="65"/>
         <TextBox x:Name="Tb_Username" HorizontalAlignment="Center" VerticalAlignment="Top" Width="484" FontSize="40" Margin="250,150,0,0"/>
         <TextBox x:Name="Tb_UserEmail" HorizontalAlignment="Center" Margin="250,225,0,0"  VerticalAlignment="Top" Width="484" FontSize="40"/>
-        <Label Content="Username:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-450,139,0,0"/>
-        <Button x:Name="Bttn_SignUp"  Content="Create" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignUp_Click" Margin="100,700,101,0" Width="500"/>
-        <Button x:Name="Bttn_SignIn"  Content="Sign In" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignIn_Click" Width="350" Margin="0,780,0,0"/>
-        <Label Content="E-Mail:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-400,214,0,0"/>
+        <Label Content="{DynamicResource username}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-540,139,0,0"/>
+        <Button x:Name="Bttn_SignUp"  Content="{DynamicResource create}" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignUp_Click" Margin="100,700,101,0" Width="500"/>
+        <Button x:Name="Bttn_SignIn"  Content="{DynamicResource signIn}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignIn_Click" Width="350" Margin="0,780,0,0"/>
+        <Label Content="{DynamicResource eMail}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-400,214,0,0"/>
         <TextBox x:Name="Tb_FirstName" HorizontalAlignment="Center" VerticalAlignment="Top" Width="484" FontSize="40" Margin="250,300,0,0"/>
         <TextBox x:Name="Tb_LastName" HorizontalAlignment="Center" Margin="250,378,0,0"  VerticalAlignment="Top" Width="484" FontSize="40"/>
-        <Label Content="First Name:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-450,289,0,0"/>
-        <Label Content="Last Name:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-450,374,0,0"/>
+        <Label Content="{DynamicResource firstName}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-450,289,0,0"/>
+        <Label Content="{DynamicResource lastName}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-500,374,0,0"/>
         <PasswordBox x:Name="Tb_Password01" HorizontalAlignment="Center" VerticalAlignment="Top" Width="484" FontSize="40" Margin="250,500,0,0"/>
         <PasswordBox x:Name="Tb_Password02" HorizontalAlignment="Center" Margin="250,578,0,0"  VerticalAlignment="Top" Width="484" FontSize="40"/>
-        <Label Content="Password:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-450,489,0,0"/>
-        <Label Content="Repeat Password:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-550,574,0,0"/>
+        <Label Content="{DynamicResource password}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-450,489,0,0"/>
+        <Label Content="{DynamicResource repeatPassword}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-685,574,0,0"/>
     </Grid>
 </Page>

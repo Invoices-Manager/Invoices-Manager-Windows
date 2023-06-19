@@ -150,4 +150,14 @@
     <system:String x:Key="loadTimeTitle">Loading...</system:String>
     <system:String x:Key="Bttn_Login">Login</system:String>
     <system:String x:Key="Bttn_Logout">Logout</system:String>
+    <system:String x:Key="username">username:</system:String>
+    <system:String x:Key="password">password:</system:String>
+    <system:String x:Key="repeatPassword">repeat password:</system:String>
+    <system:String x:Key="login">login</system:String>
+    <system:String x:Key="signUp">signUp</system:String>
+    <system:String x:Key="signIn">signIn</system:String>
+    <system:String x:Key="create">create</system:String>
+    <system:String x:Key="firstName">first Name:</system:String>
+    <system:String x:Key="lastName">last Name:</system:String>
+    <system:String x:Key="eMail">eMail:</system:String>
 </ResourceDictionary>
