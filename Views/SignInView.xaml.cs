@@ -17,23 +17,21 @@ namespace InvoicesManager.Views
 {
     public partial class SignInView : Page
     {
-        private MainWindow _mw;
-        public SignInView(MainWindow mw)
+        public SignInView()
         {
             InitializeComponent();
-            _mw = mw;
         }
 
         private void Bttn_SignIn_Click(object sender, RoutedEventArgs e)
         {
-            UserSystem us = new UserSystem(_mw);
+            UserSystem us = new UserSystem();
 
             us.Login(Tb_Username.Text, Tb_Password.Password);
         }
 
         private void Bttn_SignUp_Click(object sender, RoutedEventArgs e)
         {
-            _mw.ViewMirror.Content = new SignUpView(_mw);
+            EnvironmentsVariable.MainWindowInstance.ViewMirror.Content = new SignUpView();
         }
     }
 }

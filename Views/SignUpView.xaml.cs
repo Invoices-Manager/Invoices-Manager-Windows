@@ -17,15 +17,13 @@ namespace InvoicesManager.Views
 {
     public partial class SignUpView : Page
     {
-        private MainWindow _mw;
-        public SignUpView(MainWindow mw)
+        public SignUpView()
         {
             InitializeComponent();
-            _mw = mw;
         }
 
         private void Bttn_SignIn_Click(object sender, RoutedEventArgs e)
-            => _mw.ViewMirror.Content = new SignInView(_mw);
+            => EnvironmentsVariable.MainWindowInstance.ViewMirror.Content = new SignInView();
 
         private void Bttn_SignUp_Click(object sender, RoutedEventArgs e)
         {
@@ -33,7 +31,7 @@ namespace InvoicesManager.Views
             if (!Tb_Password01.Password.Equals(Tb_Password02.Password))
                 return;
 
-            UserSystem us = new UserSystem(_mw);
+            UserSystem us = new UserSystem();
             us.Create(Tb_Username.Text, Tb_Password01.Password);
         }
     }

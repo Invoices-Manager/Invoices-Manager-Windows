@@ -16,7 +16,10 @@ namespace InvoicesManager.Windows
         {
             try
             {
+                //init
                 InitializeComponent();
+                //init instance
+                EnvironmentsVariable.MainWindowInstance = this;
                 //init work path
                 EnvironmentsVariable.InitWorkPath();
                 //load the settings
@@ -30,7 +33,7 @@ namespace InvoicesManager.Windows
                 logView = new LogView();
 
                 //set the default view to login (signIn)
-                ViewMirror.Content = new SignInView(this);
+                ViewMirror.Content = new SignInView();
 
                 //disable all buttons
                 UI_Logout();
@@ -78,7 +81,7 @@ namespace InvoicesManager.Windows
             => ViewMirror.Content = logView;
 
         private void Bttn_Open_Login_Click(object sender, RoutedEventArgs e)
-            => ViewMirror.Content = new SignInView(this);
+            => ViewMirror.Content = new SignInView();
 
         #endregion
 

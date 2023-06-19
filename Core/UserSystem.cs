@@ -10,10 +10,6 @@ namespace InvoicesManager.Core
 {
     public class UserSystem
     {
-        private MainWindow _mw;
-        public UserSystem(MainWindow mw)
-            => _mw = mw;
-
         public bool Login(string username, string password)
         {
             //check if the data is vaild
@@ -28,7 +24,7 @@ namespace InvoicesManager.Core
                 return false;
 
             //if the login was sucessful, then enable the main window buttons
-            _mw.UI_Login();
+            EnvironmentsVariable.MainWindowInstance.UI_Login();
             return true;
         }
 
@@ -38,7 +34,7 @@ namespace InvoicesManager.Core
                 return false;
 
             EnvironmentsVariable.BearerToken = String.Empty;
-           _mw.UI_Logout();
+            EnvironmentsVariable.MainWindowInstance.UI_Logout();
 
             return true;
         }

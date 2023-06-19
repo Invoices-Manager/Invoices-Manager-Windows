@@ -2,6 +2,8 @@
 {
     public class EnvironmentsVariable
     {
+        public static MainWindow MainWindowInstance { get; set; }
+
         public static ColumnVisibilityModel ColumnVisibility = new ColumnVisibilityModel();
         public static List<InvoiceModel> AllInvoices = new List<InvoiceModel>();
         public static List<InvoiceModel> FilteredInvoices = new List<InvoiceModel>();
