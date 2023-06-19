@@ -33,7 +33,9 @@ namespace InvoicesManager.Core.Web
 
             if (!isSuccess)
             {
-                throw new Exception("Error: " + statusCode + " " + responseBody);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error: " + statusCode + " " + responseBody);
+                MessageBox.Show(responseBody);
+                return String.Empty;
             }
 
             WebResponseModel response = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
@@ -65,7 +67,9 @@ namespace InvoicesManager.Core.Web
 
             if (!isSuccess)
             {
-                throw new Exception("Error: " + statusCode + " " + responseBody);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error: " + statusCode + " " + responseBody);
+                MessageBox.Show(responseBody);
+                return String.Empty;
             }
 
             WebResponseModel response = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
@@ -100,7 +104,9 @@ namespace InvoicesManager.Core.Web
 
             if (!isSuccess)
             {
-                throw new Exception("Error: " + statusCode + " " + responseBody);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error: " + statusCode + " " + responseBody);
+                MessageBox.Show(responseBody);
+                return 0;
             }
 
             WebResponseModel response = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
@@ -129,7 +135,9 @@ namespace InvoicesManager.Core.Web
 
             if (!isSuccess)
             {
-                throw new Exception("Error: " + statusCode + " " + responseBody);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error: " + statusCode + " " + responseBody);
+                MessageBox.Show(responseBody);
+                return false;
             }
 
             return isSuccess;
@@ -154,7 +162,9 @@ namespace InvoicesManager.Core.Web
 
             if (!isSuccess)
             {
-                throw new Exception("Error: " + statusCode + " " + responseBody);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error: " + statusCode + " " + responseBody);
+                MessageBox.Show(responseBody);
+                return false;
             }
 
             return isSuccess;

@@ -31,8 +31,9 @@ namespace InvoicesManager.Core
 
         public bool Logout()
         {
-            if (!LogoutFromApi())
-                return false;
+            if (!String.IsNullOrEmpty(EnvironmentsVariable.BearerToken))
+                if (!LogoutFromApi())
+                    return false;
 
             EnvironmentsVariable.BearerToken = String.Empty;
             EnvironmentsVariable.MainWindowInstance.UI_Logout();
@@ -58,7 +59,9 @@ namespace InvoicesManager.Core
 
             if (!isSuccess)
             {
-                throw new Exception("Error: " + statusCode + " " + responseBody);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.User_System, "Error: " + statusCode + " " + responseBody);
+                MessageBox.Show(responseBody);
+                return false;
             }
 
             return true;
@@ -83,7 +86,9 @@ namespace InvoicesManager.Core
 
             if (!isSuccess)
             {
-                throw new Exception("Error: " + statusCode + " " + responseBody);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.User_System, "Error: " + statusCode + " " + responseBody);
+                MessageBox.Show(responseBody);
+                return false;
             }
 
             return isSuccess;
@@ -107,9 +112,11 @@ namespace InvoicesManager.Core
 
             if (!isSuccess)
             {
-                throw new Exception("Error: " + statusCode + " " + responseBody);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.User_System, "Error: " + statusCode + " " + responseBody);
+                MessageBox.Show(responseBody);
+                return String.Empty;
             }
-
+            
             WebResponseModel response = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
 
             return JsonConvert.SerializeObject(response.Args["token"].ToString()).Trim('"');

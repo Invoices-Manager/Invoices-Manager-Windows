@@ -44,8 +44,11 @@ namespace InvoicesManager.Views
             };
 
             UserSystem us = new UserSystem();
-            us.Create(userData);
-
+            if (!us.Create(userData))
+                return;
+               
+            us.Logout();
+            
             EnvironmentsVariable.MainWindowInstance.ViewMirror.Content = new Page();
         }
 

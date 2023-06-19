@@ -26,17 +26,13 @@ namespace InvoicesManager.Core.Web
             string responseBody = _wr.GetResponseBody();
             bool isSuccess = _wr.IsSuccess();
 
-            if (statusCode == HttpStatusCode.Unauthorized)
-            {
-                MessageBox.Show("401");
-                return "401";
-            }
-
             if (!isSuccess)
             {
-                throw new Exception("Error: " + statusCode + " " + responseBody);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, "Error: " + statusCode + " " + responseBody);
+                MessageBox.Show(responseBody);
+                return String.Empty;
             }
-            
+
             WebResponseModel response = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
 
             NotebookModel notebook = new NotebookModel();
@@ -65,7 +61,9 @@ namespace InvoicesManager.Core.Web
 
             if (!isSuccess)
             {
-                throw new Exception("Error: " + statusCode + " " + responseBody);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, "Error: " + statusCode + " " + responseBody);
+                MessageBox.Show(responseBody);
+                return 0;
             }
 
             WebResponseModel response = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
@@ -93,9 +91,11 @@ namespace InvoicesManager.Core.Web
 
             if (!isSuccess)
             {
-                throw new Exception("Error: " + statusCode + " " + responseBody);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, "Error: " + statusCode + " " + responseBody);
+                MessageBox.Show(responseBody);
+                return false;
             }
-            
+
             return _wr.IsSuccess();
         }
 
@@ -118,7 +118,9 @@ namespace InvoicesManager.Core.Web
 
             if (!isSuccess)
             {
-                throw new Exception("Error: " + statusCode + " " + responseBody);
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, "Error: " + statusCode + " " + responseBody);
+                MessageBox.Show(responseBody);
+                return false;
             }
 
             return _wr.IsSuccess();
