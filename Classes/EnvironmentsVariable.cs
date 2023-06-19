@@ -29,7 +29,7 @@
         public static char MoneyUnit = '€';
         public static char[] PossibleMoneyUnits = { '€', '$', '£', '¥', '₽', '₹' };
 
-
+        //TODO: use secretString instand of string
         public static string BearerToken = String.Empty;
         public const string HOST_PROT = "http";
         public const string HOST_ADDRESS = "localhost";
