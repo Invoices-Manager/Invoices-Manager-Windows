@@ -56,8 +56,6 @@ namespace InvoicesManager.Views
                 ConfigSystem cSys = new ConfigSystem();
                 cSys.SaveIntoJsonFile();
                 LanguageManager.Init();
-                NotebookSystem nSys = new NotebookSystem();
-                nSys.Init();
             }
             catch (Exception ex)
             {
