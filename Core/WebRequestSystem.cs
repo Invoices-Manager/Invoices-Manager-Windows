@@ -62,11 +62,12 @@ namespace InvoicesManager.Core
                 return httpWebResponse.StatusCode;
             }
 
-            throw new InvalidOperationException("The response is not an HTTP response.");
+            return HttpStatusCode.Unauthorized;
         }
 
         public string GetResponseBody()
         {
+            //TODO: WHEN API IS NOT REACHEABLE, THEN IS THE OBJ NULL
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
                 return reader.ReadToEnd();

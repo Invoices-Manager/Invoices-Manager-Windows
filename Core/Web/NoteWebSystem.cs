@@ -26,6 +26,12 @@ namespace InvoicesManager.Core.Web
             string responseBody = _wr.GetResponseBody();
             bool isSuccess = _wr.IsSuccess();
 
+            if (statusCode == HttpStatusCode.Unauthorized)
+            {
+                MessageBox.Show("401");
+                return "401";
+            }
+
             if (!isSuccess)
             {
                 throw new Exception("Error: " + statusCode + " " + responseBody);
