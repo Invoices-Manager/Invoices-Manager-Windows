@@ -93,7 +93,7 @@ namespace InvoicesManager.Core
         {
             WebRequestSystem _wr = new WebRequestSystem(EnvironmentsVariable.API_ENDPOINT_USER_LOGIN);
 
-            _wr.SetRequestMethod("PUT");
+            _wr.SetRequestMethod("POST");
             _wr.SetHeaders(new WebHeaderCollection()
             {
                 { "Content-Type", "application/json" }
