@@ -31,6 +31,7 @@
                         <Button x:Name="Bttn_Open_Logs" Content="{DynamicResource Bttn_Logs}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Click="Bttn_Open_Logs_Click"/>
                         <Button x:Name="Bttn_Open_Setting" Content="{DynamicResource Bttn_Settings}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Click="Bttn_Open_Setting_Click"/>
                         <Button x:Name="Bttn_Open_Login" Content="{DynamicResource Bttn_Login}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Click="Bttn_Open_Login_Click"/>
+                        <Button x:Name="Bttn_Open_Logout" Content="{DynamicResource Bttn_Logout}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Visibility="Collapsed" Click="Bttn_Open_Logout_Click"/>
                         <Button x:Name="Bttn_Open_About" Content="{DynamicResource Bttn_About}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Click="Bttn_Open_About_Click"/>
                     </StackPanel>
                 </Grid>

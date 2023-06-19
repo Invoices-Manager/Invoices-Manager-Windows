@@ -26,6 +26,8 @@ namespace InvoicesManager.Core
 
             //if the login was sucessful, then enable the main window buttons
             EnvironmentsVariable.MainWindowInstance.UI_Login();
+            EnvironmentsVariable.MainWindowInstance.Bttn_Open_Login.Visibility = Visibility.Collapsed;
+            EnvironmentsVariable.MainWindowInstance.Bttn_Open_Logout.Visibility = Visibility.Visible;
             return true;
         }
 
@@ -37,6 +39,8 @@ namespace InvoicesManager.Core
 
             EnvironmentsVariable.BearerToken = String.Empty;
             EnvironmentsVariable.MainWindowInstance.UI_Logout();
+            EnvironmentsVariable.MainWindowInstance.Bttn_Open_Login.Visibility = Visibility.Visible;
+            EnvironmentsVariable.MainWindowInstance.Bttn_Open_Logout.Visibility = Visibility.Collapsed;
 
             return true;
         }

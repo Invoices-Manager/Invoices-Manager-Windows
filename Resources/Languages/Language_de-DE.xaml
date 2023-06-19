@@ -150,4 +150,5 @@
     <system:String x:Key="loadTimeMessage">Bitte warten, je nach größe der Log Datei kann es dauern!</system:String>
     <system:String x:Key="loadTimeTitle">Lade...</system:String>
     <system:String x:Key="Bttn_Login">Anmelden</system:String>
+    <system:String x:Key="Bttn_Logout">Abmelden</system:String>
 </ResourceDictionary>

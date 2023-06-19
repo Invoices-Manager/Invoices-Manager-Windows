@@ -80,6 +80,12 @@ namespace InvoicesManager.Windows
         private void Bttn_Open_Login_Click(object sender, RoutedEventArgs e)
             => ViewMirror.Content = new SignInView();
 
+        private void Bttn_Open_Logout_Click(object sender, RoutedEventArgs e)
+        {
+            UserSystem us = new UserSystem();
+            us.Logout();
+        }
+
         #endregion
 
         private void Window_Closed(object sender, EventArgs e)
