@@ -138,6 +138,9 @@ namespace InvoicesManager.Windows
             Button[] allButtons = new Button[] { Bttn_Open_Invoices, Bttn_Open_Notebook };
             foreach (var button in allButtons)
                 button.IsEnabled= false;
+
+            //send to login
+            ViewMirror.Content = new SignInView();
         }
 
         public void UI_Login()

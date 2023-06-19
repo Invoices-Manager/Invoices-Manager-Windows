@@ -41,6 +41,7 @@ namespace InvoicesManager.Core
             EnvironmentsVariable.MainWindowInstance.UI_Logout();
             EnvironmentsVariable.MainWindowInstance.Bttn_Open_Login.Visibility = Visibility.Visible;
             EnvironmentsVariable.MainWindowInstance.Bttn_Open_Logout.Visibility = Visibility.Collapsed;
+            
 
             return true;
         }
