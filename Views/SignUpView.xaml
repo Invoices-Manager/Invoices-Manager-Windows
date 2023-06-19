@@ -14,22 +14,21 @@
             Foreground="{DynamicResource FontForeground}"
             HorizontalAlignment="Center" 
             VerticalAlignment="Top" 
-            Margin="0,50,0,0"
-            FontSize="40"/>
-        <TextBox x:Name="Tb_Username" HorizontalAlignment="Left" Margin="414,165,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="484" FontSize="40"/>
-        <TextBox x:Name="Tb_FirstName" HorizontalAlignment="Left" Margin="414,328,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="484" FontSize="40"/>
-        <TextBox x:Name="Tb_LastName" HorizontalAlignment="Left" Margin="414,399,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="484" FontSize="40"/>
-        <TextBox x:Name="Tb_UserEmail" HorizontalAlignment="Left" Margin="414,249,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="484" FontSize="40"/>
-        <PasswordBox x:Name="Tb_Password01" HorizontalAlignment="Left" Margin="425,532,0,0"  VerticalAlignment="Top" Width="484" FontSize="40"/>
-        <PasswordBox x:Name="Tb_Password02" HorizontalAlignment="Left" Margin="425,595,0,0"  VerticalAlignment="Top" Width="484" FontSize="40"/>
-        <Label Content="Username:" HorizontalAlignment="Left" Margin="200,165,0,0" VerticalAlignment="Top" FontSize="40"/>
-        <Label Content="Password:" HorizontalAlignment="Left" Margin="200,532,0,0" VerticalAlignment="Top" FontSize="40"/>
-        <Label Content="Reapeat password:" HorizontalAlignment="Left" Margin="44,587,0,0" VerticalAlignment="Top" FontSize="40"/>
-        <Button x:Name="Bttn_SignIn"  Content="Login" HorizontalAlignment="Left" Margin="414,777,0,0" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignIn_Click"/>
-        <Button x:Name="Bttn_SignUp"  Content="Sign Up" HorizontalAlignment="Left" Margin="394,686,0,0" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignUp_Click"/>
-        <Label Content="E-Mail:" HorizontalAlignment="Left" Margin="225,249,0,0" VerticalAlignment="Top" FontSize="40"/>
-        <Label Content="FirstName:" HorizontalAlignment="Left" Margin="194,320,0,0" VerticalAlignment="Top" FontSize="40"/>
-        <Label Content="LastName:" HorizontalAlignment="Left" Margin="190,395,0,0" VerticalAlignment="Top" FontSize="40"/>
-
+            Margin="0,15,0,0"
+            FontSize="65"/>
+        <TextBox x:Name="Tb_Username" HorizontalAlignment="Center" VerticalAlignment="Top" Width="484" FontSize="40" Margin="250,150,0,0"/>
+        <TextBox x:Name="Tb_UserEmail" HorizontalAlignment="Center" Margin="250,225,0,0"  VerticalAlignment="Top" Width="484" FontSize="40"/>
+        <Label Content="Username:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-450,139,0,0"/>
+        <Button x:Name="Bttn_SignUp"  Content="Create" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignUp_Click" Margin="100,700,101,0" Width="500"/>
+        <Button x:Name="Bttn_SignIn"  Content="Sign In" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Click="Bttn_SignIn_Click" Width="350" Margin="0,780,0,0"/>
+        <Label Content="E-Mail:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-400,214,0,0"/>
+        <TextBox x:Name="Tb_FirstName" HorizontalAlignment="Center" VerticalAlignment="Top" Width="484" FontSize="40" Margin="250,300,0,0"/>
+        <TextBox x:Name="Tb_LastName" HorizontalAlignment="Center" Margin="250,378,0,0"  VerticalAlignment="Top" Width="484" FontSize="40"/>
+        <Label Content="First Name:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-450,289,0,0"/>
+        <Label Content="Last Name:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-450,374,0,0"/>
+        <PasswordBox x:Name="Tb_Password01" HorizontalAlignment="Center" VerticalAlignment="Top" Width="484" FontSize="40" Margin="250,500,0,0"/>
+        <PasswordBox x:Name="Tb_Password02" HorizontalAlignment="Center" Margin="250,578,0,0"  VerticalAlignment="Top" Width="484" FontSize="40"/>
+        <Label Content="Password:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-450,489,0,0"/>
+        <Label Content="Repeat Password:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="-550,574,0,0"/>
     </Grid>
 </Page>
