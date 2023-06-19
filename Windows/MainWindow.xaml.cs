@@ -1,11 +1,9 @@
-﻿using System.ComponentModel;
-using System.Windows.Media.Animation;
+﻿using System.Windows.Media.Animation;
 
 namespace InvoicesManager.Windows
 {
     public partial class MainWindow : Window
     {
-        InvoiceMainView invoiceMainView;
         NotebookWindow notebookWindow;
         SettingView settingView;
         AboutView aboutView;
