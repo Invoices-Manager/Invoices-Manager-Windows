@@ -1,7 +1,4 @@
-﻿using InvoicesManager.Core.Web;
-using System.Buffers.Text;
-
-namespace InvoicesManager.Core
+﻿namespace InvoicesManager.Core
 {
     public class InvoiceSystem
     {

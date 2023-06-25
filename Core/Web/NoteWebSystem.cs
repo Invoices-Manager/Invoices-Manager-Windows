@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace InvoicesManager.Core.Web
+﻿namespace InvoicesManager.Core.Web
 {
     public class NoteWebSystem
     {

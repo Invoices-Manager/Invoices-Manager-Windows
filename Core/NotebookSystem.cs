@@ -1,6 +1,4 @@
-﻿using InvoicesManager.Core.Web;
-
-namespace InvoicesManager.Core
+﻿namespace InvoicesManager.Core
 {
     public class NotebookSystem
     {

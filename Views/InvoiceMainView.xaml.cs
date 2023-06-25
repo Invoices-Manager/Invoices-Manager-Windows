@@ -1,7 +1,4 @@
-﻿using InvoicesManager.Core.Sort;
-using InvoicesManager.Core.Web;
-
-namespace InvoicesManager.Views
+﻿namespace InvoicesManager.Views
 {
     public partial class InvoiceMainView : Page
     {

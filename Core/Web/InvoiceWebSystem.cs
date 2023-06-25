@@ -1,12 +1,4 @@
-﻿using System;
-using System.Buffers.Text;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InvoicesManager.Core.Web
+﻿namespace InvoicesManager.Core.Web
 {
     public class InvoiceWebSystem
     {

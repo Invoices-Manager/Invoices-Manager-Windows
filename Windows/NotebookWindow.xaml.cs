@@ -1,6 +1,4 @@
-﻿using InvoicesManager.Core;
-
-namespace InvoicesManager.Windows
+﻿namespace InvoicesManager.Windows
 {
     public partial class NotebookWindow : Window
     {

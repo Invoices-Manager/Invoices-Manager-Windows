@@ -1,6 +1,4 @@
-﻿using InvoicesManager.Classes.Enums;
-
-namespace InvoicesManager.Views
+﻿namespace InvoicesManager.Views
 {
     public partial class SettingView : Page
     {

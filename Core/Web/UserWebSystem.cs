@@ -1,13 +1,4 @@
-﻿using Accessibility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace InvoicesManager.Core
+﻿namespace InvoicesManager.Core
 {
     public class UserWebSystem
     {

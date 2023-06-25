@@ -1,7 +1,4 @@
-﻿using InvoicesManager.Core.Sort;
-using System.Collections;
-
-namespace InvoicesManager.Core
+﻿namespace InvoicesManager.Core
 {
     class LoggerSystem
     {
