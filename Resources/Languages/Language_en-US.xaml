@@ -154,8 +154,8 @@
     <system:String x:Key="password">password:</system:String>
     <system:String x:Key="repeatPassword">repeat password:</system:String>
     <system:String x:Key="login">login</system:String>
-    <system:String x:Key="signUp">signUp</system:String>
-    <system:String x:Key="signIn">signIn</system:String>
+    <system:String x:Key="signUp">sign up</system:String>
+    <system:String x:Key="signIn">sign in</system:String>
     <system:String x:Key="create">create</system:String>
     <system:String x:Key="firstName">first Name:</system:String>
     <system:String x:Key="lastName">last Name:</system:String>
