@@ -59,7 +59,11 @@ namespace InvoicesManager.Core
                 //TODO: WHEN API IS NOT REACHEABLE, THEN IS THE OBJ NULL
                 using (StreamReader reader = new StreamReader(response.GetResponseStream()))
                     responseBody = reader.ReadToEnd();
-                responseModel = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
+                try
+                {
+                    responseModel = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
+                }
+                catch { }
             }
         }
 
@@ -81,20 +85,30 @@ namespace InvoicesManager.Core
         public string GetMessageFromResponse()
         {
             //if the response model is from my api
-            if (responseModel.message is not null)
-                return responseModel.message;
+            if (responseModel is not null)
+                if (responseModel.message is not null)
+                    return responseModel.message;
 
             //if the response model is from asp, then take all the errors and return them
-            AspWebResponseModel aspResponse = JsonConvert.DeserializeObject<AspWebResponseModel>(responseBody);
-            string message = "Error(s): ";
-            foreach (var error in aspResponse.errors)
-                message += $" {error.Value}";
-            message = message
-                    .Replace("[", String.Empty)
-                    .Replace("]", String.Empty)
-                    .Replace("\r\n", String.Empty)
-                    .Replace(" \"", "\r\n\"");
-            return message;
+            try
+            {
+                AspWebResponseModel aspResponse = JsonConvert.DeserializeObject<AspWebResponseModel>(responseBody);
+                string message = "Error(s): ";
+                foreach (var error in aspResponse.errors)
+                    message += $" {error.Value}";
+                message = message
+                        .Replace("[", String.Empty)
+                        .Replace("]", String.Empty)
+                        .Replace("\r\n", String.Empty)
+                        .Replace(" \"", "\r\n\"");
+                return message;
+            }
+            catch (Exception)
+            {
+                LoggerSystem.Log(LogStateEnum.Fatal, LogPrefixEnum.WebRequest_System, responseBody);
+                return "FATAL: " + responseBody;
+            }
+
         }
 
         public bool IsSuccess()
