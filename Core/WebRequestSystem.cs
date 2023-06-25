@@ -9,6 +9,8 @@ namespace InvoicesManager.Core
         private readonly string endpoint;
         private WebRequest request;
         private WebResponse response;
+        private WebResponseModel responseModel;
+        string responseBody = String.Empty;
         private bool isSuccess;
 
         public WebRequestSystem(string endpoint)
@@ -47,11 +49,18 @@ namespace InvoicesManager.Core
             try
             {
                 response = request.GetResponse();
-                isSuccess = true;
             }
             catch (WebException ex)
             {
                 response = ex.Response;
+                isSuccess = false;
+            }
+            finally
+            {
+                //TODO: WHEN API IS NOT REACHEABLE, THEN IS THE OBJ NULL
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                    responseBody = reader.ReadToEnd();
+                responseModel = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
             }
         }
 
@@ -67,11 +76,26 @@ namespace InvoicesManager.Core
 
         public string GetResponseBody()
         {
-            //TODO: WHEN API IS NOT REACHEABLE, THEN IS THE OBJ NULL
-            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-            {
-                return reader.ReadToEnd();
-            }
+            return responseBody;
+        }
+
+        public string GetMessageFromResponse()
+        {
+            //if the response model is from my api
+            if (responseModel.message is not null)
+                return responseModel.message;
+
+            //if the response model is from asp, then take all the errors and return them
+            AspWebResponseModel aspResponse = JsonConvert.DeserializeObject<AspWebResponseModel>(responseBody);
+            string message = "Error(s): ";
+            foreach (var error in aspResponse.errors)
+                message += $" {error.Value}";
+            message = message
+                    .Replace("[", String.Empty)
+                    .Replace("]", String.Empty)
+                    .Replace("\r\n", String.Empty)
+                    .Replace(" \"", "\r\n\"");
+            return message;
         }
 
         public bool IsSuccess()

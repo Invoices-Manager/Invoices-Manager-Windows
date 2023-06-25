@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Windows.Forms;
 
 namespace InvoicesManager.Core
 {
@@ -65,7 +65,7 @@ namespace InvoicesManager.Core
             if (!isSuccess)
             {
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.User_System, "Error: " + statusCode + " " + responseBody);
-                MessageBox.Show(responseBody);
+                MessageBox.Show(_wr.GetMessageFromResponse(), "Error", (MessageBoxButton)MessageBoxButtons.OK, (MessageBoxImage)MessageBoxIcon.Error);
                 return false;
             }
 
@@ -92,7 +92,7 @@ namespace InvoicesManager.Core
             if (!isSuccess)
             {
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.User_System, "Error: " + statusCode + " " + responseBody);
-                MessageBox.Show(responseBody);
+                MessageBox.Show(_wr.GetMessageFromResponse());
                 return false;
             }
 
@@ -118,7 +118,7 @@ namespace InvoicesManager.Core
             if (!isSuccess)
             {
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.User_System, "Error: " + statusCode + " " + responseBody);
-                MessageBox.Show(responseBody);
+                MessageBox.Show(_wr.GetMessageFromResponse());
                 return String.Empty;
             }
             

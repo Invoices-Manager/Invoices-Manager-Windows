@@ -74,6 +74,10 @@ namespace InvoicesManager.Classes
                 valuePtr = Marshal.SecureStringToGlobalAllocUnicode(bearerToken);
                 return Marshal.PtrToStringUni(valuePtr);
             }
+            catch (Exception)
+            {
+                return String.Empty;
+            }
             finally
             {
                 Marshal.ZeroFreeGlobalAllocUnicode(valuePtr);

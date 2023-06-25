@@ -29,7 +29,7 @@ namespace InvoicesManager.Core.Web
             if (!isSuccess)
             {
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, "Error: " + statusCode + " " + responseBody);
-                MessageBox.Show(responseBody);
+                MessageBox.Show(_wr.GetMessageFromResponse());
                 return String.Empty;
             }
 
@@ -62,7 +62,7 @@ namespace InvoicesManager.Core.Web
             if (!isSuccess)
             {
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, "Error: " + statusCode + " " + responseBody);
-                MessageBox.Show(responseBody);
+                MessageBox.Show(_wr.GetMessageFromResponse());
                 return 0;
             }
 
@@ -92,7 +92,7 @@ namespace InvoicesManager.Core.Web
             if (!isSuccess)
             {
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, "Error: " + statusCode + " " + responseBody);
-                MessageBox.Show(responseBody);
+                MessageBox.Show(_wr.GetMessageFromResponse());
                 return false;
             }
 
@@ -119,7 +119,7 @@ namespace InvoicesManager.Core.Web
             if (!isSuccess)
             {
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, "Error: " + statusCode + " " + responseBody);
-                MessageBox.Show(responseBody);
+                MessageBox.Show(_wr.GetMessageFromResponse());
                 return false;
             }
 
