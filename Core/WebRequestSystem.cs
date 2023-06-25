@@ -49,6 +49,7 @@ namespace InvoicesManager.Core
             try
             {
                 response = request.GetResponse();
+                isSuccess = true;
             }
             catch (WebException ex)
             {
