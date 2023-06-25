@@ -82,7 +82,7 @@ namespace InvoicesManager.Windows
 
         private void Bttn_Open_Logout_Click(object sender, RoutedEventArgs e)
         {
-            UserSystem us = new UserSystem();
+            UserWebSystem us = new UserWebSystem();
             us.Logout();
         }
 
@@ -95,7 +95,7 @@ namespace InvoicesManager.Windows
                 notebookWindow.Close();
 
             //logout the user
-            UserSystem us = new UserSystem();
+            UserWebSystem us = new UserWebSystem();
             us.Logout();
         }
 

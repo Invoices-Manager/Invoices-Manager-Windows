@@ -9,7 +9,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace InvoicesManager.Core
 {
-    public class UserSystem
+    public class UserWebSystem
     {
         public bool Login(string username, string password)
         {

@@ -28,7 +28,7 @@
                 email = Tb_UserEmail.Text,
             };
 
-            UserSystem us = new UserSystem();
+            UserWebSystem us = new UserWebSystem();
             if (!us.Create(userData))
                 return;
                

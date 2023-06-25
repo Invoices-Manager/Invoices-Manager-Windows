@@ -9,7 +9,7 @@
 
         private void Bttn_SignIn_Click(object sender, RoutedEventArgs e)
         {
-            UserSystem us = new UserSystem();
+            UserWebSystem us = new UserWebSystem();
 
             us.Login(Tb_Username.Text, Tb_Password.Password);
         }

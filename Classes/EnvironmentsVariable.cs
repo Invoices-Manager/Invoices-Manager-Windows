@@ -1,4 +1,7 @@
-﻿namespace InvoicesManager.Classes
+﻿using System.Runtime.InteropServices;
+using System.Security;
+
+namespace InvoicesManager.Classes
 {
     public class EnvironmentsVariable
     {
@@ -31,8 +34,7 @@
         public static char MoneyUnit = '€';
         public static char[] PossibleMoneyUnits = { '€', '$', '£', '¥', '₽', '₹' };
 
-        //TODO: use secretString instand of string
-        public static string BearerToken = String.Empty;
+        
         public const string HOST_PROT = "http";
         public const string HOST_ADDRESS = "localhost";
         public const string HOST_PORT = "5170";
@@ -50,6 +52,49 @@
         public const string API_ENDPOINT_USER_LOGIN = API_ENDPOINT_USER + "/Login";
         public const string API_ENDPOINT_USER_LOGOUT = API_ENDPOINT_USER + "/Logout";
 
+        private static SecureString bearerToken;
+        #region  BearerToken Methods
+        public static string BearerToken
+        {
+            get { return GetBearerToken(); }
+            set { SetBearerToken(value); }
+        }
+
+        public static void ClearBearerToken()
+        {
+            bearerToken?.Dispose();
+            bearerToken = null;
+        }
+
+        private static string GetBearerToken()
+        {
+            IntPtr valuePtr = IntPtr.Zero;
+            try
+            {
+                valuePtr = Marshal.SecureStringToGlobalAllocUnicode(bearerToken);
+                return Marshal.PtrToStringUni(valuePtr);
+            }
+            finally
+            {
+                Marshal.ZeroFreeGlobalAllocUnicode(valuePtr);
+            }
+        }
+
+        private static void SetBearerToken(string value)
+        {
+            ClearBearerToken();
+            if (value != null)
+            {
+                bearerToken = new SecureString();
+                foreach (char c in value)
+                {
+                    bearerToken.AppendChar(c);
+                }
+                bearerToken.MakeReadOnly();
+            }
+        }
+
+        #endregion
 
 
         public static void InitWorkPath()
