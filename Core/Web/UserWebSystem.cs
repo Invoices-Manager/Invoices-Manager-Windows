@@ -37,7 +37,7 @@ namespace InvoicesManager.Core
                 if (!LogoutFromApi())
                     return false;
 
-            EnvironmentsVariable.BearerToken = String.Empty;
+            EnvironmentsVariable.ClearBearerToken();
             EnvironmentsVariable.MainWindowInstance.UI_Logout();
             EnvironmentsVariable.MainWindowInstance.Bttn_Open_Login.Visibility = Visibility.Visible;
             EnvironmentsVariable.MainWindowInstance.Bttn_Open_Logout.Visibility = Visibility.Collapsed;
