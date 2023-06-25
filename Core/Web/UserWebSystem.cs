@@ -92,7 +92,7 @@ namespace InvoicesManager.Core
             if (!isSuccess)
             {
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.User_System, "Error: " + statusCode + " " + responseBody);
-                MessageBox.Show(_wr.GetMessageFromResponse());
+                MessageBox.Show(_wr.GetMessageFromResponse(), "Error", (MessageBoxButton)MessageBoxButtons.OK, (MessageBoxImage)MessageBoxIcon.Error);
                 return false;
             }
 
@@ -118,7 +118,7 @@ namespace InvoicesManager.Core
             if (!isSuccess)
             {
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.User_System, "Error: " + statusCode + " " + responseBody);
-                MessageBox.Show(_wr.GetMessageFromResponse());
+                 MessageBox.Show(_wr.GetMessageFromResponse(), "Error", (MessageBoxButton)MessageBoxButtons.OK, (MessageBoxImage)MessageBoxIcon.Error);
                 return String.Empty;
             }
             
