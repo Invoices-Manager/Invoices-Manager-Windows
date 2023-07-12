@@ -80,6 +80,8 @@
                 {
                     Bttn_SaveNote.IsEnabled = true;
                     Bttn_DeleteNote.IsEnabled = true;
+                    Tb_Note_Title.IsReadOnly = false;
+                    Tb_Note_Value.IsReadOnly = false;
                 }
             }
             catch (Exception ex)
@@ -115,11 +117,15 @@
             {
                 Bttn_SaveNote.IsEnabled = false;
                 Bttn_DeleteNote.IsEnabled = false;
+                Tb_Note_Title.IsReadOnly = true;
+                Tb_Note_Value.IsReadOnly = true;
             }
             else
             {
                 Bttn_SaveNote.IsEnabled = true;
                 Bttn_DeleteNote.IsEnabled = true;
+                Tb_Note_Title.IsReadOnly = false;
+                Tb_Note_Value.IsReadOnly = false;
             }
 
         }
