@@ -319,7 +319,7 @@
 
             //this program has to wait, so the pdf browser can open it
             //otherwise he is faster with delete than the document can be displayed
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
             File.Delete(tempPath);
         }
