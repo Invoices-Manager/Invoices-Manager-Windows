@@ -170,11 +170,13 @@
             NotebookSystem nSys = new NotebookSystem();
             nSys.AddNote(note);
             LoadNotebooks();
+            CheckButtonsState();
         }
 
         private void Bttn_RefreshNotebook_Click(object sender, RoutedEventArgs e)
         {
             LoadNotebooks();
+            CheckButtonsState();
         }
     }
 }
