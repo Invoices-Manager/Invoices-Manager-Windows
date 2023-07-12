@@ -161,4 +161,7 @@
     <system:String x:Key="firstName">Vorname:</system:String>
     <system:String x:Key="lastName">Nachname:</system:String>
     <system:String x:Key="eMail">E-Mail:</system:String>
+    <system:String x:Key="hostProt">Protokoll:</system:String>
+    <system:String x:Key="hostAddress">Adresse:</system:String>
+    <system:String x:Key="hostPort">Port:</system:String>
 </ResourceDictionary>

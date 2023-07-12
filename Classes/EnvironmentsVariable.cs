@@ -34,23 +34,23 @@ namespace InvoicesManager.Classes
         public static char MoneyUnit = '€';
         public static char[] PossibleMoneyUnits = { '€', '$', '£', '¥', '₽', '₹' };
 
-        
-        public const string HOST_PROT = "http";
-        public const string HOST_ADDRESS = "GermanNightmare.com";
-        public const string HOST_PORT = "25565";
+
+        public static string HOST_PROT = "http or https";
+        public static string HOST_ADDRESS = "example.com or 192.168.178.45";
+        public static string HOST_PORT = "6000 or what you use";
         public const string HOST_PATH = "/api/v01";
-        public const string HOST_ENDPOINT = HOST_PROT + "://" + HOST_ADDRESS + ":" + HOST_PORT + HOST_PATH;
+        public static string HOST_ENDPOINT { get { return HOST_PROT + "://" + HOST_ADDRESS + ":" + HOST_PORT + HOST_PATH; } }
 
-        public const string API_ENDPOINT_NOTE = HOST_ENDPOINT + "/Note";
-        public const string API_ENDPOINT_NOTE_GETALL = API_ENDPOINT_NOTE + "/GetAll";
-        
-        public const string API_ENDPOINT_INVOICE = HOST_ENDPOINT + "/Invoice";
-        public const string API_ENDPOINT_INVOICE_GETALL = API_ENDPOINT_INVOICE + "/GetAll";
-        public const string API_ENDPOINT_INVOICE_GETFILE = API_ENDPOINT_INVOICE + "/GetFile";
+        public static string API_ENDPOINT_NOTE { get { return HOST_ENDPOINT + "/Note"; } }
+        public static string API_ENDPOINT_NOTE_GETALL { get { return API_ENDPOINT_NOTE + "/GetAll"; } }
 
-        public const string API_ENDPOINT_USER = HOST_ENDPOINT + "/User";
-        public const string API_ENDPOINT_USER_LOGIN = API_ENDPOINT_USER + "/Login";
-        public const string API_ENDPOINT_USER_LOGOUT = API_ENDPOINT_USER + "/Logout";
+        public static  string API_ENDPOINT_INVOICE { get { return HOST_ENDPOINT + "/Invoice"; } }
+        public static  string API_ENDPOINT_INVOICE_GETALL { get { return API_ENDPOINT_INVOICE + "/GetAll"; } }
+        public static string API_ENDPOINT_INVOICE_GETFILE { get { return API_ENDPOINT_INVOICE + "/GetFile"; } }
+
+        public static string API_ENDPOINT_USER { get { return HOST_ENDPOINT + "/User"; } }
+        public static string API_ENDPOINT_USER_LOGIN { get { return API_ENDPOINT_USER + "/Login"; } }
+        public static string API_ENDPOINT_USER_LOGOUT { get { return API_ENDPOINT_USER + "/Logout"; } }
 
         private static SecureString bearerToken;
         #region  BearerToken Methods

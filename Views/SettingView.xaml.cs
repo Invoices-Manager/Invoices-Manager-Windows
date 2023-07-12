@@ -26,6 +26,9 @@
                 Tb_LogPath.Text = EnvironmentsVariable.PathLogs;
                 //Cb_EveryStartUpBackUp.IsChecked = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts;
                 //Tb_MaxCountBackUp.Text = EnvironmentsVariable.MaxCountBackUp.ToString();
+                Tb_HostProt.Text = EnvironmentsVariable.HOST_PROT;
+                Tb_HostAddress.Text = EnvironmentsVariable.HOST_ADDRESS;
+                Tb_HostPort.Text = EnvironmentsVariable.HOST_PORT;
             }
             catch (Exception ex)
             {
@@ -49,6 +52,9 @@
                 EnvironmentsVariable.PathLogs = Tb_LogPath.Text;
                 //EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = Cb_EveryStartUpBackUp.IsChecked.Value;
                 //EnvironmentsVariable.MaxCountBackUp = Convert.ToInt32(Tb_MaxCountBackUp.Text);
+                EnvironmentsVariable.HOST_PROT = Tb_HostProt.Text;
+                EnvironmentsVariable.HOST_ADDRESS = Tb_HostAddress.Text;
+                EnvironmentsVariable.HOST_PORT = Tb_HostPort.Text;
 
                 EnvironmentsVariable.InitWorkPath();
                 ConfigSystem cSys = new ConfigSystem();

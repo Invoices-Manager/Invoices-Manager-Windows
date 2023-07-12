@@ -57,6 +57,20 @@
                         <Button x:Name="Bttn_OpenTemplateMgr" Content="{DynamicResource open}" FontSize="30"  Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Right" Width="Auto" Margin="250,0,100,0" Click="Bttn_OpenTemplateMgr_Click"/>
                     </Grid>
                     <Separator Margin="25"/>
+                    <Grid>
+                        <Label Content="{DynamicResource hostProt}"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
+                        <TextBox x:Name="Tb_HostProt" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Right" Width="Auto" Margin="250,0,100,0"/>
+                    </Grid>
+                    <Separator Margin="25"/>
+                    <Grid>
+                        <Label Content="{DynamicResource hostAddress}"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
+                        <TextBox x:Name="Tb_HostAddress" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Right" Width="Auto" Margin="250,0,100,0"/>
+                    </Grid>
+                    <Separator Margin="25"/>
+                    <Grid>
+                        <Label Content="{DynamicResource hostPort}"  FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}"/>
+                        <TextBox x:Name="Tb_HostPort" FontSize="{DynamicResource FontSize}" Foreground="{DynamicResource FontForeground}" HorizontalAlignment="Right" Width="Auto" Margin="250,0,100,0"/>
+                    </Grid>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

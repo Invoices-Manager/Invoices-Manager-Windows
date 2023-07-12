@@ -19,10 +19,24 @@ namespace InvoicesManager.Core
 
         public void SetRequestMethod(string method)
         {
+
+            try
+            {
 #pragma warning disable SYSLIB0014 // Type or element is obsolete
-            request = WebRequest.Create(endpoint);
+                request = WebRequest.Create(endpoint);
 #pragma warning restore SYSLIB0014 // Type or element is obsolete
-            request.Method = method;
+                request.Method = method;
+            }
+            catch (UriFormatException ex)
+            {
+                MessageBox.Show(ex.ToString());
+               throw new UriFormatException("The endpoint is not valid. Please check the endpoint in the config file.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw new Exception(ex.Message);
+            }
         }
 
         public void SetHeaders(WebHeaderCollection headers)

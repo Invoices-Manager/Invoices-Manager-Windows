@@ -10,5 +10,8 @@
         public int MaxCountBackUp { get; set; }
         public bool CreateABackupEveryTimeTheProgramStarts { get; set; }
         public ColumnVisibilityModel ColumnVisibility { get; set; }
+        public string HOST_PROT { get; set; }
+        public string HOST_ADDRESS { get; set; }
+        public string HOST_PORT { get; set; }
     }
 }

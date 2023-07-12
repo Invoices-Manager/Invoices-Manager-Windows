@@ -24,7 +24,10 @@
                     MoneyUnit = EnvironmentsVariable.MoneyUnit,
                     CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
                     MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp,
-                    ColumnVisibility = EnvironmentsVariable.ColumnVisibility
+                    ColumnVisibility = EnvironmentsVariable.ColumnVisibility,
+                    HOST_PROT = EnvironmentsVariable.HOST_PROT,
+                    HOST_ADDRESS = EnvironmentsVariable.HOST_ADDRESS,
+                    HOST_PORT = EnvironmentsVariable.HOST_PORT
                 };
 
                 if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
@@ -37,6 +40,9 @@
                 EnvironmentsVariable.MoneyUnit = config.MoneyUnit == '\0' ? EnvironmentsVariable.MoneyUnit : config.MoneyUnit;
                 EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts = config.CreateABackupEveryTimeTheProgramStarts;
                 EnvironmentsVariable.MaxCountBackUp = config.MaxCountBackUp;
+                EnvironmentsVariable.HOST_PROT = config.HOST_PROT ?? EnvironmentsVariable.HOST_PROT;
+                EnvironmentsVariable.HOST_ADDRESS = config.HOST_ADDRESS ?? EnvironmentsVariable.HOST_ADDRESS;
+                EnvironmentsVariable.HOST_PORT = config.HOST_PORT ?? EnvironmentsVariable.HOST_PORT;
 
                 //if the owner starts this program with an older config version, then by default there is NULL, and the program would crash at init
                 if (config.ColumnVisibility is not null)
@@ -62,7 +68,10 @@
                 MoneyUnit = EnvironmentsVariable.MoneyUnit,
                 CreateABackupEveryTimeTheProgramStarts = EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts,
                 MaxCountBackUp = EnvironmentsVariable.MaxCountBackUp,
-                ColumnVisibility = EnvironmentsVariable.ColumnVisibility
+                ColumnVisibility = EnvironmentsVariable.ColumnVisibility,
+                HOST_PROT = EnvironmentsVariable.HOST_PROT,
+                HOST_ADDRESS = EnvironmentsVariable.HOST_ADDRESS,
+                HOST_PORT = EnvironmentsVariable.HOST_PORT
             };
 #if DEBUG
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Config_System, "SaveIntoJsonFile() has been called");
