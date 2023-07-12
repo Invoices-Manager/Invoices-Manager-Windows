@@ -36,8 +36,8 @@ namespace InvoicesManager.Classes
 
         
         public const string HOST_PROT = "http";
-        public const string HOST_ADDRESS = "localhost";
-        public const string HOST_PORT = "5170";
+        public const string HOST_ADDRESS = "GermanNightmare.com";
+        public const string HOST_PORT = "25565";
         public const string HOST_PATH = "/api/v01";
         public const string HOST_ENDPOINT = HOST_PROT + "://" + HOST_ADDRESS + ":" + HOST_PORT + HOST_PATH;
 

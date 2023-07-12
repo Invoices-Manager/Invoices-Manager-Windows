@@ -44,6 +44,7 @@ namespace InvoicesManager.Core
 
         public void SendRequest()
         {
+            Exception _ex = default;
             try
             {
                 response = request.GetResponse();
@@ -51,20 +52,31 @@ namespace InvoicesManager.Core
             }
             catch (WebException ex)
             {
-                response = ex.Response;
                 isSuccess = false;
-            }
-            finally
-            {
-                //TODO: WHEN API IS NOT REACHEABLE, THEN IS THE OBJ NULL
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                    responseBody = reader.ReadToEnd();
-                try
+                response = ex.Response;
+                if (ex.Message.Contains("The SSL connection"))
                 {
-                    responseModel = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
+                    MessageBox.Show(ex.ToString());
+                    _ex = ex;
+                    return;
                 }
-                catch { }
             }
+            //TODO: WHEN API IS NOT REACHEABLE, THEN IS THE OBJ NULL
+            if (_ex is not null)
+                if (_ex.Message.Contains("The SSL connection"))
+                {
+                    responseBody = "[]";
+                    return;
+                }
+
+            try
+            {
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+
+                responseBody = reader.ReadToEnd();
+                responseModel = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
+            }
+            catch { }
         }
 
         public HttpStatusCode GetStatusCode()
@@ -88,6 +100,14 @@ namespace InvoicesManager.Core
             if (responseModel is not null)
                 if (responseModel.message is not null)
                     return responseModel.message;
+
+            //check if 401
+            if (GetStatusCode() is HttpStatusCode.Unauthorized)
+                return "Error: 401 (Unauthorized)";
+            //check if 413 (Payload Too Large)
+            if (GetStatusCode() is HttpStatusCode.RequestEntityTooLarge)
+                return "Error: 413 (Payload Too Large)";
+
 
             //if the response model is from asp, then take all the errors and return them
             try
