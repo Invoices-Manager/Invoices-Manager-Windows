@@ -34,7 +34,7 @@
                
             us.Logout();
             
-            EnvironmentsVariable.MainWindowInstance.ViewMirror.Content = new Page();
+            EnvironmentsVariable.MainWindowInstance.ViewMirror.Content = new SignInView();
         }
 
         private bool CheckUserInput()
