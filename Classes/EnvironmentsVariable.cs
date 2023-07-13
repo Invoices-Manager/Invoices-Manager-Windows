@@ -51,7 +51,46 @@ namespace InvoicesManager.Classes
         public static string API_ENDPOINT_USER { get { return HOST_ENDPOINT + "/User"; } }
         public static string API_ENDPOINT_USER_LOGIN { get { return API_ENDPOINT_USER + "/Login"; } }
         public static string API_ENDPOINT_USER_LOGOUT { get { return API_ENDPOINT_USER + "/Logout"; } }
+        public static string API_ENDPOINT_USER_WHOAMI { get { return API_ENDPOINT_USER + "/WhoAmI"; } }
 
+        private static string userSalt { get; set; }
+        #region  UserSalt Methods
+        
+        public static void SetUserSalt(string value)
+        {
+            userSalt = value;
+        }
+
+        public static string GetUserSalt()
+        {
+            return userSalt;
+        }
+        #endregion
+
+        public static SecureString UserPassword { get; private set; }
+        #region  UserPassword Methods
+
+        public static void ClearUserPassword()
+        {
+            UserPassword?.Dispose();
+            UserPassword = null;
+        }
+
+        public static void SetUserPassword(string value)
+        {
+            ClearUserPassword();
+            if (value != null)
+            {
+                UserPassword = new SecureString();
+                foreach (char c in value)
+                {
+                    UserPassword.AppendChar(c);
+                }
+                UserPassword.MakeReadOnly();
+            }
+        }
+        #endregion
+        
         private static SecureString bearerToken;
         #region  BearerToken Methods
         public static string BearerToken

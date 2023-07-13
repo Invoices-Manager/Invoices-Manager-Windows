@@ -1,4 +1,7 @@
-﻿namespace InvoicesManager.Core
+﻿using System.Security;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+
+namespace InvoicesManager.Core
 {
     public class UserWebSystem
     {
@@ -15,13 +18,17 @@
             if (String.IsNullOrEmpty(EnvironmentsVariable.BearerToken)) 
                 return false;
 
+            //set the salt and password
+            EnvironmentsVariable.SetUserSalt(GetUserSalt());
+            EnvironmentsVariable.SetUserPassword(password);
+
             //if the login was sucessful, then enable the main window buttons
             EnvironmentsVariable.MainWindowInstance.UI_Login();
             EnvironmentsVariable.MainWindowInstance.Bttn_Open_Login.Visibility = Visibility.Collapsed;
             EnvironmentsVariable.MainWindowInstance.Bttn_Open_Logout.Visibility = Visibility.Visible;
             return true;
         }
-
+        
         public bool Logout()
         {
             if (!String.IsNullOrEmpty(EnvironmentsVariable.BearerToken))
@@ -29,6 +36,9 @@
                     return false;
 
             EnvironmentsVariable.ClearBearerToken();
+            EnvironmentsVariable.ClearUserPassword();
+            EnvironmentsVariable.SetUserSalt(string.Empty);
+
             EnvironmentsVariable.MainWindowInstance.UI_Logout();
             EnvironmentsVariable.MainWindowInstance.Bttn_Open_Login.Visibility = Visibility.Visible;
             EnvironmentsVariable.MainWindowInstance.Bttn_Open_Logout.Visibility = Visibility.Collapsed;
@@ -116,6 +126,34 @@
             WebResponseModel response = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
 
             return JsonConvert.SerializeObject(response.Args["token"].ToString()).Trim('"');
+        }
+
+        private string GetUserSalt()
+        {
+            WebRequestSystem _wr = new WebRequestSystem(EnvironmentsVariable.API_ENDPOINT_USER_WHOAMI);
+
+            _wr.SetRequestMethod("GET");
+            _wr.SetHeaders(new WebHeaderCollection()
+            {
+                 { "bearerToken", EnvironmentsVariable.BearerToken },
+                { "Content-Type", "application/json" }
+            });
+            _wr.SendRequest();
+
+            HttpStatusCode statusCode = _wr.GetStatusCode();
+            string responseBody = _wr.GetResponseBody();
+            bool isSuccess = _wr.IsSuccess();
+
+            if (!isSuccess)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.User_System, "Error: " + statusCode + " " + responseBody);
+                MessageBox.Show(_wr.GetMessageFromResponse(), "Error", (MessageBoxButton)MessageBoxButtons.OK, (MessageBoxImage)MessageBoxIcon.Error);
+                return String.Empty;
+            }
+
+            WebResponseModel response = JsonConvert.DeserializeObject<WebResponseModel>(responseBody);
+
+            return JsonConvert.SerializeObject(response.Args["salt"].ToString()).Trim('"');
         }
     }
 }
