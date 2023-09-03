@@ -2,6 +2,8 @@
 {
     public class InvoiceSystem
     {
+        readonly EncryptionSystem _es = new(EnvironmentsVariable.GetUserPassword(), EnvironmentsVariable.GetUserSalt());
+        
         public void Init()
         {
             try
@@ -45,12 +47,16 @@
             {
                 if (CheckIfInvoiceExist(filePath))
                 {
-                    MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
+                    MessageBox.Show(Application.Current.Resources["fileAlreadyExists"] as string);
                     return;
                 }
 
                 //convert the file to base64
                 string base64 = Convert.ToBase64String(File.ReadAllBytes(filePath));
+
+                //encrypt the invoice and the file (base64)
+                InvoiceModel encryptedInvoice = EncryptInvoice(newInvoice);
+                string encryptedBase64 = _es.EncryptString(base64);
 
                 //save into web
                 int id = InvoiceWebSystem.Add(newInvoice, base64);
@@ -226,6 +232,14 @@
             {
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, "Error while overriding a invoice, err: " + ex.Message);
             }
+        }
+
+        private InvoiceModel EncryptInvoice(InvoiceModel newInvoice)
+        {
+            return new InvoiceModel()
+            {
+
+            };
         }
     }
 }

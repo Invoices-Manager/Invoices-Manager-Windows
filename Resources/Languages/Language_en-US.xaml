@@ -94,7 +94,7 @@
     <system:String x:Key="everyStartUpBackUp">create a BackUp every program start?</system:String>
     <system:String x:Key="backupMaxCount">maximum number of backups</system:String>
     <system:String x:Key="openNotebook">open notebook</system:String>
-    <system:String x:Key="fileDoNotExist">The file does not exist in the system! (404)</system:String>
+    <system:String x:Key="fileAlreadyExists">The file does already exist in the system!</system:String>
     <system:String x:Key="warningNotebookNotIncludedInBackUp">You make a BackUp where the notebook is not included! (function may be added later)</system:String>
     <system:String x:Key="Bttn_Dashboard">Dashboard</system:String>
     <system:String x:Key="Bttn_InvoiceManager">Invoice Manager</system:String>
