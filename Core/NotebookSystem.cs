@@ -1,7 +1,11 @@
-﻿namespace InvoicesManager.Core
+﻿using Newtonsoft.Json.Linq;
+
+namespace InvoicesManager.Core
 {
     public class NotebookSystem
     {
+        EncryptionSystem _es = new EncryptionSystem(EnvironmentsVariable.GetUserPassword(), EnvironmentsVariable.GetUserSalt());
+        
         public void Init()
         {
             try
@@ -13,8 +17,15 @@
                 string json = NoteWebSystem.GetAll();
 
                 if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
-                    EnvironmentsVariable.Notebook = JsonConvert.DeserializeObject<NotebookModel>(json);
-                
+                    foreach (NoteModel note in JsonConvert.DeserializeObject<NotebookModel>(json).Notebook)
+                    {
+                        //decrypt notebook data
+                        note.Name = _es.DecryptString(note.Name);
+                        note.Value = _es.DecryptString(note.Value);
+
+                        EnvironmentsVariable.Notebook.Notebook.Add(note);
+                    }
+
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Notebook_System, "Notebook system has been initialized.");
             }
             catch (Exception ex)
@@ -27,8 +38,15 @@
         {
             try
             {
+                //encrypt notebook data
+                NoteModel encryptedNote = new NoteModel()
+                {
+                    Name = _es.EncryptString(newNote.Name),
+                    Value = _es.EncryptString(newNote.Value)
+                };
+
                 //save into web
-                int id = NoteWebSystem.Add(newNote);
+                int id = NoteWebSystem.Add(encryptedNote);
 
                 //if id == -1 => then error
                 if (id == -1)
@@ -56,8 +74,18 @@
                 note.Value = editNote.Value;
                 note.LastEditDate = DateTime.Now;
 
+                //encrypt notebook data
+                NoteModel encryptedNote = new NoteModel()
+                {
+                    Id = note.Id,
+                    Name = _es.EncryptString(note.Name),
+                    Value = _es.EncryptString(note.Value),
+                    CreationDate = note.CreationDate,
+                    LastEditDate = note.LastEditDate
+                };
+
                 //save into web
-                if (!NoteWebSystem.Edit(editNote))
+                if (!NoteWebSystem.Edit(encryptedNote))
                     throw new Exception("Error editing note via api.");
 
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Notebook_System, $"A note has been edited. [{editNote.Id}]");
@@ -75,6 +103,7 @@
                 //save into web
                 if (!NoteWebSystem.Delete(oldNote.Id))
                     throw new Exception("Error removing note via api.");
+  
                 //save into env
                 EnvironmentsVariable.Notebook.Notebook.Remove(oldNote);
 
