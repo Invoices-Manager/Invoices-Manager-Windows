@@ -4,7 +4,7 @@ namespace InvoicesManager.Core
 {
     public class NotebookSystem
     {
-        EncryptionSystem _es = new EncryptionSystem(EnvironmentsVariable.GetUserPassword(), EnvironmentsVariable.GetUserSalt());
+        readonly EncryptionSystem _es = new (EnvironmentsVariable.GetUserPassword(), EnvironmentsVariable.GetUserSalt());
         
         public void Init()
         {
