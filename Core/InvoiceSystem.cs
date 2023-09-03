@@ -24,7 +24,11 @@
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "Finished, loading the invoices from the json file");
 #endif
                 if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
-                    EnvironmentsVariable.AllInvoices = JsonConvert.DeserializeObject<List<InvoiceModel>>(json);
+                    foreach (InvoiceModel invoice in JsonConvert.DeserializeObject<List<InvoiceModel>>(json))
+                    {
+                        //decrypt invoice
+                        EnvironmentsVariable.AllInvoices.Add(DecryptInvoice(invoice));
+                    }
 
                 //remove the unessary spaces from the tags
                 EnvironmentsVariable.AllInvoices.ForEach(x => x.Tags = x.Tags.Select(y => y.Trim()).ToArray());
@@ -80,7 +84,11 @@
             {
                 //save into web
                 newInvoice.Id = oldInvoice.Id;
-                if (InvoiceWebSystem.Edit(newInvoice))
+
+                //encrypt the invoice
+                InvoiceModel encryptedInvoice = EncryptInvoice(newInvoice);
+
+                if (InvoiceWebSystem.Edit(encryptedInvoice))
                     throw new Exception("Error while editing a invoice");
                 //save into env
                 EnvironmentsVariable.AllInvoices.Remove(oldInvoice);
@@ -112,13 +120,22 @@
             }
         }
 
+        public string GetFile(int invoiceId)
+        {
+            string encryptedBase64 = InvoiceWebSystem.GetFile(invoiceId);
+            return _es.DecryptString(encryptedBase64);
+        }
+
         public void SaveAs(InvoiceModel invoice, string path)
         {
             try
             {
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, $"A invoice has been saved as. ID: [{invoice.FileID}] Path: [{path}]");
                 
-                string base64 = InvoiceWebSystem.GetFile(invoice.Id);
+                string encryptedBase64 = InvoiceWebSystem.GetFile(invoice.Id);
+
+                //decrypt base64 string
+                string base64 = _es.DecryptString(encryptedBase64);
 
                 File.WriteAllBytes(path, Convert.FromBase64String(base64));
             }
@@ -236,14 +253,28 @@
 
         private InvoiceModel EncryptInvoice(InvoiceModel newInvoice)
         {
-            return new InvoiceModel()
-            {
-                Reference = _es.EncryptString(newInvoice.Reference),
-                DocumentType = _es.EncryptString(newInvoice.DocumentType),
-                Organization = _es.EncryptString(newInvoice.Organization),
-                InvoiceNumber = _es.EncryptString(newInvoice.InvoiceNumber),
-                Tags = _es.EncryptStringArray(newInvoice.Tags)
-            };
+            InvoiceModel encryptedInvoice = newInvoice.Clone();
+
+            encryptedInvoice.Reference = _es.EncryptString(newInvoice.Reference);
+            encryptedInvoice.DocumentType = _es.EncryptString(newInvoice.DocumentType);
+            encryptedInvoice.Organization = _es.EncryptString(newInvoice.Organization);
+            encryptedInvoice.InvoiceNumber = _es.EncryptString(newInvoice.InvoiceNumber);
+            encryptedInvoice.Tags = _es.EncryptStringArray(newInvoice.Tags);
+
+            return encryptedInvoice;
+        }
+
+        private InvoiceModel DecryptInvoice(InvoiceModel newInvoice)
+        {
+            InvoiceModel decryptedInvoice = newInvoice.Clone();
+
+            decryptedInvoice.Reference = _es.DecryptString(newInvoice.Reference);
+            decryptedInvoice.DocumentType = _es.DecryptString(newInvoice.DocumentType);
+            decryptedInvoice.Organization = _es.DecryptString(newInvoice.Organization);
+            decryptedInvoice.InvoiceNumber = _es.DecryptString(newInvoice.InvoiceNumber);
+            decryptedInvoice.Tags = _es.DecryptStringArray(newInvoice.Tags);
+
+            return decryptedInvoice;
         }
     }
 }

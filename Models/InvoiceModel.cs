@@ -2,6 +2,12 @@
 {
     public class InvoiceModel
     {
+        //copy fun
+        public InvoiceModel Clone()
+        {
+            return (InvoiceModel)this.MemberwiseClone();
+        }
+
         //Rules
         public bool ShouldSerializeOpenInvoiceText() { return false; }
         public bool ShouldSerializeStringExhibitionDate() { return false; }

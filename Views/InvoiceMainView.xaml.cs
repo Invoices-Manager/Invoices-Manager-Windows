@@ -314,7 +314,9 @@
             //copy file to temp folder and open it then delete it
             string tempPath = Path.Combine(Path.GetTempPath(), invoice.FileID + ".pdf");
 
-            File.WriteAllBytes(tempPath, Convert.FromBase64String(InvoiceWebSystem.GetFile(invoice.Id)));
+            InvoiceSystem _is = new InvoiceSystem();
+
+            File.WriteAllBytes(tempPath, Convert.FromBase64String(_is.GetFile(invoice.Id)));
             Process.Start(EnvironmentsVariable.PathPDFBrowser, tempPath);
 
             //this program has to wait, so the pdf browser can open it
