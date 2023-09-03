@@ -238,7 +238,11 @@
         {
             return new InvoiceModel()
             {
-
+                Reference = _es.EncryptString(newInvoice.Reference),
+                DocumentType = _es.EncryptString(newInvoice.DocumentType),
+                Organization = _es.EncryptString(newInvoice.Organization),
+                InvoiceNumber = _es.EncryptString(newInvoice.InvoiceNumber),
+                Tags = _es.EncryptStringArray(newInvoice.Tags)
             };
         }
     }

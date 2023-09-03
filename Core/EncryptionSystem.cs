@@ -79,6 +79,22 @@ namespace InvoicesManager.Core
             return Encoding.UTF8.GetString(decryptedBytes);
         }
 
+        public string[] EncryptStringArray(string[] tags)
+        {
+            for (int i = 0; i < tags.Length; i++)
+                tags[i] = EncryptString(tags[i]);
+
+            return tags;
+        }
+
+        public string[] DecryptStringArray(string[] tags)
+        {
+            for (int i = 0; i < tags.Length; i++)
+                tags[i] = DecryptString(tags[i]);
+
+            return tags;
+        }
+
         public void EncryptFile(string inputFile, string outputFile)
         {
             using (FileStream inputStream = File.OpenRead(inputFile))
