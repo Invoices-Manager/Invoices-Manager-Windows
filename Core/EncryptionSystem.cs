@@ -81,18 +81,22 @@ namespace InvoicesManager.Core
 
         public string[] EncryptStringArray(string[] tags)
         {
-            for (int i = 0; i < tags.Length; i++)
-                tags[i] = EncryptString(tags[i]);
+            string[] encryptedTags = new string[tags.Length];
 
-            return tags;
+            for (int i = 0; i < tags.Length; i++)
+                encryptedTags[i] = EncryptString(tags[i]);
+
+            return encryptedTags;
         }
 
         public string[] DecryptStringArray(string[] tags)
         {
-            for (int i = 0; i < tags.Length; i++)
-                tags[i] = DecryptString(tags[i]);
+            string[] decryptedTags = new string[tags.Length];
 
-            return tags;
+            for (int i = 0; i < tags.Length; i++)
+                decryptedTags[i] = DecryptString(tags[i]);
+
+            return decryptedTags;
         }
 
         public void EncryptFile(string inputFile, string outputFile)

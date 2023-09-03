@@ -59,7 +59,7 @@
                 string encryptedBase64 = _es.EncryptString(base64);
 
                 //save into web
-                int id = InvoiceWebSystem.Add(newInvoice, base64);
+                int id = InvoiceWebSystem.Add(encryptedInvoice, encryptedBase64);
                 if (id == -1 || id == 0)
                     throw new Exception("Error while adding a new invoice");
                 //save into env
