@@ -11,6 +11,7 @@ namespace InvoicesManager.Core
         string responseBody = String.Empty;
         private bool isSuccess;
 
+       
         public WebRequestSystem(string endpoint)
         {
             this.endpoint = endpoint;
@@ -61,6 +62,11 @@ namespace InvoicesManager.Core
             Exception _ex = default;
             try
             {
+                //This bypass the SSL certificate validation
+                //Only for testing purposes
+#if DEBUG
+                ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+#endif
                 response = request.GetResponse();
                 isSuccess = true;
             }

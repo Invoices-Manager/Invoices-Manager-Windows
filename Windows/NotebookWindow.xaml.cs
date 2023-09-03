@@ -142,7 +142,7 @@
             {
                 if (correspondingButton is null)
                     return;
-
+                
                 correspondingButton.Content = Tb_Note_Title.Text;
                 selectedNote.Name = Tb_Note_Title.Text;
                 selectedNote.Value = Tb_Note_Value.Text;
@@ -168,8 +168,8 @@
             };
 
             NotebookSystem nSys = new NotebookSystem();
-            nSys.AddNote(note);
             LoadNotebooks();
+            nSys.AddNote(note);
             CheckButtonsState();
         }
 

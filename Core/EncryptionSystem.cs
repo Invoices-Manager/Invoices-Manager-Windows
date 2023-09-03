@@ -1,4 +1,7 @@
-﻿using System.Security;
+﻿using System;
+using System.IO;
+using System.Security;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace InvoicesManager.Core
@@ -8,10 +11,10 @@ namespace InvoicesManager.Core
         private readonly SecureString userPassword;
         private readonly byte[] salt;
 
-        public EncryptionSystem(SecureString password, byte[] salt)
+        public EncryptionSystem(SecureString password, string salt)
         {
             userPassword = password;
-            this.salt = salt;
+            this.salt = Encoding.UTF8.GetBytes(salt);
         }
 
         public string EncryptString(string plainText)
@@ -21,7 +24,9 @@ namespace InvoicesManager.Core
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = GetKey();
-                aesAlg.IV = aesAlg.Key;
+                aesAlg.GenerateIV();
+
+                byte[] iv = aesAlg.IV;
 
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
@@ -34,20 +39,30 @@ namespace InvoicesManager.Core
 
                     encryptedBytes = memoryStream.ToArray();
                 }
-            }
 
-            return Convert.ToBase64String(encryptedBytes);
+                byte[] encryptedTextWithIV = new byte[iv.Length + encryptedBytes.Length];
+                Buffer.BlockCopy(iv, 0, encryptedTextWithIV, 0, iv.Length);
+                Buffer.BlockCopy(encryptedBytes, 0, encryptedTextWithIV, iv.Length, encryptedBytes.Length);
+
+                return Convert.ToBase64String(encryptedTextWithIV);
+            }
         }
 
         public string DecryptString(string encryptedText)
         {
-            byte[] encryptedBytes = Convert.FromBase64String(encryptedText);
+            byte[] encryptedTextWithIV = Convert.FromBase64String(encryptedText);
+            byte[] iv = new byte[16]; // IV-Größe beträgt 16 Bytes für AES-256
+
+            Buffer.BlockCopy(encryptedTextWithIV, 0, iv, 0, iv.Length);
+            byte[] encryptedBytes = new byte[encryptedTextWithIV.Length - iv.Length];
+            Buffer.BlockCopy(encryptedTextWithIV, iv.Length, encryptedBytes, 0, encryptedBytes.Length);
+
             byte[] decryptedBytes;
 
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = GetKey();
-                aesAlg.IV = aesAlg.Key;
+                aesAlg.IV = iv;
 
                 using (MemoryStream memoryStream = new MemoryStream(encryptedBytes))
                 {
@@ -71,12 +86,16 @@ namespace InvoicesManager.Core
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = GetKey();
-                aesAlg.IV = aesAlg.Key;
+                aesAlg.GenerateIV();
+
+                byte[] iv = aesAlg.IV;
 
                 using (CryptoStream cryptoStream = new CryptoStream(outputStream, aesAlg.CreateEncryptor(), CryptoStreamMode.Write))
                 {
                     byte[] buffer = new byte[4096];
                     int bytesRead;
+
+                    cryptoStream.Write(iv, 0, iv.Length);
 
                     while ((bytesRead = inputStream.Read(buffer, 0, buffer.Length)) > 0)
                     {
@@ -95,7 +114,11 @@ namespace InvoicesManager.Core
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = GetKey();
-                aesAlg.IV = aesAlg.Key;
+
+                byte[] iv = new byte[16]; // IV-Größe beträgt 16 Bytes für AES-256
+                inputStream.Read(iv, 0, iv.Length);
+
+                aesAlg.IV = iv;
 
                 using (CryptoStream cryptoStream = new CryptoStream(inputStream, aesAlg.CreateDecryptor(), CryptoStreamMode.Read))
                 {
@@ -114,7 +137,7 @@ namespace InvoicesManager.Core
         {
             using (var keyDerivationFunction = new Rfc2898DeriveBytes(GetSecureStringBytes(userPassword), salt, 10000))
             {
-                return keyDerivationFunction.GetBytes(32); // AES-256 key size
+                return keyDerivationFunction.GetBytes(32); // AES-256 Schlüsselgröße
             }
         }
 

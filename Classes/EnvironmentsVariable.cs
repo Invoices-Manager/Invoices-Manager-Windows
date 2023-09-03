@@ -67,13 +67,13 @@ namespace InvoicesManager.Classes
         }
         #endregion
 
-        public static SecureString UserPassword { get; private set; }
+        private static SecureString userPassword { get; set; }
         #region  UserPassword Methods
 
         public static void ClearUserPassword()
         {
-            UserPassword?.Dispose();
-            UserPassword = null;
+            userPassword?.Dispose();
+            userPassword = null;
         }
 
         public static void SetUserPassword(string value)
@@ -81,16 +81,21 @@ namespace InvoicesManager.Classes
             ClearUserPassword();
             if (value != null)
             {
-                UserPassword = new SecureString();
+                userPassword = new SecureString();
                 foreach (char c in value)
                 {
-                    UserPassword.AppendChar(c);
+                    userPassword.AppendChar(c);
                 }
-                UserPassword.MakeReadOnly();
+                userPassword.MakeReadOnly();
             }
         }
+
+        public static SecureString GetUserPassword()
+        {
+            return userPassword;
+        }
         #endregion
-        
+
         private static SecureString bearerToken;
         #region  BearerToken Methods
         public static string BearerToken
