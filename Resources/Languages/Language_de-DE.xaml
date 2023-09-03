@@ -46,7 +46,7 @@
         Invoices Manager ist ein Open-Source-Programm, das Sie kostenlos nutzen &amp; weiter entwickeln können.
     </system:String>
     <system:String x:Key="invoicesManagerIsAnOpenSourceTool02">
-        Der Quellcode ist auf GitHub zu finden (Invoices-Manager/Invoices-Manager-Windows).
+        Der Quellcode ist auf GitHub zu finden (Invoices-Manager/Invoices-Manager-Cloud-Windows).
     </system:String>
     <system:String x:Key="invoicesManagerIsAnOpenSourceTool03">
         Mit diesem Programm können Sie Belege, Rechnungen und vieles mehr speichern und verwalten &amp; mit Hilfe der vielen Filtermöglichkeiten können Sie die Belege auch schnell wieder finden, außerdem werden die Daten nur auf Ihrem Computer gespeichert, ich und niemand sonst haben Einblick in IHRE Daten.

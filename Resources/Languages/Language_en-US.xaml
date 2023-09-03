@@ -46,7 +46,7 @@
         Invoices Manager is an open-source program that you can use for free &amp; developing further.
     </system:String>
     <system:String x:Key="invoicesManagerIsAnOpenSourceTool02">
-        Source code can be found on GitHub (Invoices-Manager/Invoices-Manager-Windows).
+        Source code can be found on GitHub (Invoices-Manager/Invoices-Manager-Cloud-Windows).
     </system:String>
     <system:String x:Key="invoicesManagerIsAnOpenSourceTool03">
         You can save and manage documents, invoices and much more with this program &amp; with the help of the many filter options you can also quickly find the documents again, in addition, the data is stored only on your computer, I and no one else have insight into YOUR data.
