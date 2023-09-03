@@ -90,6 +90,13 @@ namespace InvoicesManager.Core
             string responseBody = _wr.GetResponseBody();
             bool isSuccess = _wr.IsSuccess();
 
+            //if the respose is 401, then the token has already been deleted. since it has expired
+            if (statusCode == HttpStatusCode.Unauthorized)
+            {
+                LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.User_System, "Logout successful, but the token does not exist because it has already been deleted by the system (expired)");
+                return true;
+            }
+
             if (!isSuccess)
             {
                 LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.User_System, "Error: " + statusCode + " " + responseBody);
