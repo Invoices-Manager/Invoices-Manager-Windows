@@ -74,7 +74,7 @@
                 invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
                 invoice.InvoiceNumber = "INV-NR" + r.Next(100000, 999999).ToString();
                 invoice.Tags = new string[] { "Tag1", "Tag2", "Tag3" };
-                invoice.MoneyTotal = r.Next(100, 9999);
+                invoice.MoneyTotalDouble = r.Next(100, 9999);
                 invoice.ImportanceState = (ImportanceStateEnum)r.Next(0, 3);
                 invoice.MoneyState = (MoneyStateEnum)r.Next(0, 2);
                 invoice.PaidState = (PaidStateEnum)r.Next(0, 2);

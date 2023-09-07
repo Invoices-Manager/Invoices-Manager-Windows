@@ -17,6 +17,7 @@
         public bool ShouldSerializeStringPaidState() { return false; }
         public bool ShouldSerializeStringMoneyState() { return false; }
         public bool ShouldSerializeStringImportanceState() { return false; }
+        public bool ShouldSerializeStringMoneyTotalStr() { return false; }
 
         //Model
         public int Id { get; set; }
@@ -31,14 +32,15 @@
         public ImportanceStateEnum ImportanceState { get; set; } // { VeryImportant, Important, Neutral, Unimportant }
         public MoneyStateEnum MoneyState { get; set; } // { Paid , Received,  NoInvoice }
         public PaidStateEnum PaidState { get; set; } // { Paid , Unpaid,  NoInvoice }
-        public double MoneyTotal { get; set; }
+        public string MoneyTotal { get; set; } //its just for the encryption string
+        public double MoneyTotalDouble { get; set; } 
 
 
         //Type Converter
         public string OpenInvoiceText { get; } = Application.Current.Resources["open"] as string;
         public string StringExhibitionDate { get { return ExhibitionDate.ToString("yyyy.MM.dd"); } }
         public string StringCaptureDate { get { return CaptureDate.ToString("yyyy.MM.dd"); } }
-        public string StringMoneyTotal { get { return String.Format("{0:0.0,0}", MoneyTotal) + EnvironmentsVariable.MoneyUnit.ToString(); } }
+        public string StringMoneyTotal { get { return String.Format("{0:0.0,0}", MoneyTotalDouble) + EnvironmentsVariable.MoneyUnit.ToString(); } }
         public string StringTags { get { return string.Join(", ", Tags); } }
         public string StringPaidState 
         { 

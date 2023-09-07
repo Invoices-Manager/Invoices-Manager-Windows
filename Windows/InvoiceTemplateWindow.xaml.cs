@@ -66,7 +66,7 @@
             Tb_DocumentType.Text = invoice.DocumentType;
             Tb_InvoiceNumber.Text = invoice.InvoiceNumber == "" ? "" : invoice.InvoiceNumber;
             Tb_Reference.Text = invoice.Reference;
-            Tb_MoneyTotal.Text = invoice.MoneyTotal == -1 ? "" : invoice.MoneyTotal.ToString();
+            Tb_MoneyTotal.Text = invoice.MoneyTotalDouble == -1 ? "" : invoice.MoneyTotal.ToString();
             Tb_Tags.Text = String.Join(";", invoice.Tags);
             Comb_ImportanceState.SelectedIndex = (int)invoice.ImportanceState;
             Comb_MoneyState.SelectedIndex = (int)invoice.MoneyState;
@@ -186,7 +186,7 @@
                     Reference = Tb_Reference.Text,
                     InvoiceNumber = Tb_InvoiceNumber.Text,
                     DocumentType = Tb_DocumentType.Text,
-                    MoneyTotal = Tb_MoneyTotal.Text == String.Empty ? -1 : Convert.ToDouble(Tb_MoneyTotal.Text),
+                    MoneyTotalDouble = Tb_MoneyTotal.Text == String.Empty ? -1 : Convert.ToDouble(Tb_MoneyTotal.Text),
                     Tags = Tb_Tags.Text.Split(';'),
                     ImportanceState = ImportanceState.StringAsEnum(Comb_ImportanceState.SelectedItem.ToString()),
                     MoneyState = MoneyState.StringAsEnum(Comb_MoneyState.SelectedItem.ToString()),

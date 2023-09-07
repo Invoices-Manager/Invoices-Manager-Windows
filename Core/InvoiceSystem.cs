@@ -264,6 +264,7 @@
             encryptedInvoice.Organization = _es.EncryptString(newInvoice.Organization);
             encryptedInvoice.InvoiceNumber = _es.EncryptString(newInvoice.InvoiceNumber);
             encryptedInvoice.Tags = _es.EncryptStringArray(newInvoice.Tags);
+            encryptedInvoice.MoneyTotal = _es.EncryptString(newInvoice.MoneyTotalDouble.ToString());
 
             return encryptedInvoice;
         }
@@ -278,6 +279,12 @@
             decryptedInvoice.InvoiceNumber = _es.DecryptString(newInvoice.InvoiceNumber);
             decryptedInvoice.Tags = _es.DecryptStringArray(newInvoice.Tags);
 
+            //decrypt the double and try to parse it
+            if (double.TryParse(_es.DecryptString(newInvoice.MoneyTotal), out double moneyTotal))
+                decryptedInvoice.MoneyTotalDouble = moneyTotal;
+            else
+                decryptedInvoice.MoneyTotalDouble = -1;
+            
             return decryptedInvoice;
         }
     }
