@@ -58,9 +58,12 @@
                 //convert the file to base64
                 string base64 = Convert.ToBase64String(File.ReadAllBytes(filePath));
 
+                //get the file id
+                newInvoice.FileID = SecuritySystem.GetMD5HashFromFile(filePath);
+
                 //encrypt the invoice and the file (base64)
                 InvoiceModel encryptedInvoice = EncryptInvoice(newInvoice);
-                string encryptedBase64 = _es.EncryptString(base64);
+                string encryptedBase64 = _es.EncryptString(base64); 
 
                 //save into web
                 int id = InvoiceWebSystem.Add(encryptedInvoice, encryptedBase64);
@@ -155,6 +158,7 @@
             try
             {
                 string hashID = SecuritySystem.GetMD5HashFromFile(filePath);
+
                 foreach (var invoice in EnvironmentsVariable.AllInvoices)
                 {
                     if (invoice.FileID.Equals(hashID))
