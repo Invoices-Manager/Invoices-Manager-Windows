@@ -71,7 +71,7 @@ Or [press here](#) to download if you want the latest one (standalone) <br/>
 
 ## v2.1.0.0
 - The data and files which are sent to the API are encrypted with the user password and the received salt from the server (AES256 + Salt).
-- Fixes some logic bugs and typos-
+- Fixes some logic bugs and typos
 
 ## v2.0.0.0
 - The complete code for local storage has been rewritten, now there is a cloud function (ATTENTION WITHOUT ENCRYPTION; COMES LATER)
