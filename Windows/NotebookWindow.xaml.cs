@@ -168,8 +168,9 @@
             };
 
             NotebookSystem nSys = new NotebookSystem();
-            LoadNotebooks();
+            
             nSys.AddNote(note);
+            LoadNotebooks();
             CheckButtonsState();
         }
 
