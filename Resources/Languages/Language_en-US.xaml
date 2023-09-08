@@ -37,7 +37,6 @@
     <system:String x:Key="from">from</system:String>
     <system:String x:Key="whatShouldTheFileBeCalled">what should the file be called?</system:String>
     <system:String x:Key="saveAs">save as</system:String>
-    <system:String x:Key="refresh">refresh</system:String>
     <system:String x:Key="pleaseChooseALocationForYourBackUpFile">please choose a location for your BackUp file</system:String>
     <system:String x:Key="uiLanguage">UI Language</system:String>
     <system:String x:Key="pdfProgram">PDF Program</system:String>
@@ -46,7 +45,7 @@
         Invoices Manager is an open-source program that you can use for free &amp; developing further.
     </system:String>
     <system:String x:Key="invoicesManagerIsAnOpenSourceTool02">
-        Source code can be found on GitHub (Invoices-Manager/Invoices-Manager-Cloud-Windows).
+        Source code can be found on GitHub (Invoices-Manager/Invoices-Manager-Windows).
     </system:String>
     <system:String x:Key="invoicesManagerIsAnOpenSourceTool03">
         You can save and manage documents, invoices and much more with this program &amp; with the help of the many filter options you can also quickly find the documents again, in addition, the data is stored only on your computer, I and no one else have insight into YOUR data.
@@ -94,7 +93,7 @@
     <system:String x:Key="everyStartUpBackUp">create a BackUp every program start?</system:String>
     <system:String x:Key="backupMaxCount">maximum number of backups</system:String>
     <system:String x:Key="openNotebook">open notebook</system:String>
-    <system:String x:Key="fileAlreadyExists">The file does already exist in the system!</system:String>
+    <system:String x:Key="fileDoNotExist">The file does not exist in the system! (404)</system:String>
     <system:String x:Key="warningNotebookNotIncludedInBackUp">You make a BackUp where the notebook is not included! (function may be added later)</system:String>
     <system:String x:Key="Bttn_Dashboard">Dashboard</system:String>
     <system:String x:Key="Bttn_InvoiceManager">Invoice Manager</system:String>
@@ -148,19 +147,4 @@
     <system:String x:Key="toDayLogs">Only today's logs</system:String>
     <system:String x:Key="loadTimeMessage">Please wait, depending on the size of the log file it may take time!</system:String>
     <system:String x:Key="loadTimeTitle">Loading...</system:String>
-    <system:String x:Key="Bttn_Login">Login</system:String>
-    <system:String x:Key="Bttn_Logout">Logout</system:String>
-    <system:String x:Key="username">username:</system:String>
-    <system:String x:Key="password">password:</system:String>
-    <system:String x:Key="repeatPassword">repeat password:</system:String>
-    <system:String x:Key="login">login</system:String>
-    <system:String x:Key="signUp">sign up</system:String>
-    <system:String x:Key="signIn">sign in</system:String>
-    <system:String x:Key="create">create</system:String>
-    <system:String x:Key="firstName">first Name:</system:String>
-    <system:String x:Key="lastName">last Name:</system:String>
-    <system:String x:Key="eMail">eMail:</system:String>
-    <system:String x:Key="hostProt">protocol:</system:String>
-    <system:String x:Key="hostAddress">hostname:</system:String>
-    <system:String x:Key="hostPort">port:</system:String>
 </ResourceDictionary>

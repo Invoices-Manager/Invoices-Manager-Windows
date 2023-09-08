@@ -154,7 +154,7 @@
             Comb_DocumentType.Text = invoice.DocumentType;
             Tb_InvoiceNumber.Text = invoice.InvoiceNumber == "" ? "" : invoice.InvoiceNumber;
             Tb_Reference.Text = invoice.Reference;
-            Tb_MoneyTotal.Text = invoice.MoneyTotalDouble == -1 ? "" : invoice.MoneyTotalDouble.ToString();
+            Tb_MoneyTotal.Text = invoice.MoneyTotal == -1 ? "" : invoice.MoneyTotal.ToString();
             Tb_Tags.Text = String.Join(";", invoice.Tags);
             Comb_ImportanceState.SelectedIndex = (int)invoice.ImportanceState;
             Comb_MoneyState.SelectedIndex = (int)invoice.MoneyState;
@@ -280,7 +280,7 @@
                     DocumentType = Comb_DocumentType.Text,
                     InvoiceNumber = Tb_InvoiceNumber.Text,
                     Reference = Tb_Reference.Text,
-                    MoneyTotalDouble = String.IsNullOrEmpty(Tb_MoneyTotal.Text) ? -1 : Convert.ToDouble(Tb_MoneyTotal.Text),
+                    MoneyTotal = String.IsNullOrEmpty(Tb_MoneyTotal.Text) ? -1 : Convert.ToDouble(Tb_MoneyTotal.Text),
                     Tags = Tb_Tags.Text.Split(';'),
                     ImportanceState = (ImportanceStateEnum)Comb_ImportanceState.SelectedIndex,
                     MoneyState = (MoneyStateEnum)Comb_MoneyState.SelectedIndex,
@@ -339,16 +339,19 @@
         }
         private void AddNewInvoice()
         {
+            string hashID = SecuritySystem.GetMD5HashFromFile(filePath);
+            string newPath = @$"{EnvironmentsVariable.PathInvoices}\{hashID}.pdf";
+
             InvoiceModel newInvoice = new InvoiceModel()
             {
-                FileID = "",
+                FileID = hashID,
                 CaptureDate = DateTime.Now,
                 ExhibitionDate = Dp_ExhibitionDate.SelectedDate.Value,
                 Organization = Comb_Organization.Text,
                 DocumentType = Comb_DocumentType.Text,
                 InvoiceNumber = Tb_InvoiceNumber.Text,
                 Reference = Tb_Reference.Text,
-                MoneyTotalDouble = String.IsNullOrEmpty(Tb_MoneyTotal.Text) ? -1 : Convert.ToDouble(Tb_MoneyTotal.Text),
+                MoneyTotal = String.IsNullOrEmpty(Tb_MoneyTotal.Text) ? -1 : Convert.ToDouble(Tb_MoneyTotal.Text),
                 Tags = Tb_Tags.Text.Split(';'),
                 ImportanceState = (ImportanceStateEnum)Comb_ImportanceState.SelectedIndex,
                 MoneyState = (MoneyStateEnum)Comb_MoneyState.SelectedIndex,
@@ -356,7 +359,7 @@
             };
 
             InvoiceSystem iSys = new InvoiceSystem();
-            iSys.AddInvoice(newInvoice, filePath);
+            iSys.AddInvoice(newInvoice, filePath, newPath);
             iSys.Init();
         }
         //ADD AREA END

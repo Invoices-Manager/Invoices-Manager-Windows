@@ -1,11 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
-
-namespace InvoicesManager.Core
+﻿namespace InvoicesManager.Core
 {
     public class NotebookSystem
     {
-        readonly EncryptionSystem _es = new (EnvironmentsVariable.GetUserPassword(), EnvironmentsVariable.GetUserSalt());
-        
         public void Init()
         {
             try
@@ -14,18 +10,11 @@ namespace InvoicesManager.Core
 
                 EnvironmentsVariable.Notebook.Notebook.Clear();
 
-                string json = NoteWebSystem.GetAll();
+                string json = File.ReadAllText(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName);
 
                 if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
-                    foreach (NoteModel note in JsonConvert.DeserializeObject<NotebookModel>(json).Notebook)
-                    {
-                        //decrypt notebook data
-                        note.Name = _es.DecryptString(note.Name);
-                        note.Value = _es.DecryptString(note.Value);
-
-                        EnvironmentsVariable.Notebook.Notebook.Add(note);
-                    }
-
+                    EnvironmentsVariable.Notebook = JsonConvert.DeserializeObject<NotebookModel>(json);
+                
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Notebook_System, "Notebook system has been initialized.");
             }
             catch (Exception ex)
@@ -38,24 +27,9 @@ namespace InvoicesManager.Core
         {
             try
             {
-                //encrypt notebook data
-                NoteModel encryptedNote = new NoteModel()
-                {
-                    Name = _es.EncryptString(newNote.Name),
-                    Value = _es.EncryptString(newNote.Value)
-                };
-
-                //save into web
-                int id = NoteWebSystem.Add(encryptedNote);
-
-                //if id == -1 => then error
-                if (id == -1)
-                    throw new Exception("Error adding note via api. ID = -1");
-
-                newNote.Id = id;
-                //save into env
                 EnvironmentsVariable.Notebook.Notebook.Add(newNote);
-               
+
+                SaveIntoJsonFile();
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Notebook_System, $"A new note has been added. [{newNote.Id}]");
             }
             catch (Exception ex)
@@ -68,26 +42,12 @@ namespace InvoicesManager.Core
         {
             try
             {
-                //save into env
                 NoteModel note = EnvironmentsVariable.Notebook.Notebook.Find(x => x.Id == editNote.Id);
                 note.Name = editNote.Name;
                 note.Value = editNote.Value;
                 note.LastEditDate = DateTime.Now;
 
-                //encrypt notebook data
-                NoteModel encryptedNote = new NoteModel()
-                {
-                    Id = note.Id,
-                    Name = _es.EncryptString(note.Name),
-                    Value = _es.EncryptString(note.Value),
-                    CreationDate = note.CreationDate,
-                    LastEditDate = note.LastEditDate
-                };
-
-                //save into web
-                if (!NoteWebSystem.Edit(encryptedNote))
-                    throw new Exception("Error editing note via api.");
-
+                SaveIntoJsonFile();
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Notebook_System, $"A note has been edited. [{editNote.Id}]");
             }
             catch (Exception ex)
@@ -100,13 +60,9 @@ namespace InvoicesManager.Core
         {
             try
             {
-                //save into web
-                if (!NoteWebSystem.Delete(oldNote.Id))
-                    throw new Exception("Error removing note via api.");
-  
-                //save into env
                 EnvironmentsVariable.Notebook.Notebook.Remove(oldNote);
 
+                SaveIntoJsonFile();
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Notebook_System, $"A note has been removed. [{oldNote.Id}]");
             }
             catch (Exception ex)
@@ -130,6 +86,21 @@ namespace InvoicesManager.Core
 #endif
             NoteModel noteFromList = EnvironmentsVariable.Notebook.Notebook.Find(x => x.Id == note.Id);
             return noteFromList.Name != note.Name || noteFromList.Value != note.Value;
+        }
+        
+        private void SaveIntoJsonFile()
+        {
+#if DEBUG
+            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Notebook_System, "SaveIntoJsonFile() has been called");
+#endif
+            try
+            {
+                File.WriteAllText(EnvironmentsVariable.PathNotebook + EnvironmentsVariable.NotebooksJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.Notebook, Formatting.Indented));
+            }
+            catch (Exception ex)
+            {
+                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Notebook_System, $"Error saving changes to the notebook file, err: {ex.Message}");
+            }
         }
     }
 }

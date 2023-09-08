@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:InvoicesManager.Windows"
         mc:Ignorable="d"
         Title="Invoices Manager | Made by Schecher | https://github.com/Schecher1" 
-        Height="950" Width="1250"
-        MinHeight="950" MinWidth="1250"
+        Height="900" Width="1000"
+        MinHeight="250" MinWidth="250"
         Icon="/Resources/SmallIcon.png"
         WindowState="Maximized"
         Closed="Window_Closed" 
@@ -24,14 +24,13 @@
             <ScrollViewer Margin="0,175,0,0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" >
                 <Grid>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <!--<Button ToolTip="Will be added in a future version!" x:Name="Bttn_Open_Dashboard" Content="{DynamicResource Bttn_Dashboard}" FontSize="25" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_Open_Dashboard_Click" Background="#FFDDDDDD" OpacityMask="Black"/>-->
+                        <!--<Button ToolTip="Will be added in a future version!" x:Name="Bttn_Open_Dashboard" Content="{DynamicResource Bttn_Dashboard}" FontSize="25" Margin="45,25,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Height="80" Click="Bttn_Open_Dashboard_Click" Background="#FFDDDDDD" OpacityMask="Black"/>
+                -->
                         <Button x:Name="Bttn_Open_Invoices" Content="{DynamicResource Bttn_InvoiceManager}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Click="Bttn_Open_Invoices_Click"/>
                         <Button x:Name="Bttn_Open_Notebook" Content="{DynamicResource Bttn_Notebook}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Click="Bttn_Open_Notebook_Click"/>
-                        <!--<Button x:Name="Bttn_Open_BackUp" Content="{DynamicResource Bttn_BackUp}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Click="Bttn_Open_BackUp_Click"/>-->
+                        <Button x:Name="Bttn_Open_BackUp" Content="{DynamicResource Bttn_BackUp}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Click="Bttn_Open_BackUp_Click"/>
                         <Button x:Name="Bttn_Open_Logs" Content="{DynamicResource Bttn_Logs}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Click="Bttn_Open_Logs_Click"/>
                         <Button x:Name="Bttn_Open_Setting" Content="{DynamicResource Bttn_Settings}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Click="Bttn_Open_Setting_Click"/>
-                        <Button x:Name="Bttn_Open_Login" Content="{DynamicResource Bttn_Login}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Click="Bttn_Open_Login_Click"/>
-                        <Button x:Name="Bttn_Open_Logout" Content="{DynamicResource Bttn_Logout}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Visibility="Collapsed" Click="Bttn_Open_Logout_Click"/>
                         <Button x:Name="Bttn_Open_About" Content="{DynamicResource Bttn_About}" FontSize="20" BorderBrush="{DynamicResource BorderBrush}" Margin="45,10,45,25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="80" Click="Bttn_Open_About_Click"/>
                     </StackPanel>
                 </Grid>

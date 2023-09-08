@@ -1,4 +1,7 @@
-﻿namespace InvoicesManager.Core
+﻿using InvoicesManager.Core.Sort;
+using System.Collections;
+
+namespace InvoicesManager.Core
 {
     class LoggerSystem
     {
@@ -117,8 +120,6 @@
                 LogPrefixEnum.Security_System => "Security-System",
                 LogPrefixEnum.Language_System => "Language-System",
                 LogPrefixEnum.Template_System => "Template-System",
-                LogPrefixEnum.User_System => "User-System",
-                LogPrefixEnum.WebRequest_System => "WebRequest-System",
                 LogPrefixEnum.About_View => "About-View",
                 LogPrefixEnum.BackUp_View => "BackUp-View",
                 LogPrefixEnum.SaveAs_View => "SaveAs-View",
