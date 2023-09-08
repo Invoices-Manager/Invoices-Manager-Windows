@@ -29,8 +29,7 @@ Or [press here](#) to download if you want the latest one (standalone) <br/>
 ✔️ AES 256 Encryption <br/>
 ✔️ Many filter methods<br/>
 ✔️ All via an ASP API that can be hosted by yourself<br/>
-
-                                                                                                             
+                                                                               
 
 ## Images:
 ### Main-Screen:                                                  
@@ -38,6 +37,12 @@ Or [press here](#) to download if you want the latest one (standalone) <br/>
 
 ### Invoice-Main-Screen:                                                  
 ![Invoice-Main-Screen](IMAGES/Version%202.1.0.0/InvoiceMainScreen.png)
+
+### SignIn-Screen:                                         
+![BackUp-Screen](IMAGES/Version%202.1.0.0/SignInScreen.png) 
+
+### SignUp-Screen:                                         
+![BackUp-Screen](IMAGES/Version%202.1.0.0/SignUpScreen.png) 
 
 ### Invoice-View-Screen:                                           
 ![Invoice-View-Screen](IMAGES/Version%202.1.0.0/InvoiceViewScreen.png)
@@ -72,6 +77,7 @@ Or [press here](#) to download if you want the latest one (standalone) <br/>
 ## v2.1.0.0
 - The data and files which are sent to the API are encrypted with the user password and the received salt from the server (AES256 + Salt).
 - Fixes some logic bugs and typos
+- Info: The Menu / UI meight be slow if you have a lot of invoices, this will be fixed in the next version.
 
 ## v2.0.0.0
 - The complete code for local storage has been rewritten, now there is a cloud function (ATTENTION WITHOUT ENCRYPTION; COMES LATER)
