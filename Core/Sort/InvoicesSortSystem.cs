@@ -55,7 +55,7 @@
                               .Where(x => x.PaidState == filterPaidState || filterPaidState == PaidStateEnum.FilterPlaceholder)
                               .Where(x => x.MoneyState == filterMoneyState || filterMoneyState == MoneyStateEnum.FilterPlaceholder)
                               .Where(x => x.ImportanceState == filterImportanceState || filterImportanceState == ImportanceStateEnum.FilterPlaceholder)
-                              .Where(x => x.MoneyTotal == filterMoneyTotal || filterMoneyTotal == double.MinValue)
+                              .Where(x => x.MoneyTotalDouble == filterMoneyTotal || filterMoneyTotal == double.MinValue)
                               .Where(x => x.Tags.Select(y => y.ToLower()).Contains(filterTags.ToLower()) || string.IsNullOrEmpty(filterTags))
                               .ToList();
 

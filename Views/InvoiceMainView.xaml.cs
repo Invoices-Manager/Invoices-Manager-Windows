@@ -1,6 +1,4 @@
-﻿using InvoicesManager.Core.Sort;
-
-namespace InvoicesManager.Views
+﻿namespace InvoicesManager.Views
 {
     public partial class InvoiceMainView : Page
     {
@@ -34,18 +32,19 @@ namespace InvoicesManager.Views
             //check for auto backup
             if (EnvironmentsVariable.CreateABackupEveryTimeTheProgramStarts)
             {
-                Task.Run(() =>
-                {
-                    LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.MainWindow_View, "auto backup was requested");
-                    BackUpSystem buSys = new BackUpSystem();
-                    bool wasPerformedCorrectly = buSys.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"));
-                    if (!wasPerformedCorrectly)
-                    {
-                        LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.MainWindow_View, "the requested auto backup failed");
-                        MessageBox.Show(this.Resources["backUpFailed"] as string);
-                    }
-                    buSys.CheckBackUpCount();
-                });
+                throw new NotImplementedException();
+                //Task.Run(() =>
+                //{
+                //    LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.MainWindow_View, "auto backup was requested");
+                //    BackUpSystem buSys = new BackUpSystem();
+                //    bool wasPerformedCorrectly = buSys.BackUp(Path.Combine(EnvironmentsVariable.PathBackUps, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bkup"));
+                //    if (!wasPerformedCorrectly)
+                //    {
+                //        LoggerSystem.Log(LogStateEnum.Warning, LogPrefixEnum.MainWindow_View, "the requested auto backup failed");
+                //        MessageBox.Show(this.Resources["backUpFailed"] as string);
+                //    }
+                //    buSys.CheckBackUpCount();
+                //});
             }
 
 #if DEBUG
@@ -75,7 +74,7 @@ namespace InvoicesManager.Views
                 invoice.Organization = sampleOrganization[r.Next(0, sampleOrganization.Length)];
                 invoice.InvoiceNumber = "INV-NR" + r.Next(100000, 999999).ToString();
                 invoice.Tags = new string[] { "Tag1", "Tag2", "Tag3" };
-                invoice.MoneyTotal = r.Next(100, 9999);
+                invoice.MoneyTotalDouble = r.Next(100, 9999);
                 invoice.ImportanceState = (ImportanceStateEnum)r.Next(0, 3);
                 invoice.MoneyState = (MoneyStateEnum)r.Next(0, 2);
                 invoice.PaidState = (PaidStateEnum)r.Next(0, 2);
@@ -83,7 +82,7 @@ namespace InvoicesManager.Views
                 sampleInvoices.Add(invoice);
             }
 
-            File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(sampleInvoices, Formatting.Indented));
+            //File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(sampleInvoices, Formatting.Indented));
         }
 
         private void InitThreads()
@@ -314,13 +313,15 @@ namespace InvoicesManager.Views
 
             //copy file to temp folder and open it then delete it
             string tempPath = Path.Combine(Path.GetTempPath(), invoice.FileID + ".pdf");
-            string sourcePath = Path.Combine(EnvironmentsVariable.PathInvoices, invoice.FileID + ".pdf");
-            File.Copy(sourcePath, tempPath, true);
+
+            InvoiceSystem _is = new InvoiceSystem();
+
+            File.WriteAllBytes(tempPath, Convert.FromBase64String(_is.GetFile(invoice.Id)));
             Process.Start(EnvironmentsVariable.PathPDFBrowser, tempPath);
 
             //this program has to wait, so the pdf browser can open it
             //otherwise he is faster with delete than the document can be displayed
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
             File.Delete(tempPath);
         }

@@ -2,6 +2,8 @@
 {
     public class InvoiceSystem
     {
+        readonly EncryptionSystem _es = new(EnvironmentsVariable.GetUserPassword(), EnvironmentsVariable.GetUserSalt());
+        
         public void Init()
         {
             try
@@ -17,12 +19,16 @@
 #if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "Loading the invoices from the json file...");
 #endif
-                string json = File.ReadAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName);
+                string json = InvoiceWebSystem.GetAll();
 #if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "Finished, loading the invoices from the json file");
 #endif
                 if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
-                    EnvironmentsVariable.AllInvoices = JsonConvert.DeserializeObject<List<InvoiceModel>>(json);
+                    foreach (InvoiceModel invoice in JsonConvert.DeserializeObject<List<InvoiceModel>>(json))
+                    {
+                        //decrypt invoice
+                        EnvironmentsVariable.AllInvoices.Add(DecryptInvoice(invoice));
+                    }
 
                 //remove the unessary spaces from the tags
                 EnvironmentsVariable.AllInvoices.ForEach(x => x.Tags = x.Tags.Select(y => y.Trim()).ToArray());
@@ -39,23 +45,34 @@
             }
         }
 
-        public void AddInvoice(InvoiceModel newInvoice, string filePath, string newPath)
+        public void AddInvoice(InvoiceModel newInvoice, string filePath)
         {
             try
             {
                 if (CheckIfInvoiceExist(filePath))
                 {
-                    MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
+                    MessageBox.Show(Application.Current.Resources["fileAlreadyExists"] as string);
                     return;
                 }
-                
+
+                //convert the file to base64
+                string base64 = Convert.ToBase64String(File.ReadAllBytes(filePath));
+
+                //get the file id
+                newInvoice.FileID = SecuritySystem.GetMD5HashFromFile(filePath);
+
+                //encrypt the invoice and the file (base64)
+                InvoiceModel encryptedInvoice = EncryptInvoice(newInvoice);
+                string encryptedBase64 = _es.EncryptString(base64); 
+
+                //save into web
+                int id = InvoiceWebSystem.Add(encryptedInvoice, encryptedBase64);
+                if (id == -1 || id == 0)
+                    throw new Exception("Error while adding a new invoice");
+                //save into env
+                newInvoice.Id = id;
                 EnvironmentsVariable.AllInvoices.Add(newInvoice);
-#if DEBUG
-                LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"start FileCp filePath: {filePath}  newPath: {newPath}");
-#endif
-                File.Copy(filePath, newPath);
                 
-                SaveIntoJsonFile();
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, $"A new invoice has been added. [{newInvoice.FileID}]");
             }
             catch (Exception ex)
@@ -68,16 +85,18 @@
         {
             try
             {
-                if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
-                {
-                    MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
-                    return;
-                }
+                //save into web
+                newInvoice.Id = oldInvoice.Id;
 
+                //encrypt the invoice
+                InvoiceModel encryptedInvoice = EncryptInvoice(newInvoice);
+
+                if (InvoiceWebSystem.Edit(encryptedInvoice))
+                    throw new Exception("Error while editing a invoice");
+                //save into env
                 EnvironmentsVariable.AllInvoices.Remove(oldInvoice);
                 EnvironmentsVariable.AllInvoices.Add(newInvoice);
-
-                SaveIntoJsonFile();
+                
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, $"A invoice has been edited. [{newInvoice.FileID}]");
             }
             catch (Exception ex)
@@ -90,16 +109,12 @@
         {
             try
             {
-                if (!CheckIfInvoiceExist(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT))
-                {
-                    MessageBox.Show(Application.Current.Resources["fileDoNotExist"] as string);
-                    return;
-                }
+                //  save into web
+                if (InvoiceWebSystem.Remove(oldInvoice.Id))
+                    throw new Exception("Error while deleting a invoice");
+                //save into env
                 EnvironmentsVariable.AllInvoices.Remove(oldInvoice);
 
-                File.Delete(EnvironmentsVariable.PathInvoices + oldInvoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT);
-
-                SaveIntoJsonFile();
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, $"A invoice has been deleted. [{oldInvoice.FileID}]");
             }
             catch (Exception ex)
@@ -108,12 +123,24 @@
             }
         }
 
+        public string GetFile(int invoiceId)
+        {
+            string encryptedBase64 = InvoiceWebSystem.GetFile(invoiceId);
+            return _es.DecryptString(encryptedBase64);
+        }
+
         public void SaveAs(InvoiceModel invoice, string path)
         {
             try
             {
                 LoggerSystem.Log(LogStateEnum.Info, LogPrefixEnum.Invoice_System, $"A invoice has been saved as. ID: [{invoice.FileID}] Path: [{path}]");
-                File.Copy(EnvironmentsVariable.PathInvoices + invoice.FileID + EnvironmentsVariable.PROGRAM_SUPPORTEDFORMAT, path);
+                
+                string encryptedBase64 = InvoiceWebSystem.GetFile(invoice.Id);
+
+                //decrypt base64 string
+                string base64 = _es.DecryptString(encryptedBase64);
+
+                File.WriteAllBytes(path, Convert.FromBase64String(base64));
             }
             catch (Exception ex)
             {
@@ -131,6 +158,7 @@
             try
             {
                 string hashID = SecuritySystem.GetMD5HashFromFile(filePath);
+
                 foreach (var invoice in EnvironmentsVariable.AllInvoices)
                 {
                     if (invoice.FileID.Equals(hashID))
@@ -217,7 +245,9 @@
                 invoiceToOverride.MoneyTotal = invoice.MoneyTotal;
                 invoiceToOverride.PaidState = invoice.PaidState;
 
-                SaveIntoJsonFile();
+                //save into web
+                if (!InvoiceWebSystem.Edit(invoice))
+                    throw new Exception("Error while overriding a invoice");
             }
             catch (Exception ex)
             {
@@ -225,20 +255,37 @@
             }
         }
 
-
-        private void SaveIntoJsonFile()
+        private InvoiceModel EncryptInvoice(InvoiceModel newInvoice)
         {
-#if DEBUG
-            LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, $"SaveIntoJsonFile() was called");
-#endif
-            try
-            {
-                File.WriteAllText(EnvironmentsVariable.PathInvoices + EnvironmentsVariable.InvoicesJsonFileName, JsonConvert.SerializeObject(EnvironmentsVariable.AllInvoices, Formatting.Indented));
-            }
-            catch (Exception ex)
-            {
-                LoggerSystem.Log(LogStateEnum.Error, LogPrefixEnum.Invoice_System, $"Error while saving the invoices into the json file, err: {ex.Message}");
-            }
+            InvoiceModel encryptedInvoice = newInvoice.Clone();
+
+            encryptedInvoice.Reference = _es.EncryptString(newInvoice.Reference);
+            encryptedInvoice.DocumentType = _es.EncryptString(newInvoice.DocumentType);
+            encryptedInvoice.Organization = _es.EncryptString(newInvoice.Organization);
+            encryptedInvoice.InvoiceNumber = _es.EncryptString(newInvoice.InvoiceNumber);
+            encryptedInvoice.Tags = _es.EncryptStringArray(newInvoice.Tags);
+            encryptedInvoice.MoneyTotal = _es.EncryptString(newInvoice.MoneyTotalDouble.ToString());
+
+            return encryptedInvoice;
+        }
+
+        private InvoiceModel DecryptInvoice(InvoiceModel newInvoice)
+        {
+            InvoiceModel decryptedInvoice = newInvoice.Clone();
+
+            decryptedInvoice.Reference = _es.DecryptString(newInvoice.Reference);
+            decryptedInvoice.DocumentType = _es.DecryptString(newInvoice.DocumentType);
+            decryptedInvoice.Organization = _es.DecryptString(newInvoice.Organization);
+            decryptedInvoice.InvoiceNumber = _es.DecryptString(newInvoice.InvoiceNumber);
+            decryptedInvoice.Tags = _es.DecryptStringArray(newInvoice.Tags);
+
+            //decrypt the double and try to parse it
+            if (double.TryParse(_es.DecryptString(newInvoice.MoneyTotal), out double moneyTotal))
+                decryptedInvoice.MoneyTotalDouble = moneyTotal;
+            else
+                decryptedInvoice.MoneyTotalDouble = -1;
+            
+            return decryptedInvoice;
         }
     }
 }
