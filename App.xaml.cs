@@ -8,7 +8,7 @@ namespace InvoicesManager
 {
     public partial class App : Application
     {
-        private readonly Mutex InvoiceManagerMutex = new Mutex(true, "{GnM-InvoicesManager-Cloud-GnM-MadeBySchecher_1}");
+        private readonly Mutex InvoiceManagerMutex = new Mutex(true, "{GnM-InvoicesManager-GnM-MadeBySchecher_1}");
 
         public App()
         {

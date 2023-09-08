@@ -1,4 +1,6 @@
-﻿namespace InvoicesManager.Core.Sort
+﻿using System.Security.Policy;
+
+namespace InvoicesManager.Core.Sort
 {
     public class LogsSortSystem
     {

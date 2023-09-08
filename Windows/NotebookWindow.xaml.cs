@@ -44,10 +44,6 @@
             try
             {
                 sP_Notes.Items.Clear();
-
-                NotebookSystem nSys = new NotebookSystem();
-                nSys.Init();
-
                 foreach (NoteModel note in EnvironmentsVariable.Notebook.Notebook)
                     sP_Notes.Items.Add(note);
 
@@ -68,7 +64,7 @@
         {
             try
             {
-                int id = ((NoteModel)((FrameworkElement)sender).DataContext).Id;
+                Guid id = ((NoteModel)((FrameworkElement)sender).DataContext).Id;
                 selectedNote = EnvironmentsVariable.Notebook.Notebook.Find(note => note.Id == id);
                 if (sender is Button)
                     correspondingButton = (Button)sender;
@@ -80,8 +76,6 @@
                 {
                     Bttn_SaveNote.IsEnabled = true;
                     Bttn_DeleteNote.IsEnabled = true;
-                    Tb_Note_Title.IsReadOnly = false;
-                    Tb_Note_Value.IsReadOnly = false;
                 }
             }
             catch (Exception ex)
@@ -117,15 +111,11 @@
             {
                 Bttn_SaveNote.IsEnabled = false;
                 Bttn_DeleteNote.IsEnabled = false;
-                Tb_Note_Title.IsReadOnly = true;
-                Tb_Note_Value.IsReadOnly = true;
             }
             else
             {
                 Bttn_SaveNote.IsEnabled = true;
                 Bttn_DeleteNote.IsEnabled = true;
-                Tb_Note_Title.IsReadOnly = false;
-                Tb_Note_Value.IsReadOnly = false;
             }
 
         }
@@ -142,7 +132,7 @@
             {
                 if (correspondingButton is null)
                     return;
-                
+
                 correspondingButton.Content = Tb_Note_Title.Text;
                 selectedNote.Name = Tb_Note_Title.Text;
                 selectedNote.Value = Tb_Note_Value.Text;
@@ -161,6 +151,7 @@
         {
             NoteModel note = new NoteModel()
             {
+                Id = Guid.NewGuid(),
                 Name = $"Note {EnvironmentsVariable.Notebook.Notebook.Count}",
                 Value = $"",
                 CreationDate = DateTime.Now,
@@ -168,16 +159,8 @@
             };
 
             NotebookSystem nSys = new NotebookSystem();
-            
             nSys.AddNote(note);
             LoadNotebooks();
-            CheckButtonsState();
-        }
-
-        private void Bttn_RefreshNotebook_Click(object sender, RoutedEventArgs e)
-        {
-            LoadNotebooks();
-            CheckButtonsState();
         }
     }
 }

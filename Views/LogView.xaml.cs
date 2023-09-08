@@ -1,4 +1,6 @@
-﻿namespace InvoicesManager.Views
+﻿using InvoicesManager.Core.Sort;
+
+namespace InvoicesManager.Views
 {
     public partial class LogView : Page
     {

@@ -37,7 +37,6 @@
     <system:String x:Key="from">von</system:String>
     <system:String x:Key="whatShouldTheFileBeCalled">Wie soll die Datei heißen?</system:String>
     <system:String x:Key="saveAs">Speichern unter</system:String>
-    <system:String x:Key="refresh">Neu laden</system:String>
     <system:String x:Key="pleaseChooseALocationForYourBackUpFile">Bitte wählen Sie einen Speicherort für Ihre Sicherungsdatei</system:String>
     <system:String x:Key="uiLanguage">Benutzersprache</system:String>
     <system:String x:Key="pdfProgram">PDF-Programm</system:String>
@@ -46,7 +45,7 @@
         Invoices Manager ist ein Open-Source-Programm, das Sie kostenlos nutzen &amp; weiter entwickeln können.
     </system:String>
     <system:String x:Key="invoicesManagerIsAnOpenSourceTool02">
-        Der Quellcode ist auf GitHub zu finden (Invoices-Manager/Invoices-Manager-Cloud-Windows).
+        Der Quellcode ist auf GitHub zu finden (Invoices-Manager/Invoices-Manager-Windows).
     </system:String>
     <system:String x:Key="invoicesManagerIsAnOpenSourceTool03">
         Mit diesem Programm können Sie Belege, Rechnungen und vieles mehr speichern und verwalten &amp; mit Hilfe der vielen Filtermöglichkeiten können Sie die Belege auch schnell wieder finden, außerdem werden die Daten nur auf Ihrem Computer gespeichert, ich und niemand sonst haben Einblick in IHRE Daten.
@@ -95,7 +94,7 @@
     <system:String x:Key="everyStartUpBackUp">Bei jedem Programmstart ein BackUp erstellen?</system:String>
     <system:String x:Key="backupMaxCount">maximale Sicherungsanzahl</system:String>
     <system:String x:Key="openNotebook">Notizbuch öffnen</system:String>
-    <system:String x:Key="fileAlreadyExists">Die Datei existiert bereits im System!</system:String>
+    <system:String x:Key="fileDoNotExist">Die Datei existiert nicht im System! (404)</system:String>
     <system:String x:Key="warningNotebookNotIncludedInBackUp">Sie erstellen ein BackUp, in dem das Notebook nicht enthalten ist! (Funktion wird eventuell später hinzugefügt)</system:String>
     <system:String x:Key="Bttn_Dashboard">Dashboard</system:String>
     <system:String x:Key="Bttn_InvoiceManager">Rechnungs Manager</system:String>
@@ -149,19 +148,4 @@
     <system:String x:Key="toDayLogs">Nur die heutigen Protokolle</system:String>
     <system:String x:Key="loadTimeMessage">Bitte warten, je nach größe der Log Datei kann es dauern!</system:String>
     <system:String x:Key="loadTimeTitle">Lade...</system:String>
-    <system:String x:Key="Bttn_Login">Anmelden</system:String>
-    <system:String x:Key="Bttn_Logout">Abmelden</system:String>
-    <system:String x:Key="username">Benutzername:</system:String>
-    <system:String x:Key="password">Passwort:</system:String>
-    <system:String x:Key="repeatPassword">Passwort wiederholen:</system:String>
-    <system:String x:Key="login">Anmelden</system:String>
-    <system:String x:Key="signUp">Registrieren</system:String>
-    <system:String x:Key="signIn">Anmeldung</system:String>
-    <system:String x:Key="create">Erstellen</system:String>
-    <system:String x:Key="firstName">Vorname:</system:String>
-    <system:String x:Key="lastName">Nachname:</system:String>
-    <system:String x:Key="eMail">E-Mail:</system:String>
-    <system:String x:Key="hostProt">Protokoll:</system:String>
-    <system:String x:Key="hostAddress">Adresse:</system:String>
-    <system:String x:Key="hostPort">Port:</system:String>
 </ResourceDictionary>
